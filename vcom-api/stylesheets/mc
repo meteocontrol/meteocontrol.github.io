@@ -1,0 +1,81 @@
+/*
+Copyright 2008-2013 Concur Technologies, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may
+not use this file except in compliance with the License. You may obtain
+a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations
+under the License.
+*/
+.tocify-subheader .tocify-item a {
+  padding-left: 25px; }
+.tocify-subheader .tocify-subheader .tocify-item {
+  background-color: #5f5f5f; }
+  .tocify-subheader .tocify-subheader .tocify-item a {
+    padding-left: 35px;
+    font-size: 12px; }
+.tocify-subheader .tocify-subheader .tocify-subheader .tocify-item {
+  background-color: #6a6a6a; }
+  .tocify-subheader .tocify-subheader .tocify-subheader .tocify-item a {
+    padding-left: 45px;
+    font-size: 12px; }
+.tocify-subheader .tocify-subheader .tocify-subheader .tocify-focus {
+  background-color: #2467af; }
+.tocify-subheader .tocify-subheader .tocify-subheader .tocify-subheader .tocify-item {
+  background-color: #787878; }
+  .tocify-subheader .tocify-subheader .tocify-subheader .tocify-subheader .tocify-item a {
+    padding-left: 55px;
+    font-size: 12px; }
+.tocify-subheader .tocify-subheader .tocify-subheader .tocify-subheader .tocify-focus {
+  background-color: #2467af; }
+.tocify-subheader > li:last-child {
+  box-shadow: none; }
+
+.content code {
+  word-break: normal; }
+.content p > code.http-method {
+  background-color: #004b99;
+  color: #fff;
+  text-shadow: none; }
+.content > h3, .content > h4, .content > h5, .content > h6 {
+  clear: both; }
+.content h4, .content h5, .content h6 {
+  font-size: 15px; }
+.content pre.plaintext {
+  color: #333;
+  background-color: rgba(0, 0, 0, 0.05);
+  float: none;
+  margin-bottom: 1em;
+  text-shadow: 0 1px 0 #fff; }
+
+.tocify-wrapper .tocify-subheader .tocify-focus {
+  box-shadow: 0 1px 0 #000;
+  background-color: #2467af;
+  color: #fff; }
+
+.content > ul, .content > ol {
+  margin-top: 0; }
+
+.content h1 {
+  font-size: 2em; }
+
+.content h2 {
+  font-size: 1.8em; }
+
+.content h3 {
+  font-size: 1.6em; }
+
+.content h4 {
+  font-size: 1.4em;
+  font-weight: normal; }
+
+.content h5 {
+  font-size: 1.2em;
+  font-style: italic;
+  font-weight: normal; }

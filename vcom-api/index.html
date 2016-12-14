@@ -1,0 +1,3519 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>meteocontrol VCOM API</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">cURL</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='http://www.meteocontrol.com/'>meteocontrol GmbH</a></li>
+            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        
+          <h1 id="introduction">Introduction</h1>
+
+<blockquote>
+<p>As you scroll through the page, you can follow these code snippets to try the API for yourself.</p>
+</blockquote>
+
+<p>The VCOM API enables you to directly access your data on the meteocontrol platform. Some resources are read-only, others can be created or modified.</p>
+
+<p>Access to the VCOM API requires an API-Key as well as credentials to our platform. As a partner of meteocontrol we will provide you an API-Key free of charge.</p>
+
+<p>It is also possible to utilize our API without a partner agreement. Please contact our sales representatives to find out more.</p>
+
+<p>The meteocontrol VCOM API can be found at:</p>
+
+<ul>
+<li>All countries: <code class="prettyprint">https://api.meteocontrol.de/</code></li>
+<li>Clients on the Chinese datacenter: <code class="prettyprint">https://api.meteocontrol.cn/</code></li>
+</ul>
+
+<p>Data is returned in JSON format.</p>
+
+<p>All date fields are in ISO-8601 format.</p>
+
+          <h2 id="intended-audience">Intended Audience</h2>
+
+<p>This guide is intended to assist software developers who want to develop applications by using the VCOM API. It assumes the reader has a general understanding of web services and is familiar with the following technologies:</p>
+
+<ul>
+<li>RESTful web services</li>
+<li>HTTP/1.1 conventions</li>
+<li>JSON format</li>
+</ul>
+
+          <h1 id="authentication">Authentication</h1>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl
+-u username:password
+-H <span class="s2">"X-API-KEY: &lt;apiKey&gt;"</span>
+https://api.meteocontrol.de
+</code></pre>
+
+<p>The API requires you to authenticate using <strong>Basic Authentication</strong> and an <strong>API-Key</strong>. Each request must include the following headers:</p>
+
+<table><thead>
+<tr>
+<th>Header field name</th>
+<th>Header field value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">Authorization</code></td>
+<td><code class="prettyprint">Basic &lt;base64(username:password)&gt;</code></td>
+<td>Combine your username and password into a string separated by a colon. The resulting string must be base64 encoded. Finally replace <code class="prettyprint">&lt;base64(username:password)&gt;</code> with the encoded string.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">X-API-KEY</code></td>
+<td><code class="prettyprint">&lt;apiKey&gt;</code></td>
+<td>Replace <code class="prettyprint">&lt;apiKey&gt;</code> with your API-Key.</td>
+</tr>
+</tbody></table>
+
+<p>For example, given <code class="prettyprint">meteocontrol</code> as the username, <code class="prettyprint">secret</code> as the password and <code class="prettyprint">abcdef</code> as the API-Key the headers are formed as follows:</p>
+<pre class="highlight plaintext"><code>Authorization: Basic bWV0ZW9jb250cm9sOnNlY3JldA==
+X-API-KEY: abcdef
+</code></pre>
+
+          <h1 id="rate-limiting">Rate Limiting</h1>
+
+<p>The number of requests is limited depending on the level of your API-Key.</p>
+
+<table><thead>
+<tr>
+<th>API Level</th>
+<th>Calls per minute</th>
+<th>Calls per day</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>API 500</td>
+<td>10</td>
+<td>500</td>
+</tr>
+<tr>
+<td>API 10.000</td>
+<td>30</td>
+<td>10.000</td>
+</tr>
+<tr>
+<td>API 100.000</td>
+<td>90</td>
+<td>100.000</td>
+</tr>
+</tbody></table>
+
+<p>Every request will be answered with a rate limit information in the response headers:</p>
+
+<table><thead>
+<tr>
+<th>Header field name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">X-RateLimit-Reset-Minute</code></td>
+<td>The time at which the current minute rate limit resets in RFC 7231 format.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">X-RateLimit-Limit-Minute</code></td>
+<td>The maximum number of requests that the client is permitted to make per minute.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">X-RateLimit-Remaining-Minute</code></td>
+<td>The number of requests remaining in the current minute rate limit window.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">X-RateLimit-Reset-Day</code></td>
+<td>The time at which the current day rate limit resets in RFC 7231 format.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">X-RateLimit-Limit-Day</code></td>
+<td>The maximum number of requests that the client is permitted to make per day.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">X-RateLimit-Remaining-Day</code></td>
+<td>The number of requests remaining in the current day rate limit window.</td>
+</tr>
+</tbody></table>
+
+<p>A typical response might look like this:</p>
+<pre class="highlight plaintext"><code>HTTP/1.1 200 OK
+Date: Thu, 25 Feb 2016 10:31:57 GMT
+X-RateLimit-Reset-Minute: Thu, 25 Feb 2016 10:32:57 GMT
+X-RateLimit-Limit-Minute: 100
+X-RateLimit-Remaining-Minute: 99
+X-RateLimit-Reset-Day: Thu, 25 Feb 2016 14:51:02 GMT
+X-RateLimit-Limit-Day: 100000
+X-RateLimit-Remaining-Day: 99999
+</code></pre>
+
+<p>When either minute or day rate limit is exceeded the server will respond with the <code class="prettyprint">429</code> status code:</p>
+<pre class="highlight plaintext"><code>HTTP/1.1 429 Too Many Requests
+Date: Thu, 25 Feb 2016 11:03:53 GMT
+X-RateLimit-Reset-Minute: Thu, 25 Feb 2016 11:04:45 GMT
+X-RateLimit-Limit-Minute: 10
+X-RateLimit-Remaining-Minute: 0
+X-RateLimit-Reset-Day: Fri, 26 Feb 2016 10:31:31 GMT
+X-RateLimit-Limit-Day: 500
+X-RateLimit-Remaining-Day: 328
+</code></pre>
+
+          <h1 id="errors">Errors</h1>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>Unauthorized. Possible reasons: <ul><li>Basic Authentication failed</li><li>No API key was provided</li><li>An invalid API key was provided</li></ul></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden (User is not authorized to access system)</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Resource not found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method not allowed (See the returned <code class="prettyprint">Allow</code> header for the set of methods supported by the resource)</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests (Rate limit exceeded)</td>
+</tr>
+</tbody></table>
+
+          <h1 id="endpoints">Endpoints</h1>
+
+          <h2 id="systems">Systems</h2>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meteocontrol PV system"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDE"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meteocontrol PV system #2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VWXYZ"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems</code></p>
+
+<p>Returns an array of system objects.</p>
+
+          <h3 id="abbreviations">Abbreviations</h3>
+
+<p>Abbreviations are uppercase strings that identify datapoints.
+Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irradiance) and PR (Performance Ratio).</p>
+
+<h3 class="toc-ignore">Get all abbreviations</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/abbreviations
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"E_Z_EVU"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"G_M"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"PR"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/abbreviations</code></p>
+
+<p>Returns a list of all available abbreviations.</p>
+
+<h3 class="toc-ignore">Get all available measurements</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/abbreviations/E_Z_EVU/measurements?from<span class="o">=</span>2016-01-01T00:00:00+00:00&amp;to<span class="o">=</span>2016-01-01T23:59:59+00:00
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"systemKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDE"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_Z_EVU"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52.182"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"systemKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VWXYZ"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_Z_EVU"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"199.175"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
+
+<p>Returns a list of measurements for given abbreviation Id.</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>abbreviation-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>defaults to <code class="prettyprint">day</code></td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>For each system:</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>timestamp</td>
+</tr>
+<tr>
+<td>value <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>value</td>
+</tr>
+</tbody></table>
+
+          <h3 id="system">System</h3>
+
+<h3 class="toc-ignore">Get one system object</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meteocontrol PV system"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Augsburg"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DE"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86157"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spicherer Straße 48"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"elevation"</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"commissionDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-28"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">48.3670191</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.8681</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/Berlin"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"utcOffset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+01:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;</code></p>
+
+<p>Returns a system object.</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+          <h4 id="technical-data">Technical data</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/technical-data
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"nominalPower"</span><span class="p">:</span><span class="w"> </span><span class="mf">79.24</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"siteArea"</span><span class="p">:</span><span class="w"> </span><span class="mf">549.11</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"panels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Suntech"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STP280-24/Vb"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">283</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"inverters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KACO new energy"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Powador 8000xi"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KACO new energy"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Powador 3500xi"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/technical-data</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nominalPower <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>unit: kWp</td>
+</tr>
+<tr>
+<td>siteArea <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>unit: m²</td>
+</tr>
+<tr>
+<td>panels <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">array</code></td>
+<td>vendor <code class="prettyprint">string</code>, model <code class="prettyprint">string</code>, count <code class="prettyprint">integer</code></td>
+</tr>
+<tr>
+<td>inverters <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">array</code></td>
+<td>vendor <code class="prettyprint">string</code>, model <code class="prettyprint">string</code>, count <code class="prettyprint">integer</code></td>
+</tr>
+</tbody></table>
+
+          
+          <h4 id="basics">Basics</h4>
+
+          <h5 id="abbreviations">Abbreviations</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/basics/abbreviations
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"E_Z_PV1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"E_Z_EVU"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"G_M0"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/basics/abbreviations</code></p>
+
+<p>Returns a list of abbreviation ids for the basic information of a system.
+Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0 (POA irradiance).</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single abbreviation</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/basics/abbreviations/E_Z_EVU
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUM"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PV Production"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kWh"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/basics/abbreviations/&lt;abbreviationId&gt;</code></p>
+
+<p>Returns an information object of an abbreviation.</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>abbreviation-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>Information object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aggregation <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
+<td>aggregation method when requesting other resolutions than interval</td>
+</tr>
+<tr>
+<td>precision <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>number of decimal places</td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>description</td>
+</tr>
+<tr>
+<td>unit <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>unit</td>
+</tr>
+</tbody></table>
+
+          <h6 id="measurements">Measurements</h6>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/basics/abbreviations/E_Z_EVU/measurements?from<span class="o">=</span>2016-01-01T00:00:00+00:00&amp;to<span class="o">=</span>2016-01-01T00:15:00+00:00
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T00:00:00+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T00:15:00+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/basics/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
+
+<p>Returns an array of measurements objects.</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>abbreviation-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>defaults to <code class="prettyprint">interval</code></td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>Measurement object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>timestamp</td>
+</tr>
+<tr>
+<td>value <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>value</td>
+</tr>
+</tbody></table>
+
+          <h4 id="calculations">Calculations</h4>
+
+          <h5 id="abbreviations">Abbreviations</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/calculations/abbreviations
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"E_N"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"PR"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"VFG"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/calculations/abbreviations</code></p>
+
+<p>Returns a list of abbreviation ids.
+Common abbreviations within the calculations endpoint are E_N (normalized production), PR (Performance Ratio) or VFG (Availability).</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single abbreviation</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/calculations/abbreviations/PR
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AVG"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Performance ratio"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/calculations/abbreviations/&lt;abbreviationId&gt;</code></p>
+
+<p>Returns an information object for an abbreviation.</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>abbreviation-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>Information object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aggregation <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
+<td>aggregation method when requesting other resolutions than interval</td>
+</tr>
+<tr>
+<td>precision <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>number of decimal places</td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>description</td>
+</tr>
+<tr>
+<td>unit <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>unit</td>
+</tr>
+</tbody></table>
+
+          <h6 id="measurements">Measurements</h6>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/calculations/abbreviations/E_N/measurements?from<span class="o">=</span>2016-01-01T00:00:00+00:00&amp;to<span class="o">=</span>2016-01-01T00:15:00+00:00
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T00:00:00+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T00:15:00+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/calculations/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
+
+<p>Returns an array of measurements objects.</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>abbreviation-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>Measurement object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>timestamp</td>
+</tr>
+<tr>
+<td>value <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>value</td>
+</tr>
+</tbody></table>
+
+          <h4 id="inverters">Inverters</h4>
+
+<h4 class="toc-ignore">Get all inverters</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/inverters
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Id12345.1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Inverter 1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456788"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Id12345.2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Inverter 2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/inverters</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>inverter device-ID</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>custom name</td>
+</tr>
+<tr>
+<td>serial <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td>serial number if given</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single inverter</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/inverters/Id12345.1
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TLX 15 k"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Danfoss"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456788"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Inverter 1"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/inverters/&lt;deviceId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>inverter device-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>model <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>model name</td>
+</tr>
+<tr>
+<td>vendor <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>vendor name</td>
+</tr>
+<tr>
+<td>serial <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td>serial number if given</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td>custom name</td>
+</tr>
+</tbody></table>
+
+          <h5 id="abbreviations">Abbreviations</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/inverters/Id12345.1/abbreviations
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"P_AC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"E_TOTAL"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"E_INT"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/inverters/&lt;deviceId&gt;/abbreviations</code></p>
+
+<p>Returns a list of abbreviation ids.
+Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL (total energy produced) or E_INT (energy produced per interval).</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>inverter device-ID</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single abbreviation</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/inverters/Id12345.1/abbreviations/P_AC
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AVG"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Power AC"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"W"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/inverters/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;</code></p>
+
+<p>Returns an information object of an abbreviation.</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>abbreviation-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>Information object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aggregation <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
+<td>aggregation method when requesting other resolutions than interval</td>
+</tr>
+<tr>
+<td>precision <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>number of decimal places</td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>description</td>
+</tr>
+<tr>
+<td>unit <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>unit</td>
+</tr>
+</tbody></table>
+
+          <h6 id="measurements">Measurements</h6>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/inverters/Id12345.1/abbreviations/P_AC/measurements?from<span class="o">=</span>2016-01-01T11:00:00+02:00&amp;to<span class="o">=</span>2016-01-01T12:00:00+02:00
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"Id12345.1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"P_AC"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T11:00:00+02:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.089</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T11:15:00+02:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.082</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T11:30:00+02:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.078</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T11:45:00+02:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.089</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T12:00:00+02:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.095</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/inverters/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>can contain up to 10 comma delimited inverter device ids</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>can contain up to 5 comma delimited abbreviation ids</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>defaults to <code class="prettyprint">interval</code></td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>timestamp</td>
+</tr>
+<tr>
+<td>value <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>value</td>
+</tr>
+</tbody></table>
+
+          <h5 id="bulk">Bulk</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/inverters/bulk/measurements?from<span class="o">=</span>2016-09-01T10:00:00+02:00&amp;to<span class="o">=</span>2016-09-01T10:15:00+02:00
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"2016-09-01 10:00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"Id12345.1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"P_AC"</span><span class="p">:</span><span class="w"> </span><span class="mf">454.34</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_INT"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.038</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_INT_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.04</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Id12345.2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"P_AC"</span><span class="p">:</span><span class="w"> </span><span class="mf">452.34</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_INT"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.038</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_INT_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.04</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">    
+  </span><span class="nt">"2016-09-01 10:15:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"Id12345.1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"P_AC"</span><span class="p">:</span><span class="w"> </span><span class="mf">529.38</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_INT"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.044</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_INT_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.04</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Id12345.2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"P_AC"</span><span class="p">:</span><span class="w"> </span><span class="mf">519.09</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_INT"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.043</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_INT_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.04</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">      
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/inverters/bulk/measurements</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
+</tr>
+</tbody></table>
+
+          <h4 id="meters">Meters</h4>
+
+<h4 class="toc-ignore">Get all meters</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/meters
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meter 1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/meters</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>meter device-ID</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>custom name</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single meter</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/meters/12345
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meter 1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12346"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meter 2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+  </span><span class="p">}</span><span class="err">,</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/meters/&lt;deviceId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>meter device-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>meter device-ID</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>custom name</td>
+</tr>
+<tr>
+<td>address <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>address</td>
+</tr>
+</tbody></table>
+
+          <h5 id="abbreviations">Abbreviations</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/meters/12345/abbreviations
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"M_AC_E_EXP"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"M_E_INT_EXP"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"M_AC_E_IMP"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"M_E_INT_IMP"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/meters/&lt;deviceId&gt;/abbreviations</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>meter device-ID</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single abbreviation</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/meters/12345/abbreviations/M_AC_E_EXP
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAX"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Active energy (export)"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kWh"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/meters/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;</code></p>
+
+<p>Returns an information object of an abbreviation.</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>meter device-ID</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>abbreviation-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>Information object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aggregation <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
+<td>aggregation method when requesting other resolutions than interval</td>
+</tr>
+<tr>
+<td>precision <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>number of decimal places</td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>description</td>
+</tr>
+<tr>
+<td>unit <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>unit</td>
+</tr>
+</tbody></table>
+
+          <h6 id="measurements">Measurements</h6>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/meters/12345/abbreviations/M_AC_E_EXP/measurements?from<span class="o">=</span>2016-01-01T00:00:00+00:00&amp;to<span class="o">=</span>2016-01-01T00:15:00+00:00
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"12345"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"M_AC_E_EXP"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T11:00:00+02:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">7119.21</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T11:15:00+02:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">7119.21</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/meters/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>can contain up to 10 comma delimited meter device ids</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>can contain up to 5 comma delimited abbreviation ids</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>timestamp</td>
+</tr>
+<tr>
+<td>value <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>value</td>
+</tr>
+</tbody></table>
+
+          <h5 id="bulk">Bulk</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/meters/bulk/measurements?from<span class="o">=</span>2016-09-01T10:00:00+02:00&amp;to<span class="o">=</span>2016-09-01T10:15:00+02:00
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"2016-09-01 10:00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"12345"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"M_AC_E_EXP"</span><span class="p">:</span><span class="w"> </span><span class="mf">7127.4</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"M_AC_E_IMP"</span><span class="p">:</span><span class="w"> </span><span class="mi">1304876</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"12346"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"M_AC_E_EXP"</span><span class="p">:</span><span class="w"> </span><span class="mf">872.6</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"M_AC_E_IMP"</span><span class="p">:</span><span class="w"> </span><span class="mf">2239659.75</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">    
+  </span><span class="nt">"2016-09-01 10:15:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"12345"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"M_AC_E_EXP"</span><span class="p">:</span><span class="w"> </span><span class="mf">7127.49</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"M_AC_E_IMP"</span><span class="p">:</span><span class="w"> </span><span class="mi">1304876</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"12346"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"M_AC_E_EXP"</span><span class="p">:</span><span class="w"> </span><span class="mf">872.6</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"M_AC_E_IMP"</span><span class="p">:</span><span class="w"> </span><span class="mf">2239669.25</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">      
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/meters/bulk/measurements</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
+</tr>
+</tbody></table>
+
+          <h4 id="sensors">Sensors</h4>
+
+<h4 class="toc-ignore">Get all sensor devices</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/sensors
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pyranometer SMPx (Modbus)"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12346</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Irradiation sensor M&amp;T / mc Si-420TC-T (4 - 20mA)"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12347</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Temperature sensor PT1000 sensor with integrated converter (0 - 10V)"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/sensors</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>sensor device-ID</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>custom name</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single sensor device</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/sensors/12345
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pyranometer SMPx (Modbus)"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/sensors/&lt;deviceId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>sensor device-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>sensor device-ID</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>custom name</td>
+</tr>
+<tr>
+<td>address <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>address</td>
+</tr>
+</tbody></table>
+
+          <h5 id="abbreviations">Abbreviations</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/sensors/12345/abbreviations
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"E_G_M1"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/sensors/&lt;deviceId&gt;/abbreviations</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>sensor device-ID</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single abbreviation</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/sensors/12345/abbreviations/E_G_M1
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AVG"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Irradiance on module plane"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"W/m²"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/sensors/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;</code></p>
+
+<p>Returns an information object of an abbreviation.</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>sensor device-ID</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>abbreviation-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>Information object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aggregation <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
+<td>aggregation method when requesting other resolutions than interval</td>
+</tr>
+<tr>
+<td>precision <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>number of decimal places</td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>description</td>
+</tr>
+<tr>
+<td>unit <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>unit</td>
+</tr>
+</tbody></table>
+
+          <h6 id="measurements">Measurements</h6>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/sensors/12345/abbreviations/E_G_M1/measurements?from<span class="o">=</span>2016-01-01T00:00:00+00:00&amp;to<span class="o">=</span>2016-01-01T00:15:00+00:00
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"12345"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"E_G_M1"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T11:00:00+02:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">177.2</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T11:15:00+02:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">157.2</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+    </span><span class="err">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/sensors/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>can contain up to 10 comma delimited sensor device ids</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>can contain up to 5 comma delimited abbreviation ids</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>defaults to <code class="prettyprint">interval</code></td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>timestamp</td>
+</tr>
+<tr>
+<td>value <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>value</td>
+</tr>
+</tbody></table>
+
+          <h5 id="bulk">Bulk</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/sensors/bulk/measurements?from<span class="o">=</span>2016-09-01T10:00:00+02:00&amp;to<span class="o">=</span>2016-09-01T10:15:00+02:00
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"2016-09-01 10:00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"12345"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"E_G_M1"</span><span class="p">:</span><span class="w"> </span><span class="mf">441.7</span><span class="p">,</span><span class="w">
+    </span><span class="err">}</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"12346"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"E_AH_ABS"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.30</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_AH_ABS1"</span><span class="p">:</span><span class="w"> </span><span class="mi">78910</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_AH_REL"</span><span class="p">:</span><span class="w"> </span><span class="mf">55.66</span><span class="p">,</span><span class="w">
+    </span><span class="err">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">    
+  </span><span class="nt">"2016-09-01 10:15:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"12345"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"E_G_M1"</span><span class="p">:</span><span class="w"> </span><span class="mf">525.5</span><span class="p">,</span><span class="w">
+    </span><span class="err">}</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"12346"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"E_AH_ABS"</span><span class="p">:</span><span class="w"> </span><span class="mf">10080.30</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_AH_ABS1"</span><span class="p">:</span><span class="w"> </span><span class="mi">78990</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_AH_REL"</span><span class="p">:</span><span class="w"> </span><span class="mf">77.88</span><span class="p">,</span><span class="w">
+    </span><span class="err">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">      
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/sensors/bulk/measurements</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
+</tr>
+</tbody></table>
+
+          <h4 id="stringboxes">Stringboxes</h4>
+
+          <h5 id="bulk">Bulk</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/stringboxes/bulk/measurements?from<span class="o">=</span>2016-09-01T10:00:00+02:00&amp;to<span class="o">=</span>2016-09-01T10:15:00+02:00
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"2016-09-01 10:00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"12345"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"I1"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.449</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I1_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.43</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I2"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.436</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I2_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.43</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I3"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.405</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I3_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.42</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I4"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.428</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I4_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.43</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I5"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.383</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I5_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.42</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I6"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.589</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I6_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.45</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I7"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.569</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I7_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.45</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I8"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.554</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I8_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.44</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"12346"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"I1"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.384</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I1_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.42</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I2"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.337</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I2_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.42</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I3"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.287</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I3_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.41</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I4"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.326</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I4_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.41</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I5"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.342</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I5_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.42</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I6"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.307</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I6_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.41</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I7"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.292</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I7_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.41</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I8"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.014</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I8_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">    
+  </span><span class="nt">"2016-09-01 10:15:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"12345"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"I1"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.913</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I1_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.49</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I2"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.894</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I2_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.49</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I3"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.85</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I3_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.48</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I4"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.882</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I4_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.48</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I5"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.827</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I5_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.48</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I6"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.053</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I6_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.51</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I7"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.043</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I7_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I8"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.031</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I8_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"12346"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"I1"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.869</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I1_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.48</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I2"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.817</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I2_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.48</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I3"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.755</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I3_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.47</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I4"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.805</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I4_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.47</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I5"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.819</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I5_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.48</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I6"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.777</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I6_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.47</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I7"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.764</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I7_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.47</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I8"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.014</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"I8_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">      
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/stringboxes/bulk/measurements</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
+</tr>
+</tbody></table>
+
+          <h2 id="tickets">Tickets</h2>
+
+<h3 class="toc-ignore">Get all tickets</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/tickets?
+<span class="nv">includeInReports</span><span class="o">=</span>no&amp;severity<span class="o">=</span>normal&amp;priority<span class="o">=</span>normal&amp;status<span class="o">=</span>open&amp;assignee<span class="o">=</span>Username&amp;systemKey<span class="o">=</span>ABCDE
+&amp;lastChange[from]<span class="o">=</span>2016-01-01T00:00:00+00:00&amp;lastChange[to]<span class="o">=</span>2016-01-31T00:00:00+00:00
+&amp;date[from]<span class="o">=</span>2016-04-01T00:00:00+00:00&amp;date[to]<span class="o">=</span>2016-04-25T00:00:00+00:00
+&amp;rectifiedOn[from]<span class="o">=</span>2016-04-25T00:00:00+00:00&amp;rectifiedOn[to]<span class="o">=</span>2016-04-25T00:00:00+00:00
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"systemKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDE"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"designation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ticket #123"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a summary."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T12:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastChange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T13:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"severity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"systemKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FGHIJ"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"designation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ticket #456"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a summary."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-01T12:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastChange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-02T13:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inProgress"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"high"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"severity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets</code></p>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>lastChange[from] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>lastChange[to] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
+</tr>
+<tr>
+<td>date[from] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>date[to] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
+</tr>
+<tr>
+<td>rectifiedOn[from] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>rectifiedOn[to] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
+</tr>
+<tr>
+<td>includeInReports <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">no</code>&#124;<code class="prettyprint">detail</code>&#124;<code class="prettyprint">summary</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>status <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">open</code>&#124;<code class="prettyprint">closed</code>&#124;<code class="prettyprint">deleted</code>&#124;<code class="prettyprint">assigned</code>&#124;<code class="prettyprint">inProgress</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>severity <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">critical</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>priority <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>assignee <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>The username of the person being assigned to the ticket</td>
+</tr>
+<tr>
+<td>systemKey <code class="prettyprint">optional</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><br></p>
+
+<p><strong>Response</strong></p>
+
+<p><em>Ticket object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td></td>
+</tr>
+<tr>
+<td>systemKey <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>The key of the system</td>
+</tr>
+<tr>
+<td>designation <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td></td>
+</tr>
+<tr>
+<td>summary <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td></td>
+</tr>
+<tr>
+<td>date <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td></td>
+</tr>
+<tr>
+<td>lastChange <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
+<td></td>
+</tr>
+<tr>
+<td>status <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">open</code>&#124;<code class="prettyprint">closed</code>&#124;<code class="prettyprint">deleted</code>&#124;<code class="prettyprint">assigned</code>&#124;<code class="prettyprint">inProgress</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>priority <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>severity <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">critical</code>)</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3 class="toc-ignore">Get single ticket</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/tickets/&lt;ticketId&gt;
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"systemKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDE"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"designation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ticket #123"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a summary."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T12:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lastChange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T13:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rectifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T14:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"assignee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inProgress"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"causeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"includeInReports"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"fieldService"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"severity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>Ticket object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td></td>
+</tr>
+<tr>
+<td>systemKey <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>The key of the system</td>
+</tr>
+<tr>
+<td>designation <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td></td>
+</tr>
+<tr>
+<td>summary <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td></td>
+</tr>
+<tr>
+<td>date <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td></td>
+</tr>
+<tr>
+<td>lastChange <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
+<td></td>
+</tr>
+<tr>
+<td>rectifiedOn <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
+<td></td>
+</tr>
+<tr>
+<td>assignee <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td>The username of the person being assigned to the ticket</td>
+</tr>
+<tr>
+<td>status <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">open</code>&#124;<code class="prettyprint">closed</code>&#124;<code class="prettyprint">deleted</code>&#124;<code class="prettyprint">assigned</code>&#124;<code class="prettyprint">inProgress</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>causeId <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code>&#124;<code class="prettyprint">null</code></td>
+<td></td>
+</tr>
+<tr>
+<td>priority <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>includeInReports <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">no</code>&#124;<code class="prettyprint">detail</code>&#124;<code class="prettyprint">summary</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>fieldService <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">bool</code></td>
+<td></td>
+</tr>
+<tr>
+<td>severity <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">critical</code>)</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3 class="toc-ignore">Update a ticket</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PATCH <span class="se">\</span>
+   -H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "rectifiedOn": "2016-01-01T00:00:00+00:00",
+  "status": "closed",
+  "includeInReports": "detail",
+  "priority": "urgent",
+  "summary": "summary"
+}'</span> <span class="se">\</span>
+ <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;'</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">PATCH</code> <code class="prettyprint">tickets/&lt;ticketId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>designation <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td></td>
+</tr>
+<tr>
+<td>summary <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td></td>
+</tr>
+<tr>
+<td>rectifiedOn <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td></td>
+</tr>
+<tr>
+<td>includeInReports <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">no</code>&#124;<code class="prettyprint">detail</code>&#124;<code class="prettyprint">summary</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>status <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">open</code>&#124;<code class="prettyprint">closed</code>&#124;<code class="prettyprint">deleted</code>&#124;<code class="prettyprint">assigned</code>&#124;<code class="prettyprint">inProgress</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>priority <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>)</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is emtpy. </p>
+
+<p>Http-Code: 204</p>
+
+<h3 class="toc-ignore">Create a ticket</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X POST <span class="se">\</span>
+   -H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "designation": "New Ticket", 
+  "systemKey": "ABCDE",
+  "date": "2016-05-25T00:00:00+02:00",
+  "status": "open",
+  "includeInReports": "no",
+  "priority": "normal", 
+  "summary": "still created from the API"
+}'</span> <span class="se">\</span>
+ <span class="s1">'https://api.meteocontrol.de/tickets'</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"ticketId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"paths"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"GET"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/tickets/&lt;ticketId&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"DELETE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/tickets/&lt;ticketId&gt;"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">POST</code> <code class="prettyprint">tickets</code></p>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>The key of the system</td>
+</tr>
+<tr>
+<td>designation <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td></td>
+</tr>
+<tr>
+<td>date <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td></td>
+</tr>
+<tr>
+<td>summary <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td></td>
+</tr>
+<tr>
+<td>includeInReports <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">no</code>&#124;<code class="prettyprint">detail</code>&#124;<code class="prettyprint">summary</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>status <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">open</code>&#124;<code class="prettyprint">closed</code>&#124;<code class="prettyprint">deleted</code>&#124;<code class="prettyprint">assigned</code>&#124;<code class="prettyprint">inProgress</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>priority <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>)</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Response - Data</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Of the new ticket</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response - Paths</strong></p>
+
+<table><thead>
+<tr>
+<th>Method</th>
+<th>type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>get <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>GET method with URL</td>
+</tr>
+<tr>
+<td>delete <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>DELETE method with URL</td>
+</tr>
+</tbody></table>
+
+<h3 class="toc-ignore">Delete a ticket</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X DELETE <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;'</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">DELETE</code> <code class="prettyprint">tickets/&lt;ticketId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">204</code></td>
+<td>If the ticket has no open alarms</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code></td>
+<td>If the ticket has open alarms and therefore cannot be deleted</td>
+</tr>
+</tbody></table>
+
+          <h4 id="comments">Comments</h4>
+
+<h4 class="toc-ignore">Get all comments</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/comments
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"commentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">661288</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-19T12:49:20+01:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Comment text"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Username"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"commentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">661286</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-19T12:49:07+01:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Comment text"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Username"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/comments</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>Comment object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>commentId <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td></td>
+</tr>
+<tr>
+<td>date <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td></td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>with new line character <code class="prettyprint">\n</code></td>
+</tr>
+<tr>
+<td>username <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>The username of the person who commented</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single comment</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/comments/&lt;commentId&gt;
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"commentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">661288</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-19T12:49:20+01:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Comment text"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Username"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/comments/&lt;commentId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket-ID</td>
+</tr>
+<tr>
+<td>commentId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Comment-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>Comment object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>commentId <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td></td>
+</tr>
+<tr>
+<td>date <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td></td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>with new line character <code class="prettyprint">\n</code></td>
+</tr>
+<tr>
+<td>username <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>The username of the person who commented</td>
+</tr>
+</tbody></table>
+
+<h3 class="toc-ignore">Create a comment</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X POST <span class="se">\</span>
+   -H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "comment": "New Comment"
+}'</span> <span class="se">\</span>
+ <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/comments'</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"commentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">454548</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">POST</code> <code class="prettyprint">comments</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>comment <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>commentId <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>CommentId of the new comment.</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Update a comment</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PATCH <span class="se">\</span>
+   -H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "comment": "New Comment" 
+}'</span> <span class="se">\</span>
+ <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/comments/&lt;commentId&gt;'</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">PATCH</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/comments/&lt;commentId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket-ID</td>
+</tr>
+<tr>
+<td>commentId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Comment-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>comment <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty. </p>
+
+<p>Http-Code: 204</p>
+
+<h4 class="toc-ignore">Delete a comment</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X DELETE <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/comments/&lt;commentId&gt;'</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">DELETE</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/comments/&lt;commentId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket-ID</td>
+</tr>
+<tr>
+<td>commentId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Comment-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty. </p>
+
+<p>Http-Code: 204</p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">cURL</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
