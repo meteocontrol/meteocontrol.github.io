@@ -548,7 +548,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KACO new energy"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Powador 8000xi"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="w">
+        </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KACO new energy"</span><span class="p">,</span><span class="w">
@@ -717,7 +717,7 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 </tr>
 <tr>
 <td>precision <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">integer</code></td>
 <td>number of decimal places</td>
 </tr>
 <tr>
@@ -831,6 +831,76 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 </tr>
 </tbody></table>
 
+          <h5 id="bulk">Bulk</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/basics/bulk/measurements?from<span class="o">=</span>2016-09-01T10:00:00+02:00&amp;to<span class="o">=</span>2016-09-01T10:15:00+02:00
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"2016-09-01T10:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"G_M1"</span><span class="p">:</span><span class="w"> </span><span class="mi">502</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"T_M1"</span><span class="p">:</span><span class="w"> </span><span class="mf">43.2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"G_M0"</span><span class="p">:</span><span class="w"> </span><span class="mf">501.5</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"E_Z_EVU"</span><span class="p">:</span><span class="w"> </span><span class="mi">1103</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"T_M2"</span><span class="p">:</span><span class="w"> </span><span class="mf">32.7</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"G_M2"</span><span class="p">:</span><span class="w"> </span><span class="mi">501</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"2016-09-01T10:15:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"G_M1"</span><span class="p">:</span><span class="w"> </span><span class="mi">548</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"T_M1"</span><span class="p">:</span><span class="w"> </span><span class="mf">45.4</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"G_M0"</span><span class="p">:</span><span class="w"> </span><span class="mf">548.5</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"E_Z_EVU"</span><span class="p">:</span><span class="w"> </span><span class="mi">1178</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"T_M2"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"G_M2"</span><span class="p">:</span><span class="w"> </span><span class="mi">549</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/basics/bulk/measurements</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
+</tr>
+</tbody></table>
+
           <h4 id="calculations">Calculations</h4>
 
           <h5 id="abbreviations">Abbreviations</h5>
@@ -888,7 +958,7 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AVG"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Performance ratio"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -938,7 +1008,7 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 </tr>
 <tr>
 <td>precision <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">integer</code></td>
 <td>number of decimal places</td>
 </tr>
 <tr>
@@ -1024,8 +1094,8 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
-<td>Defaults to <code class="prettyprint">interval</code></td>
+<td>(<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>Defaults to <code class="prettyprint">day</code></td>
 </tr>
 </tbody></table>
 
@@ -1049,6 +1119,70 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <td>value <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
 <td>value</td>
+</tr>
+</tbody></table>
+
+          <h5 id="bulk">Bulk</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/calculations/bulk/measurements?from<span class="o">=</span>2016-09-01T23:45:00+02:00&amp;to<span class="o">=</span>2016-09-01T23:59:59+02:00
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"2016-09-01T23:45:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nt">"AREA"</span><span class="p">:</span><span class="w"> </span><span class="mf">66607.58</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"E_MEAN_DEV"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"E_MESS"</span><span class="p">:</span><span class="w"> </span><span class="mi">44579</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"E_N"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"E_ZAEHLER"</span><span class="p">:</span><span class="w"> </span><span class="mi">44579</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"POWER"</span><span class="p">:</span><span class="w"> </span><span class="mf">9990.12</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"PR"</span><span class="p">:</span><span class="w"> </span><span class="mf">82.277446881595</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"VFG"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/calculations/bulk/measurements</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
 </tr>
 </tbody></table>
 
@@ -1138,6 +1272,7 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Id12345.1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TLX 15 k"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Danfoss"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456788"</span><span class="p">,</span><span class="w">
@@ -1178,6 +1313,11 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>inverter device-ID</td>
+</tr>
 <tr>
 <td>model <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
@@ -1260,7 +1400,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AVG"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Power AC"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"W"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -1284,6 +1424,11 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>inverter device-ID</td>
 </tr>
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
@@ -1310,7 +1455,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </tr>
 <tr>
 <td>precision <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">integer</code></td>
 <td>number of decimal places</td>
 </tr>
 <tr>
@@ -1453,7 +1598,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <p>Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"2016-09-01 10:00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"2016-09-01T10:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"Id12345.1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"P_AC"</span><span class="p">:</span><span class="w"> </span><span class="mf">454.34</span><span class="p">,</span><span class="w">
       </span><span class="nt">"E_INT"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.038</span><span class="p">,</span><span class="w">
@@ -1465,7 +1610,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
       </span><span class="nt">"E_INT_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.04</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">    
-  </span><span class="nt">"2016-09-01 10:15:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"2016-09-01T10:15:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"Id12345.1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"P_AC"</span><span class="p">:</span><span class="w"> </span><span class="mf">529.38</span><span class="p">,</span><span class="w">
       </span><span class="nt">"E_INT"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.044</span><span class="p">,</span><span class="w">
@@ -1537,6 +1682,10 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meter 1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12346"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meter 2"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1597,13 +1746,8 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meter 1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="err">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12346"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meter 2"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
-  </span><span class="p">}</span><span class="err">,</span><span class="w">
-</span><span class="err">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/meters/&lt;deviceId&gt;</code></p>
@@ -1713,7 +1857,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAX"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Active energy (export)"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kWh"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -1768,7 +1912,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </tr>
 <tr>
 <td>precision <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">integer</code></td>
 <td>number of decimal places</td>
 </tr>
 <tr>
@@ -1788,7 +1932,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/meters/12345/abbreviations/M_AC_E_EXP/measurements?from<span class="o">=</span>2016-01-01T00:00:00+00:00&amp;to<span class="o">=</span>2016-01-01T00:15:00+00:00
+<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/meters/12345/abbreviations/M_AC_E_EXP/measurements?from<span class="o">=</span>2016-01-01T11:00:00+02:00&amp;to<span class="o">=</span>2016-01-01T11:15:00+02:00
 </code></pre>
 
 <blockquote>
@@ -1899,7 +2043,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <p>Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"2016-09-01 10:00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"2016-09-01T10:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"12345"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"M_AC_E_EXP"</span><span class="p">:</span><span class="w"> </span><span class="mf">7127.4</span><span class="p">,</span><span class="w">
       </span><span class="nt">"M_AC_E_IMP"</span><span class="p">:</span><span class="w"> </span><span class="mi">1304876</span><span class="w">
@@ -1909,7 +2053,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
       </span><span class="nt">"M_AC_E_IMP"</span><span class="p">:</span><span class="w"> </span><span class="mf">2239659.75</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">    
-  </span><span class="nt">"2016-09-01 10:15:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"2016-09-01T10:15:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"12345"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"M_AC_E_EXP"</span><span class="p">:</span><span class="w"> </span><span class="mf">7127.49</span><span class="p">,</span><span class="w">
       </span><span class="nt">"M_AC_E_IMP"</span><span class="p">:</span><span class="w"> </span><span class="mi">1304876</span><span class="w">
@@ -1977,16 +2121,12 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pyranometer SMPx (Modbus)"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12346</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12346"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Irradiation sensor M&amp;T / mc Si-420TC-T (4 - 20mA)"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12347</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Temperature sensor PT1000 sensor with integrated converter (0 - 10V)"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2044,7 +2184,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pyranometer SMPx (Modbus)"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -2085,7 +2225,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </thead><tbody>
 <tr>
 <td>id <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">string</code></td>
 <td>sensor device-ID</td>
 </tr>
 <tr>
@@ -2155,7 +2295,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AVG"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Irradiance on module plane"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"W/m²"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -2210,7 +2350,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </tr>
 <tr>
 <td>precision <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">integer</code></td>
 <td>number of decimal places</td>
 </tr>
 <tr>
@@ -2248,8 +2388,8 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
           </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T11:15:00+02:00"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">157.2</span><span class="w">
         </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-    </span><span class="err">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2341,25 +2481,25 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <p>Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"2016-09-01 10:00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"2016-09-01T10:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"12345"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"E_G_M1"</span><span class="p">:</span><span class="w"> </span><span class="mf">441.7</span><span class="p">,</span><span class="w">
-    </span><span class="err">}</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_G_M1"</span><span class="p">:</span><span class="w"> </span><span class="mf">441.7</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nt">"12346"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"E_AH_ABS"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.30</span><span class="p">,</span><span class="w">
       </span><span class="nt">"E_AH_ABS1"</span><span class="p">:</span><span class="w"> </span><span class="mi">78910</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"E_AH_REL"</span><span class="p">:</span><span class="w"> </span><span class="mf">55.66</span><span class="p">,</span><span class="w">
-    </span><span class="err">}</span><span class="w">
+      </span><span class="nt">"E_AH_REL"</span><span class="p">:</span><span class="w"> </span><span class="mf">55.66</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">    
-  </span><span class="nt">"2016-09-01 10:15:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"2016-09-01T10:15:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"12345"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"E_G_M1"</span><span class="p">:</span><span class="w"> </span><span class="mf">525.5</span><span class="p">,</span><span class="w">
-    </span><span class="err">}</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"E_G_M1"</span><span class="p">:</span><span class="w"> </span><span class="mf">525.5</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nt">"12346"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"E_AH_ABS"</span><span class="p">:</span><span class="w"> </span><span class="mf">10080.30</span><span class="p">,</span><span class="w">
       </span><span class="nt">"E_AH_ABS1"</span><span class="p">:</span><span class="w"> </span><span class="mi">78990</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"E_AH_REL"</span><span class="p">:</span><span class="w"> </span><span class="mf">77.88</span><span class="p">,</span><span class="w">
-    </span><span class="err">}</span><span class="w">
+      </span><span class="nt">"E_AH_REL"</span><span class="p">:</span><span class="w"> </span><span class="mf">77.88</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">      
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2417,7 +2557,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <p>Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"2016-09-01 10:00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"2016-09-01T10:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"12345"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"I1"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.449</span><span class="p">,</span><span class="w">
       </span><span class="nt">"I1_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.43</span><span class="p">,</span><span class="w">
@@ -2455,7 +2595,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
       </span><span class="nt">"I8_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">    
-  </span><span class="nt">"2016-09-01 10:15:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"2016-09-01T10:15:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"12345"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"I1"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.913</span><span class="p">,</span><span class="w">
       </span><span class="nt">"I1_N"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.49</span><span class="p">,</span><span class="w">
@@ -2555,7 +2695,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"systemKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDE"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"designation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ticket #123"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a summary."</span><span class="p">,</span><span class="w">
@@ -2566,7 +2706,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
       </span><span class="nt">"severity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"456"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"systemKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FGHIJ"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"designation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ticket #456"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a summary."</span><span class="p">,</span><span class="w">
@@ -2668,7 +2808,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </thead><tbody>
 <tr>
 <td>id <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">number</code></td>
+<td><code class="prettyprint">string</code></td>
 <td></td>
 </tr>
 <tr>
@@ -2726,7 +2866,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"systemKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDE"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"designation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ticket #123"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a summary."</span><span class="p">,</span><span class="w">
@@ -2757,7 +2897,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </thead><tbody>
 <tr>
 <td>ticketId <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">string</code></td>
 <td>Ticket-ID</td>
 </tr>
 </tbody></table>
@@ -2775,7 +2915,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </thead><tbody>
 <tr>
 <td>id <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">number</code></td>
+<td><code class="prettyprint">string</code></td>
 <td></td>
 </tr>
 <tr>
@@ -2882,7 +3022,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </thead><tbody>
 <tr>
 <td>ticketId <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">string</code></td>
 <td>Ticket-ID</td>
 </tr>
 </tbody></table>
@@ -2975,11 +3115,11 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
-    </span><span class="nt">"ticketId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="w">
+    </span><span class="nt">"ticketId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"paths"</span><span class="p">:{</span><span class="w">
-    </span><span class="nt">"GET"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/tickets/&lt;ticketId&gt;"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"DELETE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/tickets/&lt;ticketId&gt;"</span><span class="w">
+    </span><span class="nt">"GET"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/tickets/123"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"DELETE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/tickets/123"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -3059,7 +3199,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </thead><tbody>
 <tr>
 <td>ticketId <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">number</code></td>
+<td><code class="prettyprint">string</code></td>
 <td>Of the new ticket</td>
 </tr>
 </tbody></table>
@@ -3112,7 +3252,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </thead><tbody>
 <tr>
 <td>ticketId <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">string</code></td>
 <td>Ticket-ID</td>
 </tr>
 </tbody></table>
