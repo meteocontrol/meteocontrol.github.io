@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mii version="2.0" targetNamespace="http://api.sspcdn.com/mii" xmlns="http://api.sspcdn.com/mii">
+  <datalogger>
+    <configuration xmlns="http://api.sspcdn.com/mii/datalogger/configuration">
+      <uuid>
+        <vendor>VENDOR 123</vendor>
+        <serial>DL12349876</serial>
+      </uuid>
+      <name>Data logger Nr. 1</name>
+      <firmware>1.1.3 (Build 152.721.528d)</firmware>
+      <next-scheduled-transfer>2016-10-22T15:15:00Z</next-scheduled-transfer>
+      <devices>
+        <device type="stringbox" id="1">
+          <uid>6-2</uid>
+          <address>6-2</address>
+        </device>
+        <device type="stringbox" id="2">
+          <uid>6-3</uid>
+          <address>6-3</address>
+        </device>
+        <device type="stringbox" id="3">
+          <uid>6-4</uid>
+          <address>6-4</address>
+        </device>
+      </devices>
+    </configuration>
+    <datapoints xmlns="http://api.sspcdn.com/mii/datalogger/datapoints">
+      <datapoint interval="900" timestamp="2015-10-22T15:00:00Z">
+        <device id="1">
+          <mv t="I1" v="8.39"/>
+          <mv t="I2" v="8.39"/>
+          <mv t="I3" v="8.39"/>
+          <mv t="I4" v="8.42"/>
+          <mv t="I5" v="8.37"/>
+          <mv t="I6" v="8.16"/>
+          <mv t="I7" v="8.38"/>
+          <mv t="I8" v="8.45"/>
+          <mv t="I9" v="8.38"/>
+          <mv t="I10" v="4.07"/>
+        </device>
+        <device id="2">
+          <mv t="I1" v="8.24"/>
+          <mv t="I2" v="8.24"/>
+          <mv t="I3" v="8.18"/>
+          <mv t="I4" v="8.24"/>
+          <mv t="I5" v="8.12"/>
+          <mv t="I6" v="8.12"/>
+          <mv t="I7" v="7.96"/>
+          <mv t="I8" v="8.11"/>
+          <mv t="I9" v="8.13"/>
+          <mv t="I10" v="0.00"/>
+          <mv t="T1" v="36.6"/>
+        </device>
+        <device id="3">
+          <mv t="I1" v="8.13"/>
+          <mv t="I2" v="8.20"/>
+          <mv t="I3" v="7.78"/>
+          <mv t="I4" v="8.12"/>
+          <mv t="I5" v="8.15"/>
+          <mv t="I6" v="8.27"/>
+          <mv t="I7" v="8.09"/>
+          <mv t="I8" v="8.16"/>
+          <mv t="I9" v="8.11"/>
+          <mv t="I10" v="3.77"/>
+          <mv t="T1" v="36.7"/>
+        </device>
+      </datapoint>
+    </datapoints>
+  </datalogger>
+</mii>

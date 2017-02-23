@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mii version="2.0" targetNamespace="http://api.sspcdn.com/mii" xmlns="http://api.sspcdn.com/mii">
+  <datalogger>
+    <configuration xmlns="http://api.sspcdn.com/mii/datalogger/configuration">
+      <uuid>
+        <vendor>VENDOR 123</vendor>
+        <serial>DL12349876</serial>
+      </uuid>
+      <name>Data logger Nr. 1</name>
+      <firmware>1.1.3 (Build 152.721.528d)</firmware>
+      <next-scheduled-transfer>2016-10-22T15:15:00Z</next-scheduled-transfer>
+      <devices>
+        <device type="inverter" id="1">
+          <uid>INV216d6340</uid>
+          <name>INVERTER-1-1</name>
+          <address>192.168.77.10</address>
+          <serial>XMA123456</serial>
+          <vendor>xma</vendor>
+          <model>x3000</model>
+          <firmware>v.1.0.34</firmware>
+        </device>
+        <device type="inverter" id="2">
+          <uid>INV0937</uid>
+          <name>INVERTER-1-2</name>
+        </device>
+      </devices>
+    </configuration>
+    <datapoints xmlns="http://api.sspcdn.com/mii/datalogger/datapoints">
+      <datapoint interval="900" timestamp="2015-10-22T15:00:00Z">
+        <device id="1">
+          <mv t="E_INT" v="0.0767"/>
+          <mv t="COS_PHI" v="56"/>
+          <mv t="COS_PHI_LOAD" v="765"/>
+          <mv t="E_DAY" v="79201"/>
+          <mv t="I_AC" v="4.07">
+            <sv t="1" v="4.03"/>
+            <sv t="2" v="4.12"/>
+            <sv t="3" v="4.06"/>
+          </mv>
+          <mv t="I_DC" v="2.03"/>
+          <mv t="P_AC" v="920.28"/>
+          <mv t="P_DC" v="843"/>
+          <mv t="T_WR" v="32.25842666626"/>
+          <mv t="U_AC">
+            <sv t="1" v="299"/>
+            <sv t="2" v="237"/>
+            <sv t="3" v="293.5"/>
+          </mv>
+          <mv t="U_DC">
+            <sv t="1">
+              <sv t="1" v="285.33"/>
+              <sv t="2" v="287.24"/>
+            </sv>
+            <sv t="2">
+              <sv t="1" v="283.31"/>
+              <sv t="2" v="278.22"/>
+            </sv>
+          </mv>
+        </device>
+        <device id="2">
+          <mv t="E_INT" v="0.0761"/>
+          <mv t="COS_PHI" v="55"/>
+          <mv t="COS_PHI_LOAD" v="726"/>
+          <mv t="E_DAY" v="87252"/>
+          <mv t="I_AC" v="3.96">
+            <sv t="1" v="3.98"/>
+            <sv t="2" v="3.88"/>
+            <sv t="3" v="4.02"/>
+          </mv>
+          <mv t="I_DC" v="3.35"/>
+          <mv t="P_AC" v="913.47"/>
+          <mv t="P_DC" v="951.38"/>
+          <mv t="T_WR" v="34.606742858887"/>
+          <mv t="U_AC" v="230.65333333">
+            <sv t="1" v="232.12"/>
+            <sv t="2" v="228.34"/>
+            <sv t="3" v="231.5"/>
+          </mv>
+          <mv t="U_DC" v="282.98">
+            <sv t="1">
+              <sv t="1" v="283.95"/>
+              <sv t="2" v="283.24"/>
+            </sv>
+            <sv t="2">
+              <sv t="1" v="284.48"/>
+              <sv t="2" v="280.25"/>
+            </sv>
+          </mv>
+        </device>
+      </datapoint>
+      <datapoint interval="900" timestamp="2015-10-22T15:15:00Z">
+        <device id="1">
+          <mv t="E_INT" v="0.0867"/>
+          <mv t="COS_PHI" v="76"/>
+          <mv t="COS_PHI_LOAD" v="665"/>
+          <mv t="E_DAY" v="79401"/>
+          <mv t="I_AC" v="5.07">
+            <sv t="1" v="5.03"/>
+            <sv t="2" v="5.12"/>
+            <sv t="3" v="5.06"/>
+          </mv>
+          <mv t="I_DC" v="1.03"/>
+          <mv t="P_AC" v="720.28"/>
+          <mv t="P_DC" v="743"/>
+          <mv t="T_WR" v="34.258"/>
+          <mv t="U_AC">
+            <sv t="1" v="199"/>
+            <sv t="2" v="137"/>
+            <sv t="3" v="193.5"/>
+          </mv>
+          <mv t="U_DC">
+            <sv t="1">
+              <sv t="1" v="185.33"/>
+              <sv t="2" v="187.24"/>
+            </sv>
+            <sv t="2">
+              <sv t="1" v="183.31"/>
+              <sv t="2" v="178.22"/>
+            </sv>
+          </mv>
+        </device>
+        <device id="2">
+          <mv t="E_INT" v="0.0261"/>
+          <mv t="COS_PHI" v="45"/>
+          <mv t="COS_PHI_LOAD" v="226"/>
+          <mv t="E_DAY" v="88252"/>
+          <mv t="I_AC" v="4.96">
+            <sv t="1" v="4.98"/>
+            <sv t="2" v="4.88"/>
+            <sv t="3" v="5.02"/>
+          </mv>
+          <mv t="I_DC" v="4.35"/>
+          <mv t="P_AC" v="713.47"/>
+          <mv t="P_DC" v="751.38"/>
+          <mv t="T_WR" v="54.65"/>
+          <mv t="U_AC" v="330.653">
+            <sv t="1" v="332.12"/>
+            <sv t="2" v="328.34"/>
+            <sv t="3" v="331.5"/>
+          </mv>
+          <mv t="U_DC" v="382.98">
+            <sv t="1">
+              <sv t="1" v="383.95"/>
+              <sv t="2" v="383.24"/>
+            </sv>
+            <sv t="2">
+              <sv t="1" v="484.48"/>
+              <sv t="2" v="480.25"/>
+            </sv>
+          </mv>
+        </device>
+      </datapoint>
+    </datapoints>
+  </datalogger>
+</mii>

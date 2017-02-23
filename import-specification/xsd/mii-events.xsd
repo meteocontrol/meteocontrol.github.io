@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:e="http://api.sspcdn.com/mii/datalogger/events" elementFormDefault="qualified" targetNamespace="http://api.sspcdn.com/mii/datalogger/events">
+  <xs:element name="events" type="e:ev-events"/>
+  <xs:complexType name="ev-events">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element ref="e:powermanagement" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:choice>
+  </xs:complexType>
+  <!-- Power Management -->
+  <xs:element name="powermanagement" type="e:ev-powermanagement"/>
+  <xs:complexType name="ev-powermanagement">
+    <xs:all>
+      <xs:element name="p-set-perc" minOccurs="1" type="e:percentage"/>
+      <xs:element name="p-set-gridop-perc" minOccurs="0" type="e:percentage"/>
+      <xs:element name="p-set-rpc-perc" minOccurs="0" type="e:percentage"/>
+      <xs:element name="uid" minOccurs="0" type="xs:string"/>
+    </xs:all>
+    <xs:attribute name="timestamp" use="required" type="xs:dateTime"/>
+    <xs:attribute name="device-id" use="required" type="xs:integer"/>
+  </xs:complexType>
+  <!-- percentage -->
+  <xs:simpleType name="percentage">
+    <xs:restriction base="xs:float">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="100"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

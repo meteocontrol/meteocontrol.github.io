@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mii version="2.0" targetNamespace="http://api.sspcdn.com/mii" xmlns="http://api.sspcdn.com/mii">
+  <datalogger>
+    <configuration xmlns="http://api.sspcdn.com/mii/datalogger/configuration">
+      <uuid>
+        <vendor>VENDOR 123</vendor>
+        <serial>DL12349876</serial>
+      </uuid>
+      <name>Data logger Nr. 1</name>
+      <firmware>1.1.3 (Build 152.721.528d)</firmware>
+      <devices>
+        <device type="powermanagement" id="1">
+          <uid>pm123456</uid>
+          <serial>pm-123456789</serial>
+          <name>Power Control Unit 1</name>
+        </device>
+      </devices>
+    </configuration>
+    <events xmlns="http://api.sspcdn.com/mii/datalogger/events">
+      <powermanagement timestamp="2015-01-14T10:11:22Z" device-id="1">
+        <p-set-perc>78.84</p-set-perc>
+        <p-set-gridop-perc>70.34</p-set-gridop-perc>
+        <p-set-rpc-perc>78.84</p-set-rpc-perc>
+      </powermanagement>
+    </events>
+  </datalogger>
+</mii>

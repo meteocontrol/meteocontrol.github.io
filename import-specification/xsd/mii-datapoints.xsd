@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:d="http://api.sspcdn.com/mii/datalogger/datapoints" elementFormDefault="qualified" targetNamespace="http://api.sspcdn.com/mii/datalogger/datapoints">
+  <xs:element name="datapoints" type="d:dp-datapoints" />
+  <xs:complexType name="dp-datapoints">
+    <xs:sequence>
+      <xs:element ref="d:datapoint" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="datapoint" type="d:dp-datapoint" />
+  <xs:complexType name="dp-datapoint">
+    <xs:sequence>
+      <xs:element ref="d:device" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="interval" use="required" type="xs:integer"/>
+    <xs:attribute name="timestamp" use="required" type="xs:dateTime"/>
+  </xs:complexType>
+  <xs:element name="device" type="d:dp-device" />
+  <xs:complexType name="dp-device">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="d:mv"/>
+    </xs:sequence>
+    <xs:attribute name="id" use="required" type="xs:integer"/>
+  </xs:complexType>
+  <xs:element name="mv" type="d:dp-mv" />
+  <xs:complexType name="dp-mv">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="d:sv"/>
+    </xs:sequence>
+    <xs:attribute name="t" use="required" type="xs:string"/>
+    <xs:attribute name="v" type="xs:string"/>
+  </xs:complexType>
+  <xs:element name="sv" type="d:dp-sv" />
+  <xs:complexType name="dp-sv">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="d:sv"/>
+    </xs:sequence>
+    <xs:attribute name="t" use="required" type="xs:integer"/>
+    <xs:attribute name="v" type="xs:string"/>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:c="http://api.sspcdn.com/mii/datalogger/configuration" xmlns:d="http://api.sspcdn.com/mii/datalogger/datapoints" xmlns:e="http://api.sspcdn.com/mii/datalogger/events"    xmlns:mii="http://api.sspcdn.com/mii"    elementFormDefault="qualified"    targetNamespace="http://api.sspcdn.com/mii">
+  <xs:import namespace="http://api.sspcdn.com/mii/datalogger/configuration" schemaLocation="mii-configuration.xsd"/>
+  <xs:import namespace="http://api.sspcdn.com/mii/datalogger/datapoints" schemaLocation="mii-datapoints.xsd"/>
+  <xs:import namespace="http://api.sspcdn.com/mii/datalogger/events" schemaLocation="mii-events.xsd"/>
+  <xs:element name="mii">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="mii:datalogger"/>
+        <xs:element name="testing" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="targetNamespace" use="required" type="xs:anyURI"/>
+      <xs:attribute name="version" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="datalogger">
+    <xs:complexType>
+      <xs:all>
+        <xs:element ref="c:configuration"/>
+        <xs:element ref="d:datapoints" minOccurs="0"/>
+        <xs:element ref="e:events" minOccurs="0"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
