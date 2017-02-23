@@ -344,16 +344,20 @@ https://api.meteocontrol.de
 </tr>
 </thead><tbody>
 <tr>
+<td>400</td>
+<td>Bad request. Possible reasons: <ul><li>Malformed request parameters</li><li>Missing request parameters</li><li>Invalid json data provided</li></td>
+</tr>
+<tr>
 <td>401</td>
 <td>Unauthorized. Possible reasons: <ul><li>Basic Authentication failed</li><li>No API-key was provided</li><li>An invalid API-Key was provided</li></ul></td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden (User is not authorized to access system)</td>
+<td>Forbidden. Possible reasons: <ul><li>User is not authorized to access the system</li><li>User is not authorized to access the ticket</li></ul></td>
 </tr>
 <tr>
 <td>404</td>
-<td>Resource not found</td>
+<td>Endpoint not found. Possible reasons: <ul><li>Route is not found</li><li>Request an invalid device ID</li><li>Request an invalid abbreviation ID</li><li>Request an invalid comment ID</li></td>
 </tr>
 <tr>
 <td>405</td>
@@ -362,6 +366,10 @@ https://api.meteocontrol.de
 <tr>
 <td>429</td>
 <td>Too Many Requests (Rate limit exceeded)</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Unexpected Internal Error.<br> Our IT department has been notified and will look into this issue shortly - Try again later.</td>
 </tr>
 </tbody></table>
 
@@ -902,6 +910,46 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </tr>
 </tbody></table>
 
+<p><strong><em>Options for CSV format</em></strong></p>
+
+<p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code>
+<br>
+For response example in CSV format, please check <a href="https://github.com/meteocontrol/vcom-api-client/tree/master/tests/unit/lib/systems/responses/bulkCsv/getSuperBulk.csv">HERE</a>.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>delimiter</td>
+<td><code class="prettyprint">comma</code> (default), <code class="prettyprint">semicolon</code>, <code class="prettyprint">colon</code>, or <code class="prettyprint">tab</code></td>
+<td>the delimiter</td>
+</tr>
+<tr>
+<td>lineBreak</td>
+<td><code class="prettyprint">LF</code> (default), <code class="prettyprint">CR</code>, or <code class="prettyprint">CR/LF</code></td>
+<td>the line breaks</td>
+</tr>
+<tr>
+<td>decimalPoint</td>
+<td><code class="prettyprint">dot</code> (default), <code class="prettyprint">comma</code>, <code class="prettyprint">semicolon</code>, or <code class="prettyprint">colon</code></td>
+<td>the decimal point</td>
+</tr>
+<tr>
+<td>emptyPlaceholder</td>
+<td><code class="prettyprint">text</code>, empty string by default, any text accepted</td>
+<td>the place holder for empty value</td>
+</tr>
+<tr>
+<td>precision</td>
+<td><code class="prettyprint">number</code>, 2 by default, accepts from 0 to 4</td>
+<td>the decimal precision</td>
+</tr>
+</tbody></table>
+
           
           <h4 id="basics">Basics</h4>
 
@@ -1258,7 +1306,9 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
-<p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code></p>
+<p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code>
+<br>
+For response example in CSV format, please check <a href="https://github.com/meteocontrol/vcom-api-client/tree/master/tests/unit/lib/systems/responses/bulkCsv/getBasicBulk.csv">HERE</a>.</p>
 
 <table><thead>
 <tr>
@@ -1641,7 +1691,9 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
-<p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code></p>
+<p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code>
+<br>
+For response example in CSV format, please check <a href="https://github.com/meteocontrol/vcom-api-client/tree/master/tests/unit/lib/systems/responses/bulkCsv/getCalculationBulk.csv">HERE</a>.</p>
 
 <table><thead>
 <tr>
@@ -2258,7 +2310,9 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
-<p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code></p>
+<p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code>
+<br>
+For response example in CSV format, please check <a href="https://github.com/meteocontrol/vcom-api-client/tree/master/tests/unit/lib/systems/responses/bulkCsv/getInverterBulk.csv">HERE</a>.</p>
 
 <table><thead>
 <tr>
@@ -2822,7 +2876,9 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
-<p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code></p>
+<p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code>
+<br>
+For response example in CSV format, please check <a href="https://github.com/meteocontrol/vcom-api-client/tree/master/tests/unit/lib/systems/responses/bulkCsv/getMeterBulk.csv">HERE</a>.</p>
 
 <table><thead>
 <tr>
@@ -3380,7 +3436,9 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
-<p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code></p>
+<p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code>
+<br>
+For response example in CSV format, please check [HERE](https://github.com/meteocontrol/vcom-api-client/tree/master/tests/unit/lib/systems/responses/bulkCsv/getSensorBulk.csv.</p>
 
 <table><thead>
 <tr>
@@ -3575,7 +3633,9 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
-<p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code></p>
+<p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code>
+<br>
+For response example in CSV format, please check <a href="https://github.com/meteocontrol/vcom-api-client/tree/master/tests/unit/lib/systems/responses/bulkCsv/getStringboxesBulk.csv">HERE</a>.</p>
 
 <table><thead>
 <tr>
