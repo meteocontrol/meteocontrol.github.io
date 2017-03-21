@@ -79,3 +79,6 @@ under the License.
   font-size: 1.2em;
   font-style: italic;
   font-weight: normal; }
+
+.mc-copy-url-container.hide {
+  display: none; }

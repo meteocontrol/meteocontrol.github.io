@@ -149,7 +149,7 @@
 <pre class="highlight shell"><code>    curl
     -u username:password
     -H <span class="s2">"X-API-KEY: apiKey"</span>
-    https://api.meteocontrol.de/&lt;URL&gt;
+    <span class="s1">'https://api.meteocontrol.de/&lt;URL&gt;'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$api</span> <span class="o">=</span> <span class="nx">ApiClient</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s2">"username"</span><span class="p">,</span> <span class="s2">"password"</span><span class="p">,</span> <span class="s2">"apiKey"</span><span class="p">);</span>
@@ -194,7 +194,7 @@
 <pre class="highlight shell"><code>curl
 -u username:password
 -H <span class="s2">"X-API-KEY: &lt;apiKey&gt;"</span>
-https://api.meteocontrol.de
+<span class="s1">'https://api.meteocontrol.de'</span>
 </code></pre>
 
 <p>The API requires you to authenticate using <strong>Basic Authentication</strong> and an <strong>API-Key</strong>. Each request must include the following headers:</p>
@@ -316,7 +316,7 @@ X-RateLimit-Remaining-Day: 328
 -u username:password
 -H <span class="s2">"X-API-KEY: 1234567890"</span>
 -H <span class="s2">"Cache-Control: no-cache"</span>
-https://api.meteocontrol.de
+<span class="s1">'https://api.meteocontrol.de'</span>
 </code></pre>
 
 <p>The API allows user specify cache mode for each request, if there&rsquo;s no <strong>Cache-Control</strong> header given the API will use cache by default.</p>
@@ -380,7 +380,7 @@ https://api.meteocontrol.de
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var System[] $systems */</span>
@@ -423,7 +423,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/abbreviations
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/abbreviations'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var string[] $abbreviations */</span>
@@ -457,7 +457,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/abbreviations/E_Z_EVU/measurements?from<span class="o">=</span>2016-01-01T00:00:00+02:00&amp;to<span class="o">=</span>2016-01-01T23:59:59+02:00
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/abbreviations/E_Z_EVU/measurements?from=2016-01-01T00:00:00+02:00&amp;to=2016-01-01T23:59:59+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
@@ -580,7 +580,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var SystemDetail $system */</span>
@@ -652,7 +652,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/technical-data
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/technical-data'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var TechnicalData $technicalData */</span>
@@ -757,7 +757,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/bulk/measurements?from<span class="o">=</span>2016-09-01T10:00:00+02:00&amp;to<span class="o">=</span>2016-09-01T10:15:00+02:00
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/bulk/measurements?from=2016-09-01T10:00:00+02:00&amp;to=2016-09-01T10:15:00+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
@@ -958,7 +958,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/basics/abbreviations
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/basics/abbreviations'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/**  @var string[] $abbreviations */</span>
@@ -1010,7 +1010,7 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/basics/abbreviations/E_Z_EVU
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/basics/abbreviations/E_Z_EVU'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/**  @var Abbreviation $abbreviation */</span>
@@ -1100,7 +1100,7 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/basics/abbreviations/E_Z_EVU/measurements?from<span class="o">=</span>2016-01-01T00:00:00+02:00&amp;to<span class="o">=</span>2016-01-01T00:15:00+02:00
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/basics/abbreviations/E_Z_EVU/measurements?from=2016-01-01T00:00:00+02:00&amp;to=2016-01-01T00:15:00+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
@@ -1216,7 +1216,7 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/basics/bulk/measurements?from<span class="o">=</span>2016-09-01T10:00:00+02:00&amp;to<span class="o">=</span>2016-09-01T10:15:00+02:00
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/basics/bulk/measurements?from=2016-09-01T10:00:00+02:00&amp;to=2016-09-01T10:15:00+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
@@ -1351,7 +1351,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/calculations/abbreviations
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/calculations/abbreviations'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var string[] $abbreviations */</span>
@@ -1402,7 +1402,7 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/calculations/abbreviations/PR
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/calculations/abbreviations/PR'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var Abbreviation $abbreviation */</span>
@@ -1492,7 +1492,7 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/calculations/abbreviations/E_N/measurements?from<span class="o">=</span>2016-01-01T00:00:00+02:00&amp;to<span class="o">=</span>2016-01-01T00:15:00+02:00
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/calculations/abbreviations/E_N/measurements?from=2016-01-01T00:00:00+02:00&amp;to=2016-01-01T00:15:00+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
@@ -1606,7 +1606,7 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/calculations/bulk/measurements?from<span class="o">=</span>2016-09-01T23:45:00+02:00&amp;to<span class="o">=</span>2016-09-01T23:59:59+02:00
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/calculations/bulk/measurements?from=2016-09-01T23:45:00+02:00&amp;to=2016-09-01T23:59:59+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
@@ -1736,7 +1736,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/inverters
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/inverters'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var Inverter[] $inverters */</span>
@@ -1820,7 +1820,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/inverters/Id12345.1
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/inverters/Id12345.1'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var InverterDetail $inverter */</span>
@@ -1913,7 +1913,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/inverters/Id12345.1/abbreviations
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/inverters/Id12345.1/abbreviations'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var string[] $abbreviations */</span>
@@ -1969,7 +1969,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/inverters/Id12345.1/abbreviations/P_AC
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/inverters/Id12345.1/abbreviations/P_AC'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var Abbreviation $abbreviation */</span>
@@ -2064,7 +2064,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/inverters/Id12345.1/abbreviations/P_AC/measurements?from<span class="o">=</span>2016-01-01T11:00:00+02:00&amp;to<span class="o">=</span>2016-01-01T12:00:00+02:00
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/inverters/Id12345.1/abbreviations/P_AC/measurements?from=2016-01-01T11:00:00+02:00&amp;to=2016-01-01T12:00:00+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
@@ -2206,7 +2206,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/inverters/bulk/measurements?from<span class="o">=</span>2016-09-01T10:00:00+02:00&amp;to<span class="o">=</span>2016-09-01T10:15:00+02:00
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/inverters/bulk/measurements?from=2016-09-01T10:00:00+02:00&amp;to=2016-09-01T10:15:00+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
@@ -2355,7 +2355,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/meters
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/meters'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var Meter[] $meters */</span>
@@ -2430,7 +2430,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/meters/12345
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/meters/12345'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var MeterDetail $meter */</span>
@@ -2509,7 +2509,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/meters/12345/abbreviations
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/meters/12345/abbreviations'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var string[] $abbreviations */</span>
@@ -2564,7 +2564,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/meters/12345/abbreviations/M_AC_E_EXP
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/meters/12345/abbreviations/M_AC_E_EXP'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var Abbreviation $abbreviations */</span>
@@ -2659,7 +2659,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/meters/12345/abbreviations/M_AC_E_EXP/measurements?from<span class="o">=</span>2016-01-01T11:00:00+02:00&amp;to<span class="o">=</span>2016-01-01T11:15:00+02:00
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/meters/12345/abbreviations/M_AC_E_EXP/measurements?from=2016-01-01T11:00:00+02:00&amp;to=2016-01-01T11:15:00+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
@@ -2780,7 +2780,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/meters/bulk/measurements?from<span class="o">=</span>2016-09-01T10:00:00+02:00&amp;to<span class="o">=</span>2016-09-01T10:15:00+02:00
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/meters/bulk/measurements?from=2016-09-01T10:00:00+02:00&amp;to=2016-09-01T10:15:00+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
@@ -2921,7 +2921,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/sensors
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/sensors'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var Sensor[] $sensors */</span>
@@ -2996,7 +2996,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/sensors/12345
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/sensors/12345'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var SensorDetail $sensor */</span>
@@ -3075,7 +3075,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/sensors/12345/abbreviations
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/sensors/12345/abbreviations'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var string[] $abbreviations */</span>
@@ -3124,7 +3124,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/sensors/12345/abbreviations/E_G_M1
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/sensors/12345/abbreviations/E_G_M1'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var string[] $abbreviation */</span>
@@ -3219,7 +3219,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/sensors/12345/abbreviations/E_G_M1/measurements?from<span class="o">=</span>2016-01-01T11:00:00+02:00&amp;to<span class="o">=</span>2016-01-01T11:15:00+02:00
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/sensors/12345/abbreviations/E_G_M1/measurements?from=2016-01-01T11:00:00+02:00&amp;to=2016-01-01T11:15:00+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
@@ -3340,7 +3340,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/sensors/bulk/measurements?from<span class="o">=</span>2016-09-01T10:00:00+02:00&amp;to<span class="o">=</span>2016-09-01T10:15:00+02:00
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/sensors/bulk/measurements?from=2016-09-01T10:00:00+02:00&amp;to=2016-09-01T10:15:00+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
@@ -3481,7 +3481,7 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/systems/ABCDE/stringboxes/bulk/measurements?from<span class="o">=</span>2016-09-01T10:00:00+02:00&amp;to<span class="o">=</span>2016-09-01T10:15:00+02:00
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/stringboxes/bulk/measurements?from=2016-09-01T10:00:00+02:00&amp;to=2016-09-01T10:15:00+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
@@ -3678,11 +3678,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/tickets?
-<span class="nv">includeInReports</span><span class="o">=</span>no&amp;severity<span class="o">=</span>normal&amp;priority<span class="o">=</span>normal&amp;status<span class="o">=</span>open&amp;assignee<span class="o">=</span>username&amp;systemKey<span class="o">=</span>ABCDE
-&amp;lastChange[from]<span class="o">=</span>2016-01-01T00:00:00+02:00&amp;lastChange[to]<span class="o">=</span>2016-01-31T00:00:00+02:00
-&amp;date[from]<span class="o">=</span>2016-04-01T00:00:00+02:00&amp;date[to]<span class="o">=</span>2016-04-25T00:00:00+02:00
-&amp;rectifiedOn[from]<span class="o">=</span>2016-04-25T00:00:00+02:00&amp;rectifiedOn[to]<span class="o">=</span>2016-04-25T00:00:00+02:00
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets?
+includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;assignee=username&amp;systemKey=ABCDE
+&amp;lastChange[from]=2016-01-01T00:00:00+02:00&amp;lastChange[to]=2016-01-31T00:00:00+02:00
+&amp;date[from]=2016-04-01T00:00:00+02:00&amp;date[to]=2016-04-25T00:00:00+02:00
+&amp;rectifiedOn[from]=2016-04-25T00:00:00+02:00&amp;rectifiedOn[to]=2016-04-25T00:00:00+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$ticketsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">TicketsCriteria</span><span class="p">())</span>
@@ -3887,7 +3887,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/tickets/&lt;ticketId&gt;
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var Ticket $ticket */</span>
@@ -4366,7 +4366,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/comments
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/comments'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var Comment[] comments */</span>
@@ -4461,7 +4461,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/comments/&lt;commentId&gt;
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/comments/&lt;commentId&gt;'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var CommentDetail comment */</span>
