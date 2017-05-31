@@ -335,6 +335,36 @@ X-RateLimit-Remaining-Day: 328
 </tr>
 </tbody></table>
 
+          <h1 id="content-encoding">Content Encoding</h1>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl
+--compressed 
+-u username:password
+-H <span class="s2">"X-API-KEY: 1234567890"</span>
+<span class="s1">'https://api.meteocontrol.de'</span>
+</code></pre>
+
+<p>The API supports standard HTTP content-encoding. If there&rsquo;s no <strong>Accept-Encoding</strong> header present, an unsupported algorithm was requested, or the response size is below 512 bytes, the API will not compress the response.</p>
+
+<p><strong>Note</strong>: The official client libraries always request gzip encoded content.</p>
+
+<table><thead>
+<tr>
+<th>Header field name</th>
+<th>Header field value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">Accept-Encoding</code></td>
+<td><code class="prettyprint">gzip, deflate</code></td>
+<td>Comma separated list of compression algorithms. <strong>Optional Header</strong></td>
+</tr>
+</tbody></table>
+
           <h1 id="errors">Errors</h1>
 
 <table><thead>
@@ -3711,6 +3741,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
       <span class="s2">"id"</span>: <span class="s2">"123"</span>,
       <span class="s2">"systemKey"</span>: <span class="s2">"ABCDE"</span>,
       <span class="s2">"designation"</span>: <span class="s2">"Ticket #123"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"This is a description"</span>,
       <span class="s2">"summary"</span>: <span class="s2">"This is a summary."</span>,
       <span class="s2">"date"</span>: <span class="s2">"2016-01-01T12:00:00"</span>,
       <span class="s2">"lastChange"</span>: <span class="s2">"2016-01-01T13:00:00"</span>,
@@ -3722,6 +3753,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
       <span class="s2">"id"</span>: <span class="s2">"456"</span>,
       <span class="s2">"systemKey"</span>: <span class="s2">"FGHIJ"</span>,
       <span class="s2">"designation"</span>: <span class="s2">"Ticket #456"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"This is a description"</span>,
       <span class="s2">"summary"</span>: <span class="s2">"This is a summary."</span>,
       <span class="s2">"date"</span>: <span class="s2">"2016-02-01T12:00:00"</span>,
       <span class="s2">"lastChange"</span>: <span class="s2">"2016-02-02T13:00:00"</span>,
@@ -3736,6 +3768,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 123
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">systemKey</span><span class="p">;</span><span class="c1">// ABCDE
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">designation</span><span class="p">;</span><span class="c1">// Ticket #123
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// This is a description
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">summary</span><span class="p">;</span><span class="c1">// This is a summary.
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// closed
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-01-01T12:00:00
@@ -3851,6 +3884,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td></td>
 </tr>
 <tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td></td>
+</tr>
+<tr>
 <td>summary <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
 <td></td>
@@ -3902,6 +3940,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="s2">"id"</span>: <span class="s2">"123"</span>,
     <span class="s2">"systemKey"</span>: <span class="s2">"ABCDE"</span>,
     <span class="s2">"designation"</span>: <span class="s2">"Ticket #123"</span>,
+    <span class="s2">"description"</span>: <span class="s2">"This is a description"</span>,
     <span class="s2">"summary"</span>: <span class="s2">"This is a summary."</span>,
     <span class="s2">"date"</span>: <span class="s2">"2016-01-01T12:00:00"</span>,
     <span class="s2">"lastChange"</span>: <span class="s2">"2016-01-01T13:00:00"</span>,
@@ -3921,6 +3960,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 123
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">systemKey</span><span class="p">;</span><span class="c1">// ABCDE
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">designation</span><span class="p">;</span><span class="c1">// Ticket #123
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// This is a description
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">summary</span><span class="p">;</span><span class="c1">// This is a summary.
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T12:00:00
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">lastChange</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T13:00:00
@@ -3975,6 +4015,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 <tr>
 <td>designation <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td></td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
 <td></td>
 </tr>
@@ -4048,6 +4093,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
   "status": "closed",
   "includeInReports": "detail",
   "priority": "urgent",
+  "description": "description",
   "summary": "summary"
 }'</span> <span class="se">\</span>
  <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;'</span>
@@ -4059,6 +4105,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">status</span> <span class="o">=</span> <span class="s1">'closed'</span><span class="p">;</span>
     <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">includeInReports</span> <span class="o">=</span> <span class="s1">'detail'</span><span class="p">;</span>
     <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">priority</span> <span class="o">=</span> <span class="s1">'urgent'</span><span class="p">;</span>
+    <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">description</span> <span class="o">=</span> <span class="s1">'description'</span><span class="p">;</span>
     <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">summary</span> <span class="o">=</span> <span class="s1">'summary'</span><span class="p">;</span>
     <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$ticket</span><span class="p">);</span>
 </code></pre>
@@ -4120,6 +4167,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td></td>
 </tr>
 <tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td></td>
+</tr>
+<tr>
 <td>summary <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
 <td></td>
@@ -4167,7 +4219,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
   "status": "open",
   "includeInReports": "no",
   "priority": "normal",
-  "summary": "still created from the API"
+  "summary": "still created from the API",
+  "description": "description"
 }'</span> <span class="se">\</span>
  <span class="s1">'https://api.meteocontrol.de/tickets'</span>
 </code></pre>
@@ -4180,6 +4233,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">includeInReports</span> <span class="o">=</span> <span class="nx">Ticket</span><span class="o">::</span><span class="na">REPORT_TYPE_NO</span><span class="p">;</span>
     <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">priority</span> <span class="o">=</span> <span class="nx">Ticket</span><span class="o">::</span><span class="na">PRIORITY_NORMAL</span><span class="p">;</span>
     <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">summary</span> <span class="o">=</span> <span class="s1">'still created from the API'</span><span class="p">;</span>
+    <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">description</span> <span class="o">=</span> <span class="s1">'description'</span><span class="p">;</span>
 
     <span class="sd">/** @var integer $ticketId */</span>
     <span class="nv">$ticketId</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">tickets</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$ticket</span><span class="p">);</span>
@@ -4243,6 +4297,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>date <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
+<td></td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
 <td></td>
 </tr>
 <tr>
