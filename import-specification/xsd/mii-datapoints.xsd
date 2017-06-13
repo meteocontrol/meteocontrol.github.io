@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:d="http://api.sspcdn.com/mii/datalogger/datapoints" elementFormDefault="qualified" targetNamespace="http://api.sspcdn.com/mii/datalogger/datapoints">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:d="http://api.sspcdn.com/mii/datalogger/datapoints"
+    elementFormDefault="qualified"
+    targetNamespace="http://api.sspcdn.com/mii/datalogger/datapoints">
+
   <xs:element name="datapoints" type="d:dp-datapoints" />
   <xs:complexType name="dp-datapoints">
     <xs:sequence>
@@ -11,9 +15,18 @@
     <xs:sequence>
       <xs:element ref="d:device" maxOccurs="unbounded"/>
     </xs:sequence>
-    <xs:attribute name="interval" use="required" type="xs:integer"/>
+    <xs:attribute name="interval" use="required" type="d:dp-interval"/>
     <xs:attribute name="timestamp" use="required" type="xs:dateTime"/>
   </xs:complexType>
+  <xs:simpleType name="dp-interval">
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="300"/>
+      <xs:enumeration value="600"/>
+      <xs:enumeration value="900"/>
+      <xs:enumeration value="1800"/>
+      <xs:enumeration value="3600"/>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:element name="device" type="d:dp-device" />
   <xs:complexType name="dp-device">
     <xs:sequence>
