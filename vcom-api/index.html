@@ -938,6 +938,11 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
 <td>end time (max interval is 1 hour)</td>
 </tr>
+<tr>
+<td>format</td>
+<td><code class="prettyprint">json</code> (default) or <code class="prettyprint">csv</code></td>
+<td>export format</td>
+</tr>
 </tbody></table>
 
 <p><strong><em>Options for CSV format</em></strong></p>
@@ -1866,7 +1871,8 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="s2">"model"</span>: <span class="s2">"TLX 15 k"</span>,
     <span class="s2">"vendor"</span>: <span class="s2">"Danfoss"</span>,
     <span class="s2">"serial"</span>: <span class="s2">"123456788"</span>,
-    <span class="s2">"name"</span>: <span class="s2">"Inverter 1"</span>
+    <span class="s2">"name"</span>: <span class="s2">"Inverter 1"</span>,
+    <span class="s2">"scaleFactor"</span>: 24.01
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -1877,6 +1883,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </span>    <span class="k">echo</span> <span class="nv">$inverter</span><span class="o">-&gt;</span><span class="na">vendor</span><span class="p">;</span><span class="c1">// Danfoss
 </span>    <span class="k">echo</span> <span class="nv">$inverter</span><span class="o">-&gt;</span><span class="na">serial</span><span class="p">;</span><span class="c1">// 123456788
 </span>    <span class="k">echo</span> <span class="nv">$inverter</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Inverter 1
+</span>    <span class="k">echo</span> <span class="nv">$inverter</span><span class="o">-&gt;</span><span class="na">scaleFactor</span><span class="p">;</span><span class="c1">// 24.01
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/inverters/&lt;deviceId&gt;</code></p>
@@ -1935,6 +1942,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>name <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
 <td>custom name</td>
+</tr>
+<tr>
+<td>scaleFactor <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">float</code>&#124;<code class="prettyprint">null</code></td>
+<td>normalization factor</td>
 </tr>
 </tbody></table>
 
