@@ -405,6 +405,78 @@ X-RateLimit-Remaining-Day: 328
 
           <h1 id="endpoints">Endpoints</h1>
 
+          <h2 id="session">Session</h2>
+
+<h3 class="toc-ignore">Get one session object</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/session'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var Session $session */</span>
+    <span class="nv">$session</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">session</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"user"</span>: <span class="o">{</span>
+      <span class="s2">"id"</span>: <span class="s2">"123"</span>,
+      <span class="s2">"title"</span>: <span class="s2">"Mr."</span>,
+      <span class="s2">"firstName"</span>: <span class="s2">"First Name"</span>,
+      <span class="s2">"lastName"</span>: <span class="s2">"Last Name"</span>,
+      <span class="s2">"username"</span>: <span class="s2">"user.name"</span>,
+      <span class="s2">"email"</span>: <span class="s2">"fake@mail.intra"</span>,
+      <span class="s2">"language"</span>: <span class="s2">"en"</span>,
+      <span class="s2">"company"</span>: <span class="s2">"Company"</span>,
+      <span class="s2">"fax"</span>: <span class="s2">"0234567890"</span>,
+      <span class="s2">"telephone"</span>: <span class="s2">"0234567891"</span>,
+      <span class="s2">"cellphone"</span>: <span class="s2">"0987654321"</span>,
+      <span class="s2">"address"</span>: <span class="o">{</span>
+        <span class="s2">"city"</span>: <span class="s2">"City"</span>,
+        <span class="s2">"country"</span>: <span class="s2">"Country"</span>,
+        <span class="s2">"postalCode"</span>: <span class="s2">"12345"</span>,
+        <span class="s2">"street"</span>: <span class="s2">"Street 123"</span>,
+        <span class="s2">"streetAddition"</span>: <span class="s2">"2F-1"</span>
+      <span class="o">}</span>,
+      <span class="s2">"timezone"</span>: <span class="o">{</span>
+        <span class="s2">"name"</span>: <span class="s2">"Europe/Berlin"</span>,
+        <span class="s2">"utcOffset"</span>: <span class="s2">"+02:00"</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var Session $session */</span>
+    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span> <span class="c1">// "123"
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span> <span class="c1">// 'Mr.'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span> <span class="c1">// 'First Name'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span> <span class="c1">// 'Last Name'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span> <span class="c1">// 'user.name'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span> <span class="c1">// 'fake@mail.intra'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">language</span><span class="p">;</span> <span class="c1">// 'en'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">company</span><span class="p">;</span> <span class="c1">// 'Company'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">fax</span><span class="p">;</span> <span class="c1">// '0234567890'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">telephone</span><span class="p">;</span> <span class="c1">// '0234567891'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">cellphone</span><span class="p">;</span> <span class="c1">// '0987654321'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">city</span><span class="p">;</span> <span class="c1">// 'City'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">country</span><span class="p">;</span> <span class="c1">// 'Country'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">postalCode</span><span class="p">;</span> <span class="c1">// '12345'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">street</span><span class="p">;</span> <span class="c1">// 'Street 123'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">streetAddition</span><span class="p">;</span> <span class="c1">// '2F-1'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span> <span class="c1">// 'Europe/Berlin'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">utcOffset</span><span class="p">;</span> <span class="c1">// '+02:00'
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">session</code></p>
+
+<p>Returns a session object.</p>
+
           <h2 id="systems">Systems</h2>
 
 <blockquote>
@@ -3713,6 +3785,542 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
+          <h4 id="responsibilities">Responsibilities</h4>
+
+<h4 class="toc-ignore">Get information of responsibilities</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/responsibilities'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var Responsibilities $responsibilities */</span>
+    <span class="nv">$responsibilities</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">responsibilities</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"alarmContact"</span>: <span class="o">{</span>
+      <span class="s2">"address"</span>: <span class="o">{</span>
+        <span class="s2">"city"</span>: <span class="s2">"City"</span>,
+        <span class="s2">"country"</span>: <span class="s2">"Country"</span>,
+        <span class="s2">"postalCode"</span>: <span class="s2">"12345"</span>,
+        <span class="s2">"street"</span>: <span class="s2">"Street 123"</span>,
+        <span class="s2">"streetAddition"</span>: <span class="s2">"2F-1"</span>
+      <span class="o">}</span>,
+      <span class="s2">"cellphone"</span>: <span class="s2">"0987654321"</span>,
+      <span class="s2">"company"</span>: <span class="s2">"Company"</span>,
+      <span class="s2">"email"</span>: <span class="s2">"fake@mail.intra"</span>,
+      <span class="s2">"fax"</span>: <span class="s2">"0234567890"</span>,
+      <span class="s2">"firstName"</span>: <span class="s2">"First Name"</span>,
+      <span class="s2">"id"</span>: <span class="s2">"123"</span>,
+      <span class="s2">"language"</span>: <span class="s2">"en"</span>,
+      <span class="s2">"lastName"</span>: <span class="s2">"Last Name"</span>,
+      <span class="s2">"telephone"</span>: <span class="s2">"0234567891"</span>,
+      <span class="s2">"timezone"</span>: <span class="o">{</span>
+        <span class="s2">"name"</span>: <span class="s2">"Europe/Berlin"</span>,
+        <span class="s2">"utcOffset"</span>: <span class="s2">"+02:00"</span>
+      <span class="o">}</span>,
+      <span class="s2">"title"</span>: <span class="s2">"Mr."</span>,
+      <span class="s2">"username"</span>: <span class="s2">"user.name"</span>
+    <span class="o">}</span>,
+    <span class="s2">"electrician"</span>: <span class="o">{</span>
+      <span class="s2">"address"</span>: <span class="o">{</span>
+        <span class="s2">"city"</span>: <span class="s2">"City"</span>,
+        <span class="s2">"country"</span>: <span class="s2">"Country"</span>,
+        <span class="s2">"postalCode"</span>: <span class="s2">"12345"</span>,
+        <span class="s2">"street"</span>: <span class="s2">"Street 123"</span>,
+        <span class="s2">"streetAddition"</span>: <span class="s2">"2F-1"</span>
+      <span class="o">}</span>,
+      <span class="s2">"cellphone"</span>: <span class="s2">"0987654321"</span>,
+      <span class="s2">"company"</span>: <span class="s2">"Company"</span>,
+      <span class="s2">"email"</span>: <span class="s2">"fake@mail.intra"</span>,
+      <span class="s2">"fax"</span>: <span class="s2">"0234567890"</span>,
+      <span class="s2">"firstName"</span>: <span class="s2">"First Name"</span>,
+      <span class="s2">"id"</span>: <span class="s2">"123"</span>,
+      <span class="s2">"language"</span>: <span class="s2">"en"</span>,
+      <span class="s2">"lastName"</span>: <span class="s2">"Last Name"</span>,
+      <span class="s2">"telephone"</span>: <span class="s2">"0234567891"</span>,
+      <span class="s2">"timezone"</span>: <span class="o">{</span>
+        <span class="s2">"name"</span>: <span class="s2">"Europe/Berlin"</span>,
+        <span class="s2">"utcOffset"</span>: <span class="s2">"+02:00"</span>
+      <span class="o">}</span>,
+      <span class="s2">"title"</span>: <span class="s2">"Mr."</span>,
+      <span class="s2">"username"</span>: <span class="s2">"user.name"</span>
+    <span class="o">}</span>,
+    <span class="s2">"invoiceRecipient"</span>: <span class="o">{</span>
+      <span class="s2">"address"</span>: <span class="o">{</span>
+        <span class="s2">"city"</span>: <span class="s2">"City"</span>,
+        <span class="s2">"country"</span>: <span class="s2">"Country"</span>,
+        <span class="s2">"postalCode"</span>: <span class="s2">"12345"</span>,
+        <span class="s2">"street"</span>: <span class="s2">"Street 123"</span>,
+        <span class="s2">"streetAddition"</span>: <span class="s2">"2F-1"</span>
+      <span class="o">}</span>,
+      <span class="s2">"cellphone"</span>: <span class="s2">"0987654321"</span>,
+      <span class="s2">"company"</span>: <span class="s2">"Company"</span>,
+      <span class="s2">"email"</span>: <span class="s2">"fake@mail.intra"</span>,
+      <span class="s2">"fax"</span>: <span class="s2">"0234567890"</span>,
+      <span class="s2">"firstName"</span>: <span class="s2">"First Name"</span>,
+      <span class="s2">"id"</span>: <span class="s2">"123"</span>,
+      <span class="s2">"language"</span>: <span class="s2">"en"</span>,
+      <span class="s2">"lastName"</span>: <span class="s2">"Last Name"</span>,
+      <span class="s2">"telephone"</span>: <span class="s2">"0234567891"</span>,
+      <span class="s2">"timezone"</span>: <span class="o">{</span>
+        <span class="s2">"name"</span>: <span class="s2">"Europe/Berlin"</span>,
+        <span class="s2">"utcOffset"</span>: <span class="s2">"+02:00"</span>
+      <span class="o">}</span>,
+      <span class="s2">"title"</span>: <span class="s2">"Mr."</span>,
+      <span class="s2">"username"</span>: <span class="s2">"user.name"</span>
+    <span class="o">}</span>,
+    <span class="s2">"operator"</span>: <span class="o">{</span>
+      <span class="s2">"address"</span>: <span class="o">{</span>
+        <span class="s2">"city"</span>: <span class="s2">"City"</span>,
+        <span class="s2">"country"</span>: <span class="s2">"Country"</span>,
+        <span class="s2">"postalCode"</span>: <span class="s2">"12345"</span>,
+        <span class="s2">"street"</span>: <span class="s2">"Street 123"</span>,
+        <span class="s2">"streetAddition"</span>: <span class="s2">"2F-1"</span>
+      <span class="o">}</span>,
+      <span class="s2">"cellphone"</span>: <span class="s2">"0987654321"</span>,
+      <span class="s2">"company"</span>: <span class="s2">"Company"</span>,
+      <span class="s2">"email"</span>: <span class="s2">"fake@mail.intra"</span>,
+      <span class="s2">"fax"</span>: <span class="s2">"0234567890"</span>,
+      <span class="s2">"firstName"</span>: <span class="s2">"First Name"</span>,
+      <span class="s2">"id"</span>: <span class="s2">"123"</span>,
+      <span class="s2">"language"</span>: <span class="s2">"en"</span>,
+      <span class="s2">"lastName"</span>: <span class="s2">"Last Name"</span>,
+      <span class="s2">"telephone"</span>: <span class="s2">"0234567891"</span>,
+      <span class="s2">"timezone"</span>: <span class="o">{</span>
+        <span class="s2">"name"</span>: <span class="s2">"Europe/Berlin"</span>,
+        <span class="s2">"utcOffset"</span>: <span class="s2">"+02:00"</span>
+      <span class="o">}</span>,
+      <span class="s2">"title"</span>: <span class="s2">"Mr."</span>,
+      <span class="s2">"username"</span>: <span class="s2">"user.name"</span>
+    <span class="o">}</span>,
+    <span class="s2">"owner"</span>: <span class="o">{</span>
+      <span class="s2">"address"</span>: <span class="o">{</span>
+        <span class="s2">"city"</span>: <span class="s2">"City"</span>,
+        <span class="s2">"country"</span>: <span class="s2">"Country"</span>,
+        <span class="s2">"postalCode"</span>: <span class="s2">"12345"</span>,
+        <span class="s2">"street"</span>: <span class="s2">"Street 123"</span>,
+        <span class="s2">"streetAddition"</span>: <span class="s2">"2F-1"</span>
+      <span class="o">}</span>,
+      <span class="s2">"cellphone"</span>: <span class="s2">"0987654321"</span>,
+      <span class="s2">"company"</span>: <span class="s2">"Company"</span>,
+      <span class="s2">"email"</span>: <span class="s2">"fake@mail.intra"</span>,
+      <span class="s2">"fax"</span>: <span class="s2">"0234567890"</span>,
+      <span class="s2">"firstName"</span>: <span class="s2">"First Name"</span>,
+      <span class="s2">"id"</span>: <span class="s2">"123"</span>,
+      <span class="s2">"language"</span>: <span class="s2">"en"</span>,
+      <span class="s2">"lastName"</span>: <span class="s2">"Last Name"</span>,
+      <span class="s2">"telephone"</span>: <span class="s2">"0234567891"</span>,
+      <span class="s2">"timezone"</span>: <span class="o">{</span>
+        <span class="s2">"name"</span>: <span class="s2">"Europe/Berlin"</span>,
+        <span class="s2">"utcOffset"</span>: <span class="s2">"+02:00"</span>
+      <span class="o">}</span>,
+      <span class="s2">"title"</span>: <span class="s2">"Mr."</span>,
+      <span class="s2">"username"</span>: <span class="s2">"user.name"</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var Responsibilities $responsibilities */</span>
+    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">city</span><span class="p">;</span> <span class="c1">// 'City'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">country</span><span class="p">;</span> <span class="c1">// 'Country'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">postalCode</span><span class="p">;</span> <span class="c1">// '12345'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">street</span><span class="p">;</span> <span class="c1">// 'Street 123'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">streetAddition</span><span class="p">;</span> <span class="c1">// '2F-1'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span> <span class="c1">// 'Europe/Berlin'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">utcOffset</span><span class="p">;</span> <span class="c1">// '+02:00'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span> <span class="c1">// "123"
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span> <span class="c1">// 'Mr.'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span> <span class="c1">// 'First Name'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span> <span class="c1">// 'Last Name'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span> <span class="c1">// 'user.name'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span> <span class="c1">// 'fake@mail.intra'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">language</span><span class="p">;</span> <span class="c1">// 'en'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">company</span><span class="p">;</span> <span class="c1">// 'Company'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">fax</span><span class="p">;</span> <span class="c1">// '0234567890'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">telephone</span><span class="p">;</span> <span class="c1">// '0234567891'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">owner</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">cellphone</span><span class="p">;</span> <span class="c1">// '0987654321'
+</span>
+    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">city</span><span class="p">;</span> <span class="c1">// 'City'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">country</span><span class="p">;</span> <span class="c1">// 'Country'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">postalCode</span><span class="p">;</span> <span class="c1">// '12345'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">street</span><span class="p">;</span> <span class="c1">// 'Street 123'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">streetAddition</span><span class="p">;</span> <span class="c1">// '2F-1'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span> <span class="c1">// 'Europe/Berlin'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">utcOffset</span><span class="p">;</span> <span class="c1">// '+02:00'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span> <span class="c1">// "123"
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span> <span class="c1">// 'Mr.'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span> <span class="c1">// 'First Name'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span> <span class="c1">// 'Last Name'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span> <span class="c1">// 'user.name'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span> <span class="c1">// 'fake@mail.intra'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">language</span><span class="p">;</span> <span class="c1">// 'en'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">company</span><span class="p">;</span> <span class="c1">// 'Company'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">fax</span><span class="p">;</span> <span class="c1">// '0234567890'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">telephone</span><span class="p">;</span> <span class="c1">// '0234567891'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">operator</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">cellphone</span><span class="p">;</span> <span class="c1">// '0987654321'
+</span>
+    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">city</span><span class="p">;</span> <span class="c1">// 'City'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">country</span><span class="p">;</span> <span class="c1">// 'Country'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">postalCode</span><span class="p">;</span> <span class="c1">// '12345'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">street</span><span class="p">;</span> <span class="c1">// 'Street 123'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">streetAddition</span><span class="p">;</span> <span class="c1">// '2F-1'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span> <span class="c1">// 'Europe/Berlin'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">utcOffset</span><span class="p">;</span> <span class="c1">// '+02:00'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span> <span class="c1">// "123"
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span> <span class="c1">// 'Mr.'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span> <span class="c1">// 'First Name'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span> <span class="c1">// 'Last Name'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span> <span class="c1">// 'user.name'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span> <span class="c1">// 'fake@mail.intra'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">language</span><span class="p">;</span> <span class="c1">// 'en'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">company</span><span class="p">;</span> <span class="c1">// 'Company'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">fax</span><span class="p">;</span> <span class="c1">// '0234567890'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">telephone</span><span class="p">;</span> <span class="c1">// '0234567891'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">electrician</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">cellphone</span><span class="p">;</span> <span class="c1">// '0987654321'
+</span>
+    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">city</span><span class="p">;</span> <span class="c1">// 'City'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">country</span><span class="p">;</span> <span class="c1">// 'Country'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">postalCode</span><span class="p">;</span> <span class="c1">// '12345'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">street</span><span class="p">;</span> <span class="c1">// 'Street 123'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">streetAddition</span><span class="p">;</span> <span class="c1">// '2F-1'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span> <span class="c1">// 'Europe/Berlin'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">utcOffset</span><span class="p">;</span> <span class="c1">// '+02:00'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span> <span class="c1">// "123"
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span> <span class="c1">// 'Mr.'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span> <span class="c1">// 'First Name'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span> <span class="c1">// 'Last Name'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span> <span class="c1">// 'user.name'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span> <span class="c1">// 'fake@mail.intra'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">language</span><span class="p">;</span> <span class="c1">// 'en'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">company</span><span class="p">;</span> <span class="c1">// 'Company'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">fax</span><span class="p">;</span> <span class="c1">// '0234567890'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">telephone</span><span class="p">;</span> <span class="c1">// '0234567891'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">invoiceRecipient</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">cellphone</span><span class="p">;</span> <span class="c1">// '0987654321'
+</span>
+    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">city</span><span class="p">;</span> <span class="c1">// 'City'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">country</span><span class="p">;</span> <span class="c1">// 'Country'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">postalCode</span><span class="p">;</span> <span class="c1">// '12345'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">street</span><span class="p">;</span> <span class="c1">// 'Street 123'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">streetAddition</span><span class="p">;</span> <span class="c1">// '2F-1'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span> <span class="c1">// 'Europe/Berlin'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">utcOffset</span><span class="p">;</span> <span class="c1">// '+02:00'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span> <span class="c1">// "123"
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span> <span class="c1">// 'Mr.'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span> <span class="c1">// 'First Name'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span> <span class="c1">// 'Last Name'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span> <span class="c1">// 'user.name'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span> <span class="c1">// 'fake@mail.intra'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">language</span><span class="p">;</span> <span class="c1">// 'en'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">company</span><span class="p">;</span> <span class="c1">// 'Company'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">fax</span><span class="p">;</span> <span class="c1">// '0234567890'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">telephone</span><span class="p">;</span> <span class="c1">// '0234567891'
+</span>    <span class="k">echo</span> <span class="nv">$responsibilities</span><span class="o">-&gt;</span><span class="na">alarmContact</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">cellphone</span><span class="p">;</span> <span class="c1">// '0987654321'
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/responsibilities</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+          <h4 id="users">Users</h4>
+
+<h4 class="toc-ignore">Get user list</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/users'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var User[] $users */</span>
+    <span class="nv">$users</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">users</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: <span class="s2">"123"</span>,
+      <span class="s2">"username"</span>: <span class="s2">"user1.name"</span>,
+      <span class="s2">"firstName"</span>: <span class="s2">"First Name"</span>,
+      <span class="s2">"lastName"</span>: <span class="s2">"Last Name"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: <span class="s2">"456"</span>,
+      <span class="s2">"username"</span>: <span class="s2">"user2.name"</span>,
+      <span class="s2">"firstName"</span>: <span class="s2">"First Name"</span>,
+      <span class="s2">"lastName"</span>: <span class="s2">"Last Name"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var User[] $users */</span>
+    <span class="k">echo</span> <span class="nv">$users</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// "123"
+</span>    <span class="k">echo</span> <span class="nv">$users</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">// user1.name
+</span>    <span class="k">echo</span> <span class="nv">$users</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span><span class="c1">// First Name
+</span>    <span class="k">echo</span> <span class="nv">$users</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span><span class="c1">// Last Name
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/users</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>user ID</td>
+</tr>
+<tr>
+<td>username <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>username</td>
+</tr>
+<tr>
+<td>firstName <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>first name</td>
+</tr>
+<tr>
+<td>lastName <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>last name</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single user information by its ID</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/users/123'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var UserDetail $userDetail */</span>
+    <span class="nv">$userDetail</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: <span class="s2">"123"</span>,
+    <span class="s2">"title"</span>: <span class="s2">"Mrs."</span>,
+    <span class="s2">"firstName"</span>: <span class="s2">"First Name"</span>,
+    <span class="s2">"lastName"</span>: <span class="s2">"Last Name"</span>,
+    <span class="s2">"username"</span>: <span class="s2">"user1.name"</span>,
+    <span class="s2">"email"</span>: <span class="s2">"fake@mail.intra"</span>,
+    <span class="s2">"language"</span>: <span class="s2">"en"</span>,
+    <span class="s2">"company"</span>: <span class="s2">"Company"</span>,
+    <span class="s2">"fax"</span>: <span class="s2">"0234567890"</span>,
+    <span class="s2">"telephone"</span>: <span class="s2">"0234567891"</span>,
+    <span class="s2">"cellphone"</span>: <span class="s2">"0987654321"</span>,
+    <span class="s2">"address"</span>: <span class="o">{</span>
+      <span class="s2">"city"</span>: <span class="s2">"City"</span>,
+      <span class="s2">"country"</span>: <span class="s2">"Country"</span>,
+      <span class="s2">"postalCode"</span>: <span class="s2">"12345"</span>,
+      <span class="s2">"street"</span>: <span class="s2">"Street 123"</span>,
+      <span class="s2">"streetAddition"</span>: <span class="s2">"2F-1"</span>
+    <span class="o">}</span>,
+    <span class="s2">"timezone"</span>: <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"Europe</span><span class="se">\/</span><span class="s2">Berlin"</span>,
+      <span class="s2">"utcOffset"</span>: <span class="s2">"+02:00"</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var UserDetail $userDetail */</span>
+    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">//"123",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span><span class="c1">//""Mrs.",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span><span class="c1">//"First Name",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span><span class="c1">//"Last Name",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">//"user1.name",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span><span class="c1">//"fake@mail.intra",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">language</span><span class="p">;</span><span class="c1">//"en",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">company</span><span class="p">;</span><span class="c1">//"Company",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">fax</span><span class="p">;</span><span class="c1">//"0234567890",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">telephone</span><span class="p">;</span><span class="c1">//"0234567891",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">cellphone</span><span class="p">;</span><span class="c1">//"0987654321",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">city</span><span class="p">;</span><span class="c1">//"City",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">country</span><span class="p">;</span><span class="c1">//"Country",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">street</span><span class="p">;</span><span class="c1">//"Street 123",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">streetAddition</span><span class="p">;</span><span class="c1">//"2F-1",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">postalCode</span><span class="p">;</span><span class="c1">//"12345",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">//"Europe/Berlin",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">utcOffset</span><span class="p">;</span><span class="c1">//"+02:00"
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/users/&lt;userId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>userId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>user ID</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single user information by its username</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/users?username=user1.name'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var UserDetail $user */</span>
+    <span class="nv">$criteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">UserCriteria</span><span class="p">();</span>
+    <span class="nv">$criteria</span><span class="o">-&gt;</span><span class="na">withUsername</span><span class="p">(</span><span class="s2">"user.name"</span><span class="p">);</span>
+    <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">users</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: <span class="s2">"123"</span>,
+    <span class="s2">"title"</span>: <span class="s2">"Mrs."</span>,
+    <span class="s2">"firstName"</span>: <span class="s2">"First Name"</span>,
+    <span class="s2">"lastName"</span>: <span class="s2">"Last Name"</span>,
+    <span class="s2">"username"</span>: <span class="s2">"user.name"</span>,
+    <span class="s2">"email"</span>: <span class="s2">"fake@mail.intra"</span>,
+    <span class="s2">"language"</span>: <span class="s2">"en"</span>,
+    <span class="s2">"company"</span>: <span class="s2">"Company"</span>,
+    <span class="s2">"fax"</span>: <span class="s2">"0234567890"</span>,
+    <span class="s2">"telephone"</span>: <span class="s2">"0234567891"</span>,
+    <span class="s2">"cellphone"</span>: <span class="s2">"0987654321"</span>,
+    <span class="s2">"address"</span>: <span class="o">{</span>
+      <span class="s2">"city"</span>: <span class="s2">"City"</span>,
+      <span class="s2">"country"</span>: <span class="s2">"Country"</span>,
+      <span class="s2">"postalCode"</span>: <span class="s2">"12345"</span>,
+      <span class="s2">"street"</span>: <span class="s2">"Street 123"</span>,
+      <span class="s2">"streetAddition"</span>: <span class="s2">"2F-1"</span>
+    <span class="o">}</span>,
+    <span class="s2">"timezone"</span>: <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"Europe</span><span class="se">\/</span><span class="s2">Berlin"</span>,
+      <span class="s2">"utcOffset"</span>: <span class="s2">"+02:00"</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var UserDetail $userDetail */</span>
+    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">//"123",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span><span class="c1">//"Mrs.",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span><span class="c1">//"First Name",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span><span class="c1">//"Last Name",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">//"user.name",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span><span class="c1">//"fake@mail.intra",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">language</span><span class="p">;</span><span class="c1">//"en",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">company</span><span class="p">;</span><span class="c1">//"Company",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">fax</span><span class="p">;</span><span class="c1">//"0234567890",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">telephone</span><span class="p">;</span><span class="c1">//"0234567891",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">cellphone</span><span class="p">;</span><span class="c1">//"0987654321",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">city</span><span class="p">;</span><span class="c1">//"City",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">country</span><span class="p">;</span><span class="c1">//"Country",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">street</span><span class="p">;</span><span class="c1">//"Street 123",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">streetAddition</span><span class="p">;</span><span class="c1">//"2F-1",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">postalCode</span><span class="p">;</span><span class="c1">//"12345",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">//"Europe/Berlin",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">utcOffset</span><span class="p">;</span><span class="c1">//"+02:00"
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/users</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>user name</td>
+</tr>
+</tbody></table>
+
           <h2 id="tickets">Tickets</h2>
 
 <h3 class="toc-ignore">Get all tickets</h3>
@@ -4453,13 +5061,17 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
       <span class="s2">"commentId"</span>: 661288,
       <span class="s2">"date"</span>: <span class="s2">"2016-02-19T12:49:20+01:00"</span>,
       <span class="s2">"comment"</span>: <span class="s2">"Comment text"</span>,
-      <span class="s2">"username"</span>: <span class="s2">"username"</span>
+      <span class="s2">"username"</span>: <span class="s2">"username"</span>,
+      <span class="s2">"firstName"</span>: <span class="s2">"firstName"</span>,
+      <span class="s2">"lastName"</span>: <span class="s2">"lastName"</span>
     <span class="o">}</span>,
     <span class="o">{</span>
       <span class="s2">"commentId"</span>: 661286,
       <span class="s2">"date"</span>: <span class="s2">"2016-02-19T12:49:07+01:00"</span>,
       <span class="s2">"comment"</span>: <span class="s2">"Comment text"</span>,
-      <span class="s2">"username"</span>: <span class="s2">"username"</span>
+      <span class="s2">"username"</span>: <span class="s2">"username"</span>,
+      <span class="s2">"firstName"</span>: <span class="s2">"firstName"</span>,
+      <span class="s2">"lastName"</span>: <span class="s2">"lastName"</span>
     <span class="o">}</span>
   <span class="o">]</span>
 <span class="o">}</span>
@@ -4470,10 +5082,14 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-19T12:49:20+01:00
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// Comment text
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">// username
+</span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span><span class="c1">// firstName
+</span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span><span class="c1">// lastName
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">commentId</span><span class="p">;</span><span class="c1">// 661286
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-19T12:49:07+01:00
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// Comment text
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">// username
+</span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span><span class="c1">// firstName
+</span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span><span class="c1">// lastName
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/comments</code></p>
@@ -4547,7 +5163,9 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="s2">"commentId"</span>: 661288,
     <span class="s2">"date"</span>: <span class="s2">"2016-02-19T12:49:20+01:00"</span>,
     <span class="s2">"comment"</span>: <span class="s2">"Comment text"</span>,
-    <span class="s2">"username"</span>: <span class="s2">"username"</span>
+    <span class="s2">"username"</span>: <span class="s2">"username"</span>,
+    <span class="s2">"firstName"</span>: <span class="s2">"firstName"</span>,
+    <span class="s2">"lastName"</span>: <span class="s2">"lastName"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -4557,6 +5175,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-19T12:49:20+01:00
 </span>    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// Comment text
 </span>    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">// username
+</span>    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span><span class="c1">// firstName
+</span>    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span><span class="c1">// lastName
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/comments/&lt;commentId&gt;</code></p>
