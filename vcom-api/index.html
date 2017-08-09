@@ -152,6 +152,8 @@
     <span class="s1">'https://api.meteocontrol.de/&lt;URL&gt;'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="k">use</span> <span class="nx">meteocontrol\client\vcomapi\ApiClient</span><span class="p">;</span>
+    <span class="k">require_once</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/vendor/autoload.php'</span><span class="p">;</span>
     <span class="nv">$api</span> <span class="o">=</span> <span class="nx">ApiClient</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s2">"username"</span><span class="p">,</span> <span class="s2">"password"</span><span class="p">,</span> <span class="s2">"apiKey"</span><span class="p">);</span>
 </code></pre>
 
@@ -3619,6 +3621,429 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </tbody></table>
 
           <h4 id="stringboxes">Stringboxes</h4>
+
+<h4 class="toc-ignore">Get all stringbox devices</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/stringboxes'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var Stringbox[] $stringboxes */</span>
+    <span class="nv">$stringboxes</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">stringboxes</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: <span class="s2">"12345"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"stringbox1"</span>,
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: <span class="s2">"12346"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"stringbox2"</span>,
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var Stringbox[] $stringboxes */</span>
+    <span class="k">echo</span> <span class="nv">$stringboxes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 12345
+</span>    <span class="k">echo</span> <span class="nv">$stringboxes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// stringbox1
+</span>    <span class="k">echo</span> <span class="nv">$stringboxes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 12346
+</span>    <span class="k">echo</span> <span class="nv">$stringboxes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// stringbox2
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/stringboxes</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>stringbox device-ID</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>custom name</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single stringbox device</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/stringboxes/12345'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var StringboxDetail $stringbox */</span>
+    <span class="nv">$stringbox</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">stringbox</span><span class="p">(</span><span class="s1">'12345'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: <span class="s2">"12345"</span>,
+     <span class="s2">"name"</span>: <span class="s2">"stringbox1"</span>,
+     <span class="s2">"serial"</span> : <span class="s2">"abcd"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var StringboxDetail $stringbox */</span>
+    <span class="k">echo</span> <span class="nv">$stringbox</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 12345
+</span>    <span class="k">echo</span> <span class="nv">$stringbox</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// stringbox1
+</span>    <span class="k">echo</span> <span class="nv">$stringbox</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">;</span><span class="c1">// abcd
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/stringboxes/&lt;deviceId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>stringbox device-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>stringbox device-ID</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>custom name</td>
+</tr>
+<tr>
+<td>serial <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>serial</td>
+</tr>
+</tbody></table>
+
+          <h5 id="abbreviations">Abbreviations</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/stringboxes/12345/abbreviations'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var string[] $abbreviations */</span>
+    <span class="nv">$abbreviations</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">stringbox</span><span class="p">(</span><span class="s1">'12345'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviations</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+      <span class="s2">"D_IN2"</span>,
+      <span class="s2">"I1"</span>,
+      <span class="s2">"I1_N"</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var string[] $abbreviations */</span>
+    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="c1">// D_IN2
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span><span class="c1">// I1
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="c1">// I1_N
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/stringboxes/&lt;deviceId&gt;/abbreviations</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>stringbox device-ID</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single abbreviation</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/stringboxes/12345/abbreviations/I1'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var string[] $abbreviation */</span>
+    <span class="nv">$abbreviation</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">stringbox</span><span class="p">(</span><span class="s1">'12345'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'I1'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"aggregation"</span>: <span class="s2">"AVG"</span>,
+    <span class="s2">"precision"</span>: null,
+    <span class="s2">"description"</span>: <span class="s2">"Current DC"</span>,
+    <span class="s2">"unit"</span>: <span class="s2">"A"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var Abbreviation $abbreviation */</span>
+    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">aggregation</span><span class="p">;</span><span class="c1">// AVG
+</span>    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">precision</span><span class="p">;</span><span class="c1">// null
+</span>    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// Current DC
+</span>    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">unit</span><span class="p">;</span><span class="c1">// A
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/stringboxes/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;</code></p>
+
+<p>Returns an information object of an abbreviation.</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>stringbox device-ID</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>abbreviation-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>Information object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aggregation <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
+<td>aggregation method when requesting other resolutions than interval</td>
+</tr>
+<tr>
+<td>precision <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>number of decimal places</td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>description</td>
+</tr>
+<tr>
+<td>unit <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>unit</td>
+</tr>
+</tbody></table>
+
+          <h6 id="measurements">Measurements</h6>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/stringboxes/12345/abbreviations/I1/measurements?from=2016-01-01T11:00:00+02:00&amp;to=2016-01-01T11:15:00+02:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
+            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:00:00+02:00'</span><span class="p">))</span>
+            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:15:00+02:00'</span><span class="p">));</span>
+     <span class="sd">/** @var DevicesMeasurement $measurements */</span>
+    <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">stringbox</span><span class="p">(</span><span class="s1">'12345'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'I1'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"12345"</span>: <span class="o">{</span>
+      <span class="s2">"I1"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+          <span class="s2">"timestamp"</span>: <span class="s2">"2016-01-01T11:00:00+02:00"</span>,
+          <span class="s2">"value"</span>: 177.2
+        <span class="o">}</span>,
+        <span class="o">{</span>
+          <span class="s2">"timestamp"</span>: <span class="s2">"2016-01-01T11:15:00+02:00"</span>,
+          <span class="s2">"value"</span>: 157.2
+        <span class="o">}</span>
+      <span class="o">]</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var DevicesMeasurement $measurements */</span>
+    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"12345"</span><span class="p">][</span><span class="s1">'I1'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T11:00:00+02:00
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"12345"</span><span class="p">][</span><span class="s1">'I1'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 177.2
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"12345"</span><span class="p">][</span><span class="s1">'I1'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T11:15:00+02:00
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"12345"</span><span class="p">][</span><span class="s1">'I1'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 157.2
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/stringboxes/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>can contain up to 10 comma delimited stringbox device ids</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>can contain up to 5 comma delimited abbreviation ids</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td>end date</td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>defaults to <code class="prettyprint">interval</code></td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>timestamp</td>
+</tr>
+<tr>
+<td>value <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>value</td>
+</tr>
+</tbody></table>
 
           <h5 id="bulk">Bulk</h5>
 
