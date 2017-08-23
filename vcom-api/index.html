@@ -3715,8 +3715,9 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <pre class="highlight shell"><code><span class="o">{</span>
   <span class="s2">"data"</span>: <span class="o">{</span>
     <span class="s2">"id"</span>: <span class="s2">"12345"</span>,
-     <span class="s2">"name"</span>: <span class="s2">"stringbox1"</span>,
-     <span class="s2">"serial"</span> : <span class="s2">"abcd"</span>
+    <span class="s2">"name"</span>: <span class="s2">"stringbox1"</span>,
+    <span class="s2">"serial"</span>: <span class="s2">"abcd"</span>,
+    <span class="s2">"scaleFactor"</span>: 1.32
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -3725,6 +3726,7 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
     <span class="k">echo</span> <span class="nv">$stringbox</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 12345
 </span>    <span class="k">echo</span> <span class="nv">$stringbox</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// stringbox1
 </span>    <span class="k">echo</span> <span class="nv">$stringbox</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">;</span><span class="c1">// abcd
+</span>    <span class="k">echo</span> <span class="nv">$stringbox</span><span class="o">-&gt;</span><span class="na">scaleFactor</span><span class="p">;</span><span class="c1">//1.32
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/stringboxes/&lt;deviceId&gt;</code></p>
@@ -3773,6 +3775,11 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <td>serial <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>serial</td>
+</tr>
+<tr>
+<td>scaleFactor <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">float</code></td>
+<td>normalization factor</td>
 </tr>
 </tbody></table>
 
@@ -5503,32 +5510,32 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>includeInReports <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">no</code>&#124;<code class="prettyprint">detail</code>&#124;<code class="prettyprint">summary</code>)</td>
-<td></td>
+<td>can contain comma delimited report types</td>
 </tr>
 <tr>
 <td>status <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">open</code>&#124;<code class="prettyprint">closed</code>&#124;<code class="prettyprint">deleted</code>&#124;<code class="prettyprint">assigned</code>&#124;<code class="prettyprint">inProgress</code>)</td>
-<td></td>
+<td>can contain comma delimited status</td>
 </tr>
 <tr>
 <td>severity <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">critical</code>)</td>
-<td></td>
+<td>can contain comma delimited severity types</td>
 </tr>
 <tr>
 <td>priority <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>)</td>
-<td></td>
+<td>can contain comma delimited priority types</td>
 </tr>
 <tr>
 <td>assignee <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>The username of the person being assigned to the ticket</td>
+<td>The username of the person being assigned to the ticket, it can contain comma delimited names</td>
 </tr>
 <tr>
 <td>systemKey <code class="prettyprint">optional</code></td>
 <td></td>
-<td></td>
+<td>can contain comma delimited system keys</td>
 </tr>
 </tbody></table>
 
@@ -6701,7 +6708,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
    -d <span class="se">\</span>
 <span class="s1">'{
-  "filename": "attachment1.jpg"
+  "filename": "attachment1.jpg",
   "content": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD....."
 }'</span> <span class="se">\</span>
  <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/attachments'</span>
