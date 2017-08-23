@@ -6626,13 +6626,15 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <pre class="highlight shell"><code><span class="o">{</span>
   <span class="s2">"data"</span>:<span class="o">{</span>
     <span class="s2">"attachmentId"</span>: 1234,
+    <span class="s2">"filename"</span>: <span class="s2">"attachment1.png"</span>,
     <span class="s2">"content"</span>: <span class="s2">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD....."</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var AttachmentFile $attachment */</span>
-    <span class="k">echo</span> <span class="nv">$attachment</span><span class="o">-&gt;</span><span class="na">getFileName</span><span class="p">();</span><span class="c1">// attachment1.jpg
+    <span class="k">echo</span> <span class="nv">$attachment</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">();</span><span class="c1">// 1234
+</span>    <span class="k">echo</span> <span class="nv">$attachment</span><span class="o">-&gt;</span><span class="na">getFileName</span><span class="p">();</span><span class="c1">// attachment1.jpg
 </span>    <span class="k">echo</span> <span class="nv">$attachment</span><span class="o">-&gt;</span><span class="na">getContent</span><span class="p">();</span><span class="c1">// decoded file content
 </span>
 </code></pre>
@@ -6767,8 +6769,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </thead><tbody>
 <tr>
-<td>attachmentId <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">integer</code></td>
+<td>filename <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
 <td></td>
 </tr>
 <tr>
