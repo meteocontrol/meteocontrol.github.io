@@ -5,7 +5,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>meteocontrol VCOM API</title>
-    <link rel="icon" href="https://www.meteocontrol.com/typo3conf/ext/mctemplate/Resources/Public/Images/favicon.ico" type="image/png">
+
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -5849,7 +5849,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td></td>
 </tr>
 <tr>
-<td>description <code class="prettyprint">fixed</code></td>
+<td>description <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">string</code></td>
 <td></td>
 </tr>
@@ -5982,7 +5982,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td></td>
 </tr>
 <tr>
-<td>description <code class="prettyprint">fixed</code></td>
+<td>description <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">string</code></td>
 <td></td>
 </tr>
@@ -6621,8 +6621,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/attachments/&lt;attachmentId&gt;'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var AttachmentFile $attachment */</span>
-    <span class="nv">$attachment</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">attachment</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+    <span class="sd">/** @var AttachmentFile $attachmentFile */</span>
+    <span class="nv">$attachmentFile</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">attachment</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 </code></pre>
 
 <blockquote>
@@ -6632,15 +6632,22 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
   <span class="s2">"data"</span>:<span class="o">{</span>
     <span class="s2">"attachmentId"</span>: 1234,
     <span class="s2">"filename"</span>: <span class="s2">"attachment1.png"</span>,
-    <span class="s2">"content"</span>: <span class="s2">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD....."</span>
+    <span class="s2">"content"</span>: <span class="s2">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD....."</span>,
+    <span class="s2">"created"</span>: <span class="s2">"2016-09-01T10:15:00+02:00"</span>,
+    <span class="s1">'description'</span> <span class="o">=</span>&gt; <span class="s1">'file description'</span>,
+    <span class="s1">'creatorId'</span> <span class="o">=</span>&gt; 123456
+
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var AttachmentFile $attachment */</span>
-    <span class="k">echo</span> <span class="nv">$attachment</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">();</span><span class="c1">// 1234
-</span>    <span class="k">echo</span> <span class="nv">$attachment</span><span class="o">-&gt;</span><span class="na">getFileName</span><span class="p">();</span><span class="c1">// attachment1.jpg
-</span>    <span class="k">echo</span> <span class="nv">$attachment</span><span class="o">-&gt;</span><span class="na">getContent</span><span class="p">();</span><span class="c1">// decoded file content
+    <span class="sd">/** @var AttachmentFile $attachmentFile */</span>
+    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">attachmentId</span><span class="p">;</span><span class="c1">// 1234
+</span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">filename</span><span class="p">;</span><span class="c1">// attachment1.jpg
+</span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">;</span><span class="c1">// "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD....."
+</span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">created</span><span class="p">;</span><span class="c1">// DateTime
+</span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// file description
+</span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">creatorId</span><span class="p">;</span><span class="c1">// 123456
 </span>
 </code></pre>
 
@@ -6691,7 +6698,22 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>content <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>encoded base64 content</td>
+<td>data URI (<a href="https://www.ietf.org/rfc/rfc2397.txt">RFC2397</a>) with base64 encoding.</td>
+</tr>
+<tr>
+<td>created <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>created datetime</td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>file description</td>
+</tr>
+<tr>
+<td>creatorId <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>creator Id</td>
 </tr>
 </tbody></table>
 
@@ -6707,16 +6729,20 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -d <span class="se">\</span>
 <span class="s1">'{
   "filename": "attachment1.jpg",
-  "content": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD....."
+  "content": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD.....",
+  "description": "file description"
 }'</span> <span class="se">\</span>
  <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/attachments'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="nv">$fileContent</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">"attachment1.jpg"</span><span class="p">);</span>
-    <span class="nv">$attachmentFile</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AttachmentFile</span><span class="p">(</span><span class="s2">"attachment1.jpg"</span><span class="p">,</span> <span class="nv">$fileContent</span><span class="p">);</span>
+    <span class="nv">$content</span> <span class="o">=</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">"attachment1.jpg"</span><span class="p">));</span>
+    <span class="nv">$attachmentFile</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AttachmentFile</span><span class="p">();</span>
+    <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">filename</span> <span class="o">=</span> <span class="s1">'attachment1.jpg'</span><span class="p">;</span>
+    <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">content</span> <span class="o">=</span> <span class="s1">'data:image/jpeg;base64,'</span> <span class="o">.</span> <span class="nv">$content</span><span class="p">;</span>
+    <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">description</span> <span class="o">=</span> <span class="s2">"file description"</span><span class="p">;</span>
 
-    <span class="sd">/** @var array $attachment */</span>
-    <span class="nv">$attachment</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">attachments</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$attachmentFile</span><span class="p">);</span>
+    <span class="sd">/** @var array $result */</span>
+    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">attachments</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$attachmentFile</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -6730,9 +6756,9 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <span class="o">}</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var array $attachment */</span>
-    <span class="k">echo</span> <span class="nv">$attachment</span><span class="p">[</span><span class="s1">'attachmentId'</span><span class="p">];</span><span class="c1">// 1234
-</span>    <span class="k">echo</span> <span class="nv">$attachment</span><span class="p">[</span><span class="s1">'filename'</span><span class="p">];</span><span class="c1">// attachment1.jpg
+    <span class="sd">/** @var AttachmentFile $attachmentFile */</span>
+    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">attachmentId</span><span class="p">;</span><span class="c1">// 1234
+</span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">filename</span><span class="p">;</span><span class="c1">// 'attachment1.jpg'
 </span></code></pre>
 
 <p><code class="http-method">POST</code> <code class="prettyprint">attachments</code></p>
@@ -6786,7 +6812,12 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>content <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>base64 encoded file content. Max decoded file size is 2MB</td>
+<td>data URI (<a href="https://www.ietf.org/rfc/rfc2397.txt">RFC2397</a>) with base64 encoding. Max decoded file size is 2MB</td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>file description</td>
 </tr>
 </tbody></table>
 
@@ -6808,6 +6839,124 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>filename <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>Name of the new attachment.</td>
+</tr>
+</tbody></table>
+
+          <h3 id="histories">Histories</h3>
+
+<h4 class="toc-ignore">Get all Histories for a ticket</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/histories'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var TicketHistory[] histories */</span>
+    <span class="nv">$histories</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">histories</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"timestamp"</span>: <span class="s2">"2017-08-31T01:42:03+00:00"</span>,
+      <span class="s2">"action"</span>: <span class="s2">"statusChanged"</span>,
+      <span class="s2">"personInCharge"</span>: <span class="s2">"userB"</span>,
+      <span class="s2">"from"</span>: <span class="s2">"open"</span>,
+      <span class="s2">"to"</span>: <span class="s2">"inProgress"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"timestamp"</span>: <span class="s2">"2017-08-31T02:18:51+00:00"</span>,
+      <span class="s2">"action"</span>: <span class="s2">"assigneeChanged"</span>,
+      <span class="s2">"personInCharge"</span>: <span class="s2">"userB"</span>,
+      <span class="s2">"from"</span>: null,
+      <span class="s2">"to"</span>: <span class="s2">"userA"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"timestamp"</span>: <span class="s2">"2017-08-31T02:19:41+00:00"</span>,
+      <span class="s2">"action"</span>: <span class="s2">"assigneeChanged"</span>,
+      <span class="s2">"personInCharge"</span>: <span class="s2">"userB"</span>,
+      <span class="s2">"from"</span>: <span class="s2">"userA"</span>,
+      <span class="s2">"to"</span>: <span class="s2">"userB"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var TicketHistory $histories */</span>
+    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T01:42:03+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">action</span><span class="p">;</span> <span class="c1">// statusChanged
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">personInCharge</span><span class="p">;</span> <span class="c1">// userB
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">;</span> <span class="c1">// open
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">;</span> <span class="c1">// inProgress
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T02:18:51+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">action</span><span class="p">;</span> <span class="c1">// assigneeChanged
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">personInCharge</span><span class="p">;</span> <span class="c1">// userB
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">;</span> <span class="c1">// null
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">;</span> <span class="c1">// userA
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T02:19:41+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">action</span><span class="p">;</span> <span class="c1">// assigneeChanged
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">personInCharge</span><span class="p">;</span> <span class="c1">// userB
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">;</span> <span class="c1">// userA
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">;</span> <span class="c1">// userB
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/histories</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>TicketHistory object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>action <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>(<code class="prettyprint">statusChanged</code>&#124;<code class="prettyprint">assigneeChanged</code>)</td>
+</tr>
+<tr>
+<td>personInCharge</td>
+<td><code class="prettyprint">string</code></td>
+<td>Updater</td>
+</tr>
+<tr>
+<td>from</td>
+<td><code class="prettyprint">string</code></td>
+<td>username or state</td>
+</tr>
+<tr>
+<td>to</td>
+<td><code class="prettyprint">string</code></td>
+<td>username or state</td>
 </tr>
 </tbody></table>
 
