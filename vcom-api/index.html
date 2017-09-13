@@ -5,7 +5,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>meteocontrol VCOM API</title>
-
+    <link href="/images/favicon.ico" rel="icon" type="image/ico" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -5776,7 +5776,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
   "includeInReports": "detail",
   "priority": "urgent",
   "description": "description",
-  "summary": "summary"
+  "summary": "summary",
+  "assignee": "username"
 }'</span> <span class="se">\</span>
  <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;'</span>
 </code></pre>
@@ -5878,6 +5879,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>)</td>
 <td></td>
 </tr>
+<tr>
+<td>assignee <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>The username of the person being assigned to the ticket</td>
+</tr>
 </tbody></table>
 
 <p><strong>Response</strong></p>
@@ -5902,7 +5908,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
   "includeInReports": "no",
   "priority": "normal",
   "summary": "still created from the API",
-  "description": "description"
+  "description": "description",
+  "assignee": "username"
 }'</span> <span class="se">\</span>
  <span class="s1">'https://api.meteocontrol.de/tickets'</span>
 </code></pre>
@@ -6005,6 +6012,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>priority <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>)</td>
 <td></td>
+</tr>
+<tr>
+<td>assignee <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>The username of the person being assigned to the ticket</td>
 </tr>
 </tbody></table>
 
