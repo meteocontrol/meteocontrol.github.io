@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
     <title>meteocontrol VCOM API</title>
-    <link rel="icon" href="https://www.meteocontrol.com/typo3conf/ext/mctemplate/Resources/Public/Images/favicon.ico" type="image/png">
+    <link href="/images/favicon.ico" rel="icon" type="image/ico" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -5425,8 +5426,10 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
       <span class="s2">"designation"</span>: <span class="s2">"Ticket #123"</span>,
       <span class="s2">"description"</span>: <span class="s2">"This is a description"</span>,
       <span class="s2">"summary"</span>: <span class="s2">"This is a summary."</span>,
-      <span class="s2">"date"</span>: <span class="s2">"2016-01-01T12:00:00"</span>,
-      <span class="s2">"lastChange"</span>: <span class="s2">"2016-01-01T13:00:00"</span>,
+      <span class="s2">"date"</span>: <span class="s2">"2016-01-01 12:00:00"</span>,
+      <span class="s2">"createdAt"</span>: <span class="s2">"2016-01-01T12:00:00+02:00"</span>,
+      <span class="s2">"lastChange"</span>: <span class="s2">"2016-01-01 13:00:00"</span>,
+      <span class="s2">"lastChangedAt"</span>: <span class="s2">"2016-01-01T13:00:00+02:00"</span>,
       <span class="s2">"status"</span>: <span class="s2">"closed"</span>,
       <span class="s2">"priority"</span>: <span class="s2">"normal"</span>,
       <span class="s2">"severity"</span>: <span class="s2">"normal"</span>
@@ -5437,8 +5440,10 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
       <span class="s2">"designation"</span>: <span class="s2">"Ticket #456"</span>,
       <span class="s2">"description"</span>: <span class="s2">"This is a description"</span>,
       <span class="s2">"summary"</span>: <span class="s2">"This is a summary."</span>,
-      <span class="s2">"date"</span>: <span class="s2">"2016-02-01T12:00:00"</span>,
-      <span class="s2">"lastChange"</span>: <span class="s2">"2016-02-02T13:00:00"</span>,
+      <span class="s2">"date"</span>: <span class="s2">"2016-02-01 12:00:00"</span>,
+      <span class="s2">"createdAt"</span>: <span class="s2">"2016-02-01T12:00:00+02:00"</span>,
+      <span class="s2">"lastChange"</span>: <span class="s2">"2016-02-02 13:00:00"</span>,
+      <span class="s2">"lastChangedAt"</span>: <span class="s2">"2016-02-02T13:00:00+02:00"</span>,
       <span class="s2">"status"</span>: <span class="s2">"inProgress"</span>,
       <span class="s2">"priority"</span>: <span class="s2">"high"</span>,
       <span class="s2">"severity"</span>: null
@@ -5454,14 +5459,18 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">summary</span><span class="p">;</span><span class="c1">// This is a summary.
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// closed
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-01-01T12:00:00
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-01-01T12:00:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChange</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-01-01T13:00:00
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-01-01T13:00:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 456
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">systemKey</span><span class="p">;</span><span class="c1">// FGHIJ
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">designation</span><span class="p">;</span><span class="c1">// Ticket #456
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">summary</span><span class="p">;</span><span class="c1">// This is a summary.
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// inProgress
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-02-01T12:00:00
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-02-01T12:00:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChange</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-02-02T13:00:00
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-02-02T13:00:00+02:00
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">tickets</code></p>
@@ -5477,32 +5486,62 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </thead><tbody>
 <tr>
 <td>lastChange[from] <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">datetime</code></td>
+<td>start date (deprecated)</td>
 </tr>
 <tr>
 <td>lastChange[to] <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>end date (deprecated)</td>
+</tr>
+<tr>
+<td>lastChangedAt[from] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>lastChangedAt[to] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
 <td>end date</td>
 </tr>
 <tr>
 <td>date[from] <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">datetime</code></td>
+<td>start date (deprecated)</td>
 </tr>
 <tr>
 <td>date[to] <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>end date (deprecated)</td>
+</tr>
+<tr>
+<td>createdAt[from] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>createdAt[to] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
 <td>end date</td>
 </tr>
 <tr>
 <td>rectifiedOn[from] <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">datetime</code></td>
+<td>start date (deprecated)</td>
 </tr>
 <tr>
 <td>rectifiedOn[to] <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>end date (deprecated)</td>
+</tr>
+<tr>
+<td>rectifiedAt[from] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>start date</td>
+</tr>
+<tr>
+<td>rectifiedAt[to] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
 <td>end date</td>
 </tr>
 <tr>
@@ -5578,12 +5617,22 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>date <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td></td>
+<td>(deprecated)</td>
+</tr>
+<tr>
+<td>createdAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Created date in system timezone</td>
 </tr>
 <tr>
 <td>lastChange <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
-<td></td>
+<td>(deprecated)</td>
+</tr>
+<tr>
+<td>lastChangedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
+<td>Last change date in system timezone</td>
 </tr>
 <tr>
 <td>status <code class="prettyprint">fixed</code></td>
@@ -5624,9 +5673,12 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="s2">"designation"</span>: <span class="s2">"Ticket #123"</span>,
     <span class="s2">"description"</span>: <span class="s2">"This is a description"</span>,
     <span class="s2">"summary"</span>: <span class="s2">"This is a summary."</span>,
-    <span class="s2">"date"</span>: <span class="s2">"2016-01-01T12:00:00"</span>,
-    <span class="s2">"lastChange"</span>: <span class="s2">"2016-01-01T13:00:00"</span>,
-    <span class="s2">"rectifiedOn"</span>: <span class="s2">"2016-01-01T14:00:00"</span>,
+    <span class="s2">"date"</span>: <span class="s2">"2016-01-01 12:00:00"</span>,
+    <span class="s2">"createdAt"</span>: <span class="s2">"2016-01-01T12:00:00+02:00"</span>,
+    <span class="s2">"lastChange"</span>: <span class="s2">"2016-01-01 13:00:00"</span>,
+    <span class="s2">"lastChangedAt"</span>: <span class="s2">"2016-01-01T13:00:00+02:00"</span>,
+    <span class="s2">"rectifiedOn"</span>: <span class="s2">"2016-01-01 14:00:00"</span>,
+    <span class="s2">"rectifiedAt"</span>: <span class="s2">"2016-01-01T14:00:00+02:00"</span>,
     <span class="s2">"assignee"</span>: null,
     <span class="s2">"status"</span>: <span class="s2">"inProgress"</span>,
     <span class="s2">"causeId"</span>: 10,
@@ -5645,8 +5697,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// This is a description
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">summary</span><span class="p">;</span><span class="c1">// This is a summary.
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T12:00:00
+</span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T12:00:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">lastChange</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T13:00:00
+</span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T13:00:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">rectifiedOn</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T14:00:00
+</span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">rectifiedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T14:00:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">assignee</span><span class="p">;</span><span class="c1">// null
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// inProgress
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">causeId</span><span class="p">;</span><span class="c1">// 10
@@ -5713,17 +5768,32 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>date <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td></td>
+<td>(deprecated)</td>
+</tr>
+<tr>
+<td>createdAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Created date in system timezone</td>
 </tr>
 <tr>
 <td>lastChange <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
-<td></td>
+<td>(deprecated)</td>
+</tr>
+<tr>
+<td>lastChangedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
+<td>Last change date in system timezone</td>
 </tr>
 <tr>
 <td>rectifiedOn <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
-<td></td>
+<td>(deprecated)</td>
+</tr>
+<tr>
+<td>rectifiedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
+<td>Rectified date in system timezone</td>
 </tr>
 <tr>
 <td>assignee <code class="prettyprint">fixed</code></td>
@@ -5771,19 +5841,20 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
    -d <span class="se">\</span>
 <span class="s1">'{
-  "rectifiedOn": "2016-01-01T00:00:00+02:00",
+  "rectifiedAt": "2016-01-01T00:00:00+02:00",
   "status": "closed",
   "includeInReports": "detail",
   "priority": "urgent",
   "description": "description",
-  "summary": "summary"
+  "summary": "summary",
+  "assignee": "username"
 }'</span> <span class="se">\</span>
  <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var Ticket $ticket */</span>
     <span class="nv">$ticket</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
-    <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">rectifiedOn</span> <span class="o">=</span> <span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T00:00:00+02:00'</span><span class="p">);</span>
+    <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">rectifiedAt</span> <span class="o">=</span> <span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T00:00:00+02:00'</span><span class="p">);</span>
     <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">status</span> <span class="o">=</span> <span class="s1">'closed'</span><span class="p">;</span>
     <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">includeInReports</span> <span class="o">=</span> <span class="s1">'detail'</span><span class="p">;</span>
     <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">priority</span> <span class="o">=</span> <span class="s1">'urgent'</span><span class="p">;</span>
@@ -5849,7 +5920,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td></td>
 </tr>
 <tr>
-<td>description <code class="prettyprint">fixed</code></td>
+<td>description <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">string</code></td>
 <td></td>
 </tr>
@@ -5860,6 +5931,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 <tr>
 <td>rectifiedOn <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>(deprecated)</td>
+</tr>
+<tr>
+<td>rectifiedAt <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">datetime</code></td>
 <td></td>
 </tr>
@@ -5877,6 +5953,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>priority <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>)</td>
 <td></td>
+</tr>
+<tr>
+<td>assignee <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>The username of the person being assigned to the ticket</td>
 </tr>
 </tbody></table>
 
@@ -5897,12 +5978,13 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <span class="s1">'{
   "designation": "New Ticket",
   "systemKey": "ABCDE",
-  "date": "2016-05-25T00:00:00+02:00",
+  "createdAt": "2016-05-25T00:00:00+02:00",
   "status": "open",
   "includeInReports": "no",
   "priority": "normal",
   "summary": "still created from the API",
-  "description": "description"
+  "description": "description",
+  "assignee": "username"
 }'</span> <span class="se">\</span>
  <span class="s1">'https://api.meteocontrol.de/tickets'</span>
 </code></pre>
@@ -5910,7 +5992,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="nv">$ticket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ticket</span><span class="p">();</span>
     <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">systemKey</span> <span class="o">=</span> <span class="s1">'ABCDE'</span><span class="p">;</span>
     <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">designation</span> <span class="o">=</span> <span class="s1">'New Ticket'</span><span class="p">;</span>
-    <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">date</span> <span class="o">=</span> <span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-05-25T00:00:00+02:00'</span><span class="p">);</span>
+    <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">createdAt</span> <span class="o">=</span> <span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-05-25T00:00:00+02:00'</span><span class="p">);</span>
     <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">status</span> <span class="o">=</span> <span class="nx">Ticket</span><span class="o">::</span><span class="na">STATUS_OPEN</span><span class="p">;</span>
     <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">includeInReports</span> <span class="o">=</span> <span class="nx">Ticket</span><span class="o">::</span><span class="na">REPORT_TYPE_NO</span><span class="p">;</span>
     <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">priority</span> <span class="o">=</span> <span class="nx">Ticket</span><span class="o">::</span><span class="na">PRIORITY_NORMAL</span><span class="p">;</span>
@@ -5979,10 +6061,15 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>date <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
+<td>(deprecated)</td>
+</tr>
+<tr>
+<td>createdAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
 <td></td>
 </tr>
 <tr>
-<td>description <code class="prettyprint">fixed</code></td>
+<td>description <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">string</code></td>
 <td></td>
 </tr>
@@ -6005,6 +6092,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>priority <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>)</td>
 <td></td>
+</tr>
+<tr>
+<td>assignee <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>The username of the person being assigned to the ticket</td>
 </tr>
 </tbody></table>
 
@@ -6122,6 +6214,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="o">{</span>
       <span class="s2">"commentId"</span>: 661288,
       <span class="s2">"date"</span>: <span class="s2">"2016-02-19T12:49:20+01:00"</span>,
+      <span class="s2">"createdAt"</span>: <span class="s2">"2016-02-19T12:49:20+01:00"</span>,
       <span class="s2">"comment"</span>: <span class="s2">"Comment text"</span>,
       <span class="s2">"username"</span>: <span class="s2">"username"</span>,
       <span class="s2">"firstName"</span>: <span class="s2">"firstName"</span>,
@@ -6130,6 +6223,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="o">{</span>
       <span class="s2">"commentId"</span>: 661286,
       <span class="s2">"date"</span>: <span class="s2">"2016-02-19T12:49:07+01:00"</span>,
+      <span class="s2">"createdAt"</span>: <span class="s2">"2016-02-19T12:49:07+01:00"</span>,
       <span class="s2">"comment"</span>: <span class="s2">"Comment text"</span>,
       <span class="s2">"username"</span>: <span class="s2">"username"</span>,
       <span class="s2">"firstName"</span>: <span class="s2">"firstName"</span>,
@@ -6142,12 +6236,14 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="sd">/** @var Comment[] comments */</span>
     <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">commentId</span><span class="p">;</span><span class="c1">// 661288
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-19T12:49:20+01:00
+</span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-19T12:49:20+01:00
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// Comment text
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">// username
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span><span class="c1">// firstName
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span><span class="c1">// lastName
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">commentId</span><span class="p">;</span><span class="c1">// 661286
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-19T12:49:07+01:00
+</span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-19T12:49:07+01:00
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// Comment text
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">// username
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span><span class="c1">// firstName
@@ -6191,7 +6287,12 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>date <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td></td>
+<td>created datetime (deprecated)</td>
+</tr>
+<tr>
+<td>createdAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>created datetime in system timezone</td>
 </tr>
 <tr>
 <td>comment <code class="prettyprint">fixed</code></td>
@@ -6224,6 +6325,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
   <span class="s2">"data"</span>:<span class="o">{</span>
     <span class="s2">"commentId"</span>: 661288,
     <span class="s2">"date"</span>: <span class="s2">"2016-02-19T12:49:20+01:00"</span>,
+    <span class="s2">"createdAt"</span>: <span class="s2">"2016-02-19T12:49:20+01:00"</span>,
     <span class="s2">"comment"</span>: <span class="s2">"Comment text"</span>,
     <span class="s2">"username"</span>: <span class="s2">"username"</span>,
     <span class="s2">"firstName"</span>: <span class="s2">"firstName"</span>,
@@ -6235,6 +6337,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="sd">/** @var CommentDetail comment */</span>
     <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">commentId</span><span class="p">;</span><span class="c1">// 661288
 </span>    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-19T12:49:20+01:00
+</span>    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-19T12:49:20+01:00
 </span>    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// Comment text
 </span>    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">// username
 </span>    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span><span class="c1">// firstName
@@ -6283,7 +6386,12 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>date <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td></td>
+<td>created datetime (deprecated)</td>
+</tr>
+<tr>
+<td>createdAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>created datetime in system timezone</td>
 </tr>
 <tr>
 <td>comment <code class="prettyprint">fixed</code></td>
@@ -6347,6 +6455,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>ticketId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">integer</code></td>
 <td>Ticket-ID</td>
+</tr>
+<tr>
+<td>createdAt <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -6621,8 +6734,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/attachments/&lt;attachmentId&gt;'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var AttachmentFile $attachment */</span>
-    <span class="nv">$attachment</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">attachment</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+    <span class="sd">/** @var AttachmentFile $attachmentFile */</span>
+    <span class="nv">$attachmentFile</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">attachment</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 </code></pre>
 
 <blockquote>
@@ -6632,15 +6745,24 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
   <span class="s2">"data"</span>:<span class="o">{</span>
     <span class="s2">"attachmentId"</span>: 1234,
     <span class="s2">"filename"</span>: <span class="s2">"attachment1.png"</span>,
-    <span class="s2">"content"</span>: <span class="s2">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD....."</span>
+    <span class="s2">"content"</span>: <span class="s2">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD....."</span>,
+    <span class="s2">"created"</span>: <span class="s2">"2016-09-01T08:15:00+00:00"</span>,
+    <span class="s2">"createdAt"</span>: <span class="s2">"2016-09-01T10:15:00+02:00"</span>,
+    <span class="s1">'description'</span> <span class="o">=</span>&gt; <span class="s1">'file description'</span>,
+    <span class="s1">'creatorId'</span> <span class="o">=</span>&gt; 123456
+
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var AttachmentFile $attachment */</span>
-    <span class="k">echo</span> <span class="nv">$attachment</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">();</span><span class="c1">// 1234
-</span>    <span class="k">echo</span> <span class="nv">$attachment</span><span class="o">-&gt;</span><span class="na">getFileName</span><span class="p">();</span><span class="c1">// attachment1.jpg
-</span>    <span class="k">echo</span> <span class="nv">$attachment</span><span class="o">-&gt;</span><span class="na">getContent</span><span class="p">();</span><span class="c1">// decoded file content
+    <span class="sd">/** @var AttachmentFile $attachmentFile */</span>
+    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">attachmentId</span><span class="p">;</span><span class="c1">// 1234
+</span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">filename</span><span class="p">;</span><span class="c1">// attachment1.jpg
+</span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">;</span><span class="c1">// "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD....."
+</span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">created</span><span class="p">;</span><span class="c1">// DateTime
+</span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="p">;</span><span class="c1">// DateTime
+</span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// file description
+</span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">creatorId</span><span class="p">;</span><span class="c1">// 123456
 </span>
 </code></pre>
 
@@ -6691,7 +6813,27 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>content <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>encoded base64 content</td>
+<td>data URI (<a href="https://www.ietf.org/rfc/rfc2397.txt">RFC2397</a>) with base64 encoding.</td>
+</tr>
+<tr>
+<td>created <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>created datetime (deprecated)</td>
+</tr>
+<tr>
+<td>createdAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>created datetime in system timezone</td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>file description</td>
+</tr>
+<tr>
+<td>creatorId <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>creator Id</td>
 </tr>
 </tbody></table>
 
@@ -6707,16 +6849,20 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -d <span class="se">\</span>
 <span class="s1">'{
   "filename": "attachment1.jpg",
-  "content": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD....."
+  "content": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD.....",
+  "description": "file description"
 }'</span> <span class="se">\</span>
  <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/attachments'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="nv">$fileContent</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">"attachment1.jpg"</span><span class="p">);</span>
-    <span class="nv">$attachmentFile</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AttachmentFile</span><span class="p">(</span><span class="s2">"attachment1.jpg"</span><span class="p">,</span> <span class="nv">$fileContent</span><span class="p">);</span>
+    <span class="nv">$content</span> <span class="o">=</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">"attachment1.jpg"</span><span class="p">));</span>
+    <span class="nv">$attachmentFile</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AttachmentFile</span><span class="p">();</span>
+    <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">filename</span> <span class="o">=</span> <span class="s1">'attachment1.jpg'</span><span class="p">;</span>
+    <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">content</span> <span class="o">=</span> <span class="s1">'data:image/jpeg;base64,'</span> <span class="o">.</span> <span class="nv">$content</span><span class="p">;</span>
+    <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">description</span> <span class="o">=</span> <span class="s2">"file description"</span><span class="p">;</span>
 
-    <span class="sd">/** @var array $attachment */</span>
-    <span class="nv">$attachment</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">attachments</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$attachmentFile</span><span class="p">);</span>
+    <span class="sd">/** @var array $result */</span>
+    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">attachments</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$attachmentFile</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -6730,9 +6876,9 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <span class="o">}</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var array $attachment */</span>
-    <span class="k">echo</span> <span class="nv">$attachment</span><span class="p">[</span><span class="s1">'attachmentId'</span><span class="p">];</span><span class="c1">// 1234
-</span>    <span class="k">echo</span> <span class="nv">$attachment</span><span class="p">[</span><span class="s1">'filename'</span><span class="p">];</span><span class="c1">// attachment1.jpg
+    <span class="sd">/** @var AttachmentFile $attachmentFile */</span>
+    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">attachmentId</span><span class="p">;</span><span class="c1">// 1234
+</span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">filename</span><span class="p">;</span><span class="c1">// 'attachment1.jpg'
 </span></code></pre>
 
 <p><code class="http-method">POST</code> <code class="prettyprint">attachments</code></p>
@@ -6786,7 +6932,12 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>content <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>base64 encoded file content. Max decoded file size is 2MB</td>
+<td>data URI (<a href="https://www.ietf.org/rfc/rfc2397.txt">RFC2397</a>) with base64 encoding. Max decoded file size is 2MB</td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>file description</td>
 </tr>
 </tbody></table>
 
@@ -6808,6 +6959,135 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>filename <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>Name of the new attachment.</td>
+</tr>
+</tbody></table>
+
+          <h3 id="histories">Histories</h3>
+
+<h4 class="toc-ignore">Get all Histories for a ticket</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/histories'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var TicketHistory[] histories */</span>
+    <span class="nv">$histories</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">histories</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"timestamp"</span>: <span class="s2">"2017-08-31T01:42:03+00:00"</span>,
+      <span class="s2">"createdAt"</span>: <span class="s2">"2017-08-31T01:42:03+00:00"</span>,
+      <span class="s2">"action"</span>: <span class="s2">"statusChanged"</span>,
+      <span class="s2">"personInCharge"</span>: <span class="s2">"userB"</span>,
+      <span class="s2">"from"</span>: <span class="s2">"open"</span>,
+      <span class="s2">"to"</span>: <span class="s2">"inProgress"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"timestamp"</span>: <span class="s2">"2017-08-31T02:18:51+00:00"</span>,
+      <span class="s2">"createdAt"</span>: <span class="s2">"2017-08-31T02:18:51+00:00"</span>,
+      <span class="s2">"action"</span>: <span class="s2">"assigneeChanged"</span>,
+      <span class="s2">"personInCharge"</span>: <span class="s2">"userB"</span>,
+      <span class="s2">"from"</span>: null,
+      <span class="s2">"to"</span>: <span class="s2">"userA"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"timestamp"</span>: <span class="s2">"2017-08-31T02:19:41+00:00"</span>,
+      <span class="s2">"createdAt"</span>: <span class="s2">"2017-08-31T02:19:41+00:00"</span>,
+      <span class="s2">"action"</span>: <span class="s2">"assigneeChanged"</span>,
+      <span class="s2">"personInCharge"</span>: <span class="s2">"userB"</span>,
+      <span class="s2">"from"</span>: <span class="s2">"userA"</span>,
+      <span class="s2">"to"</span>: <span class="s2">"userB"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var TicketHistory $histories */</span>
+    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T01:42:03+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T01:42:03+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">action</span><span class="p">;</span> <span class="c1">// statusChanged
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">personInCharge</span><span class="p">;</span> <span class="c1">// userB
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">;</span> <span class="c1">// open
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">;</span> <span class="c1">// inProgress
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T02:18:51+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T02:18:51+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">action</span><span class="p">;</span> <span class="c1">// assigneeChanged
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">personInCharge</span><span class="p">;</span> <span class="c1">// userB
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">;</span> <span class="c1">// null
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">;</span> <span class="c1">// userA
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T02:19:41+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T02:19:41+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">action</span><span class="p">;</span> <span class="c1">// assigneeChanged
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">personInCharge</span><span class="p">;</span> <span class="c1">// userB
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">;</span> <span class="c1">// userA
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">;</span> <span class="c1">// userB
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/histories</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>TicketHistory object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>created date in UTC timezone (deprecated)</td>
+</tr>
+<tr>
+<td>createdAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>created date in system timezone</td>
+</tr>
+<tr>
+<td>action <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>(<code class="prettyprint">statusChanged</code>&#124;<code class="prettyprint">assigneeChanged</code>)</td>
+</tr>
+<tr>
+<td>personInCharge</td>
+<td><code class="prettyprint">string</code></td>
+<td>Updater</td>
+</tr>
+<tr>
+<td>from</td>
+<td><code class="prettyprint">string</code></td>
+<td>username or state</td>
+</tr>
+<tr>
+<td>to</td>
+<td><code class="prettyprint">string</code></td>
+<td>username or state</td>
 </tr>
 </tbody></table>
 
