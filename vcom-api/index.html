@@ -1975,7 +1975,8 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="s2">"vendor"</span>: <span class="s2">"Danfoss"</span>,
     <span class="s2">"serial"</span>: <span class="s2">"123456788"</span>,
     <span class="s2">"name"</span>: <span class="s2">"Inverter 1"</span>,
-    <span class="s2">"scaleFactor"</span>: 24.01
+    <span class="s2">"scaleFactor"</span>: 24.01,
+    <span class="s2">"firmware"</span>: <span class="s2">"1.0"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -1987,6 +1988,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </span>    <span class="k">echo</span> <span class="nv">$inverter</span><span class="o">-&gt;</span><span class="na">serial</span><span class="p">;</span><span class="c1">// 123456788
 </span>    <span class="k">echo</span> <span class="nv">$inverter</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Inverter 1
 </span>    <span class="k">echo</span> <span class="nv">$inverter</span><span class="o">-&gt;</span><span class="na">scaleFactor</span><span class="p">;</span><span class="c1">// 24.01
+</span>    <span class="k">echo</span> <span class="nv">$inverter</span><span class="o">-&gt;</span><span class="na">firmware</span><span class="p">;</span><span class="c1">// 1.0
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/inverters/&lt;deviceId&gt;</code></p>
@@ -2050,6 +2052,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>scaleFactor <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">float</code>&#124;<code class="prettyprint">null</code></td>
 <td>normalization factor</td>
+</tr>
+<tr>
+<td>firmware <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td>firmware</td>
 </tr>
 </tbody></table>
 
@@ -2589,7 +2596,8 @@ For response example in CSV format, please check <a href="https://github.com/met
   <span class="s2">"data"</span>: <span class="o">{</span>
     <span class="s2">"id"</span>: <span class="s2">"12345"</span>,
     <span class="s2">"name"</span>: <span class="s2">"Meter 1"</span>,
-    <span class="s2">"address"</span>: <span class="s2">"1"</span>
+    <span class="s2">"address"</span>: <span class="s2">"1"</span>,
+    <span class="s2">"firmware"</span>: <span class="s2">"1.0"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -2598,6 +2606,7 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="k">echo</span> <span class="nv">$meter</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 12345
 </span>    <span class="k">echo</span> <span class="nv">$meter</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Meter 1
 </span>    <span class="k">echo</span> <span class="nv">$meter</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">;</span><span class="c1">// 1
+</span>    <span class="k">echo</span> <span class="nv">$meter</span><span class="o">-&gt;</span><span class="na">firmware</span><span class="p">;</span><span class="c1">// 1.0
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/meters/&lt;deviceId&gt;</code></p>
@@ -2646,6 +2655,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>address <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>address</td>
+</tr>
+<tr>
+<td>firmware <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td>firmware</td>
 </tr>
 </tbody></table>
 
@@ -3155,7 +3169,8 @@ For response example in CSV format, please check <a href="https://github.com/met
   <span class="s2">"data"</span>: <span class="o">{</span>
     <span class="s2">"id"</span>: <span class="s2">"12345"</span>,
     <span class="s2">"name"</span>: <span class="s2">"Pyranometer SMPx (Modbus)"</span>,
-    <span class="s2">"address"</span>: <span class="s2">"7"</span>
+    <span class="s2">"address"</span>: <span class="s2">"7"</span>,
+    <span class="s2">"firmware"</span>: <span class="s2">"1.0"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -3164,6 +3179,7 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="k">echo</span> <span class="nv">$sensor</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 12345
 </span>    <span class="k">echo</span> <span class="nv">$sensor</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Pyranometer SMPx (Modbus)
 </span>    <span class="k">echo</span> <span class="nv">$sensor</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">;</span><span class="c1">// 7
+</span>    <span class="k">echo</span> <span class="nv">$sensor</span><span class="o">-&gt;</span><span class="na">firmware</span><span class="p">;</span><span class="c1">// 1.0
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/sensors/&lt;deviceId&gt;</code></p>
@@ -3212,6 +3228,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>address <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>address</td>
+</tr>
+<tr>
+<td>firmware <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td>firmware</td>
 </tr>
 </tbody></table>
 
@@ -4342,7 +4363,8 @@ For response example in CSV format, please check <a href="https://github.com/met
   <span class="s2">"data"</span>: <span class="o">{</span>
     <span class="s2">"id"</span>: <span class="s2">"145146"</span>,
     <span class="s2">"name"</span>: <span class="s2">""</span>,
-    <span class="s2">"address"</span>: <span class="s2">"bat1"</span>
+    <span class="s2">"address"</span>: <span class="s2">"bat1"</span>,
+    <span class="s2">"firmware"</span>: <span class="s2">"1.0"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -4351,6 +4373,7 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="k">echo</span> <span class="nv">$battery</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 145146
 </span>    <span class="k">echo</span> <span class="nv">$battery</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
     <span class="k">echo</span> <span class="nv">$battery</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">;</span><span class="c1">// bat1
+</span>    <span class="k">echo</span> <span class="nv">$battery</span><span class="o">-&gt;</span><span class="na">firmware</span><span class="p">;</span><span class="c1">// 1.0
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/batteries/&lt;deviceId&gt;</code></p>
@@ -4399,6 +4422,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>address <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>address</td>
+</tr>
+<tr>
+<td>firmware <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td>firmware</td>
 </tr>
 </tbody></table>
 
