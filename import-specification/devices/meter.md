@@ -8,7 +8,7 @@
 | configuration | vendor          |        | device vendor                                              |       |      |          | <vendor>vendor 123</vendor>  |       | 2.0.1   | 
 | configuration | model           |        | device model                                               |       |      |          | <model></model>              |       | 2.0.1   | 
 | configuration | firmware        |        | device firmware                                            |       |      |          | <firmware>1.23.3</firmware>  |       | 2.0.1   | 
-| datapoints    | M_AC_U          | V      | Volts A-N                                                  |       |      | x        |                              |       | 2.0.1   | 
+| datapoints    | M_AC_U          | V      | Volts A-N                                                  |       |      |          |                              |       | 2.0.1   | 
 | datapoints    | M_AC_U1         | V      | Volts A-N                                                  |       |      |          |                              |       | 2.0.1   | 
 | datapoints    | M_AC_U2         | V      | Volts B-N                                                  |       |      |          |                              |       | 2.0.1   | 
 | datapoints    | M_AC_U3         | V      | Volts C-N                                                  |       |      |          |                              |       | 2.0.1   | 
