@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mii version="2.0" targetNamespace="http://api.sspcdn.com/mii" xmlns="http://api.sspcdn.com/mii">
+    <datalogger>
+        <configuration xmlns="http://api.sspcdn.com/mii/datalogger/configuration">
+            <uuid>
+                <vendor>VENDOR 123</vendor>
+                <serial>DL12349876</serial>
+            </uuid>
+            <name>Data logger Nr. 1</name>
+            <firmware>1.1.3 (Build 152.721.528d)</firmware>
+            <next-scheduled-transfer>2017-11-27T15:15:00Z</next-scheduled-transfer>
+            <devices>
+                <device type="meter" id="1212">
+                    <uid>SN1212</uid>
+                    <serial>METER14.21.24</serial>
+                </device>
+                <device type="meter" id="123">
+                    <uid>MeterStation27</uid>
+                    <serial>SR2773-c</serial>
+                    <model>Model X</model>
+                    <name>Station Nr. 27</name>
+                    <vendor>meteocontrol</vendor>
+                    <firmware>M1R45S.3418</firmware>
+                </device>
+                <device type="meter" id="3">
+                    <uid>ID333198</uid>
+                    <address>1-25</address>
+                </device>
+            </devices>
+        </configuration>
+        <datapoints xmlns="http://api.sspcdn.com/mii/datalogger/datapoints">
+            <datapoint interval="900" timestamp="2017-11-27T15:00:00Z">
+                <device id="1212">
+                    <mv t="M_AC_E_EXP" v="299600.198555"/>
+                    <mv t="M_AC_E_IMP" v="264931.424377"/>
+                    <mv t="M_AC_F" v="49.989426"/>
+                    <mv t="M_AC_I1" v="2.23823"/>
+                    <mv t="M_AC_I2" v="1.780932"/>
+                    <mv t="M_AC_I3" v="1.853909"/>
+                    <mv t="M_AC_P" v="105.716271"/>
+                    <mv t="M_AC_P1" v="76.915534"/>
+                    <mv t="M_AC_P2" v="8.687014"/>
+                    <mv t="M_AC_P3" v="20.118781"/>
+                    <mv t="M_AC_PF_COSPHI" v="0.102901"/>
+                    <mv t="M_AC_PF_COSPHI1" v="0.173612"/>
+                    <mv t="M_AC_PF_COSPHI2" v="0.050673"/>
+                    <mv t="M_AC_PF_COSPHI3" v="0.068272"/>
+                    <mv t="M_AC_Q" v="-1210.068706"/>
+                    <mv t="M_AC_Q1" v="-460.798068"/>
+                    <mv t="M_AC_Q2" v="-368.124744"/>
+                    <mv t="M_AC_Q3" v="-381.133553"/>
+                    <mv t="M_AC_S" v="1362.055703"/>
+                    <mv t="M_AC_S1" v="517.01473"/>
+                    <mv t="M_AC_S2" v="414.037012"/>
+                    <mv t="M_AC_S3" v="430.922985"/>
+                    <mv t="M_AC_U1" v="231.015746"/>
+                    <mv t="M_AC_U2" v="232.503993"/>
+                    <mv t="M_AC_U3" v="232.459888"/>
+                    <mv t="M_AC_U_L1L2" v="401.420127"/>
+                    <mv t="M_AC_U_L2L3" v="402.671247"/>
+                    <mv t="M_AC_U_L3L1" v="401.382194"/>
+                    <mv t="STATE" v="2048"/>
+                </device>
+                <device id="123">
+                    <mv t="M_AC_E_EXP" v="295569.56128"/>
+                    <mv t="M_AC_E_IMP" v="115172.515365"/>
+                    <mv t="M_AC_F" v="49.989532"/>
+                    <mv t="M_AC_I1" v="1.491861"/>
+                    <mv t="M_AC_I2" v="1.325578"/>
+                    <mv t="M_AC_I3" v="1.336327"/>
+                    <mv t="M_AC_P" v="67.579629"/>
+                    <mv t="M_AC_P1" v="1.104864"/>
+                    <mv t="M_AC_P2" v="35.010379"/>
+                    <mv t="M_AC_P3" v="31.463037"/>
+                    <mv t="M_AC_PF_COSPHI" v="0.068076"/>
+                    <mv t="M_AC_PF_COSPHI1" v="0"/>
+                    <mv t="M_AC_PF_COSPHI2" v="0.111749"/>
+                    <mv t="M_AC_PF_COSPHI3" v="0.100386"/>
+                    <mv t="M_AC_Q" v="939.002654"/>
+                    <mv t="M_AC_Q1" v="336.395922"/>
+                    <mv t="M_AC_Q2" v="300.013922"/>
+                    <mv t="M_AC_Q3" v="302.590306"/>
+                    <mv t="M_AC_S" v="963.601789"/>
+                    <mv t="M_AC_S1" v="344.717596"/>
+                    <mv t="M_AC_S2" v="308.181092"/>
+                    <mv t="M_AC_S3" v="310.70358"/>
+                    <mv t="M_AC_U1" v="231.065675"/>
+                    <mv t="M_AC_U2" v="232.489687"/>
+                    <mv t="M_AC_U3" v="232.50615"/>
+                    <mv t="M_AC_U_L1L2" v="401.450984"/>
+                    <mv t="M_AC_U_L2L3" v="402.697362"/>
+                    <mv t="M_AC_U_L3L1" v="401.465109"/>
+                    <mv t="STATE" v="2048"/>
+                </device>
+                <device id="3">
+                    <mv t="M_AC_E_EXP" v="125569.39"/>
+                    <mv t="M_AC_E_IMP" v="115111.18"/>
+                </device>
+            </datapoint>
+        </datapoints>
+    </datalogger>
+</mii>
