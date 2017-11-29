@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mii version="2.0" targetNamespace="http://api.sspcdn.com/mii" xmlns="http://api.sspcdn.com/mii">
+    <datalogger>
+        <configuration xmlns="http://api.sspcdn.com/mii/datalogger/configuration">
+            <uuid>
+                <vendor>VENDOR 123</vendor>
+                <serial>DL12349876</serial>
+            </uuid>
+            <name>Data logger Nr. 1</name>
+            <firmware>1.1.3 (Build 152.721.528d)</firmware>
+            <next-scheduled-transfer>2017-11-27T15:15:00Z</next-scheduled-transfer>
+            <devices>
+                <device type="meteo" id="3743">
+                    <uid>SN3743</uid>
+                    <serial>MET11.22.33</serial>
+                </device>
+                <device type="meteo" id="123">
+                    <uid>MeteoStation25</uid>
+                    <serial>SR2333-a</serial>
+                    <model>Model A</model>
+                    <name>Station Nr. 25</name>
+                    <vendor>meteocontrol</vendor>
+                    <firmware>I1.34.244.18</firmware>
+                </device>
+                <device type="meteo" id="3">
+                    <uid>ID7698</uid>
+                    <address>6-4</address>
+                </device>
+            </devices>
+        </configuration>
+        <datapoints xmlns="http://api.sspcdn.com/mii/datalogger/datapoints">
+            <datapoint interval="900" timestamp="2017-11-27T15:00:00Z">
+                <device id="3743">
+                    <mv t="SRAD1" v="200.39"/>
+                    <mv t="T1" v="25.12"/>
+                    <mv t="E_AT1" v="24.39"/>
+                    <mv t="E_W_S" v="5.42"/>
+                    <mv t="E_W_D" v="85"/>
+                </device>
+                <device id="123">
+                    <mv t="SRAD1" v="255.12"/>
+                    <mv t="T1" v="23.20"/>
+                    <mv t="E_AT1" v="23.84"/>
+                    <mv t="E_W_S" v="7.58"/>
+                    <mv t="E_W_D" v="96"/>
+                </device>
+                <device id="3">
+                    <mv t="SRAD1" v="241.85"/>
+                    <mv t="T1" v="26.18"/>
+                </device>
+            </datapoint>
+        </datapoints>
+    </datalogger>
+</mii>
