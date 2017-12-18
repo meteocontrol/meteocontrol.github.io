@@ -183,8 +183,8 @@
 <p>The meteocontrol VCOM API can be found at:</p>
 
 <ul>
-<li>All countries: <code class="prettyprint">https://api.meteocontrol.de/</code></li>
-<li>Clients on the Chinese datacenter: <code class="prettyprint">https://api.meteocontrol.cn/</code></li>
+<li>All countries: <a href="https://api.meteocontrol.de">https://api.meteocontrol.de</a></li>
+<li>Clients on the Chinese datacenter: <a href="https://api.meteocontrol.cn">https://api.meteocontrol.cn</a></li>
 </ul>
 
           <h1 id="authentication">Authentication</h1>
@@ -208,12 +208,12 @@
 </tr>
 </thead><tbody>
 <tr>
-<td><code class="prettyprint">Authorization</code></td>
+<td>Authorization <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">Basic &lt;base64(username:password)&gt;</code></td>
 <td>Combine your username and password into a string separated by a colon. The resulting string must be base64 encoded. Finally replace <code class="prettyprint">&lt;base64(username:password)&gt;</code> with the encoded string.</td>
 </tr>
 <tr>
-<td><code class="prettyprint">X-API-KEY</code></td>
+<td>X-API-KEY <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">&lt;apiKey&gt;</code></td>
 <td>Replace <code class="prettyprint">&lt;apiKey&gt;</code> with your API-Key.</td>
 </tr>
@@ -261,27 +261,27 @@ X-API-KEY: abcdef
 </tr>
 </thead><tbody>
 <tr>
-<td><code class="prettyprint">X-RateLimit-Reset-Minute</code></td>
+<td>X-RateLimit-Reset-Minute</td>
 <td>The time at which the current minute rate limit resets in RFC 7231 format.</td>
 </tr>
 <tr>
-<td><code class="prettyprint">X-RateLimit-Limit-Minute</code></td>
+<td>X-RateLimit-Limit-Minute</td>
 <td>The maximum number of requests that the client is permitted to make per minute.</td>
 </tr>
 <tr>
-<td><code class="prettyprint">X-RateLimit-Remaining-Minute</code></td>
+<td>X-RateLimit-Remaining-Minute</td>
 <td>The number of requests remaining in the current minute rate limit window.</td>
 </tr>
 <tr>
-<td><code class="prettyprint">X-RateLimit-Reset-Day</code></td>
+<td>X-RateLimit-Reset-Day</td>
 <td>The time at which the current day rate limit resets in RFC 7231 format.</td>
 </tr>
 <tr>
-<td><code class="prettyprint">X-RateLimit-Limit-Day</code></td>
+<td>X-RateLimit-Limit-Day</td>
 <td>The maximum number of requests that the client is permitted to make per day.</td>
 </tr>
 <tr>
-<td><code class="prettyprint">X-RateLimit-Remaining-Day</code></td>
+<td>X-RateLimit-Remaining-Day</td>
 <td>The number of requests remaining in the current day rate limit window.</td>
 </tr>
 </tbody></table>
@@ -330,9 +330,9 @@ X-RateLimit-Remaining-Day: 328
 </tr>
 </thead><tbody>
 <tr>
-<td><code class="prettyprint">Cache-Control</code></td>
+<td>Cache-Control <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">no-cache</code></td>
-<td>disable cache, this header is <strong>optional</strong></td>
+<td>Disable cache</td>
 </tr>
 </tbody></table>
 
@@ -360,9 +360,9 @@ X-RateLimit-Remaining-Day: 328
 </tr>
 </thead><tbody>
 <tr>
-<td><code class="prettyprint">Accept-Encoding</code></td>
-<td><code class="prettyprint">gzip, deflate</code></td>
-<td>Comma separated list of compression algorithms. <strong>Optional Header</strong></td>
+<td>Accept-Encoding <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">gzip</code>&#124;<code class="prettyprint">deflate</code></td>
+<td>Comma separated list of compression algorithms</td>
 </tr>
 </tbody></table>
 
@@ -388,7 +388,7 @@ X-RateLimit-Remaining-Day: 328
 </tr>
 <tr>
 <td>404</td>
-<td>Endpoint not found. Possible reasons: <ul><li>Route is not found</li><li>Request an invalid device ID</li><li>Request an invalid abbreviation ID</li><li>Request an invalid comment ID</li></td>
+<td>Endpoint not found. Possible reasons: <ul><li>Route is not found</li><li>Request an invalid device-ID</li><li>Request an invalid abbreviation ID</li><li>Request an invalid comment ID</li></td>
 </tr>
 <tr>
 <td>405</td>
@@ -454,24 +454,24 @@ X-RateLimit-Remaining-Day: 328
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var Session $session */</span>
-    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span> <span class="c1">// "123"
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span> <span class="c1">// 'Mr.'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span> <span class="c1">// 'First Name'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span> <span class="c1">// 'Last Name'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span> <span class="c1">// 'user.name'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span> <span class="c1">// 'fake@mail.intra'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">language</span><span class="p">;</span> <span class="c1">// 'en'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">company</span><span class="p">;</span> <span class="c1">// 'Company'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">fax</span><span class="p">;</span> <span class="c1">// '0234567890'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">telephone</span><span class="p">;</span> <span class="c1">// '0234567891'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">cellphone</span><span class="p">;</span> <span class="c1">// '0987654321'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">city</span><span class="p">;</span> <span class="c1">// 'City'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">country</span><span class="p">;</span> <span class="c1">// 'Country'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">postalCode</span><span class="p">;</span> <span class="c1">// '12345'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">street</span><span class="p">;</span> <span class="c1">// 'Street 123'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">streetAddition</span><span class="p">;</span> <span class="c1">// '2F-1'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span> <span class="c1">// 'Europe/Berlin'
-</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">utcOffset</span><span class="p">;</span> <span class="c1">// '+02:00'
+    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// "123"
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span><span class="c1">// 'Mr.'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span><span class="c1">// 'First Name'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span><span class="c1">// 'Last Name'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">// 'user.name'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span><span class="c1">// 'fake@mail.intra'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">language</span><span class="p">;</span><span class="c1">// 'en'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">company</span><span class="p">;</span><span class="c1">// 'Company'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">fax</span><span class="p">;</span><span class="c1">// '0234567890'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">telephone</span><span class="p">;</span><span class="c1">// '0234567891'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">cellphone</span><span class="p">;</span><span class="c1">// '0987654321'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">city</span><span class="p">;</span><span class="c1">// 'City'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">country</span><span class="p">;</span><span class="c1">// 'Country'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">postalCode</span><span class="p">;</span><span class="c1">// '12345'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">street</span><span class="p">;</span><span class="c1">// 'Street 123'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">streetAddition</span><span class="p">;</span><span class="c1">// '2F-1'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// 'Europe/Berlin'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">utcOffset</span><span class="p">;</span><span class="c1">// '+02:00'
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">session</code></p>
@@ -508,8 +508,8 @@ X-RateLimit-Remaining-Day: 328
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var System[] $systems */</span>
-    <span class="k">echo</span> <span class="nv">$systems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">key</span><span class="p">;</span> <span class="c1">// ABCDE
-</span>    <span class="k">echo</span> <span class="nv">$systems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span> <span class="c1">// meteocontrol PV system
+    <span class="k">echo</span> <span class="nv">$systems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">key</span><span class="p">;</span><span class="c1">// ABCDE
+</span>    <span class="k">echo</span> <span class="nv">$systems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// meteocontrol PV system
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems</code></p>
@@ -564,8 +564,8 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T00:00:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T23:59:59+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T00:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T23:59:59+02:00'</span><span class="p">));</span>
     <span class="sd">/** @var Measurement[] $measurements */</span>
     <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">systems</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'E_Z_EVU'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
 </code></pre>
@@ -598,12 +598,12 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var Measurement[] $measurements */</span>
-    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">systemKey</span><span class="p">;</span> <span class="c1">// ABCDE
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">E_Z_EVU</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2016-01-01T01:00:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">E_Z_EVU</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span> <span class="c1">// 58.182
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">systemKey</span><span class="p">;</span> <span class="c1">// VWXYZ
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">E_Z_EVU</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2016-01-01T01:00:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">E_Z_EVU</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span> <span class="c1">// 199.175
+    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">systemKey</span><span class="p">;</span><span class="c1">// ABCDE
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">E_Z_EVU</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T01:00:00+02:00
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">E_Z_EVU</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 58.182
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">systemKey</span><span class="p">;</span><span class="c1">// VWXYZ
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">E_Z_EVU</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T01:00:00+02:00
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">E_Z_EVU</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 199.175
 </span>
 </code></pre>
 
@@ -623,7 +623,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>abbreviation-ID</td>
+<td>Abbreviation-ID</td>
 </tr>
 </tbody></table>
 
@@ -638,18 +638,18 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
 </tr>
 <tr>
-<td>resolution <code class="prettyprint">optional</code></td>
+<td>resolution <code class="prettyprint">required</code></td>
 <td>(<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
-<td>defaults to <code class="prettyprint">day</code></td>
+<td>Defaults to <code class="prettyprint">day</code></td>
 </tr>
 </tbody></table>
 
@@ -667,12 +667,12 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <tr>
 <td>timestamp <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>timestamp</td>
+<td>Timestamp</td>
 </tr>
 <tr>
 <td>value <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>value</td>
+<td>Value</td>
 </tr>
 </tbody></table>
 
@@ -717,17 +717,17 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var SystemDetail $system */</span>
-    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span> <span class="c1">// meteocontrol PV system
-</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">city</span><span class="p">;</span> <span class="c1">// Augsburg
-</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">country</span><span class="p">;</span> <span class="c1">// DE
-</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">postalCode</span><span class="p">;</span> <span class="c1">// 86157"
-</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">street</span><span class="p">;</span> <span class="c1">// Spicherer Straße 48
-</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">elevation</span><span class="p">;</span> <span class="c1">// 400
-</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">commissionDate</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2016-01-28
-</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">coordinates</span><span class="o">-&gt;</span><span class="na">latitude</span><span class="p">;</span> <span class="c1">// 48.3670191
-</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">coordinates</span><span class="o">-&gt;</span><span class="na">longitude</span><span class="p">;</span> <span class="c1">// 10.8681
-</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span> <span class="c1">// Europe/Berlin
-</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">utcOffset</span><span class="p">;</span> <span class="c1">// +01:00
+    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// meteocontrol PV system
+</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">city</span><span class="p">;</span><span class="c1">// Augsburg
+</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">country</span><span class="p">;</span><span class="c1">// DE
+</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">postalCode</span><span class="p">;</span><span class="c1">// 86157"
+</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">street</span><span class="p">;</span><span class="c1">// Spicherer Straße 48
+</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">elevation</span><span class="p">;</span><span class="c1">// 400
+</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">commissionDate</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-28
+</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">coordinates</span><span class="o">-&gt;</span><span class="na">latitude</span><span class="p">;</span><span class="c1">// 48.3670191
+</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">coordinates</span><span class="o">-&gt;</span><span class="na">longitude</span><span class="p">;</span><span class="c1">// 10.8681
+</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Europe/Berlin
+</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">utcOffset</span><span class="p">;</span><span class="c1">// +01:00
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;</code></p>
@@ -746,7 +746,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -820,7 +820,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -836,12 +836,12 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <tr>
 <td>nominalPower <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>unit: kWp</td>
+<td>Unit: kWp</td>
 </tr>
 <tr>
 <td>siteArea <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>unit: m²</td>
+<td>Unit: m²</td>
 </tr>
 <tr>
 <td>panels <code class="prettyprint">fixed</code></td>
@@ -864,8 +864,8 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:00:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:15:00+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:15:00+02:00'</span><span class="p">));</span>
     <span class="sd">/** @var MeasurementsBulkReader $bulkData */</span>
     <span class="nv">$bulkData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">bulk</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
 </code></pre>
@@ -1018,7 +1018,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -1033,18 +1033,18 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start time</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start time</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end time (max interval is 1 hour)</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End time (max interval is 1 hour)</td>
 </tr>
 <tr>
-<td>format</td>
-<td><code class="prettyprint">json</code> (default) or <code class="prettyprint">csv</code></td>
-<td>export format</td>
+<td>format <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 </tbody></table>
 
@@ -1063,28 +1063,28 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code> (default), <code class="prettyprint">semicolon</code>, <code class="prettyprint">colon</code>, or <code class="prettyprint">tab</code></td>
-<td>the delimiter</td>
+<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code> (default), <code class="prettyprint">CR</code>, or <code class="prettyprint">CR/LF</code></td>
-<td>the line breaks</td>
+<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code> (default), <code class="prettyprint">comma</code>, <code class="prettyprint">semicolon</code>, or <code class="prettyprint">colon</code></td>
-<td>the decimal point</td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
 <td>emptyPlaceholder</td>
 <td><code class="prettyprint">text</code>, empty string by default, any text accepted</td>
-<td>the place holder for empty value</td>
+<td>The place holder for empty value</td>
 </tr>
 <tr>
 <td>precision</td>
-<td><code class="prettyprint">number</code>, 2 by default, accepts from 0 to 4</td>
-<td>the decimal precision</td>
+<td><code class="prettyprint">integer</code>, accepts from 0 to 4</td>
+<td>The decimal precision, defaults to <code class="prettyprint">2</code></td>
 </tr>
 </tbody></table>
 
@@ -1139,7 +1139,7 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -1191,12 +1191,12 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>abbreviation-ID</td>
+<td>Abbreviation-ID</td>
 </tr>
 </tbody></table>
 
@@ -1214,22 +1214,22 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 <tr>
 <td>aggregation <code class="prettyprint">fixed</code></td>
 <td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
-<td>aggregation method when requesting other resolutions than interval</td>
+<td>Aggregation method when requesting other resolutions than interval</td>
 </tr>
 <tr>
 <td>precision <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">integer</code></td>
-<td>number of decimal places</td>
+<td>Number of decimal places</td>
 </tr>
 <tr>
 <td>description <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>description</td>
+<td>Description</td>
 </tr>
 <tr>
 <td>unit <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>unit</td>
+<td>Unit</td>
 </tr>
 </tbody></table>
 
@@ -1242,8 +1242,8 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T00:00:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T00:15:00+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T00:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T00:15:00+02:00'</span><span class="p">));</span>
     <span class="sd">/** @var MeasurementValue[] $measurements */</span>
     <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">basics</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'E_Z_EVU'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
@@ -1269,11 +1269,9 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
     <span class="sd">/** @var MeasurementValue[] $measurements */</span>
     <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T00:00:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 0
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T00:00:00+02:00
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T00:15:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 0
-</span>
-
-</code></pre>
+</span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/basics/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
 
@@ -1291,12 +1289,12 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>abbreviation-ID</td>
+<td>Abbreviation-ID</td>
 </tr>
 </tbody></table>
 
@@ -1311,18 +1309,18 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
-<td>defaults to <code class="prettyprint">interval</code></td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
 
@@ -1340,12 +1338,12 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 <tr>
 <td>timestamp <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>timestamp</td>
+<td>Timestamp</td>
 </tr>
 <tr>
 <td>value <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>value</td>
+<td>Value</td>
 </tr>
 </tbody></table>
 
@@ -1358,8 +1356,8 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:00:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:15:00+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:15:00+02:00'</span><span class="p">));</span>
     <span class="sd">/** @var MeasurementsBulkReader $bulkData */</span>
     <span class="nv">$bulkData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'4DC11'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">basics</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">bulk</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
 </code></pre>
@@ -1412,7 +1410,7 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -1427,18 +1425,18 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
 </tr>
 <tr>
-<td>format</td>
-<td><code class="prettyprint">json</code> (default) or <code class="prettyprint">csv</code></td>
-<td>export format</td>
+<td>format <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 </tbody></table>
 
@@ -1457,28 +1455,28 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code> (default), <code class="prettyprint">semicolon</code>, <code class="prettyprint">colon</code>, or <code class="prettyprint">tab</code></td>
-<td>the delimiter</td>
+<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code> (default), <code class="prettyprint">CR</code>, or <code class="prettyprint">CR/LF</code></td>
-<td>the line breaks</td>
+<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code> (default), <code class="prettyprint">comma</code>, <code class="prettyprint">semicolon</code>, or <code class="prettyprint">colon</code></td>
-<td>the decimal point</td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
 <td>emptyPlaceholder</td>
 <td><code class="prettyprint">text</code>, empty string by default, any text accepted</td>
-<td>the place holder for empty value</td>
+<td>The place holder for empty value</td>
 </tr>
 <tr>
 <td>precision</td>
-<td><code class="prettyprint">number</code>, 2 by default, accepts from 0 to 4</td>
-<td>the decimal precision</td>
+<td><code class="prettyprint">integer</code>, accepts from 0 to 4</td>
+<td>The decimal precision, defaults to <code class="prettyprint">2</code></td>
 </tr>
 </tbody></table>
 
@@ -1531,7 +1529,7 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -1583,12 +1581,12 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>abbreviation-ID</td>
+<td>Abbreviation-ID</td>
 </tr>
 </tbody></table>
 
@@ -1606,22 +1604,22 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <tr>
 <td>aggregation <code class="prettyprint">fixed</code></td>
 <td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
-<td>aggregation method when requesting other resolutions than interval</td>
+<td>Aggregation method when requesting other resolutions than interval</td>
 </tr>
 <tr>
 <td>precision <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">integer</code></td>
-<td>number of decimal places</td>
+<td>Number of decimal places</td>
 </tr>
 <tr>
 <td>description <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>description</td>
+<td>Description</td>
 </tr>
 <tr>
 <td>unit <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>unit</td>
+<td>Unit</td>
 </tr>
 </tbody></table>
 
@@ -1634,8 +1632,8 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T00:00:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T00:15:00+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T00:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T00:15:00+02:00'</span><span class="p">));</span>
     <span class="sd">/** @var MeasurementValue[] $measurements */</span>
     <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">calculations</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'E_N'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
@@ -1661,7 +1659,7 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
     <span class="sd">/** @var MeasurementValue[] $measurements */</span>
     <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T00:00:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 0
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T00:00:00+02:00
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T00:15:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 0
 </span></code></pre>
 
@@ -1681,12 +1679,12 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>abbreviation-ID</td>
+<td>Abbreviation-ID</td>
 </tr>
 </tbody></table>
 
@@ -1701,13 +1699,13 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
@@ -1730,12 +1728,12 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <tr>
 <td>timestamp <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>timestamp</td>
+<td>Timestamp</td>
 </tr>
 <tr>
 <td>value <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>value</td>
+<td>Value</td>
 </tr>
 </tbody></table>
 
@@ -1748,8 +1746,8 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T23:45:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T23:59:59+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T23:45:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T23:59:59+02:00'</span><span class="p">));</span>
     <span class="sd">/** @var MeasurementsBulkReader $bulkData */</span>
     <span class="nv">$bulkData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">calculations</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">bulk</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
 </code></pre>
@@ -1797,7 +1795,7 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -1812,18 +1810,18 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
 </tr>
 <tr>
-<td>format</td>
-<td><code class="prettyprint">json</code> (default) or <code class="prettyprint">csv</code></td>
-<td>export format</td>
+<td>format <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 </tbody></table>
 
@@ -1842,28 +1840,28 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code> (default), <code class="prettyprint">semicolon</code>, <code class="prettyprint">colon</code>, or <code class="prettyprint">tab</code></td>
-<td>the delimiter</td>
+<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code> (default), <code class="prettyprint">CR</code>, or <code class="prettyprint">CR/LF</code></td>
-<td>the line breaks</td>
+<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code> (default), <code class="prettyprint">comma</code>, <code class="prettyprint">semicolon</code>, or <code class="prettyprint">colon</code></td>
-<td>the decimal point</td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
 <td>emptyPlaceholder</td>
 <td><code class="prettyprint">text</code>, empty string by default, any text accepted</td>
-<td>the place holder for empty value</td>
+<td>The place holder for empty value</td>
 </tr>
 <tr>
 <td>precision</td>
-<td><code class="prettyprint">number</code>, 2 by default, accepts from 0 to 4</td>
-<td>the decimal precision</td>
+<td><code class="prettyprint">integer</code>, accepts from 0 to 4</td>
+<td>The decimal precision, defaults to <code class="prettyprint">2</code></td>
 </tr>
 </tbody></table>
 
@@ -1923,7 +1921,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -1939,17 +1937,17 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>id <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>inverter device-ID</td>
+<td>Inverter device-ID</td>
 </tr>
 <tr>
 <td>name <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>custom name</td>
+<td>Custom name</td>
 </tr>
 <tr>
 <td>serial <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
-<td>serial number if given</td>
+<td>Serial number if given</td>
 </tr>
 </tbody></table>
 
@@ -2005,12 +2003,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>inverter device-ID</td>
+<td>Inverter device-ID</td>
 </tr>
 </tbody></table>
 
@@ -2026,37 +2024,37 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>id <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>inverter device-ID</td>
+<td>Inverter device-ID</td>
 </tr>
 <tr>
 <td>model <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>model name</td>
+<td>Model name</td>
 </tr>
 <tr>
 <td>vendor <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>vendor name</td>
+<td>Vendor name</td>
 </tr>
 <tr>
 <td>serial <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
-<td>serial number if given</td>
+<td>Serial number if given</td>
 </tr>
 <tr>
 <td>name <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
-<td>custom name</td>
+<td>Custom name</td>
 </tr>
 <tr>
 <td>scaleFactor <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">float</code>&#124;<code class="prettyprint">null</code></td>
-<td>normalization factor</td>
+<td><code class="prettyprint">integer</code>&#124;<code class="prettyprint">null</code></td>
+<td>Normalization factor</td>
 </tr>
 <tr>
 <td>firmware <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
-<td>firmware</td>
+<td>Firmware</td>
 </tr>
 </tbody></table>
 
@@ -2107,12 +2105,12 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>inverter device-ID</td>
+<td>Inverter device-ID</td>
 </tr>
 </tbody></table>
 
@@ -2164,17 +2162,17 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>inverter device-ID</td>
+<td>Inverter device-ID</td>
 </tr>
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>abbreviation-ID</td>
+<td>Abbreviation-ID</td>
 </tr>
 </tbody></table>
 
@@ -2192,22 +2190,22 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <tr>
 <td>aggregation <code class="prettyprint">fixed</code></td>
 <td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
-<td>aggregation method when requesting other resolutions than interval</td>
+<td>Aggregation method when requesting other resolutions than interval</td>
 </tr>
 <tr>
 <td>precision <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">integer</code></td>
-<td>number of decimal places</td>
+<td>Number of decimal places</td>
 </tr>
 <tr>
 <td>description <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>description</td>
+<td>Description</td>
 </tr>
 <tr>
 <td>unit <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>unit</td>
+<td>Unit</td>
 </tr>
 </tbody></table>
 
@@ -2220,8 +2218,8 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:00:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T12:00:00+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T12:00:00+02:00'</span><span class="p">));</span>
      <span class="sd">/** @var DevicesMeasurement $measurements */</span>
     <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">inverter</span><span class="p">(</span><span class="s1">'Id12345.1'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'P_AC'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
@@ -2292,17 +2290,17 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>can contain up to 10 comma delimited inverter device ids</td>
+<td>Can contain up to 10 comma delimited inverter device ids</td>
 </tr>
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>can contain up to 5 comma delimited abbreviation ids</td>
+<td>Can contain up to 5 comma delimited abbreviation ids</td>
 </tr>
 </tbody></table>
 
@@ -2317,18 +2315,18 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
-<td>defaults to <code class="prettyprint">interval</code></td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
 
@@ -2344,12 +2342,12 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <tr>
 <td>timestamp <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>timestamp</td>
+<td>Timestamp</td>
 </tr>
 <tr>
 <td>value <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>value</td>
+<td>Value</td>
 </tr>
 </tbody></table>
 
@@ -2362,8 +2360,8 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:00:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:15:00+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:15:00+02:00'</span><span class="p">));</span>
      <span class="sd">/** @var MeasurementsBulkReader $bulkReader */</span>
     <span class="nv">$bulkData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">inverters</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">bulk</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
@@ -2430,7 +2428,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -2445,18 +2443,18 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
 </tr>
 <tr>
-<td>format</td>
-<td><code class="prettyprint">json</code> (default) or <code class="prettyprint">csv</code></td>
-<td>export format</td>
+<td>format <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 </tbody></table>
 
@@ -2475,28 +2473,28 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code> (default), <code class="prettyprint">semicolon</code>, <code class="prettyprint">colon</code>, or <code class="prettyprint">tab</code></td>
-<td>the delimiter</td>
+<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code> (default), <code class="prettyprint">CR</code>, or <code class="prettyprint">CR/LF</code></td>
-<td>the line breaks</td>
+<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code> (default), <code class="prettyprint">comma</code>, <code class="prettyprint">semicolon</code>, or <code class="prettyprint">colon</code></td>
-<td>the decimal point</td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
 <td>emptyPlaceholder</td>
 <td><code class="prettyprint">text</code>, empty string by default, any text accepted</td>
-<td>the place holder for empty value</td>
+<td>The place holder for empty value</td>
 </tr>
 <tr>
 <td>precision</td>
-<td><code class="prettyprint">number</code>, 2 by default, accepts from 0 to 4</td>
-<td>the decimal precision</td>
+<td><code class="prettyprint">integer</code>, accepts from 0 to 4</td>
+<td>The decimal precision, defaults to <code class="prettyprint">2</code></td>
 </tr>
 </tbody></table>
 
@@ -2552,7 +2550,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -2568,12 +2566,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>id <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>meter device-ID</td>
+<td>Meter device-ID</td>
 </tr>
 <tr>
 <td>name <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>custom name</td>
+<td>Custom name</td>
 </tr>
 </tbody></table>
 
@@ -2623,12 +2621,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>meter device-ID</td>
+<td>Meter device-ID</td>
 </tr>
 </tbody></table>
 
@@ -2644,22 +2642,22 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>id <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>meter device-ID</td>
+<td>Meter device-ID</td>
 </tr>
 <tr>
 <td>name <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>custom name</td>
+<td>Custom name</td>
 </tr>
 <tr>
 <td>address <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>address</td>
+<td>Address</td>
 </tr>
 <tr>
 <td>firmware <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
-<td>firmware</td>
+<td>Firmware</td>
 </tr>
 </tbody></table>
 
@@ -2709,12 +2707,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>meter device-ID</td>
+<td>Meter device-ID</td>
 </tr>
 </tbody></table>
 
@@ -2766,17 +2764,17 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>meter device-ID</td>
+<td>Meter device-ID</td>
 </tr>
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>abbreviation-ID</td>
+<td>Abbreviation-ID</td>
 </tr>
 </tbody></table>
 
@@ -2794,22 +2792,22 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>aggregation <code class="prettyprint">fixed</code></td>
 <td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
-<td>aggregation method when requesting other resolutions than interval</td>
+<td>Aggregation method when requesting other resolutions than interval</td>
 </tr>
 <tr>
 <td>precision <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">integer</code></td>
-<td>number of decimal places</td>
+<td>Number of decimal places</td>
 </tr>
 <tr>
 <td>description <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>description</td>
+<td>Description</td>
 </tr>
 <tr>
 <td>unit <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>unit</td>
+<td>Unit</td>
 </tr>
 </tbody></table>
 
@@ -2822,8 +2820,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:00:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:15:00+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:15:00+02:00'</span><span class="p">));</span>
      <span class="sd">/** @var DevicesMeasurement $measurements */</span>
     <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">meter</span><span class="p">(</span><span class="s1">'12345'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'M_AC_E_EXP'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
@@ -2873,17 +2871,17 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>can contain up to 10 comma delimited meter device ids</td>
+<td>Can contain up to 10 comma delimited meter device ids</td>
 </tr>
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>can contain up to 5 comma delimited abbreviation ids</td>
+<td>Can contain up to 5 comma delimited abbreviation ids</td>
 </tr>
 </tbody></table>
 
@@ -2898,13 +2896,13 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
@@ -2925,12 +2923,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>timestamp <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>timestamp</td>
+<td>Timestamp</td>
 </tr>
 <tr>
 <td>value <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>value</td>
+<td>Value</td>
 </tr>
 </tbody></table>
 
@@ -2943,8 +2941,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:00:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:15:00+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:15:00+02:00'</span><span class="p">));</span>
      <span class="sd">/** @var MeasurementsBulkReader $bulkReader */</span>
     <span class="nv">$bulkData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">meters</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">bulk</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
@@ -3003,7 +3001,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -3018,18 +3016,18 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
 </tr>
 <tr>
-<td>format</td>
-<td><code class="prettyprint">json</code> (default) or <code class="prettyprint">csv</code></td>
-<td>export format</td>
+<td>format <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 </tbody></table>
 
@@ -3048,28 +3046,28 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code> (default), <code class="prettyprint">semicolon</code>, <code class="prettyprint">colon</code>, or <code class="prettyprint">tab</code></td>
-<td>the delimiter</td>
+<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code> (default), <code class="prettyprint">CR</code>, or <code class="prettyprint">CR/LF</code></td>
-<td>the line breaks</td>
+<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code> (default), <code class="prettyprint">comma</code>, <code class="prettyprint">semicolon</code>, or <code class="prettyprint">colon</code></td>
-<td>the decimal point</td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
 <td>emptyPlaceholder</td>
 <td><code class="prettyprint">text</code>, empty string by default, any text accepted</td>
-<td>the place holder for empty value</td>
+<td>The place holder for empty value</td>
 </tr>
 <tr>
 <td>precision</td>
-<td><code class="prettyprint">number</code>, 2 by default, accepts from 0 to 4</td>
-<td>the decimal precision</td>
+<td><code class="prettyprint">integer</code>, accepts from 0 to 4</td>
+<td>The decimal precision, defaults to <code class="prettyprint">2</code></td>
 </tr>
 </tbody></table>
 
@@ -3125,7 +3123,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -3141,12 +3139,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>id <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>sensor device-ID</td>
+<td>Sensor device-ID</td>
 </tr>
 <tr>
 <td>name <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>custom name</td>
+<td>Custom name</td>
 </tr>
 </tbody></table>
 
@@ -3196,12 +3194,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">integer</code></td>
-<td>sensor device-ID</td>
+<td><code class="prettyprint">string</code></td>
+<td>Sensor device-ID</td>
 </tr>
 </tbody></table>
 
@@ -3217,22 +3215,22 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>id <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>sensor device-ID</td>
+<td>Sensor device-ID</td>
 </tr>
 <tr>
 <td>name <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>custom name</td>
+<td>Custom name</td>
 </tr>
 <tr>
 <td>address <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>address</td>
+<td>Address</td>
 </tr>
 <tr>
 <td>firmware <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
-<td>firmware</td>
+<td>Firmware</td>
 </tr>
 </tbody></table>
 
@@ -3276,12 +3274,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">integer</code></td>
-<td>sensor device-ID</td>
+<td><code class="prettyprint">string</code></td>
+<td>Sensor device-ID</td>
 </tr>
 </tbody></table>
 
@@ -3333,17 +3331,17 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">integer</code></td>
-<td>sensor device-ID</td>
+<td><code class="prettyprint">string</code></td>
+<td>Sensor device-ID</td>
 </tr>
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>abbreviation-ID</td>
+<td>Abbreviation-ID</td>
 </tr>
 </tbody></table>
 
@@ -3361,22 +3359,22 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>aggregation <code class="prettyprint">fixed</code></td>
 <td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
-<td>aggregation method when requesting other resolutions than interval</td>
+<td>Aggregation method when requesting other resolutions than interval</td>
 </tr>
 <tr>
 <td>precision <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">integer</code></td>
-<td>number of decimal places</td>
+<td>Number of decimal places</td>
 </tr>
 <tr>
 <td>description <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>description</td>
+<td>Description</td>
 </tr>
 <tr>
 <td>unit <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>unit</td>
+<td>Unit</td>
 </tr>
 </tbody></table>
 
@@ -3389,8 +3387,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:00:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:15:00+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:15:00+02:00'</span><span class="p">));</span>
      <span class="sd">/** @var DevicesMeasurement $measurements */</span>
     <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">sensor</span><span class="p">(</span><span class="s1">'12345'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'E_G_M1'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
@@ -3440,17 +3438,17 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">integer</code></td>
-<td>can contain up to 10 comma delimited sensor device ids</td>
+<td><code class="prettyprint">string</code></td>
+<td>Can contain up to 10 comma delimited sensor device ids</td>
 </tr>
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>can contain up to 5 comma delimited abbreviation ids</td>
+<td>Can contain up to 5 comma delimited abbreviation ids</td>
 </tr>
 </tbody></table>
 
@@ -3465,18 +3463,18 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
-<td>defaults to <code class="prettyprint">interval</code></td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
 
@@ -3492,12 +3490,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>timestamp <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>timestamp</td>
+<td>Timestamp</td>
 </tr>
 <tr>
 <td>value <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>value</td>
+<td>Value</td>
 </tr>
 </tbody></table>
 
@@ -3510,8 +3508,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:00:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:15:00+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:15:00+02:00'</span><span class="p">));</span>
      <span class="sd">/** @var MeasurementsBulkReader $bulkReader */</span>
     <span class="nv">$bulkData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">sensors</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">bulk</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
@@ -3570,7 +3568,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -3585,18 +3583,18 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
 </tr>
 <tr>
-<td>format</td>
-<td><code class="prettyprint">json</code> (default) or <code class="prettyprint">csv</code></td>
-<td>export format</td>
+<td>format <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 </tbody></table>
 
@@ -3615,28 +3613,28 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code> (default), <code class="prettyprint">semicolon</code>, <code class="prettyprint">colon</code>, or <code class="prettyprint">tab</code></td>
-<td>the delimiter</td>
+<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code> (default), <code class="prettyprint">CR</code>, or <code class="prettyprint">CR/LF</code></td>
-<td>the line breaks</td>
+<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code> (default), <code class="prettyprint">comma</code>, <code class="prettyprint">semicolon</code>, or <code class="prettyprint">colon</code></td>
-<td>the decimal point</td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
 <td>emptyPlaceholder</td>
 <td><code class="prettyprint">text</code>, empty string by default, any text accepted</td>
-<td>the place holder for empty value</td>
+<td>The place holder for empty value</td>
 </tr>
 <tr>
 <td>precision</td>
-<td><code class="prettyprint">number</code>, 2 by default, accepts from 0 to 4</td>
-<td>the decimal precision</td>
+<td><code class="prettyprint">integer</code>, accepts from 0 to 4</td>
+<td>The decimal precision, defaults to <code class="prettyprint">2</code></td>
 </tr>
 </tbody></table>
 
@@ -3692,7 +3690,7 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -3708,12 +3706,12 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <tr>
 <td>id <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>stringbox device-ID</td>
+<td>Stringbox device-ID</td>
 </tr>
 <tr>
 <td>name <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>custom name</td>
+<td>Custom name</td>
 </tr>
 </tbody></table>
 
@@ -3763,12 +3761,12 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">integer</code></td>
-<td>stringbox device-ID</td>
+<td><code class="prettyprint">string</code></td>
+<td>Stringbox device-ID</td>
 </tr>
 </tbody></table>
 
@@ -3784,22 +3782,22 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <tr>
 <td>id <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>stringbox device-ID</td>
+<td>Stringbox device-ID</td>
 </tr>
 <tr>
 <td>name <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>custom name</td>
+<td>Custom name</td>
 </tr>
 <tr>
 <td>serial <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>serial</td>
+<td>Serial</td>
 </tr>
 <tr>
 <td>scaleFactor <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">float</code></td>
-<td>normalization factor</td>
+<td><code class="prettyprint">integer</code></td>
+<td>Normalization factor</td>
 </tr>
 </tbody></table>
 
@@ -3847,12 +3845,12 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">integer</code></td>
-<td>stringbox device-ID</td>
+<td><code class="prettyprint">string</code></td>
+<td>Stringbox device-ID</td>
 </tr>
 </tbody></table>
 
@@ -3904,17 +3902,17 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">integer</code></td>
-<td>stringbox device-ID</td>
+<td><code class="prettyprint">string</code></td>
+<td>Stringbox device-ID</td>
 </tr>
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>abbreviation-ID</td>
+<td>Abbreviation-ID</td>
 </tr>
 </tbody></table>
 
@@ -3932,22 +3930,22 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <tr>
 <td>aggregation <code class="prettyprint">fixed</code></td>
 <td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
-<td>aggregation method when requesting other resolutions than interval</td>
+<td>Aggregation method when requesting other resolutions than interval</td>
 </tr>
 <tr>
 <td>precision <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">integer</code></td>
-<td>number of decimal places</td>
+<td>Number of decimal places</td>
 </tr>
 <tr>
 <td>description <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>description</td>
+<td>Description</td>
 </tr>
 <tr>
 <td>unit <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>unit</td>
+<td>Unit</td>
 </tr>
 </tbody></table>
 
@@ -3960,8 +3958,8 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:00:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:15:00+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:15:00+02:00'</span><span class="p">));</span>
      <span class="sd">/** @var DevicesMeasurement $measurements */</span>
     <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">stringbox</span><span class="p">(</span><span class="s1">'12345'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'I1'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
@@ -4011,17 +4009,17 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">integer</code></td>
-<td>can contain up to 10 comma delimited stringbox device ids</td>
+<td><code class="prettyprint">string</code></td>
+<td>Can contain up to 10 comma delimited stringbox device ids</td>
 </tr>
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>can contain up to 5 comma delimited abbreviation ids</td>
+<td>Can contain up to 5 comma delimited abbreviation ids</td>
 </tr>
 </tbody></table>
 
@@ -4036,18 +4034,18 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
-<td>defaults to <code class="prettyprint">interval</code></td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
 
@@ -4063,12 +4061,12 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <tr>
 <td>timestamp <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>timestamp</td>
+<td>Timestamp</td>
 </tr>
 <tr>
 <td>value <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>value</td>
+<td>Value</td>
 </tr>
 </tbody></table>
 
@@ -4081,8 +4079,8 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:00:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:15:00+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-09-01T10:15:00+02:00'</span><span class="p">));</span>
      <span class="sd">/** @var MeasurementsBulkReader $bulkReader */</span>
     <span class="nv">$bulkData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">stringboxes</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">bulk</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
@@ -4197,7 +4195,7 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -4212,18 +4210,18 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
 </tr>
 <tr>
-<td>format</td>
-<td><code class="prettyprint">json</code> (default) or <code class="prettyprint">csv</code></td>
-<td>export format</td>
+<td>format <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 </tbody></table>
 
@@ -4242,28 +4240,28 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code> (default), <code class="prettyprint">semicolon</code>, <code class="prettyprint">colon</code>, or <code class="prettyprint">tab</code></td>
-<td>the delimiter</td>
+<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code> (default), <code class="prettyprint">CR</code>, or <code class="prettyprint">CR/LF</code></td>
-<td>the line breaks</td>
+<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code> (default), <code class="prettyprint">comma</code>, <code class="prettyprint">semicolon</code>, or <code class="prettyprint">colon</code></td>
-<td>the decimal point</td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
 <td>emptyPlaceholder</td>
 <td><code class="prettyprint">text</code>, empty string by default, any text accepted</td>
-<td>the place holder for empty value</td>
+<td>The place holder for empty value</td>
 </tr>
 <tr>
 <td>precision</td>
-<td><code class="prettyprint">number</code>, 2 by default, accepts from 0 to 4</td>
-<td>the decimal precision</td>
+<td><code class="prettyprint">integer</code>, accepts from 0 to 4</td>
+<td>The decimal precision, defaults to <code class="prettyprint">2</code></td>
 </tr>
 </tbody></table>
 
@@ -4319,7 +4317,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -4335,12 +4333,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>id <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>battery device-ID</td>
+<td>Battery device-ID</td>
 </tr>
 <tr>
 <td>name <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>custom name</td>
+<td>Custom name</td>
 </tr>
 </tbody></table>
 
@@ -4390,12 +4388,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>battery device-ID</td>
+<td>Battery device-ID</td>
 </tr>
 </tbody></table>
 
@@ -4411,22 +4409,22 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>id <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>battery device-ID</td>
+<td>Battery device-ID</td>
 </tr>
 <tr>
 <td>name <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>custom name</td>
+<td>Custom name</td>
 </tr>
 <tr>
 <td>address <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>address</td>
+<td>Address</td>
 </tr>
 <tr>
 <td>firmware <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
-<td>firmware</td>
+<td>Firmware</td>
 </tr>
 </tbody></table>
 
@@ -4476,12 +4474,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>battery device-ID</td>
+<td>Battery device-ID</td>
 </tr>
 </tbody></table>
 
@@ -4533,17 +4531,17 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>battery device-ID</td>
+<td>Battery device-ID</td>
 </tr>
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>abbreviation-ID</td>
+<td>Abbreviation-ID</td>
 </tr>
 </tbody></table>
 
@@ -4561,22 +4559,22 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>aggregation <code class="prettyprint">fixed</code></td>
 <td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
-<td>aggregation method when requesting other resolutions than interval</td>
+<td>Aggregation method when requesting other resolutions than interval</td>
 </tr>
 <tr>
 <td>precision <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">integer</code></td>
-<td>number of decimal places</td>
+<td>Number of decimal places</td>
 </tr>
 <tr>
 <td>description <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>description</td>
+<td>Description</td>
 </tr>
 <tr>
 <td>unit <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>unit</td>
+<td>Unit</td>
 </tr>
 </tbody></table>
 
@@ -4589,8 +4587,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:00:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:15:00+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:15:00+02:00'</span><span class="p">));</span>
      <span class="sd">/** @var DevicesMeasurement $measurements */</span>
     <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">battery</span><span class="p">(</span><span class="s1">'145146'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'B_CHARGE_LEVEL'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
@@ -4640,17 +4638,17 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>deviceId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>can contain up to 10 comma delimited battery device ids</td>
+<td>Can contain up to 10 comma delimited battery device ids</td>
 </tr>
 <tr>
 <td>abbreviationId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>can contain up to 5 comma delimited abbreviation ids</td>
+<td>Can contain up to 5 comma delimited abbreviation ids</td>
 </tr>
 </tbody></table>
 
@@ -4665,13 +4663,13 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
@@ -4692,12 +4690,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>timestamp <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>timestamp</td>
+<td>Timestamp</td>
 </tr>
 <tr>
 <td>value <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>value</td>
+<td>Value</td>
 </tr>
 </tbody></table>
 
@@ -4710,8 +4708,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
-            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-10-10T11:00:00+02:00'</span><span class="p">))</span>
-            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-10-10T11:15:00+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-10-10T11:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-10-10T11:15:00+02:00'</span><span class="p">));</span>
      <span class="sd">/** @var MeasurementsBulkReader $bulkReader */</span>
     <span class="nv">$bulkData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">batteries</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">bulk</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
@@ -4806,7 +4804,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -4821,18 +4819,18 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>from <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">date</code> or <code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
 </tr>
 <tr>
-<td>format</td>
-<td><code class="prettyprint">json</code> (default) or <code class="prettyprint">csv</code></td>
-<td>export format</td>
+<td>format <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 </tbody></table>
 
@@ -4851,28 +4849,28 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code> (default), <code class="prettyprint">semicolon</code>, <code class="prettyprint">colon</code>, or <code class="prettyprint">tab</code></td>
-<td>the delimiter</td>
+<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code> (default), <code class="prettyprint">CR</code>, or <code class="prettyprint">CR/LF</code></td>
-<td>the line breaks</td>
+<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code> (default), <code class="prettyprint">comma</code>, <code class="prettyprint">semicolon</code>, or <code class="prettyprint">colon</code></td>
-<td>the decimal point</td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
 <td>emptyPlaceholder</td>
 <td><code class="prettyprint">text</code>, empty string by default, any text accepted</td>
-<td>the place holder for empty value</td>
+<td>The place holder for empty value</td>
 </tr>
 <tr>
 <td>precision</td>
-<td><code class="prettyprint">number</code>, 2 by default, accepts from 0 to 4</td>
-<td>the decimal precision</td>
+<td><code class="prettyprint">integer</code>, accepts from 0 to 4</td>
+<td>The decimal precision, defaults to <code class="prettyprint">2</code></td>
 </tr>
 </tbody></table>
 
@@ -5130,7 +5128,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -5190,7 +5188,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -5206,22 +5204,22 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>id <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>user ID</td>
+<td>User-ID</td>
 </tr>
 <tr>
 <td>username <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>username</td>
+<td>Username</td>
 </tr>
 <tr>
 <td>firstName <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>first name</td>
+<td>First name</td>
 </tr>
 <tr>
 <td>lastName <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>last name</td>
+<td>Last name</td>
 </tr>
 </tbody></table>
 
@@ -5303,12 +5301,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>userId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">integer</code></td>
-<td>user ID</td>
+<td>User-ID</td>
 </tr>
 </tbody></table>
 
@@ -5322,7 +5320,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var UserDetail $user */</span>
     <span class="nv">$criteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">UserCriteria</span><span class="p">();</span>
-    <span class="nv">$criteria</span><span class="o">-&gt;</span><span class="na">withUsername</span><span class="p">(</span><span class="s2">"user.name"</span><span class="p">);</span>
+    <span class="nv">$criteria</span><span class="o">-&gt;</span><span class="na">withUsername</span><span class="p">(</span><span class="s2">"user1.name"</span><span class="p">);</span>
     <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">users</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre>
 
@@ -5335,7 +5333,7 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="s2">"title"</span>: <span class="s2">"Mrs."</span>,
     <span class="s2">"firstName"</span>: <span class="s2">"First Name"</span>,
     <span class="s2">"lastName"</span>: <span class="s2">"Last Name"</span>,
-    <span class="s2">"username"</span>: <span class="s2">"user.name"</span>,
+    <span class="s2">"username"</span>: <span class="s2">"user1.name"</span>,
     <span class="s2">"email"</span>: <span class="s2">"fake@mail.intra"</span>,
     <span class="s2">"language"</span>: <span class="s2">"en"</span>,
     <span class="s2">"company"</span>: <span class="s2">"Company"</span>,
@@ -5362,7 +5360,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span><span class="c1">//"Mrs.",
 </span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span><span class="c1">//"First Name",
 </span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span><span class="c1">//"Last Name",
-</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">//"user.name",
+</span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">//"user1.name",
 </span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span><span class="c1">//"fake@mail.intra",
 </span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">language</span><span class="p">;</span><span class="c1">//"en",
 </span>    <span class="k">echo</span> <span class="nv">$userDetail</span><span class="o">-&gt;</span><span class="na">company</span><span class="p">;</span><span class="c1">//"Company",
@@ -5392,7 +5390,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>identification key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 </tbody></table>
 
@@ -5408,7 +5406,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>username <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>user name</td>
+<td>User name</td>
 </tr>
 </tbody></table>
 
@@ -5421,9 +5419,9 @@ For response example in CSV format, please check <a href="https://github.com/met
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets?
 includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;assignee=username&amp;systemKey=ABCDE
-&amp;lastChange[from]=2016-01-01T00:00:00+02:00&amp;lastChange[to]=2016-01-31T00:00:00+02:00
-&amp;date[from]=2016-04-01T00:00:00+02:00&amp;date[to]=2016-04-25T00:00:00+02:00
-&amp;rectifiedOn[from]=2016-04-25T00:00:00+02:00&amp;rectifiedOn[to]=2016-04-25T00:00:00+02:00'</span>
+&amp;lastChangedAt[from]=2016-01-01T00:00:00+02:00&amp;lastChangedAt[to]=2016-01-31T00:00:00+02:00
+&amp;createdAt[from]=2016-04-01T00:00:00+02:00&amp;createdAt[to]=2016-04-25T00:00:00+02:00
+&amp;rectifiedAt[from]=2016-04-25T00:00:00+02:00&amp;rectifiedAt[to]=2016-04-25T00:00:00+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$ticketsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">TicketsCriteria</span><span class="p">())</span>
@@ -5433,12 +5431,12 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withPriority</span><span class="p">(</span><span class="nx">Ticket</span><span class="o">::</span><span class="na">PRIORITY_NORMAL</span><span class="p">)</span>
         <span class="o">-&gt;</span><span class="na">withSeverity</span><span class="p">(</span><span class="nx">Ticket</span><span class="o">::</span><span class="na">SEVERITY_NORMAL</span><span class="p">)</span>
         <span class="o">-&gt;</span><span class="na">withIncludeInReports</span><span class="p">(</span><span class="nx">Ticket</span><span class="o">::</span><span class="na">REPORT_TYPE_NO</span><span class="p">)</span>
-        <span class="o">-&gt;</span><span class="na">withLastChangeFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T00:00:00+02:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withLastChangeTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-31T00:00:00+02:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-04-01T00:00:00+02:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-04-25T00:00:00+02:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withRectifiedOnFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-04-25T00:00:00+02:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withRectifiedOnTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-04-25T00:00:00+02:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withLastChangedAtFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T00:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withLastChangedAtTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-31T00:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withCreatedAtFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-04-01T00:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withCreatedAtTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-04-25T00:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withRectifiedAtFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-04-25T00:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withRectifiedAtTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-04-25T00:00:00+02:00'</span><span class="p">));</span>
     <span class="sd">/** @var Ticket[] $tickets */</span>
     <span class="nv">$tickets</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">tickets</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$ticketsCriteria</span><span class="p">);</span>
 </code></pre>
@@ -5486,19 +5484,19 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// This is a description
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">summary</span><span class="p">;</span><span class="c1">// This is a summary.
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// closed
-</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-01-01T12:00:00
-</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-01-01T12:00:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChange</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-01-01T13:00:00
-</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-01-01T13:00:00+02:00
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T12:00:00
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T12:00:00+02:00
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChange</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T13:00:00
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T13:00:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 456
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">systemKey</span><span class="p">;</span><span class="c1">// FGHIJ
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">designation</span><span class="p">;</span><span class="c1">// Ticket #456
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">summary</span><span class="p">;</span><span class="c1">// This is a summary.
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// inProgress
-</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-02-01T12:00:00
-</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-02-01T12:00:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChange</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-02-02T13:00:00
-</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">)</span><span class="c1">// 2016-02-02T13:00:00+02:00
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-01T12:00:00
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-01T12:00:00+02:00
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChange</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-02T13:00:00
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-02T13:00:00+02:00
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">tickets</code></p>
@@ -5515,82 +5513,82 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>lastChange[from] <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>start date (deprecated)</td>
+<td>Start date (deprecated)</td>
 </tr>
 <tr>
 <td>lastChange[to] <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>end date (deprecated)</td>
+<td>End date (deprecated)</td>
 </tr>
 <tr>
 <td>lastChangedAt[from] <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>lastChangedAt[to] <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td>End date</td>
 </tr>
 <tr>
 <td>date[from] <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>start date (deprecated)</td>
+<td>Start date (deprecated)</td>
 </tr>
 <tr>
 <td>date[to] <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>end date (deprecated)</td>
+<td>End date (deprecated)</td>
 </tr>
 <tr>
 <td>createdAt[from] <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>createdAt[to] <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td>End date</td>
 </tr>
 <tr>
 <td>rectifiedOn[from] <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>start date (deprecated)</td>
+<td>Start date (deprecated)</td>
 </tr>
 <tr>
 <td>rectifiedOn[to] <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>end date (deprecated)</td>
+<td>End date (deprecated)</td>
 </tr>
 <tr>
 <td>rectifiedAt[from] <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>start date</td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>rectifiedAt[to] <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>end date</td>
+<td>End date</td>
 </tr>
 <tr>
 <td>includeInReports <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">no</code>&#124;<code class="prettyprint">detail</code>&#124;<code class="prettyprint">summary</code>)</td>
-<td>can contain comma delimited report types</td>
+<td>Can contain comma delimited report types</td>
 </tr>
 <tr>
 <td>status <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">open</code>&#124;<code class="prettyprint">closed</code>&#124;<code class="prettyprint">deleted</code>&#124;<code class="prettyprint">assigned</code>&#124;<code class="prettyprint">inProgress</code>)</td>
-<td>can contain comma delimited status</td>
+<td>Can contain comma delimited status</td>
 </tr>
 <tr>
 <td>severity <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">critical</code>)</td>
-<td>can contain comma delimited severity types</td>
+<td>Can contain comma delimited severity types</td>
 </tr>
 <tr>
 <td>priority <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>)</td>
-<td>can contain comma delimited priority types</td>
+<td>Can contain comma delimited priority types</td>
 </tr>
 <tr>
 <td>assignee <code class="prettyprint">optional</code></td>
@@ -5625,7 +5623,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>systemKey <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>The key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>designation <code class="prettyprint">fixed</code></td>
@@ -5684,7 +5682,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/123'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var Ticket $ticket */</span>
@@ -5776,7 +5774,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>systemKey <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>The key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
 <td>designation <code class="prettyprint">fixed</code></td>
@@ -5835,7 +5833,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 <tr>
 <td>causeId <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">number</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">integer</code>&#124;<code class="prettyprint">null</code></td>
 <td></td>
 </tr>
 <tr>
@@ -5877,7 +5875,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
   "summary": "summary",
   "assignee": "username"
 }'</span> <span class="se">\</span>
- <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;'</span>
+ <span class="s1">'https://api.meteocontrol.de/tickets/123'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var Ticket $ticket */</span>
@@ -5991,7 +5989,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
 <p><strong>Response</strong></p>
 
-<p>The response body is emtpy.</p>
+<p>The response body is empty.</p>
 
 <p>Http-Code: 204</p>
 
@@ -6077,22 +6075,22 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </thead><tbody>
 <tr>
-<td>systemKey <code class="prettyprint">fixed</code></td>
+<td>systemKey <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>The key of the system</td>
+<td>Identification key of the system</td>
 </tr>
 <tr>
-<td>designation <code class="prettyprint">fixed</code></td>
+<td>designation <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
 <td></td>
 </tr>
 <tr>
-<td>date <code class="prettyprint">fixed</code></td>
+<td>date <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">datetime</code></td>
 <td>(deprecated)</td>
 </tr>
 <tr>
-<td>createdAt <code class="prettyprint">fixed</code></td>
+<td>createdAt <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">datetime</code></td>
 <td></td>
 </tr>
@@ -6170,7 +6168,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -i -X DELETE <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;'</span>
+<pre class="highlight shell"><code>curl -i -X DELETE <span class="s1">'https://api.meteocontrol.de/tickets/123'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
@@ -6227,7 +6225,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/comments'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/123/comments'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var Comment[] comments */</span>
@@ -6309,23 +6307,23 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </thead><tbody>
 <tr>
 <td>commentId <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">number</code></td>
-<td></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Comment-ID</td>
 </tr>
 <tr>
 <td>date <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>created datetime (deprecated)</td>
+<td>Created datetime (deprecated)</td>
 </tr>
 <tr>
 <td>createdAt <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>created datetime in system timezone</td>
+<td>Created datetime in system timezone</td>
 </tr>
 <tr>
 <td>comment <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>with new line character <code class="prettyprint">\n</code></td>
+<td>With new line character <code class="prettyprint">\n</code></td>
 </tr>
 <tr>
 <td>username <code class="prettyprint">fixed</code></td>
@@ -6339,7 +6337,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/comments/&lt;commentId&gt;'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/123/comments/661288'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var CommentDetail comment */</span>
@@ -6408,23 +6406,23 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </thead><tbody>
 <tr>
 <td>commentId <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">number</code></td>
-<td></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Comment-ID</td>
 </tr>
 <tr>
 <td>date <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>created datetime (deprecated)</td>
+<td>Created datetime (deprecated)</td>
 </tr>
 <tr>
 <td>createdAt <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>created datetime in system timezone</td>
+<td>Created datetime in system timezone</td>
 </tr>
 <tr>
 <td>comment <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>with new line character <code class="prettyprint">\n</code></td>
+<td>With new line character <code class="prettyprint">\n</code></td>
 </tr>
 <tr>
 <td>username <code class="prettyprint">fixed</code></td>
@@ -6444,7 +6442,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <span class="s1">'{
   "comment": "New Comment"
 }'</span> <span class="se">\</span>
- <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/comments'</span>
+ <span class="s1">'https://api.meteocontrol.de/tickets/123/comments'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$comment</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CommentDetail</span><span class="p">();</span>
@@ -6517,7 +6515,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </thead><tbody>
 <tr>
-<td>comment <code class="prettyprint">fixed</code></td>
+<td>comment <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
 <td></td>
 </tr>
@@ -6534,8 +6532,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </thead><tbody>
 <tr>
 <td>commentId <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">number</code></td>
-<td>CommentId of the new comment.</td>
+<td><code class="prettyprint">integer</code></td>
+<td>Comment-ID of the new comment.</td>
 </tr>
 </tbody></table>
 
@@ -6550,7 +6548,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <span class="s1">'{
   "comment": "New Comment"
 }'</span> <span class="se">\</span>
- <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/comments/&lt;commentId&gt;'</span>
+ <span class="s1">'https://api.meteocontrol.de/tickets/123/comments/454548'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$comment</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CommentDetail</span><span class="p">();</span>
@@ -6615,7 +6613,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </thead><tbody>
 <tr>
-<td>comment <code class="prettyprint">fixed</code></td>
+<td>comment <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
 <td></td>
 </tr>
@@ -6632,7 +6630,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -i -X DELETE <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/comments/&lt;commentId&gt;'</span>
+<pre class="highlight shell"><code>curl -i -X DELETE <span class="s1">'https://api.meteocontrol.de/tickets/123/comments/454548'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="mi">454548</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
@@ -6682,7 +6680,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/attachments'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/123/attachments'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var array attachments */</span>
@@ -6726,7 +6724,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </thead><tbody>
 <tr>
 <td>ticketId <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">string</code></td>
 <td>Ticket-ID</td>
 </tr>
 </tbody></table>
@@ -6744,7 +6742,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </thead><tbody>
 <tr>
 <td>attachmentId <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">string</code></td>
 <td>Attachment-ID</td>
 </tr>
 <tr>
@@ -6759,7 +6757,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/attachments/&lt;attachmentId&gt;'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/123/attachments/1234'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var AttachmentFile $attachmentFile */</span>
@@ -6831,7 +6829,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>attachmentId <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">integer</code></td>
-<td></td>
+<td>Attachment-ID</td>
 </tr>
 <tr>
 <td>filename <code class="prettyprint">fixed</code></td>
@@ -6841,27 +6839,27 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>content <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>data URI (<a href="https://www.ietf.org/rfc/rfc2397.txt">RFC2397</a>) with base64 encoding.</td>
+<td>Data URI (<a href="https://www.ietf.org/rfc/rfc2397.txt">RFC2397</a>) with base64 encoding.</td>
 </tr>
 <tr>
 <td>created <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>created datetime (deprecated)</td>
+<td>Created datetime (deprecated)</td>
 </tr>
 <tr>
 <td>createdAt <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>created datetime in system timezone</td>
+<td>Created datetime in system timezone</td>
 </tr>
 <tr>
 <td>description <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>file description</td>
+<td>File description</td>
 </tr>
 <tr>
 <td>creatorId <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">integer</code></td>
-<td>creator Id</td>
+<td>Creator Id</td>
 </tr>
 </tbody></table>
 
@@ -6880,7 +6878,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
   "content": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD.....",
   "description": "file description"
 }'</span> <span class="se">\</span>
- <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/attachments'</span>
+ <span class="s1">'https://api.meteocontrol.de/tickets/123/attachments'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$content</span> <span class="o">=</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">"attachment1.jpg"</span><span class="p">));</span>
@@ -6953,19 +6951,19 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </thead><tbody>
 <tr>
-<td>filename <code class="prettyprint">fixed</code></td>
+<td>filename <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td></td>
+<td>Filename</td>
 </tr>
 <tr>
-<td>content <code class="prettyprint">fixed</code></td>
+<td>content <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>data URI (<a href="https://www.ietf.org/rfc/rfc2397.txt">RFC2397</a>) with base64 encoding. Max decoded file size is 2MB</td>
+<td>Data URI (<a href="https://www.ietf.org/rfc/rfc2397.txt">RFC2397</a>) with base64 encoding. Max decoded file size is 2MB</td>
 </tr>
 <tr>
-<td>description <code class="prettyprint">fixed</code></td>
+<td>description <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>file description</td>
+<td>File description</td>
 </tr>
 </tbody></table>
 
@@ -6981,7 +6979,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>attachmentId <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">integers</code></td>
-<td>ID of the new attachment.</td>
+<td>Attachment-ID</td>
 </tr>
 <tr>
 <td>filename <code class="prettyprint">fixed</code></td>
@@ -6997,7 +6995,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/&lt;ticketId&gt;/histories'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/tickets/123/histories'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var TicketHistory[] histories */</span>
@@ -7090,12 +7088,12 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>timestamp <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>created date in UTC timezone (deprecated)</td>
+<td>Created date in UTC timezone (deprecated)</td>
 </tr>
 <tr>
 <td>createdAt <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code></td>
-<td>created date in system timezone</td>
+<td>Created date in system timezone</td>
 </tr>
 <tr>
 <td>action <code class="prettyprint">fixed</code></td>
@@ -7110,12 +7108,12 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>from</td>
 <td><code class="prettyprint">string</code></td>
-<td>username or state</td>
+<td>Username or state</td>
 </tr>
 <tr>
 <td>to</td>
 <td><code class="prettyprint">string</code></td>
-<td>username or state</td>
+<td>Username or state</td>
 </tr>
 </tbody></table>
 
