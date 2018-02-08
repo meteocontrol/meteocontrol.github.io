@@ -183,8 +183,8 @@
 <p>The meteocontrol VCOM API can be found at:</p>
 
 <ul>
-<li>All countries: <a href="https://api.meteocontrol.de">https://api.meteocontrol.de</a></li>
-<li>Clients on the Chinese datacenter: <a href="https://api.meteocontrol.cn">https://api.meteocontrol.cn</a></li>
+<li>All countries: https://api.meteocontrol.de</li>
+<li>Clients on the Chinese datacenter: https://api.meteocontrol.cn</li>
 </ul>
 
           <h1 id="authentication">Authentication</h1>
@@ -447,7 +447,8 @@ X-RateLimit-Remaining-Day: 328
       <span class="s2">"timezone"</span>: <span class="o">{</span>
         <span class="s2">"name"</span>: <span class="s2">"Europe/Berlin"</span>,
         <span class="s2">"utcOffset"</span>: <span class="s2">"+02:00"</span>
-      <span class="o">}</span>
+      <span class="o">}</span>,
+      <span class="s2">"hasVcom"</span>: <span class="nb">true</span>
     <span class="o">}</span>
   <span class="o">}</span>
 <span class="o">}</span>
@@ -472,6 +473,7 @@ X-RateLimit-Remaining-Day: 328
 </span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">streetAddition</span><span class="p">;</span><span class="c1">// '2F-1'
 </span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// 'Europe/Berlin'
 </span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">utcOffset</span><span class="p">;</span><span class="c1">// '+02:00'
+</span>    <span class="k">echo</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">hasVcom</span><span class="p">;</span><span class="c1">// true
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">session</code></p>
@@ -1319,7 +1321,7 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
@@ -2325,7 +2327,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
@@ -2906,7 +2908,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
@@ -3473,7 +3475,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
@@ -4044,7 +4046,7 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
@@ -4673,7 +4675,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
@@ -5407,6 +5409,92 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>username <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>User name</td>
+</tr>
+</tbody></table>
+
+          <h4 id="pictures">Pictures</h4>
+
+<h4 class="toc-ignore">Get system picture</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/system/ABCDE/picture'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var PictureFile $pictureFile */</span>
+    <span class="nv">$pictureFile</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s2">"ABCDE"</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">picture</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>:<span class="o">{</span>
+    <span class="s2">"id"</span>: 12345,
+    <span class="s2">"filename"</span>: <span class="s2">"12345.jpg"</span>,
+    <span class="s2">"content"</span>: <span class="s2">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD....."</span>,
+    <span class="s2">"type"</span>: <span class="s2">"image/jpeg"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var PictureFile $pictureFile */</span>
+    <span class="k">echo</span> <span class="nv">$pictureFile</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 12345
+</span>    <span class="k">echo</span> <span class="nv">$pictureFile</span><span class="o">-&gt;</span><span class="na">filename</span><span class="p">;</span><span class="c1">// 12345.jpg
+</span>    <span class="k">echo</span> <span class="nv">$pictureFile</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">;</span><span class="c1">// "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD....."
+</span>    <span class="k">echo</span> <span class="nv">$pictureFile</span><span class="o">-&gt;</span><span class="na">type</span><span class="p">;</span><span class="c1">// "image/jpeg"
+</span>
+</code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">system/&lt;systemKey&gt;/picture</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>PictureFile object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Picture-ID</td>
+</tr>
+<tr>
+<td>filename <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>File name</td>
+</tr>
+<tr>
+<td>content <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Data URI (<a href="https://www.ietf.org/rfc/rfc2397.txt">RFC2397</a>) with base64 encoding.</td>
+</tr>
+<tr>
+<td>type <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>image type</td>
 </tr>
 </tbody></table>
 
