@@ -336,6 +336,14 @@ X-RateLimit-Remaining-Day: 328
 </tr>
 </tbody></table>
 
+          <h1 id="timestamps">Timestamps</h1>
+
+<p>All provided timestamps must comply to the <code class="prettyprint">ISO-8601</code> standard, e.g. <code class="prettyprint">2010-01-01T00:00:00+00:00</code>. The VCOM-API will always return full <code class="prettyprint">ISO-8601</code> timestamps.</p>
+
+<p>When requesting data it&rsquo;s allowed to omit parts of the timestamp starting from the end, meaning <code class="prettyprint">2010-01-01</code> is still valid and may be used for endpoints which return daily data. <code class="prettyprint">2010-01</code> for endpoints returning monthly data, and so on. If parts of the timestamp are omitted the date will be initialized with zeros (<code class="prettyprint">2010-01-01</code> =&gt; <code class="prettyprint">2010-01-01 00:00:00</code>), please take this into account when requesting interval data.</p>
+
+<p>If no timezone is provided, the timezone of the related power plant will be determined and used for the returned data. The power plant timezone will also be used in cases where the <code class="prettyprint">from</code> and <code class="prettyprint">to</code> timezones don&rsquo;t match.</p>
+
           <h1 id="content-encoding">Content Encoding</h1>
 
 <blockquote>
