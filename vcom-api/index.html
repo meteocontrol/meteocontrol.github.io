@@ -721,7 +721,8 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
     <span class="s2">"timezone"</span>: <span class="o">{</span>
       <span class="s2">"name"</span>: <span class="s2">"Europe/Berlin"</span>,
       <span class="s2">"utcOffset"</span>: <span class="s2">"+01:00"</span>
-    <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="s2">"currency"</span>: <span class="s2">"EUR"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -738,6 +739,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">coordinates</span><span class="o">-&gt;</span><span class="na">longitude</span><span class="p">;</span><span class="c1">// 10.8681
 </span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Europe/Berlin
 </span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">utcOffset</span><span class="p">;</span><span class="c1">// +01:00
+</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">currency</span><span class="p">;</span><span class="c1">// EUR
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;</code></p>
@@ -2058,7 +2060,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>scaleFactor <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">integer</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">number</code>&#124;<code class="prettyprint">null</code></td>
 <td>Normalization factor</td>
 </tr>
 <tr>
@@ -3806,7 +3808,7 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </tr>
 <tr>
 <td>scaleFactor <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Normalization factor</td>
 </tr>
 </tbody></table>
