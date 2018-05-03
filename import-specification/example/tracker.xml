@@ -31,36 +31,28 @@
     <datapoints xmlns="http://api.sspcdn.com/mii/datalogger/datapoints">
       <datapoint interval="900" timestamp="2016-10-22T15:00:00Z">
         <device id="111">
-          <mv t="address" v="11"/>
-          <mv t="tracker_type" v="12"/>
-          <mv t="elevation_target" v="13"/>
-          <mv t="bus" v="14"/>
-          <mv t="elevation" v="15"/>
-          <mv t="error" v="16"/>
+          <mv t="TRACKER_TYPE" v="2"/>
+          <mv t="ELEVATION_TARGET" v="13"/>
+          <mv t="ELEVATION" v="15"/>
+          <mv t="ERROR" v="16"/>
         </device>
         <device id="11450">
-          <mv t="address" v="11"/>
-          <mv t="tracker_type" v="12"/>
-          <mv t="elevation_target" v="13"/>
-          <mv t="bus" v="17"/>
-          <mv t="elevation" v="18"/>
-          <mv t="error" v="19"/>
+          <mv t="TRACKER_TYPE" v="2"/>
+          <mv t="ELEVATION_TARGET" v="13"/>
+          <mv t="ELEVATION" v="18"/>
+          <mv t="ERROR" v="19"/>
         </device>
         <device id="211">
-          <mv t="address" v="21"/>
-          <mv t="tracker_type" v="22"/>
-          <mv t="elevation_target" v="23"/>
-          <mv t="bus" v="24"/>
-          <mv t="elevation" v="25"/>
-          <mv t="error" v="26"/>
+          <mv t="TRACKER_TYPE" v="2"/>
+          <mv t="ELEVATION_TARGET" v="23"/>
+          <mv t="ELEVATION" v="25"/>
+          <mv t="ERROR" v="26"/>
         </device>
         <device id="21450">
-          <mv t="address" v="21"/>
-          <mv t="tracker_type" v="22"/>
-          <mv t="elevation_target" v="23"/>
-          <mv t="bus" v="27"/>
-          <mv t="elevation" v="28"/>
-          <mv t="error" v="29"/>
+          <mv t="TRACKER_TYPE" v="2"/>
+          <mv t="ELEVATION_TARGET" v="23"/>
+          <mv t="ELEVATION" v="28"/>
+          <mv t="ERROR" v="29"/>
         </device>
       </datapoint>
     </datapoints>
