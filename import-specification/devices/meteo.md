@@ -23,4 +23,6 @@
 | datapoints    | E_W_D[1..x]        | °    | Wind direction values                                    |       |      |          |                              |       | 2.0.1   | 
 | datapoints    | STATE[1..x]        |      | Global meteo state conditions                            |       |      |          |                              |       | 2.0.1   | 
 | datapoints    | ERROR[1..x]        |      | Global meteo error conditions                            |       |      |          |                              |       | 2.0.1   | 
-| datapoints    | E_SNOW_DEPTH[1..x] | m    | Snow depth                                               |       |      |          |                              |       | 2.0.8   | 
+| datapoints    | E_SNOW_DEPTH[1..x] | m    | Snow depth                                               |       |      |          |                              |       | 2.0.8   |
+| datapoints    | QS_TX             |       | Telegrams transmitted (communication quality)         |       |       |          |                                |       | 2.0.9   |
+| datapoints    | QS_RX             |       | Telegrams received    (communication quality)         |       |       |          |                                |       | 2.0.9   |

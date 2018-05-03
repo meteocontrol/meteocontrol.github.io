@@ -20,4 +20,6 @@
 | datapoints    | B_P_DC         | W    | Total battery power                                      |       |      |          |                                    |       | 2.0.1   | 
 | datapoints    | T[1..x]        | °C   | Temperatures                                             |       |      |          |                                    |       | 2.0.1   | 
 | datapoints    | STATE[1..x]    |      | Global battery state conditions                          |       |      |          |                                    |       | 2.0.1   | 
-| datapoints    | ERROR[1..x]    |      | Global battery error conditions                          |       |      |          |                                    |       | 2.0.1   | 
+| datapoints    | ERROR[1..x]    |      | Global battery error conditions                          |       |      |          |                                    |       | 2.0.1   |
+| datapoints    | QS_TX             |       | Telegrams transmitted (communication quality)         |       |       |          |                                |       | 2.0.9   |
+| datapoints    | QS_RX             |       | Telegrams received    (communication quality)         |       |       |          |                                |       | 2.0.9   |

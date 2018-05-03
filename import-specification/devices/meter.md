@@ -51,4 +51,6 @@
 | datapoints    | M_AC_U_L2L3     | V      | Volts L2-L3                                                |       |      |          |                              |       | 2.0.1   | 
 | datapoints    | M_AC_U_L3L1     | V      | Volts L3-L1                                                |       |      |          |                              |       | 2.0.1   | 
 | datapoints    | STATE[1..x]     |        | Global meter state conditions                              |       |      |          |                              |       | 2.0.1   | 
-| datapoints    | ERROR[1..x]     |        | Global meter error conditions                              |       |      |          |                              |       | 2.0.1   | 
+| datapoints    | ERROR[1..x]     |        | Global meter error conditions                              |       |      |          |                              |       | 2.0.1   |
+| datapoints    | QS_TX             |       | Telegrams transmitted (communication quality)         |       |       |          |                                |       | 2.0.9   |
+| datapoints    | QS_RX             |       | Telegrams received    (communication quality)         |       |       |          |                                |       | 2.0.9   |

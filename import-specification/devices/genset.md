@@ -27,3 +27,5 @@
 | datapoints    | U_AC[1..3]        | V     | Voltage AC (single phase or accumulated)              |       |       |          |                                |       | 2.0.9   |
 | datapoints    | STATE[1..x]       |       | Global genset state conditions                        |       |       |          |                                |       | 2.0.9   |
 | datapoints    | ERROR[1..x]       |       | Global genset error conditions                        |       |       |          |                                |       | 2.0.9   |
+| datapoints    | QS_TX             |       | Telegrams transmitted (communication quality)         |       |       |          |                                |       | 2.0.9   |
+| datapoints    | QS_RX             |       | Telegrams received    (communication quality)         |       |       |          |                                |       | 2.0.9   |
