@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mii version="2.0" targetNamespace="http://api.sspcdn.com/mii" xmlns="http://api.sspcdn.com/mii">
+    <datalogger>
+        <configuration xmlns="http://api.sspcdn.com/mii/datalogger/configuration">
+            <uuid>
+                <serial>DL12349876</serial>
+                <vendor>VENDOR 123</vendor>
+            </uuid>
+            <name>Data logger Nr. 1</name>
+            <firmware>1.1.3 (Build 152.721.528d)</firmware>
+            <next-scheduled-transfer>2018-04-17T19:45:00Z</next-scheduled-transfer>
+            <devices>
+                <device type="genset" id="genset-1">
+                    <uid>VendorX_ABC_1-192.168.31.38:1502-1-1</uid>
+                    <vendor>VendorX</vendor>
+                    <address>1</address>
+                    <model>ABC-Genset</model>
+                    <name>VendorX ABC-Genset 192.168.31.38:1502-1-1</name>
+                </device>
+                <device type="genset" id="genset-2">
+                    <uid>VendorX_ABC_10-192.168.31.38:1502-1-10</uid>
+                    <vendor>VendorX</vendor>
+                    <address>1</address>
+                    <model>ABC-Genset</model>
+                    <name>Genset 192.168.31.38:1502-1-10</name>
+                </device>
+                <device type="genset" id="genset-3">
+                    <uid>VendorX_ABC_11-192.168.31.38:1502-1-11</uid>
+                    <vendor>VendorX</vendor>
+                    <address>1</address>
+                    <model>ABC-Genset</model>
+                    <name>VendorX ABC-Genset 192.168.31.38:1502-1-11</name>
+                </device>
+            </devices>
+        </configuration>
+        <datapoints xmlns="http://api.sspcdn.com/mii/datalogger/datapoints">
+            <datapoint interval="900" timestamp="2018-04-17T11:45:00Z">
+                <device id="genset-1">
+                    <mv t="P_AC" v="24000"/>
+                    <mv t="E_INT" v="400"/>
+                    <mv t="Q_AC" v="2000"/>
+                    <mv t="ERROR" v="0"/>
+                    <mv t="FUEL_CONSUMPTION" v="23"/>
+                    <mv t="FUEL_EFFICIENCY" v="1000"/>
+                    <mv t="FUEL_REMAINING" v="42"/>
+                    <mv t="OT_TOTAL" v="160355"/>
+                    <mv t="QS_RX" v="136"/>
+                    <mv t="QS_TX" v="136"/>
+                </device>
+                <device id="genset-2">
+                    <mv t="P_AC" v="24000"/>
+                    <mv t="E_INT" v="400"/>
+                    <mv t="Q_AC" v="2000"/>
+                    <mv t="ERROR" v="0"/>
+                    <mv t="FUEL_CONSUMPTION" v="23"/>
+                    <mv t="FUEL_EFFICIENCY" v="1000"/>
+                    <mv t="FUEL_REMAINING" v="42"/>
+                    <mv t="OT_TOTAL" v="160355"/>
+                    <mv t="QS_RX" v="136"/>
+                    <mv t="QS_TX" v="136"/>
+                </device>
+                <device id="genset-3">
+                    <mv t="P_AC" v="24000"/>
+                    <mv t="E_INT" v="400"/>
+                    <mv t="Q_AC" v="2000"/>
+                    <mv t="ERROR" v="0"/>
+                    <mv t="FUEL_CONSUMPTION" v="23"/>
+                    <mv t="FUEL_EFFICIENCY" v="1000"/>
+                    <mv t="FUEL_REMAINING" v="42"/>
+                    <mv t="OT_TOTAL" v="160355"/>
+                    <mv t="QS_RX" v="136"/>
+                    <mv t="QS_TX" v="136"/>
+                </device>
+            </datapoint>
+            <datapoint interval="900" timestamp="2018-04-17T12:00:00Z">
+                <device id="genset-1">
+                    <mv t="P_AC" v="25000"/>
+                    <mv t="E_INT" v="416.67"/>
+                    <mv t="Q_AC" v="2000"/>
+                    <mv t="ERROR" v="0"/>
+                    <mv t="FUEL_CONSUMPTION" v="22"/>
+                    <mv t="FUEL_EFFICIENCY" v="1000"/>
+                    <mv t="FUEL_REMAINING" v="42"/>
+                    <mv t="OT_TOTAL" v="160355"/>
+                    <mv t="QS_RX" v="140"/>
+                    <mv t="QS_TX" v="140"/>
+                </device>
+                <device id="genset-2">
+                    <mv t="P_AC" v="25000"/>
+                    <mv t="E_INT" v="416.67"/>
+                    <mv t="Q_AC" v="2000"/>
+                    <mv t="ERROR" v="0"/>
+                    <mv t="FUEL_CONSUMPTION" v="22"/>
+                    <mv t="FUEL_EFFICIENCY" v="1000"/>
+                    <mv t="FUEL_REMAINING" v="42"/>
+                    <mv t="OT_TOTAL" v="160355"/>
+                    <mv t="QS_RX" v="140"/>
+                    <mv t="QS_TX" v="140"/>
+                </device>
+                <device id="genset-3">
+                    <mv t="P_AC" v="25000"/>
+                    <mv t="E_INT" v="416.67"/>
+                    <mv t="Q_AC" v="2000"/>
+                    <mv t="ERROR" v="0"/>
+                    <mv t="FUEL_CONSUMPTION" v="22"/>
+                    <mv t="FUEL_EFFICIENCY" v="1000"/>
+                    <mv t="FUEL_REMAINING" v="42"/>
+                    <mv t="OT_TOTAL" v="160355"/>
+                    <mv t="QS_RX" v="140"/>
+                    <mv t="QS_TX" v="140"/>
+                </device>
+            </datapoint>
+        </datapoints>
+    </datalogger>
+</mii>

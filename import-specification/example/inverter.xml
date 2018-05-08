@@ -10,7 +10,7 @@
       <firmware>1.1.3 (Build 152.721.528d)</firmware>
       <next-scheduled-transfer>2016-10-22T15:15:00Z</next-scheduled-transfer>
       <devices>
-        <device type="inverter" id="1">
+        <device type="inverter" id="inverter-1">
           <uid>INV216d6340</uid>
           <name>INVERTER-1-1</name>
           <address>192.168.77.10</address>
@@ -19,7 +19,7 @@
           <model>x3000</model>
           <firmware>v.1.0.34</firmware>
         </device>
-        <device type="inverter" id="2">
+        <device type="inverter" id="inverter-2">
           <uid>INV0937</uid>
           <name>INVERTER-1-2</name>
         </device>
@@ -27,7 +27,7 @@
     </configuration>
     <datapoints xmlns="http://api.sspcdn.com/mii/datalogger/datapoints">
       <datapoint interval="900" timestamp="2015-10-22T15:00:00Z">
-        <device id="1">
+        <device id="inverter-1">
           <mv t="E_INT" v="0.0767"/>
           <mv t="COS_PHI" v="56"/>
           <mv t="COS_PHI_LOAD" v="765"/>
@@ -57,7 +57,7 @@
             </sv>
           </mv>
         </device>
-        <device id="2">
+        <device id="inverter-2">
           <mv t="E_INT" v="0.0761"/>
           <mv t="COS_PHI" v="55"/>
           <mv t="COS_PHI_LOAD" v="726"/>
@@ -89,7 +89,7 @@
         </device>
       </datapoint>
       <datapoint interval="900" timestamp="2015-10-22T15:15:00Z">
-        <device id="1">
+        <device id="inverter-1">
           <mv t="E_INT" v="0.0867"/>
           <mv t="COS_PHI" v="76"/>
           <mv t="COS_PHI_LOAD" v="665"/>
@@ -119,7 +119,7 @@
             </sv>
           </mv>
         </device>
-        <device id="2">
+        <device id="inverter-2">
           <mv t="E_INT" v="0.0261"/>
           <mv t="COS_PHI" v="45"/>
           <mv t="COS_PHI_LOAD" v="226"/>

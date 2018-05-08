@@ -67,6 +67,7 @@
           <xs:enumeration value="battery"/>
           <xs:enumeration value="tracker"/>
           <xs:enumeration value="powermanagement"/>
+          <xs:enumeration value="genset"/>
         </xs:restriction>
       </xs:simpleType>
     </xs:attribute>
