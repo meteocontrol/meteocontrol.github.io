@@ -10,7 +10,7 @@
       <firmware>1.1.3 (Build 152.721.528d)</firmware>
       <next-scheduled-transfer>2016-10-22T15:15:00Z</next-scheduled-transfer>
       <devices>
-        <device type="inverter" id="1">
+        <device type="inverter" id="inverter-1">
           <uid>INV216d6340</uid>
           <name>INVERTER-1-1</name>
           <address>192.168.77.10</address>
@@ -19,23 +19,29 @@
           <model>x3000</model>
           <firmware>v.1.0.34</firmware>
         </device>
-        <device type="inverter" id="2">
+        <device type="inverter" id="inverter-2">
           <uid>INV0937</uid>
           <name>INVERTER-1-2</name>
         </device>
-        <device type="stringbox" id="3">
+        <device type="stringbox" id="stringbox-1">
           <uid>strbox-56453</uid>
         </device>
-        <device type="meteo" id="4">
+        <device type="meteo" id="meteo-1">
           <uid>Meteo-346676</uid>
         </device>
-        <device type="meter" id="5">
+        <device type="meter" id="meter-1">
           <uid>ME.12.63452</uid>
         </device>
-        <device type="battery" id="6">
+        <device type="battery" id="battery-1">
           <uid>B12-36548</uid>
         </device>
-        <device type="powermanagement" id="1">
+        <device type="genset" id="genset-1">
+          <uid>genset-192.168.31.38:1502-1-11</uid>
+          <vendor>VendorX</vendor>
+          <model>ABC-Genset</model>
+          <name>VendorX ABC-Genset</name>
+        </device>
+        <device type="powermanagement" id="pm-1">
           <uid>pm123456</uid>
           <serial>pm-123456789</serial>
           <name>Power Control Unit 1</name>
@@ -44,7 +50,7 @@
     </configuration>
     <datapoints xmlns="http://api.sspcdn.com/mii/datalogger/datapoints">
       <datapoint interval="900" timestamp="2015-10-22T15:00:00Z">
-        <device id="1">
+        <device id="inverter-1">
           <mv t="E_INT" v="0.0767"/>
           <mv t="COS_PHI" v="56"/>
           <mv t="COS_PHI_LOAD" v="765"/>
@@ -74,7 +80,7 @@
             </sv>
           </mv>
         </device>
-        <device id="2">
+        <device id="inverter-2">
           <mv t="E_INT" v="0.0761"/>
           <mv t="COS_PHI" v="55"/>
           <mv t="COS_PHI_LOAD" v="726"/>
@@ -104,7 +110,7 @@
             </sv>
           </mv>
         </device>
-        <device id="3">
+        <device id="stringbox-1">
           <mv t="I" v="2.13">
             <sv t="1" v="1.85"/>
             <sv t="2" v="0.75"/>
@@ -117,7 +123,7 @@
           </mv>
           <mv t="T" v="24.56"/>
         </device>
-        <device id="4">
+        <device id="meteo-1">
           <mv t="SRAD" v="15.7"/>
           <mv t="T" v="24.89">
             <sv t="1" v="25.1"/>
@@ -127,7 +133,7 @@
           <mv t="E_AT" v="22.45"/>
           <mv t="E_W_S" v="5.14"/>
         </device>
-        <device id="5">
+        <device id="meter-1">
           <mv t="M_AC_PF_COSPHI" v="0.3926"/>
           <mv t="M_AC_P">
             <sv t="1" v="102951.2"/>
@@ -138,7 +144,7 @@
           <mv t="M_AC_S" v="103239.7"/>
           <mv t="M_AC_F" v="49.9993"/>
         </device>
-        <device id="6">
+        <device id="battery-1">
           <mv t="B_E_IMP" v="15.7"/>
           <mv t="B_E_EXP" v="15.3926"/>
           <mv t="B_CHARGE_LEVEL" v="70.3926"/>
@@ -151,9 +157,21 @@
           <mv t="B_CAPACITY" v="99.7"/>
           <mv t="B_E_STORED" v="49.9993"/>
         </device>
+        <device id="genset-1">
+          <mv t="P_AC" v="24000"/>
+          <mv t="E_INT" v="400"/>
+          <mv t="Q_AC" v="2000"/>
+          <mv t="ERROR" v="0"/>
+          <mv t="FUEL_CONSUMPTION" v="23"/>
+          <mv t="FUEL_EFFICIENCY" v="1000"/>
+          <mv t="FUEL_REMAINING" v="42"/>
+          <mv t="OT_TOTAL" v="160355"/>
+          <mv t="QS_RX" v="136"/>
+          <mv t="QS_TX" v="136"/>
+        </device>
       </datapoint>
       <datapoint interval="900" timestamp="2015-10-22T15:15:00Z">
-        <device id="1">
+        <device id="inverter-1">
           <mv t="E_INT" v="0.0867"/>
           <mv t="COS_PHI" v="76"/>
           <mv t="COS_PHI_LOAD" v="665"/>
@@ -183,7 +201,7 @@
             </sv>
           </mv>
         </device>
-        <device id="2">
+        <device id="inverter-2">
           <mv t="E_INT" v="0.0261"/>
           <mv t="COS_PHI" v="45"/>
           <mv t="COS_PHI_LOAD" v="226"/>
@@ -213,7 +231,7 @@
             </sv>
           </mv>
         </device>
-        <device id="3">
+        <device id="stringbox-1">
           <mv t="I" v="3.13">
             <sv t="1" v="2.85"/>
             <sv t="2" v="1.75"/>
@@ -226,7 +244,7 @@
           </mv>
           <mv t="T" v="34.56"/>
         </device>
-        <device id="4">
+        <device id="meteo-1">
           <mv t="SRAD" v="35.7"/>
           <mv t="T" v="14.89">
             <sv t="1" v="15.1"/>
@@ -236,7 +254,7 @@
           <mv t="E_AT" v="12.45"/>
           <mv t="E_W_S" v="3.14"/>
         </device>
-        <device id="5">
+        <device id="meter-1">
           <mv t="M_AC_PF_COSPHI" v="0.5926"/>
           <mv t="M_AC_P">
             <sv t="1" v="202951.2"/>
@@ -247,7 +265,7 @@
           <mv t="M_AC_S" v="203239.7"/>
           <mv t="M_AC_F" v="29.9993"/>
         </device>
-        <device id="6">
+        <device id="battery-1">
           <mv t="B_E_IMP" v="35.7"/>
           <mv t="B_E_EXP" v="45.3926"/>
           <mv t="B_CHARGE_LEVEL" v="20.3926"/>
@@ -260,10 +278,22 @@
           <mv t="B_CAPACITY" v="90.7"/>
           <mv t="B_E_STORED" v="39.9993"/>
         </device>
+        <device id="genset-1">
+          <mv t="P_AC" v="25000"/>
+          <mv t="E_INT" v="416.67"/>
+          <mv t="Q_AC" v="2000"/>
+          <mv t="ERROR" v="0"/>
+          <mv t="FUEL_CONSUMPTION" v="22"/>
+          <mv t="FUEL_EFFICIENCY" v="1000"/>
+          <mv t="FUEL_REMAINING" v="42"/>
+          <mv t="OT_TOTAL" v="160355"/>
+          <mv t="QS_RX" v="140"/>
+          <mv t="QS_TX" v="140"/>
+        </device>
       </datapoint>
     </datapoints>
     <events xmlns="http://api.sspcdn.com/mii/datalogger/events">
-      <powermanagement timestamp="2015-01-14T10:11:22Z" device-id="7">
+      <powermanagement timestamp="2015-01-14T10:11:22Z" device-id="pm-1">
         <p-set-perc>78</p-set-perc>
         <p-set-gridop-perc>100</p-set-gridop-perc>
         <p-set-rpc-perc>78</p-set-rpc-perc>
