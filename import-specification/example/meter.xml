@@ -10,11 +10,11 @@
             <firmware>1.1.3 (Build 152.721.528d)</firmware>
             <next-scheduled-transfer>2017-11-27T15:15:00Z</next-scheduled-transfer>
             <devices>
-                <device type="meter" id="1212">
+                <device type="meter" id="meter-1212">
                     <uid>SN1212</uid>
                     <serial>METER14.21.24</serial>
                 </device>
-                <device type="meter" id="123">
+                <device type="meter" id="meter-123">
                     <uid>MeterStation27</uid>
                     <serial>SR2773-c</serial>
                     <model>Model X</model>
@@ -22,7 +22,7 @@
                     <vendor>meteocontrol</vendor>
                     <firmware>M1R45S.3418</firmware>
                 </device>
-                <device type="meter" id="3">
+                <device type="meter" id="meter-3">
                     <uid>ID333198</uid>
                     <address>1-25</address>
                 </device>
@@ -30,7 +30,7 @@
         </configuration>
         <datapoints xmlns="http://api.sspcdn.com/mii/datalogger/datapoints">
             <datapoint interval="900" timestamp="2017-11-27T15:00:00Z">
-                <device id="1212">
+                <device id="meter-1212">
                     <mv t="M_AC_E_EXP" v="299600.198555"/>
                     <mv t="M_AC_E_IMP" v="264931.424377"/>
                     <mv t="M_AC_F" v="49.989426"/>
@@ -61,7 +61,7 @@
                     <mv t="M_AC_U_L3L1" v="401.382194"/>
                     <mv t="STATE" v="2048"/>
                 </device>
-                <device id="123">
+                <device id="meter-123">
                     <mv t="M_AC_E_EXP" v="295569.56128"/>
                     <mv t="M_AC_E_IMP" v="115172.515365"/>
                     <mv t="M_AC_F" v="49.989532"/>
@@ -92,7 +92,7 @@
                     <mv t="M_AC_U_L3L1" v="401.465109"/>
                     <mv t="STATE" v="2048"/>
                 </device>
-                <device id="3">
+                <device id="meter-3">
                     <mv t="M_AC_E_EXP" v="125569.39"/>
                     <mv t="M_AC_E_IMP" v="115111.18"/>
                 </device>

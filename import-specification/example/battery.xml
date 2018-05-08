@@ -10,10 +10,10 @@
       <firmware>1.1.3 (Build 152.721.528d)</firmware>
       <next-scheduled-transfer>2016-10-22T15:15:00Z</next-scheduled-transfer>
       <devices>
-        <device type="battery" id="1">
+        <device type="battery" id="battery-1">
           <uid>B12-36548</uid>
         </device>
-        <device type="battery" id="2">
+        <device type="battery" id="battery-2">
           <uid>BAT34543</uid>
           <serial>SN129443633</serial>
           <name>Battery 123</name>
@@ -26,13 +26,13 @@
     </configuration>
     <datapoints xmlns="http://api.sspcdn.com/mii/datalogger/datapoints">
       <datapoint interval="900" timestamp="2015-10-22T15:00:00Z">
-        <device id="1">
+        <device id="battery-1">
           <mv t="B_E_IMP" v="28.4855"/>
           <mv t="B_E_EXP" v="1347.0919"/>
           <mv t="B_CHARGE_LEVEL" v="80.0919"/>
           <mv t="T1" v="30.118991"/>
         </device>
-        <device id="2">
+        <device id="battery-2">
           <mv t="B_E_IMP" v="456.4367"/>
           <mv t="B_E_EXP" v="1986.2375"/>
           <mv t="B_CHARGE_LEVEL" v="95.12"/>
