@@ -1048,19 +1048,26 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <tr>
 <td>from <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
-<td>Start time</td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>to <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
-<td>End time (max interval is 24 hours and for the current day 1 hour)</td>
+<td>End date</td>
 </tr>
 <tr>
 <td>format <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
 </tbody></table>
+
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
@@ -1087,7 +1094,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -1479,7 +1486,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -1864,7 +1871,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -2339,10 +2346,12 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
+
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong>Response</strong></p>
 
@@ -2470,7 +2479,14 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
 </tbody></table>
+
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
@@ -2497,7 +2513,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -2920,10 +2936,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
+
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong>Response</strong></p>
 
@@ -3043,7 +3061,14 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
 </tbody></table>
+
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
@@ -3070,7 +3095,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -3487,10 +3512,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
+
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong>Response</strong></p>
 
@@ -3610,7 +3637,14 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
 </tbody></table>
+
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
@@ -3637,7 +3671,7 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -4058,10 +4092,12 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
+
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong>Response</strong></p>
 
@@ -4237,7 +4273,14 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
 </tbody></table>
+
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
@@ -4264,7 +4307,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -4687,10 +4730,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
+
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong>Response</strong></p>
 
@@ -4846,7 +4891,14 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
 </tbody></table>
+
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
@@ -4873,7 +4925,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code></td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -7118,6 +7170,14 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <pre class="highlight shell"><code><span class="o">{</span>
   <span class="s2">"data"</span>: <span class="o">[</span>
     <span class="o">{</span>
+      <span class="s2">"timestamp"</span>: <span class="s2">"2017-08-31T01:41:59+00:00"</span>,
+      <span class="s2">"createdAt"</span>: <span class="s2">"2017-08-31T01:41:59+00:00"</span>,
+      <span class="s2">"action"</span>: <span class="s2">"created"</span>,
+      <span class="s2">"personInCharge"</span>: <span class="s2">"userB"</span>,
+      <span class="s2">"from"</span>: null,
+      <span class="s2">"to"</span>: <span class="s2">"userB"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
       <span class="s2">"timestamp"</span>: <span class="s2">"2017-08-31T01:42:03+00:00"</span>,
       <span class="s2">"createdAt"</span>: <span class="s2">"2017-08-31T01:42:03+00:00"</span>,
       <span class="s2">"action"</span>: <span class="s2">"statusChanged"</span>,
@@ -7146,24 +7206,30 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var TicketHistory $histories */</span>
-    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T01:42:03+00:00
-</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T01:42:03+00:00
-</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">action</span><span class="p">;</span> <span class="c1">// statusChanged
+    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T01:41:59+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T01:41:59+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">action</span><span class="p">;</span> <span class="c1">// created
 </span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">personInCharge</span><span class="p">;</span> <span class="c1">// userB
-</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">;</span> <span class="c1">// open
-</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">;</span> <span class="c1">// inProgress
-</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T02:18:51+00:00
-</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T02:18:51+00:00
-</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">action</span><span class="p">;</span> <span class="c1">// assigneeChanged
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">;</span> <span class="c1">// null
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">;</span> <span class="c1">// userB
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T01:42:03+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T01:42:03+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">action</span><span class="p">;</span> <span class="c1">// statusChanged
 </span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">personInCharge</span><span class="p">;</span> <span class="c1">// userB
-</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">;</span> <span class="c1">// null
-</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">;</span> <span class="c1">// userA
-</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T02:19:41+00:00
-</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T02:19:41+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">;</span> <span class="c1">// open
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">;</span> <span class="c1">// inProgress
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T02:18:51+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T02:18:51+00:00
 </span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">action</span><span class="p">;</span> <span class="c1">// assigneeChanged
 </span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">personInCharge</span><span class="p">;</span> <span class="c1">// userB
-</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">;</span> <span class="c1">// userA
-</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">;</span> <span class="c1">// userB
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">;</span> <span class="c1">// null
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">;</span> <span class="c1">// userA
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T02:19:41+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span> <span class="c1">// 2017-08-31T02:19:41+00:00
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">action</span><span class="p">;</span> <span class="c1">// assigneeChanged
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">personInCharge</span><span class="p">;</span> <span class="c1">// userB
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">;</span> <span class="c1">// userA
+</span>    <span class="k">echo</span> <span class="nv">$histories</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">;</span> <span class="c1">// userB
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/histories</code></p>
@@ -7208,7 +7274,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>action <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>(<code class="prettyprint">statusChanged</code>&#124;<code class="prettyprint">assigneeChanged</code>)</td>
+<td>(<code class="prettyprint">created</code>&#124;<code class="prettyprint">statusChanged</code>&#124;<code class="prettyprint">assigneeChanged</code>)</td>
 </tr>
 <tr>
 <td>personInCharge</td>
