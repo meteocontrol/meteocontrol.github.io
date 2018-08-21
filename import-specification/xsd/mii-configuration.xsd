@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:c="http://api.sspcdn.com/mii/datalogger/configuration" elementFormDefault="qualified" targetNamespace="http://api.sspcdn.com/mii/datalogger/configuration" >
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:c="http://api.sspcdn.com/mii/datalogger/configuration"
+    elementFormDefault="qualified"
+    targetNamespace="http://api.sspcdn.com/mii/datalogger/configuration">
   <xs:element name="uid" type="c:NonEmptyString"/>
   <xs:element name="serial" type="c:NonEmptyString"/>
   <xs:element name="vendor" type="c:NonEmptyString"/>
@@ -18,7 +21,7 @@
   <xs:element name="name" type="xs:string"/>
   <xs:element name="firmware" type="xs:string"/>
   <xs:element name="next-scheduled-transfer" type="xs:dateTime"/>
-  <xs:element name="configuration" type="c:conf-configuration" />
+  <xs:element name="configuration" type="c:conf-configuration"/>
   <xs:complexType name="conf-configuration">
     <xs:all>
       <xs:element ref="c:uuid"/>
@@ -31,20 +34,20 @@
       <xs:element ref="c:devices" minOccurs="0"/>
     </xs:all>
   </xs:complexType>
-  <xs:element name="uuid" type="c:conf-uuid" />
+  <xs:element name="uuid" type="c:conf-uuid"/>
   <xs:complexType name="conf-uuid">
     <xs:all>
       <xs:element ref="c:serial"/>
       <xs:element ref="c:vendor"/>
     </xs:all>
   </xs:complexType>
-  <xs:element name="devices" type="c:conf-devices" />
+  <xs:element name="devices" type="c:conf-devices"/>
   <xs:complexType name="conf-devices">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" ref="c:device"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="device" type="c:conf-device" />
+  <xs:element name="device" type="c:conf-device"/>
   <xs:complexType name="conf-device">
     <xs:all>
       <xs:element ref="c:uid"/>
@@ -55,8 +58,10 @@
       <xs:element ref="c:model" minOccurs="0"/>
       <xs:element ref="c:firmware" minOccurs="0"/>
       <xs:element ref="c:power" minOccurs="0"/>
+      <xs:element name="interface-type" type="c:conf-interface-types" minOccurs="0"/>
+      <xs:element name="interface-address" type="xs:string" minOccurs="0"/>
     </xs:all>
-    <xs:attribute name="id" use="required" type="xs:integer"/>
+    <xs:attribute name="id" use="required" type="xs:string"/>
     <xs:attribute name="type" use="required">
       <xs:simpleType>
         <xs:restriction base="xs:string">
@@ -68,11 +73,12 @@
           <xs:enumeration value="tracker"/>
           <xs:enumeration value="powermanagement"/>
           <xs:enumeration value="genset"/>
+          <xs:enumeration value="datalogger"/>
         </xs:restriction>
       </xs:simpleType>
     </xs:attribute>
   </xs:complexType>
-  <xs:element name="mv" type="c:conf-mv" />
+  <xs:element name="mv" type="c:conf-mv"/>
   <xs:complexType name="conf-mv">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" ref="c:sv"/>
@@ -83,7 +89,7 @@
     <xs:attribute name="name" type="xs:string"/>
     <xs:attribute name="uid" type="xs:string"/>
   </xs:complexType>
-  <xs:element name="sv" type="c:conf-sv" />
+  <xs:element name="sv" type="c:conf-sv"/>
   <xs:complexType name="conf-sv">
     <xs:attribute name="t" use="required" type="xs:integer"/>
     <xs:attribute name="u" type="xs:string"/>
@@ -94,7 +100,15 @@
   <xs:simpleType name="NonEmptyString">
     <xs:restriction base="xs:string">
       <xs:minLength value="1"/>
-      <xs:pattern value=".*[^\s].*" />
+      <xs:pattern value=".*[^\s].*"/>
     </xs:restriction>
   </xs:simpleType>
+  <xs:simpleType name="conf-interface-types">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RS485"/>
+      <xs:enumeration value="ETHERNET"/>
+      <xs:enumeration value="PIN"/>
+    </xs:restriction>
+  </xs:simpleType>
+
 </xs:schema>
