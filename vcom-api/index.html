@@ -5877,7 +5877,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="s2">"priority"</span>: <span class="s2">"normal"</span>,
     <span class="s2">"includeInReports"</span>: <span class="s2">"no"</span>,
     <span class="s2">"fieldService"</span>: <span class="nb">true</span>,
-    <span class="s2">"severity"</span>: <span class="s2">"normal"</span>
+    <span class="s2">"severity"</span>: <span class="s2">"normal"</span>,
+    <span class="s2">"outage"</span>: null
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -5901,6 +5902,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">includeInReports</span><span class="p">;</span><span class="c1">// no
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">fieldService</span><span class="p">;</span><span class="c1">// true
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">severity</span><span class="p">;</span><span class="c1">// normal
+</span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">outage</span><span class="p">;</span><span class="c1">// null
 </span></code></pre>
 
 <p>¹ Customized statuses available. Please reach out to our sales representatives for more information.</p>
@@ -6024,9 +6026,50 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>(<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">critical</code>&#124;<code class="prettyprint">null</code>)</td>
 <td></td>
 </tr>
+<tr>
+<td>outage <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">Outage</code> &#124; <code class="prettyprint">null</code></td>
+<td>Outage information, if available</td>
+</tr>
 </tbody></table>
 
 <p>¹ Customized statuses available. Please reach out to our sales representatives for more information.</p>
+
+<p><em>Outage object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>startedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Start of outage</td>
+</tr>
+<tr>
+<td>endedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code> &#124; <code class="prettyprint">null</code></td>
+<td>End of outage or <code class="prettyprint">null</code> if undefined</td>
+</tr>
+<tr>
+<td>affectedPower <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">float</code></td>
+<td>Affected power in kW</td>
+</tr>
+<tr>
+<td>shouldInfluenceAvailability <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">bool</code></td>
+<td><code class="prettyprint">true</code> if outage should affect availability</td>
+</tr>
+<tr>
+<td>shouldInfluencePr <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">bool</code></td>
+<td><code class="prettyprint">true</code> if outage should affect performance ratio</td>
+</tr>
+</tbody></table>
 
 <h3 class="toc-ignore">Update a ticket</h3>
 
