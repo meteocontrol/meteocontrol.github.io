@@ -6868,21 +6868,25 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
   <span class="s2">"data"</span>:[
     <span class="o">{</span>
       <span class="s2">"attachmentId"</span>: 1234,
-      <span class="s2">"filename"</span>: <span class="s2">"attachment1.jpg"</span>
+      <span class="s2">"filename"</span>: <span class="s2">"attachment1.jpg"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"description 1"</span>
     <span class="o">}</span>,
     <span class="o">{</span>
       <span class="s2">"attachmentId"</span>: 5678,
-      <span class="s2">"filename"</span>: <span class="s2">"attachment2.jpg
-    }
-  ]
-}
-</span></code></pre>
+      <span class="s2">"filename"</span>: <span class="s2">"attachment2.jpg"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"description 2"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var array $attachments */</span>
     <span class="k">echo</span> <span class="nv">$attachments</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'attachmentId'</span><span class="p">];</span><span class="c1">// 1234
 </span>    <span class="k">echo</span> <span class="nv">$attachments</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'filename'</span><span class="p">];</span><span class="c1">// "attachment1.jpg"
+</span>    <span class="k">echo</span> <span class="nv">$attachments</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'description'</span><span class="p">];</span><span class="c1">// "description 1"
 </span>    <span class="k">echo</span> <span class="nv">$attachments</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'attachmentId'</span><span class="p">];</span><span class="c1">// 5678
 </span>    <span class="k">echo</span> <span class="nv">$attachments</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'filename'</span><span class="p">];</span><span class="c1">// "attachment2.jpg"
+</span>    <span class="k">echo</span> <span class="nv">$attachments</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'description'</span><span class="p">];</span><span class="c1">// "description 2"
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/attachments</code></p>
@@ -6923,6 +6927,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>filename <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>File name</td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Description</td>
 </tr>
 </tbody></table>
 
