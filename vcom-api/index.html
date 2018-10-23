@@ -1003,6 +1003,46 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
         <span class="s2">"T1"</span>: 143.13900000000001
       <span class="o">}</span>
     <span class="o">}</span>
+  <span class="o">}</span>,
+  <span class="s2">"ppcs"</span>: <span class="o">{</span>
+    <span class="s2">"2016-09-01T10:15:00+02:00"</span>: <span class="o">{</span>
+      <span class="s2">"163784"</span>: <span class="o">{</span>
+        <span class="s2">"PPC_P_AC_INV"</span>: 72.200000000000003,
+        <span class="s2">"PPC_P_AC_AVAIL"</span>: 37.450000000000003,
+        <span class="s2">"PPC_Q_AC_AVAIL"</span>: 32.299999999999997,
+        <span class="s2">"PPC_P_SET_GRIDOP_REL"</span>: 52.299999999999997,
+        <span class="s2">"PPC_P_SET_GRIDOP_ABS"</span>: 85.299999999999997,
+        <span class="s2">"PPC_P_SET_RPC_REL"</span>: 1.3999999999999999,
+        <span class="s2">"PPC_P_SET_REL"</span>: 77.400000000000006,
+        <span class="s2">"PPC_PF_SET"</span>: null,
+        <span class="s2">"PPC_Q_SET_ABS"</span>: 85.900000000000006,
+        <span class="s2">"PPC_P_AC_GRIDOP_MAX"</span>: 42.770000000000003,
+        <span class="s2">"PPC_P_AC_RPC_MAX"</span>: 35.140000000000001,
+        <span class="s2">"PPC_P_AC"</span>: 42.43,
+        <span class="s2">"PPC_Q_AC"</span>: 91.590000000000003,
+        <span class="s2">"PPC_PF"</span>: 8.3000000000000007,
+        <span class="s2">"PPC_Q_SET_REL"</span>: 39.100000000000001
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="s2">"2016-09-01T10:30:00+02:00"</span>: <span class="o">{</span>
+      <span class="s2">"163784"</span>: <span class="o">{</span>
+        <span class="s2">"PPC_P_AC_INV"</span>: 17.059999999999999,
+        <span class="s2">"PPC_P_AC_AVAIL"</span>: 47.579999999999998,
+        <span class="s2">"PPC_Q_AC_AVAIL"</span>: 53.100000000000001,
+        <span class="s2">"PPC_P_SET_GRIDOP_REL"</span>: 13.6,
+        <span class="s2">"PPC_P_SET_GRIDOP_ABS"</span>: 90,
+        <span class="s2">"PPC_P_SET_RPC_REL"</span>: 85.400000000000006,
+        <span class="s2">"PPC_P_SET_REL"</span>: 3.2999999999999998,
+        <span class="s2">"PPC_PF_SET"</span>: 1.2,
+        <span class="s2">"PPC_Q_SET_ABS"</span>: 65.400000000000006,
+        <span class="s2">"PPC_P_AC_GRIDOP_MAX"</span>: 23.960000000000001,
+        <span class="s2">"PPC_P_AC_RPC_MAX"</span>: 76.609999999999999,
+        <span class="s2">"PPC_P_AC"</span>: 62.740000000000002,
+        <span class="s2">"PPC_Q_AC"</span>: 99.480000000000004,
+        <span class="s2">"PPC_PF"</span>: 7.2000000000000002,
+        <span class="s2">"PPC_Q_SET_REL"</span>: null
+      <span class="o">}</span>
+    <span class="o">}</span>
   <span class="o">}</span>
 <span class="o">}</span>
 
@@ -1343,7 +1383,14 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 <td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
+<tr>
+<td>includeInterval <code class="prettyprint">optional</code>*</td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>&#124;<code class="prettyprint">1</code></td>
+<td>Defaults to <code class="prettyprint">0</code></td>
+</tr>
 </tbody></table>
+
+<p>* Only for interval resolution  </p>
 
 <p><strong>Response</strong></p>
 
@@ -1365,6 +1412,11 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 <td>value <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
 <td>Value</td>
+</tr>
+<tr>
+<td>interval <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Interval, in seconds</td>
 </tr>
 </tbody></table>
 
@@ -2349,9 +2401,15 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
+<tr>
+<td>includeInterval <code class="prettyprint">optional</code>**</td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>&#124;<code class="prettyprint">1</code></td>
+<td>Defaults to <code class="prettyprint">0</code></td>
+</tr>
 </tbody></table>
 
-<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a><br>
+** Only for interval resolution  </p>
 
 <p><strong>Response</strong></p>
 
@@ -2939,9 +2997,15 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
+<tr>
+<td>includeInterval <code class="prettyprint">optional</code>**</td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>&#124;<code class="prettyprint">1</code></td>
+<td>Defaults to <code class="prettyprint">0</code></td>
+</tr>
 </tbody></table>
 
-<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a><br>
+** Only for interval resolution  </p>
 
 <p><strong>Response</strong></p>
 
@@ -3515,9 +3579,15 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
+<tr>
+<td>includeInterval <code class="prettyprint">optional</code>**</td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>&#124;<code class="prettyprint">1</code></td>
+<td>Defaults to <code class="prettyprint">0</code></td>
+</tr>
 </tbody></table>
 
-<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a><br>
+** Only for interval resolution  </p>
 
 <p><strong>Response</strong></p>
 
@@ -4095,9 +4165,15 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
+<tr>
+<td>includeInterval <code class="prettyprint">optional</code>**</td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>&#124;<code class="prettyprint">1</code></td>
+<td>Defaults to <code class="prettyprint">0</code></td>
+</tr>
 </tbody></table>
 
-<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a><br>
+** Only for interval resolution  </p>
 
 <p><strong>Response</strong></p>
 
@@ -4733,9 +4809,15 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
+<tr>
+<td>includeInterval <code class="prettyprint">optional</code>**</td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>&#124;<code class="prettyprint">1</code></td>
+<td>Defaults to <code class="prettyprint">0</code></td>
+</tr>
 </tbody></table>
 
-<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a><br>
+** Only for interval resolution  </p>
 
 <p><strong>Response</strong></p>
 
@@ -4755,6 +4837,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>value <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
 <td>Value</td>
+</tr>
+<tr>
+<td>interval <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Interval, in seconds</td>
 </tr>
 </tbody></table>
 
@@ -4905,6 +4992,656 @@ For response example in CSV format, please check <a href="https://github.com/met
 <p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code>
 <br>
 For response example in CSV format, please check <a href="https://github.com/meteocontrol/vcom-api-client/tree/master/tests/unit/lib/systems/responses/bulkCsv/getBatteryBulk.csv">HERE</a>.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>delimiter</td>
+<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
+</tr>
+<tr>
+<td>lineBreak</td>
+<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
+</tr>
+<tr>
+<td>decimalPoint</td>
+<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
+<td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
+</tr>
+<tr>
+<td>emptyPlaceholder</td>
+<td><code class="prettyprint">text</code>, empty string by default, any text accepted</td>
+<td>The place holder for empty value</td>
+</tr>
+<tr>
+<td>precision</td>
+<td><code class="prettyprint">integer</code>, accepts from 0 to 4</td>
+<td>The decimal precision, defaults to <code class="prettyprint">2</code></td>
+</tr>
+</tbody></table>
+
+          <h4 id="power-plant-controllers">Power plant controllers</h4>
+
+<h4 class="toc-ignore">Get all power plant controllers</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/powerPlantControllers'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var PowerPlantController[] $powerPlantControllers */</span>
+    <span class="nv">$powerPlantControllers</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">powerPlantControllers</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+    <span class="s2">"data"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"id"</span>: <span class="s2">"163784"</span>,
+            <span class="s2">"name"</span>: <span class="s2">"ppc-5bbc370ddb808"</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var PowerPlantController[] $powerPlantControllers */</span>
+    <span class="k">echo</span> <span class="nv">$powerPlantControllers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 163784
+</span>    <span class="k">echo</span> <span class="nv">$powerPlantControllers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// ppc-5bbc370ddb808
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/powerPlantControllers</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Power plant controller device-ID</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Custom name</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single power plant controller</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/powerPlantControllers/163784'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var PowerPlantControllerDetail $powerPlantController */</span>
+    <span class="nv">$powerPlantController</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">powerPlantController</span><span class="p">(</span><span class="s1">'163784'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: <span class="s2">"163784"</span>,
+    <span class="s2">"name"</span>: <span class="s2">"ppc-5bbc370ddb808"</span>,
+    <span class="s2">"address"</span>: <span class="s2">"ppc-5bbc370ddb808"</span>,
+    <span class="s2">"firmware"</span>: null
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var PowerPlantControllerDetail $powerPlantController */</span>
+    <span class="k">echo</span> <span class="nv">$powerPlantController</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 163784
+</span>    <span class="k">echo</span> <span class="nv">$powerPlantController</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// ppc-5bbc370ddb808
+</span>    <span class="k">echo</span> <span class="nv">$powerPlantController</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">;</span><span class="c1">// ppc-5bbc370ddb808
+</span>    <span class="k">echo</span> <span class="nv">$powerPlantController</span><span class="o">-&gt;</span><span class="na">firmware</span><span class="p">;</span><span class="c1">// null
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/powerPlantControllers/&lt;deviceId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Power plant controller device-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Power plant controller device-ID</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Custom name</td>
+</tr>
+<tr>
+<td>address <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Address</td>
+</tr>
+<tr>
+<td>firmware <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td>Firmware</td>
+</tr>
+</tbody></table>
+
+          <h5 id="abbreviations">Abbreviations</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/powerPlantControllers/163784/abbreviations'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var string[] $abbreviations */</span>
+    <span class="nv">$abbreviations</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">powerPlantController</span><span class="p">(</span><span class="s1">'163784'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviations</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="s2">"PPC_P_AC"</span>,
+    <span class="s2">"PPC_P_AC_AVAIL"</span>,
+    <span class="s2">"PPC_P_AC_GRIDOP_MAX"</span>,
+    <span class="s2">"PPC_P_AC_INV"</span>,
+    <span class="s2">"PPC_P_AC_RPC_MAX"</span>,
+    <span class="s2">"PPC_P_SET_GRIDOP_ABS"</span>,
+    <span class="s2">"PPC_P_SET_GRIDOP_REL"</span>,
+    <span class="s2">"PPC_P_SET_REL"</span>,
+    <span class="s2">"PPC_P_SET_RPC_REL"</span>,
+    <span class="s2">"PPC_PF"</span>,
+    <span class="s2">"PPC_PF_SET"</span>,
+    <span class="s2">"PPC_Q_AC"</span>,
+    <span class="s2">"PPC_Q_AC_AVAIL"</span>,
+    <span class="s2">"PPC_Q_SET_ABS"</span>,
+    <span class="s2">"PPC_Q_SET_REL"</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var string[] $abbreviations */</span>
+    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="c1">// PPC_P_AC
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span><span class="c1">// PPC_P_AC_AVAIL
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="c1">// PPC_P_AC_GRIDOP_MAX
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="c1">// PPC_P_AC_INV
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span><span class="c1">// PPC_P_AC_RPC_MAX
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span><span class="c1">// PPC_P_SET_GRIDOP_ABS
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span><span class="c1">// PPC_P_SET_GRIDOP_REL
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">7</span><span class="p">];</span><span class="c1">// PPC_P_SET_REL
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span><span class="c1">// PPC_P_SET_RPC_REL
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">9</span><span class="p">];</span><span class="c1">// PPC_PF
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span><span class="c1">// PPC_PF_SET
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">11</span><span class="p">];</span><span class="c1">// PPC_Q_AC
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span><span class="c1">// PPC_Q_AC_AVAIL
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">13</span><span class="p">];</span><span class="c1">// PPC_Q_SET_ABS
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">14</span><span class="p">];</span><span class="c1">// PPC_Q_SET_REL
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/powerPlantControllers/&lt;deviceId&gt;/abbreviations</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Power plant controller device-ID</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single abbreviation</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/powerPlantControllers/145146/abbreviations/PPC_P_AC'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var Abbreviation $abbreviations */</span>
+    <span class="nv">$abbreviation</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">powerPlantController</span><span class="p">(</span><span class="s1">'145146'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'PPC_P_AC'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"aggregation"</span>: <span class="s2">"AVG"</span>,
+    <span class="s2">"precision"</span>: 3,
+    <span class="s2">"description"</span>: <span class="s2">"Actual active power"</span>,
+    <span class="s2">"unit"</span>: <span class="s2">"W"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var Abbreviation $abbreviation */</span>
+    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">aggregation</span><span class="p">;</span><span class="c1">// AVG
+</span>    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">precision</span><span class="p">;</span><span class="c1">// 3
+</span>    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// Actual active power
+</span>    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">unit</span><span class="p">;</span><span class="c1">// W
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/powerPlantControllers/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;</code></p>
+
+<p>Returns an information object of an abbreviation.</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Power plant controller device-ID</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Abbreviation-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>Information object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aggregation <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
+<td>Aggregation method when requesting other resolutions than interval</td>
+</tr>
+<tr>
+<td>precision <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Number of decimal places</td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Description</td>
+</tr>
+<tr>
+<td>unit <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Unit</td>
+</tr>
+</tbody></table>
+
+          <h6 id="measurements">Measurements</h6>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/powerPlantControllers/163784/abbreviations/PPC_P_AC/measurements?from=2016-01-01T11:00:00+02:00&amp;to=2016-01-01T11:15:00+02:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-01-01T11:15:00+02:00'</span><span class="p">));</span>
+     <span class="sd">/** @var DevicesMeasurement $measurements */</span>
+    <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">powerPlantController</span><span class="p">(</span><span class="s1">'163784'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'PPC_P_AC'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"163784"</span>: <span class="o">{</span>
+      <span class="s2">"PPC_P_AC"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+          <span class="s2">"timestamp"</span>: <span class="s2">"2016-01-01T11:00:00+02:00"</span>,
+          <span class="s2">"value"</span>: 41.73
+        <span class="o">}</span>,
+        <span class="o">{</span>
+          <span class="s2">"timestamp"</span>: <span class="s2">"2016-01-01T11:15:00+02:00"</span>,
+          <span class="s2">"value"</span>: 60.34
+        <span class="o">}</span>
+      <span class="o">]</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var DevicesMeasurement $measurements */</span>
+    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"163784"</span><span class="p">][</span><span class="s1">'PPC_P_AC'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T11:00:00+02:00
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"163784"</span><span class="p">][</span><span class="s1">'PPC_P_AC'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 41.73
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"163784"</span><span class="p">][</span><span class="s1">'PPC_P_AC'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T11:15:00+02:00
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"163784"</span><span class="p">][</span><span class="s1">'PPC_P_AC'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 60.34
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/powerPlantControllers/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Can contain up to 10 comma delimited power plant controller device ids</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Can contain up to 5 comma delimited abbreviation ids</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
+</tbody></table>
+
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>value <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Value</td>
+</tr>
+</tbody></table>
+
+          <h5 id="bulk">Bulk</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/powerPlantControllers/bulk/measurements?from=2016-10-29T18:00:00+02:00&amp;to=2016-10-29T18:15:00+02:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-10-29T18:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-10-29T18:15:00+02:00'</span><span class="p">));</span>
+     <span class="sd">/** @var MeasurementsBulkReader $bulkReader */</span>
+    <span class="nv">$bulkData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">powerPlantControllers</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">bulk</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"2016-10-29T18:00:00+02:00"</span>: <span class="o">{</span>
+    <span class="s2">"163784"</span>: <span class="o">{</span>
+      <span class="s2">"PPC_P_AC_INV"</span>: 52.350000000000001,
+      <span class="s2">"PPC_P_AC_AVAIL"</span>: 79.859999999999999,
+      <span class="s2">"PPC_Q_AC_AVAIL"</span>: 13.5,
+      <span class="s2">"PPC_P_SET_GRIDOP_REL"</span>: 77.599999999999994,
+      <span class="s2">"PPC_P_SET_GRIDOP_ABS"</span>: 92.299999999999997,
+      <span class="s2">"PPC_P_SET_RPC_REL"</span>: 38.399999999999999,
+      <span class="s2">"PPC_P_SET_REL"</span>: 52.899999999999999,
+      <span class="s2">"PPC_PF_SET"</span>: null,
+      <span class="s2">"PPC_Q_SET_ABS"</span>: 83.599999999999994,
+      <span class="s2">"PPC_P_AC_GRIDOP_MAX"</span>: 55.350000000000001,
+      <span class="s2">"PPC_P_AC_RPC_MAX"</span>: 88.170000000000002,
+      <span class="s2">"PPC_P_AC"</span>: 70.650000000000006,
+      <span class="s2">"PPC_Q_AC"</span>: 26.73,
+      <span class="s2">"PPC_PF"</span>: 4.2000000000000002,
+      <span class="s2">"PPC_Q_SET_REL"</span>: 37
+    <span class="o">}</span>
+  <span class="o">}</span>,
+  <span class="s2">"2016-10-29T18:05:00+02:00"</span>: <span class="o">{</span>
+    <span class="s2">"163784"</span>: <span class="o">{</span>
+      <span class="s2">"PPC_P_AC_INV"</span>: 72.200000000000003,
+      <span class="s2">"PPC_P_AC_AVAIL"</span>: 37.450000000000003,
+      <span class="s2">"PPC_Q_AC_AVAIL"</span>: 32.299999999999997,
+      <span class="s2">"PPC_P_SET_GRIDOP_REL"</span>: 52.299999999999997,
+      <span class="s2">"PPC_P_SET_GRIDOP_ABS"</span>: 85.299999999999997,
+      <span class="s2">"PPC_P_SET_RPC_REL"</span>: 1.3999999999999999,
+      <span class="s2">"PPC_P_SET_REL"</span>: 77.400000000000006,
+      <span class="s2">"PPC_PF_SET"</span>: null,
+      <span class="s2">"PPC_Q_SET_ABS"</span>: 85.900000000000006,
+      <span class="s2">"PPC_P_AC_GRIDOP_MAX"</span>: 42.770000000000003,
+      <span class="s2">"PPC_P_AC_RPC_MAX"</span>: 35.140000000000001,
+      <span class="s2">"PPC_P_AC"</span>: 42.43,
+      <span class="s2">"PPC_Q_AC"</span>: 91.590000000000003,
+      <span class="s2">"PPC_PF"</span>: 8.3000000000000007,
+      <span class="s2">"PPC_Q_SET_REL"</span>: 39.100000000000001
+    <span class="o">}</span>
+  <span class="o">}</span>,
+  <span class="s2">"2016-10-29T18:10:00+02:00"</span>: <span class="o">{</span>
+    <span class="s2">"163784"</span>: <span class="o">{</span>
+      <span class="s2">"PPC_P_AC_INV"</span>: 28.780000000000001,
+      <span class="s2">"PPC_P_AC_AVAIL"</span>: 23.989999999999998,
+      <span class="s2">"PPC_Q_AC_AVAIL"</span>: 52.100000000000001,
+      <span class="s2">"PPC_P_SET_GRIDOP_REL"</span>: 50.299999999999997,
+      <span class="s2">"PPC_P_SET_GRIDOP_ABS"</span>: 91.5,
+      <span class="s2">"PPC_P_SET_RPC_REL"</span>: 56.700000000000003,
+      <span class="s2">"PPC_P_SET_REL"</span>: 4.2000000000000002,
+      <span class="s2">"PPC_PF_SET"</span>: null,
+      <span class="s2">"PPC_Q_SET_ABS"</span>: 33.600000000000001,
+      <span class="s2">"PPC_P_AC_GRIDOP_MAX"</span>: 62.939999999999998,
+      <span class="s2">"PPC_P_AC_RPC_MAX"</span>: 60.119999999999997,
+      <span class="s2">"PPC_P_AC"</span>: 12.720000000000001,
+      <span class="s2">"PPC_Q_AC"</span>: 57.43,
+      <span class="s2">"PPC_PF"</span>: 1.3999999999999999,
+      <span class="s2">"PPC_Q_SET_REL"</span>: 22.100000000000001
+    <span class="o">}</span>
+  <span class="o">}</span>,
+  <span class="s2">"2016-10-29T18:15:00+02:00"</span>: <span class="o">{</span>
+    <span class="s2">"163784"</span>: <span class="o">{</span>
+      <span class="s2">"PPC_P_AC_INV"</span>: 17.059999999999999,
+      <span class="s2">"PPC_P_AC_AVAIL"</span>: 47.579999999999998,
+      <span class="s2">"PPC_Q_AC_AVAIL"</span>: 53.100000000000001,
+      <span class="s2">"PPC_P_SET_GRIDOP_REL"</span>: 13.6,
+      <span class="s2">"PPC_P_SET_GRIDOP_ABS"</span>: 90,
+      <span class="s2">"PPC_P_SET_RPC_REL"</span>: 85.400000000000006,
+      <span class="s2">"PPC_P_SET_REL"</span>: 3.2999999999999998,
+      <span class="s2">"PPC_PF_SET"</span>: 1.2,
+      <span class="s2">"PPC_Q_SET_ABS"</span>: 65.400000000000006,
+      <span class="s2">"PPC_P_AC_GRIDOP_MAX"</span>: 23.960000000000001,
+      <span class="s2">"PPC_P_AC_RPC_MAX"</span>: 76.609999999999999,
+      <span class="s2">"PPC_P_AC"</span>: 62.740000000000002,
+      <span class="s2">"PPC_Q_AC"</span>: 99.480000000000004,
+      <span class="s2">"PPC_PF"</span>: 7.2000000000000002,
+      <span class="s2">"PPC_Q_SET_REL"</span>: null
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var array $bulkDataArray */</span>
+    <span class="nv">$bulkDataArray</span> <span class="o">=</span> <span class="nv">$bulkData</span><span class="o">-&gt;</span><span class="na">getAsArray</span><span class="p">();</span>
+    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-10-29T18:00:00+02:00'</span><span class="p">][</span><span class="s1">'163784'</span><span class="p">][</span><span class="s1">'PPC_P_AC_INV'</span><span class="p">];</span><span class="c1">// 52.350000000000001
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-10-29T18:00:00+02:00'</span><span class="p">][</span><span class="s1">'163784'</span><span class="p">][</span><span class="s1">'PPC_Q_SET_ABS'</span><span class="p">];</span><span class="c1">// 83.599999999999994
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-10-29T18:10:00+02:00'</span><span class="p">][</span><span class="s1">'163784'</span><span class="p">][</span><span class="s1">'PPC_P_AC_INV'</span><span class="p">];</span><span class="c1">// 28.780000000000001
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-10-29T18:10:00+02:00'</span><span class="p">][</span><span class="s1">'163784'</span><span class="p">][</span><span class="s1">'PPC_Q_SET_ABS'</span><span class="p">];</span><span class="c1">// 33.600000000000001
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/powerPlantControllers/bulk/measurements</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>format <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td>Export format, defaults to <code class="prettyprint">json</code></td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">minute*</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
+</tbody></table>
+
+<p>* minute resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+
+<p><strong><em>Options for CSV format</em></strong></p>
+
+<p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code>
+<br>
+For response example in CSV format, please check <a href="https://github.com/meteocontrol/vcom-api-client/tree/master/tests/unit/lib/systems/responses/bulkCsv/getPowerPlantControllerBulk.csv">HERE</a>.</p>
 
 <table><thead>
 <tr>
