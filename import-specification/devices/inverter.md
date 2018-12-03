@@ -1,45 +1,46 @@
-| Field Type    | Name Attribute     | Unit | Description                                   | Value    | Type | Required | Example                         | Notes | Version |
-|---------------|--------------------|------|-----------------------------------------------|----------|------|----------|---------------------------------|-------|---------|
-| configuration | id                 |      | Reference id for measurement data node        |          |      | x        | <device id=“1“ type=“inverter“> |       | 2.0.1   |
-| configuration | type               |      | device type                                   | inverter |      | x        | <device id=“1“ type=“inverter“> |       | 2.0.1   |
-| configuration | uid                |      | device unique identifier                      |          |      | x        | <uid>INV12345</uid>             |       | 2.0.1   |
-| configuration | name               |      | device name                                   |          |      |          | <name>Inverter A</name>         |       | 2.0.1   |
-| configuration | serial             |      | device serial                                 |          |      |          | <serial>INV11.22.33</serial>    |       | 2.0.1   |
-| configuration | vendor             |      | device vendor                                 |          |      |          | <vendor>vendor 123</vendor>     |       | 2.0.1   |
-| configuration | model              |      | device model                                  |          |      |          | <model></model>                 |       | 2.0.1   |
-| configuration | firmware           |      | device firmware                               |          |      |          | <firmware>1.23.3</firmware>     |       | 2.0.1   |
-| datapoints    | E_INT              | kWh  | Energy generated per interval                 |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | P_AC[1..3]         | W    | Power AC (single phase or accumulated)        |          |      | x        |                                 |       | 2.0.1   |
-| datapoints    | E_DAY              | kWh  | Energy generated per day                      |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | E_YEAR             | kWh  | Energy generated per year                     |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | E_TOTAL            | kWh  | Total generated energy                        |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | P_DC[1..x]         | W    | Power DC (single input or accumulated)        |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | U_DC[1..x]         | V    | Voltage DC (single input or accumulated)      |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | I_DC[1..x]         | A    | Current DC (single input or accumulated)      |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | U_AC[1..3]         | V    | Voltage AC (single phase or accumulated)      |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | I_AC[1..x]         | A    | Current AC (single phase or accumulated)      |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | F_AC[1..x]         | Hz   | Grid frequency (single phase or accumulated)  |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | S_AC[1..3]         | VA   | Apparent power (single phase or accumulated)  |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | Q_AC[1..3]         | VAr  | Reactive power (single phase or accumulated)  |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | T_WR[1..x]         | °C   | inverter temperatures                         |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | PC                 | %    | Power Control                                 |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | COS_PHI_NOM[1..3]  |      | Cos Phi given value                           |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | COS_PHI[1..3]      |      | Cos Phi actual value                          |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | COS_PHI_LOAD[1..3] |      | Inductive or capacitive load (c/i)            |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | A_IN[1..x]         |      | Analogue input                                |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | D_IN[1..x]         |      | Digital input                                 |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | FT_AC_DAY          | min  | Feed in Time Day AC                           |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | FT_AC_TOTAL        | hour | Feed in Time Total AC                         |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | OT_AC_DAY          | min  | Operation Time DAY                            |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | OT_AC_TOTAL        | hour | Operation Time TOTAL                          |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | R_ISO              | kOhm | Isolation resistant                           |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | I_GDFI             | mA   | Earth leakage current                         |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | STATE[1..x]        |      | Global inverter state conditions              |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | ERROR[1..x]        |      | Global inverter error conditions              |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | R_AC               | mOhm | Grid impedance                                |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | U_AC_ L1L2         | V    | Volts L1-L2                                   |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | U_AC_ L2L3         | V    | Volts L2-L3                                   |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | U_AC_ L3L1         | V    | Volts L3-L1                                   |          |      |          |                                 |       | 2.0.1   |
-| datapoints    | I_DC[1..x]_[1..x]  | A    | Current DC (multiple phases)                  |          |      |          |                                 |       | 2.0.5   |
-| datapoints    | QS_TX              |      | Telegrams transmitted (communication quality) |          |      |          |                                 |       | 2.0.9   |
-| datapoints    | QS_RX              |      | Telegrams received    (communication quality) |          |      |          |                                 |       | 2.0.9   |
+| Field Type    | Name Attribute     | Unit | Description                                   | Value    | Required | Example                         | Version |
+|---------------|--------------------|------|-----------------------------------------------|----------|----------|---------------------------------|---------|
+| configuration | id                 |      | Reference id for measurement data node        |          | x        | <device id=“1“ type=“inverter“> | 2.0.1   |
+| configuration | type               |      | device type                                   | inverter | x        | <device id=“1“ type=“inverter“> | 2.0.1   |
+| configuration | uid                |      | device unique identifier                      |          | x        | <uid>INV12345</uid>             | 2.0.1   |
+| configuration | name               |      | device name                                   |          |          | <name>Inverter A</name>         | 2.0.1   |
+| configuration | serial             |      | device serial                                 |          |          | <serial>INV11.22.33</serial>    | 2.0.1   |
+| configuration | vendor             |      | device vendor                                 |          |          | <vendor>vendor 123</vendor>     | 2.0.1   |
+| configuration | model              |      | device model                                  |          |          | <model></model>                 | 2.0.1   |
+| configuration | firmware           |      | device firmware                               |          |          | <firmware>1.23.3</firmware>     | 2.0.1   |
+| datapoints    | A_IN[1..x]         |      | Analogue input                                |          |          |                                 |         |
+| datapoints    | COS_PHI            |      | Cos Phi actual value                          |          |          |                                 |         |
+| datapoints    | COS_PHI_LOAD[1..3] |      | Inductive or capacitive load (c/i)            |          |          |                                 |         |
+| datapoints    | COS_PHI_NOM[1..3]  |      | Cos Phi given value                           |          |          |                                 |         |
+| datapoints    | D_IN[1..x]         |      | Digital input                                 |          |          |                                 |         |
+| datapoints    | E_DAY              | kWh  | Energy generated per day                      |          |          |                                 |         |
+| datapoints    | E_INT              | kWh  | Energy generated per interval                 |          |          |                                 |         |
+| datapoints    | E_TOTAL            | kWh  | Total generated energy                        |          |          |                                 |         |
+| datapoints    | E_YEAR             | kWh  | Energy generated per year                     |          |          |                                 |         |
+| datapoints    | FT_AC_DAY          | min  | Feed in Time Day AC                           |          |          |                                 |         |
+| datapoints    | FT_AC_TOTAL        | hour | Feed in Time Total AC                         |          |          |                                 |         |
+| datapoints    | F_AC[1..x]         | Hz   | Grid frequency (single phase or accumulated)  |          |          |                                 |         |
+| datapoints    | I_AC[1..x]         | A    | Current AC (single phase or accumulated)      |          |          |                                 |         |
+| datapoints    | I_DC[1..x]         | A    | Current DC (single input or accumulated)      |          |          |                                 |         |
+| datapoints    | I_DC[1..x]_[1..x]  | A    | Current DC (single string)                    |          |          |                                 |         |
+| datapoints    | I_GDFI             | mA   | Earth leakage current                         |          |          |                                 |         |
+| datapoints    | OT_AC_DAY          | min  | Operation Time DAY                            |          |          |                                 |         |
+| datapoints    | OT_AC_TOTAL        | hour | Operation Time TOTAL                          |          |          |                                 |         |
+| datapoints    | PC                 | %    | Power Control                                 |          |          |                                 |         |
+| datapoints    | P_AC[1..3]         | W    | Power AC (single phase or accumulated)        |          | x        |                                 |         |
+| datapoints    | P_DC[1..x]         | W    | Power DC (single input or accumulated)        |          |          |                                 |         |
+| datapoints    | Q_AC[1..3]         | VAr  | Reactive power (single phase or accumulated)  |          |          |                                 |         |
+| datapoints    | R_AC               | mOhm | Grid impedance                                |          |          |                                 |         |
+| datapoints    | R_ISO              | kOhm | Isolation resistant                           |          |          |                                 |         |
+| datapoints    | S_AC[1..3]         | VA   | Apparent power (single phase or accumulated)  |          |          |                                 |         |
+| datapoints    | T[1..x]            | °C   | inverter temparatures                         |          |          |                                 |         |
+| datapoints    | T_WR[1..x]         | °C   | inverter temparatures                         |          |          |                                 |         |
+| datapoints    | U_AC[1..3]         | V    | Voltage AC (single phase or accumulated)      |          |          |                                 |         |
+| datapoints    | U_AC_L1L2          | V    | Volts L1-L2                                   |          |          |                                 |         |
+| datapoints    | U_AC_L2L3          | V    | Volts L2-L3                                   |          |          |                                 |         |
+| datapoints    | U_AC_L3L1          | V    | Volts L3-L1                                   |          |          |                                 |         |
+| datapoints    | U_DC[1..x]         | V    | Voltage DC (single input or accumulated)      |          |          |                                 |         |
+| datapoints    | STATE[1..x]        |      | Global inverter state conditions              |          |          |                                 |         |
+| datapoints    | ERROR[1..x]        |      | Global inverter error conditions              |          |          |                                 |         |
+| datapoints    | QS_TX              |      | Telegrams transmitted (communication quality) |          |          |                                 |         |
+| datapoints    | QS_RX              |      | Telegrams received (communication quality)    |          |          |                                 |         |
