@@ -7,6 +7,7 @@
 | configuration | serial         |      | device serial                                 |         |          | <serial>BAT11.22.33</serial>   | 2.0.1   |
 | configuration | vendor         |      | device vendor                                 |         |          | <vendor>vendor 123</vendor>    | 2.0.1   |
 | configuration | model          |      | device model                                  |         |          | <model></model>                | 2.0.1   |
+| configuration | address        |      | bus address                                   |         |          | <address>1</address>           | 2.0.1   |
 | configuration | firmware       |      | device firmware                               |         |          | <firmware>1.23.3</firmware>    | 2.0.1   |
 | datapoints    | B_CAPACITY     | Ah   | Nominal capacity                              |         |          |                                |         |
 | datapoints    | B_CHARGE_LEVEL | %    | Charge Level                                  |         |          |                                |         |
