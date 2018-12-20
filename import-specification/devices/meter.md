@@ -7,6 +7,7 @@
 | configuration | serial               |        | device serial                                              |       |          | <serial>MET11.22.33</serial> | 2.0.1   |
 | configuration | vendor               |        | device vendor                                              |       |          | <vendor>vendor 123</vendor>  | 2.0.1   |
 | configuration | model                |        | device model                                               |       |          | <model></model>              | 2.0.1   |
+| configuration | address              |        | bus address                                                |       |          | <address>1</address>         | 2.0.1   |
 | configuration | firmware             |        | device firmware                                            |       |          | <firmware>1.23.3</firmware>  | 2.0.1   |
 | datapoints    | M_AC_EQ_CAP_EXP      | kVArh  | kVAR-hours, Negative - Reactive Energy capacitive exported |       |          |                              |         |
 | datapoints    | M_AC_EQ_CAP_IMP      | kVArh  | kVAR-hours, Positive - Reactive Energy capacitive imported |       |          |                              |         |
@@ -35,6 +36,7 @@
 | datapoints    | M_DC_I[1..3]         | A      | Current DC [Phase 1-3]                                     |       |          |                              |         |
 | datapoints    | M_DC_P[1..3]         | W      | Power DC [Phase 1-3]                                       |       |          |                              |         |
 | datapoints    | M_DC_U[1..3]         | V      | Voltage DC, Phase [1-3]                                    |       |          |                              |         |
+| datapoints    | STATE[1..x]          |        |                                                            |       |          |                              |         |
 | datapoints    | ERROR[1..x]          |        | Global meter error conditions                              |       |          |                              |         |
 | datapoints    | QS_TX                |        | Telegrams transmitted (communication quality)              |       |          |                              |         |
 | datapoints    | QS_RX                |        | Telegrams received (communication quality)                 |       |          |                              |         |
