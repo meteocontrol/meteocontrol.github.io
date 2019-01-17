@@ -60,6 +60,7 @@
       <xs:element ref="c:power" minOccurs="0"/>
       <xs:element name="interface-type" type="c:conf-interface-types" minOccurs="0"/>
       <xs:element name="interface-address" type="xs:string" minOccurs="0"/>
+      <xs:element name="tracker-type" type="xs:integer" minOccurs="0"/>
     </xs:all>
     <xs:attribute name="id" use="required" type="xs:string"/>
     <xs:attribute name="type" use="required">
