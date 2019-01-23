@@ -34,8 +34,8 @@
 | datapoints    | R_AC               | mOhm | Grid impedance                                |          |          |                                 |         |
 | datapoints    | R_ISO              | kOhm | Isolation resistant                           |          |          |                                 |         |
 | datapoints    | S_AC[1..3]         | VA   | Apparent power (single phase or accumulated)  |          |          |                                 |         |
-| datapoints    | T[1..x]            | °C   | inverter temparatures                         |          |          |                                 |         |
-| datapoints    | T_WR[1..x]         | °C   | inverter temparatures                         |          |          |                                 |         |
+| datapoints    | T[1..x]            | °C   | inverter temperatures                         |          |          |                                 |         |
+| datapoints    | T_WR[1..x]         | °C   | inverter temperatures                         |          |          |                                 |         |
 | datapoints    | U_AC[1..3]         | V    | Voltage AC (single phase or accumulated)      |          |          |                                 |         |
 | datapoints    | U_AC_L1L2          | V    | Volts L1-L2                                   |          |          |                                 |         |
 | datapoints    | U_AC_L2L3          | V    | Volts L2-L3                                   |          |          |                                 |         |
