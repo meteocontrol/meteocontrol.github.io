@@ -1928,6 +1928,7 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <pre class="highlight shell"><code><span class="o">{</span>
    <span class="s2">"2016-09-01T00:00:00+02:00"</span>: <span class="o">{</span>
      <span class="s2">"AREA"</span>: 66607.58,
+     <span class="s2">"CO2"</span>: 143.31,
      <span class="s2">"E_MEAN_DEV"</span>: null,
      <span class="s2">"E_MESS"</span>: 44579,
      <span class="s2">"E_N"</span>: null,
@@ -1943,16 +1944,17 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var array $bulkDataArray */</span>
     <span class="nv">$bulkDataArray</span> <span class="o">=</span> <span class="nv">$bulkData</span><span class="o">-&gt;</span><span class="na">getAsArray</span><span class="p">();</span>
-    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'AREA'</span><span class="p">];</span><span class="c1">// 502
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_MEAN_DEV'</span><span class="p">];</span><span class="c1">// 43.2
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_MESS'</span><span class="p">];</span><span class="c1">// 501.5
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_N'</span><span class="p">];</span><span class="c1">// 1103
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_ZAEHLER'</span><span class="p">];</span><span class="c1">// 32.7
+    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'AREA'</span><span class="p">];</span><span class="c1">// 66607.58
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'CO2'</span><span class="p">];</span><span class="c1">// 143.31
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_MEAN_DEV'</span><span class="p">];</span><span class="c1">// null
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_MESS'</span><span class="p">];</span><span class="c1">// 44579
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_N'</span><span class="p">];</span><span class="c1">// null
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_ZAEHLER'</span><span class="p">];</span><span class="c1">// 44579
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'EPI'</span><span class="p">];</span><span class="c1">// null
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'POWER'</span><span class="p">];</span><span class="c1">// 501
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'PR'</span><span class="p">];</span><span class="c1">// 501
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'POWER'</span><span class="p">];</span><span class="c1">// 9990.12
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'PR'</span><span class="p">];</span><span class="c1">// 82.277446881595
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'SOLIDX'</span><span class="p">];</span><span class="c1">// null
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'VFG'</span><span class="p">];</span><span class="c1">// 501
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'VFG'</span><span class="p">];</span><span class="c1">// 100
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/calculations/bulk/measurements</code></p>
