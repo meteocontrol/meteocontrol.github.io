@@ -33,6 +33,7 @@
 | datapoints    | SRAD[1..x]         | W/m2  | Irradiation sensors                                                      |       |          |                              |         |
 | datapoints    | SUN_H[1..x]        | h     | Sunshine duration                                                        |       |          |                              |         |
 | datapoints    | T[1..x]            | °C    | Temperature values                                                       |       |          |                              |         |
+| datapoints    | WATER_DEPTH        | m     | Water depth                                                              |       |          |                              |         |
 | datapoints    | STATE[1..x]        |       |                                                                          |       |          |                              |         |
 | datapoints    | ERROR[1..x]        |       | Global meteo error conditions                                            |       |          |                              |         |
 | datapoints    | QS_TX              |       | Telegrams transmitted (communication quality)                            |       |          |                              |         |
