@@ -155,7 +155,7 @@
 <pre class="highlight shell"><code>    curl
     -u username:password
     -H <span class="s2">"X-API-KEY: apiKey"</span>
-    <span class="s1">'https://api.meteocontrol.de/&lt;URL&gt;'</span>
+    <span class="s1">'https://api.meteocontrol.de/v2/&lt;endpoint&gt;'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="k">use</span> <span class="nx">meteocontrol\client\vcomapi\ApiClient</span><span class="p">;</span>
@@ -202,7 +202,7 @@
 <pre class="highlight shell"><code>curl
 -u username:password
 -H <span class="s2">"X-API-KEY: &lt;apiKey&gt;"</span>
-<span class="s1">'https://api.meteocontrol.de'</span>
+<span class="s1">'https://api.meteocontrol.de/v2/&lt;endpoint&gt;'</span>
 </code></pre>
 
 <blockquote>
@@ -211,7 +211,7 @@
 <pre class="highlight shell"><code>curl
 -H <span class="s2">"X-API-KEY: &lt;apiKey&gt;"</span>
 -H <span class="s2">"Authorization: Bearer &lt;Access Token&gt;"</span>
-<span class="s1">'https://api.meteocontrol.de'</span>
+<span class="s1">'https://api.meteocontrol.de/v2/&lt;endpoint&gt;'</span>
 </code></pre>
 
 <p>The API requires you to authenticate using <strong>OAuth Authentication</strong> or <strong>Basic Authentication</strong> with an <strong>API-Key</strong>. Each request must include the following headers:  </p>
@@ -335,7 +335,7 @@ X-RateLimit-Remaining-Day: 328
 -u username:password
 -H <span class="s2">"X-API-KEY: 1234567890"</span>
 -H <span class="s2">"Cache-Control: no-cache"</span>
-<span class="s1">'https://api.meteocontrol.de'</span>
+<span class="s1">'https://api.meteocontrol.de/v2/&lt;endpoint&gt;'</span>
 </code></pre>
 
 <p>The API allows user specify cache mode for each request, if there&rsquo;s no <strong>Cache-Control</strong> header given the API will use cache by default.</p>
@@ -371,7 +371,7 @@ X-RateLimit-Remaining-Day: 328
 --compressed 
 -u username:password
 -H <span class="s2">"X-API-KEY: 1234567890"</span>
-<span class="s1">'https://api.meteocontrol.de'</span>
+<span class="s1">'https://api.meteocontrol.de/v2/&lt;endpoint&gt;'</span>
 </code></pre>
 
 <p>The API supports standard HTTP content-encoding. If there&rsquo;s no <strong>Accept-Encoding</strong> header present, an unsupported algorithm was requested, or the response size is below 512 bytes, the API will not compress the response.</p>
