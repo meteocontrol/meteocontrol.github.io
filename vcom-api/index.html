@@ -1145,6 +1145,11 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
+<tr>
+<td>abbreviations <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comma separated abbreviations</td>
+</tr>
 </tbody></table>
 
 <p>* The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
@@ -1583,6 +1588,11 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 <td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
+<tr>
+<td>abbreviations <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comma separated abbreviations</td>
+</tr>
 </tbody></table>
 
 <p>* The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.  </p>
@@ -2000,6 +2010,11 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <td>format <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
+</tr>
+<tr>
+<td>abbreviations <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comma separated abbreviations</td>
 </tr>
 </tbody></table>
 
@@ -2648,8 +2663,8 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </tr>
 </tbody></table>
 
-<p>** Only for interval resolution<br>
-*** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+*** Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -2841,6 +2856,11 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <td>resolution <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
+<tr>
+<td>abbreviations <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comma separated abbreviations</td>
 </tr>
 </tbody></table>
 
@@ -3347,8 +3367,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<p>** Only for interval resolution<br>
-*** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+*** Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -3480,6 +3500,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>resolution <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
+<tr>
+<td>abbreviations <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comma separated abbreviations</td>
 </tr>
 </tbody></table>
 
@@ -3980,8 +4005,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<p>** Only for interval resolution<br>
-*** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+*** Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -4105,6 +4130,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>resolution <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
+<tr>
+<td>abbreviations <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comma separated abbreviations</td>
 </tr>
 </tbody></table>
 
@@ -4387,7 +4417,8 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
     <span class="s2">"aggregation"</span>: <span class="s2">"AVG"</span>,
     <span class="s2">"precision"</span>: null,
     <span class="s2">"description"</span>: <span class="s2">"Current DC"</span>,
-    <span class="s2">"unit"</span>: <span class="s2">"A"</span>
+    <span class="s2">"unit"</span>: <span class="s2">"A"</span>,
+    <span class="s2">"active"</span>: <span class="nb">true</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -4397,6 +4428,7 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </span>    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">precision</span><span class="p">;</span><span class="c1">// null
 </span>    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// Current DC
 </span>    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">unit</span><span class="p">;</span><span class="c1">// A
+</span>    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">active</span><span class="p">;</span><span class="c1">// true
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/stringboxes/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;</code></p>
@@ -4459,6 +4491,11 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <td>unit <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>Unit</td>
+</tr>
+<tr>
+<td>active <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">bool</code></td>
+<td>Active status</td>
 </tr>
 </tbody></table>
 
@@ -4609,8 +4646,8 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </tr>
 </tbody></table>
 
-<p>** Only for interval resolution<br>
-*** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+*** Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -4824,6 +4861,16 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <td>resolution <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
+<tr>
+<td>activeOnly <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>&#124;<code class="prettyprint">1</code></td>
+<td>Export active strings only, defaults to <code class="prettyprint">0</code></td>
+</tr>
+<tr>
+<td>abbreviations <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comma separated abbreviations</td>
 </tr>
 </tbody></table>
 
@@ -5330,8 +5377,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<p>** Only for interval resolution<br>
-*** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+*** Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -5496,6 +5543,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>resolution <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
+<tr>
+<td>abbreviations <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comma separated abbreviations</td>
 </tr>
 </tbody></table>
 
@@ -6018,8 +6070,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<p>** Only for interval resolution<br>
-*** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+*** Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -6195,6 +6247,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>resolution <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
+<tr>
+<td>abbreviations <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comma separated abbreviations</td>
 </tr>
 </tbody></table>
 
@@ -8948,6 +9005,11 @@ The response format changed as follows:</p>
 <td>2019-03-13</td>
 <td>2.2.1</td>
 <td>Remove the limitation of year resolution in measurement endpoints</td>
+</tr>
+<tr>
+<td>2019-06-26</td>
+<td>2.2.2</td>
+<td>Introduce filters for active only strings and/or abbreviations to bulk endpoints</td>
 </tr>
 </tbody></table>
 
