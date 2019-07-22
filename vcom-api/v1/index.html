@@ -1912,7 +1912,7 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/calculations/bulk/measurements?from=2016-09-01T23:45:00+02:00&amp;to=2016-09-01T23:59:59+02:00'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/systems/ABCDE/calculations/bulk/measurements?from=2016-09-01T23:45:00+02:00&amp;to=2016-09-01T23:59:59+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
@@ -1928,15 +1928,12 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <pre class="highlight shell"><code><span class="o">{</span>
    <span class="s2">"2016-09-01T00:00:00+02:00"</span>: <span class="o">{</span>
      <span class="s2">"AREA"</span>: 66607.58,
-     <span class="s2">"CO2"</span>: 143.31,
      <span class="s2">"E_MEAN_DEV"</span>: null,
      <span class="s2">"E_MESS"</span>: 44579,
      <span class="s2">"E_N"</span>: null,
      <span class="s2">"E_ZAEHLER"</span>: 44579,
-     <span class="s2">"EPI"</span>: null,
      <span class="s2">"POWER"</span>: 9990.12,
      <span class="s2">"PR"</span>: 82.277446881595,
-     <span class="s2">"SOLIDX"</span>: null,
      <span class="s2">"VFG"</span>: 100
    <span class="o">}</span>
 <span class="o">}</span>
@@ -1944,17 +1941,14 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var array $bulkDataArray */</span>
     <span class="nv">$bulkDataArray</span> <span class="o">=</span> <span class="nv">$bulkData</span><span class="o">-&gt;</span><span class="na">getAsArray</span><span class="p">();</span>
-    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'AREA'</span><span class="p">];</span><span class="c1">// 66607.58
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'CO2'</span><span class="p">];</span><span class="c1">// 143.31
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_MEAN_DEV'</span><span class="p">];</span><span class="c1">// null
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_MESS'</span><span class="p">];</span><span class="c1">// 44579
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_N'</span><span class="p">];</span><span class="c1">// null
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_ZAEHLER'</span><span class="p">];</span><span class="c1">// 44579
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'EPI'</span><span class="p">];</span><span class="c1">// null
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'POWER'</span><span class="p">];</span><span class="c1">// 9990.12
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'PR'</span><span class="p">];</span><span class="c1">// 82.277446881595
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'SOLIDX'</span><span class="p">];</span><span class="c1">// null
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'VFG'</span><span class="p">];</span><span class="c1">// 100
+    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'AREA'</span><span class="p">];</span><span class="c1">// 502
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_MEAN_DEV'</span><span class="p">];</span><span class="c1">// 43.2
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_MESS'</span><span class="p">];</span><span class="c1">// 501.5
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_N'</span><span class="p">];</span><span class="c1">// 1103
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_ZAEHLER'</span><span class="p">];</span><span class="c1">// 32.7
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'POWER'</span><span class="p">];</span><span class="c1">// 501
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'PR'</span><span class="p">];</span><span class="c1">// 501
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'VFG'</span><span class="p">];</span><span class="c1">// 501
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/calculations/bulk/measurements</code></p>
@@ -2555,8 +2549,8 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </tr>
 </tbody></table>
 
-<p>** Only for interval resolution<br>
-*** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+*** Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -3194,8 +3188,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<p>** Only for interval resolution<br>
-*** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+*** Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -3819,8 +3813,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<p>** Only for interval resolution<br>
-*** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+*** Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -4448,8 +4442,8 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </tr>
 </tbody></table>
 
-<p>** Only for interval resolution<br>
-*** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+*** Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -5135,8 +5129,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<p>** Only for interval resolution<br>
-*** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+*** Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -5823,8 +5817,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<p>** Only for interval resolution<br>
-*** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+*** Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -8481,6 +8475,172 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>to</td>
 <td><code class="prettyprint">string</code></td>
 <td>Username or state</td>
+</tr>
+</tbody></table>
+
+          <h2 id="login">Login</h2>
+
+<h3 class="toc-ignore">OAuth Authentication</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="c"># To get a new access token by password grant</span>
+curl -X POST <span class="se">\</span>
+   https://api.meteocontrol.de/login <span class="se">\ </span>
+   -H <span class="s1">'content-type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
+   -H <span class="s1">'x-api-key: &lt;apiKey&gt;'</span> <span class="se">\</span>
+   -d <span class="s1">'grant_type=password'</span> <span class="se">\</span>
+   -d <span class="s1">'username=vcomUsername'</span> <span class="se">\</span>
+   -d <span class="s1">'password=strongPassword'</span> <span class="se">\</span>
+   -d <span class="s1">'client_id=vcom-api'</span> <span class="se">\</span>
+   -d <span class="s1">'client_secret=AYB=~9_f-BvNoLt8+x=3maCq)&gt;/?@Nom'</span>
+
+<span class="c"># To get a new access token by refresh token grant</span>
+curl -X POST <span class="se">\</span>
+   https://api.meteocontrol.de/login <span class="se">\ </span>
+   -H <span class="s1">'content-type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
+   -H <span class="s1">'x-api-key: &lt;apiKey&gt;'</span> <span class="se">\</span>
+   -d <span class="s1">'grant_type=refresh_token'</span> <span class="se">\</span>
+   -d <span class="s1">'refresh_token=yourOldRefreshToken'</span> <span class="se">\</span>
+   -d <span class="s1">'client_id=vcom-api'</span> <span class="se">\</span>
+   -d <span class="s1">'client_secret=AYB=~9_f-BvNoLt8+x=3maCq)&gt;/?@Nom'</span>
+
+</code></pre>
+<pre class="highlight php"><code>The vcom-api-client handles token retrieving and refreshing for you automatically.
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+    <span class="s2">"token_type"</span>: <span class="s2">"Bearer"</span>,
+    <span class="s2">"expires_in"</span>: 518400,
+    <span class="s2">"access_token"</span>: <span class="s2">"yourAccessToken"</span>,
+    <span class="s2">"refresh_token"</span>: <span class="s2">"yourRefreshToken"</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code>The vcom-api-client handles token retrieving and refreshing for you automatically.
+</code></pre>
+
+<p><code class="http-method">POST</code> <code class="prettyprint">login</code></p>
+
+<p><strong>Body (Form) parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>grant_type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>(<code class="prettyprint">password</code>&#124;<code class="prettyprint">refresh_token</code>)</td>
+</tr>
+<tr>
+<td>client_id <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>The client ID: <code class="prettyprint">vcom-api</code></td>
+</tr>
+<tr>
+<td>client_secret <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>The client secret: <code class="prettyprint">AYB=~9_f-BvNoLt8+x=3maCq)&gt;/?@Nom</code></td>
+</tr>
+<tr>
+<td>username <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Your username to login VCOM</td>
+</tr>
+<tr>
+<td>password <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Your password to login VCOM</td>
+</tr>
+</tbody></table>
+
+<p><br></p>
+
+<p><strong>Request number limitation</strong></p>
+
+<p>OAuth Token retrieval and refreshing is also subject to rate limiting, please re-use your access token.</p>
+
+<table><thead>
+<tr>
+<th>Interval</th>
+<th>Limitation</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1 Minute</td>
+<td>10</td>
+</tr>
+<tr>
+<td>1 Day</td>
+<td>7200</td>
+</tr>
+</tbody></table>
+
+<p>Every response contains the current rate limit in its headers:</p>
+
+<table><thead>
+<tr>
+<th>Header field name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-RateLimit-Reset-Minute</td>
+<td>The time at which the current minute rate limit resets in RFC 7231 format.</td>
+</tr>
+<tr>
+<td>X-RateLimit-Remaining-Minute</td>
+<td>The number of requests remaining in the current minute rate limit window.</td>
+</tr>
+<tr>
+<td>X-RateLimit-Reset-Day</td>
+<td>The time at which the current day rate limit resets in RFC 7231 format.</td>
+</tr>
+<tr>
+<td>X-RateLimit-Remaining-Day</td>
+<td>The number of requests remaining in the current day rate limit window.</td>
+</tr>
+</tbody></table>
+
+<p><br></p>
+
+<p><strong>Response</strong></p>
+
+<p><em>OAuth credentials object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token_type <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td></td>
+</tr>
+<tr>
+<td>expires_in <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>The token valid duration in seconds</td>
+</tr>
+<tr>
+<td>access_token <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>The access token to be used in OAuth <code class="prettyprint">Bearer header</code></td>
+</tr>
+<tr>
+<td>refresh_token <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>The refresh token to be used to get a new access token by <code class="prettyprint">refresh token grant</code></td>
 </tr>
 </tbody></table>
 
