@@ -160,7 +160,7 @@
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="k">use</span> <span class="nx">meteocontrol\client\vcomapi\ApiClient</span><span class="p">;</span>
     <span class="k">require_once</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/vendor/autoload.php'</span><span class="p">;</span>
-    <span class="nv">$api</span> <span class="o">=</span> <span class="nx">ApiClient</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s2">"username"</span><span class="p">,</span> <span class="s2">"password"</span><span class="p">,</span> <span class="s2">"apiKey"</span><span class="p">);</span>
+    <span class="nv">$api</span> <span class="o">=</span> <span class="nx">ApiClient</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'username'</span><span class="p">,</span> <span class="s1">'password'</span><span class="p">,</span> <span class="s1">'apiKey'</span><span class="p">);</span>
 </code></pre>
 
 <p>Whether you&rsquo;re using curl, a client provided by meteocontrol or your own implementation, you will need to have the following information ready:</p>
@@ -1564,7 +1564,7 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 <span class="o">}</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var array $bulkDataArray */</span>
+    <span class="sd">/** @var MeasurementsBulkReader $bulkData */</span>
     <span class="nv">$bulkDataArray</span> <span class="o">=</span> <span class="nv">$bulkData</span><span class="o">-&gt;</span><span class="na">getAsArray</span><span class="p">();</span>
     <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-01T10:00:00+02:00'</span><span class="p">][</span><span class="s1">'G_M0'</span><span class="p">];</span><span class="c1">// 501.5
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-01T10:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_Z_EVU'</span><span class="p">];</span><span class="c1">// 1103
@@ -1986,7 +1986,7 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 <span class="o">}</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var array $bulkDataArray */</span>
+    <span class="sd">/** @var MeasurementsBulkReader $bulkData */</span>
     <span class="nv">$bulkDataArray</span> <span class="o">=</span> <span class="nv">$bulkData</span><span class="o">-&gt;</span><span class="na">getAsArray</span><span class="p">();</span>
     <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'AREA'</span><span class="p">];</span><span class="c1">// 66607.58
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'CO2'</span><span class="p">];</span><span class="c1">// 143.31
@@ -2577,21 +2577,21 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
      <span class="sd">/** @var DevicesMeasurement $measurements */</span>
-    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"Id12345.1"</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'Id12345.1'</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-10-21T11:00:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"Id12345.1"</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 0.089
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"Id12345.1"</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'Id12345.1'</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 0.089
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'Id12345.1'</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-10-21T11:15:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"Id12345.1"</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 0.082
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"Id12345.1"</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'Id12345.1'</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 0.082
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'Id12345.1'</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-10-21T11:30:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"Id12345.1"</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 0.078
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"Id12345.1"</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'Id12345.1'</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 0.078
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'Id12345.1'</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-10-21T11:45:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"Id12345.1"</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 0.089
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"Id12345.1"</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span>
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'Id12345.1'</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 0.089
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'Id12345.1'</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-10-21T12:00:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"Id12345.1"</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 0.095
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'Id12345.1'</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 0.095
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/inverters/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
@@ -2825,7 +2825,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <span class="o">}</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var array $bulkDataArray */</span>
+    <span class="sd">/** @var MeasurementsBulkReader $bulkData */</span>
     <span class="nv">$bulkDataArray</span> <span class="o">=</span> <span class="nv">$bulkData</span><span class="o">-&gt;</span><span class="na">getAsArray</span><span class="p">();</span>
     <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-10-21T10:00:00+02:00'</span><span class="p">][</span><span class="s1">'Id12345.1'</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">];</span><span class="c1">// 454.34
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-10-21T10:00:00+02:00'</span><span class="p">][</span><span class="s1">'Id12345.1'</span><span class="p">][</span><span class="s1">'E_INT'</span><span class="p">];</span><span class="c1">// 0.038
@@ -3170,7 +3170,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/meters/12345/abbreviations/M_AC_E_EXP'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var Abbreviation $abbreviations */</span>
+    <span class="sd">/** @var Abbreviation $abbreviation */</span>
     <span class="nv">$abbreviation</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">meter</span><span class="p">(</span><span class="s1">'12345'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'M_AC_E_EXP'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 </code></pre>
 
@@ -3295,12 +3295,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var DevicesMeasurement $measurements */</span>
-    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"12345"</span><span class="p">][</span><span class="s1">'E'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'12345'</span><span class="p">][</span><span class="s1">'E'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-11-01T11:00:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"12345"</span><span class="p">][</span><span class="s1">'E'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 7119.21
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"12345"</span><span class="p">][</span><span class="s1">'E'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'12345'</span><span class="p">][</span><span class="s1">'E'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 7119.21
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'12345'</span><span class="p">][</span><span class="s1">'E'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-11-01T11:15:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"12345"</span><span class="p">][</span><span class="s1">'E'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 7119.21
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'12345'</span><span class="p">][</span><span class="s1">'E'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 7119.21
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/meters/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
@@ -3938,12 +3938,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var DevicesMeasurement $measurements */</span>
-    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"10001"</span><span class="p">][</span><span class="s1">'SRAD'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'10001'</span><span class="p">][</span><span class="s1">'SRAD'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-10-21T20:00:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"10001"</span><span class="p">][</span><span class="s1">'SRAD'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 177.2
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"10001"</span><span class="p">][</span><span class="s1">'SRAD'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'10001'</span><span class="p">][</span><span class="s1">'SRAD'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 177.2
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'10001'</span><span class="p">][</span><span class="s1">'SRAD'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-10-21T20:05:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"10001"</span><span class="p">][</span><span class="s1">'SRAD'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 157.2
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'10001'</span><span class="p">][</span><span class="s1">'SRAD'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 157.2
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/sensors/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
@@ -4113,7 +4113,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <span class="o">}</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var array $bulkDataArray */</span>
+    <span class="sd">/** @var MeasurementsBulkReader $bulkData */</span>
     <span class="nv">$bulkDataArray</span> <span class="o">=</span> <span class="nv">$bulkData</span><span class="o">-&gt;</span><span class="na">getAsArray</span><span class="p">();</span>
     <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-10-21T20:00:00+02:00'</span><span class="p">][</span><span class="s1">'10001'</span><span class="p">][</span><span class="s1">'SRAD'</span><span class="p">];</span><span class="c1">// 441.7
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-10-21T20:00:00+02:00'</span><span class="p">][</span><span class="s1">'10002'</span><span class="p">][</span><span class="s1">'T'</span><span class="p">];</span><span class="c1">// 10000.30
@@ -4584,12 +4584,12 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var DevicesMeasurement $measurements */</span>
-    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"20001"</span><span class="p">][</span><span class="s1">'I1'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'20001'</span><span class="p">][</span><span class="s1">'I1'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-10-21T11:00:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"20001"</span><span class="p">][</span><span class="s1">'I1'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 177.2
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"20001"</span><span class="p">][</span><span class="s1">'I1'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'20001'</span><span class="p">][</span><span class="s1">'I1'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 177.2
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'20001'</span><span class="p">][</span><span class="s1">'I1'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-10-21T11:05:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"20001"</span><span class="p">][</span><span class="s1">'I1'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 157.2
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'20001'</span><span class="p">][</span><span class="s1">'I1'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 157.2
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/stringboxes/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
@@ -4849,7 +4849,7 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 <span class="o">}</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var array $bulkDataArray */</span>
+    <span class="sd">/** @var MeasurementsBulkReader $bulkData */</span>
     <span class="nv">$bulkDataArray</span> <span class="o">=</span> <span class="nv">$bulkData</span><span class="o">-&gt;</span><span class="na">getAsArray</span><span class="p">();</span>
     <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-01T23:00:00+02:00'</span><span class="p">][</span><span class="s1">'20001'</span><span class="p">][</span><span class="s1">'I1'</span><span class="p">];</span><span class="c1">// 3.449
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-01T23:00:00+02:00'</span><span class="p">][</span><span class="s1">'20001'</span><span class="p">][</span><span class="s1">'I1_N'</span><span class="p">];</span><span class="c1">// 0.42
@@ -5195,7 +5195,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/batteries/145146/abbreviations/B_CHARGE_LEVEL'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var Abbreviation $abbreviations */</span>
+    <span class="sd">/** @var Abbreviation $abbreviation */</span>
     <span class="nv">$abbreviation</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">battery</span><span class="p">(</span><span class="s1">'145146'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'B_CHARGE_LEVEL'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 </code></pre>
 
@@ -5320,12 +5320,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var DevicesMeasurement $measurements */</span>
-    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"145146"</span><span class="p">][</span><span class="s1">'B_CHARGE_LEVEL'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'145146'</span><span class="p">][</span><span class="s1">'B_CHARGE_LEVEL'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-11-01T11:00:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"145146"</span><span class="p">][</span><span class="s1">'B_CHARGE_LEVEL'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 80.762
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"145146"</span><span class="p">][</span><span class="s1">'B_CHARGE_LEVEL'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'145146'</span><span class="p">][</span><span class="s1">'B_CHARGE_LEVEL'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 80.762
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'145146'</span><span class="p">][</span><span class="s1">'B_CHARGE_LEVEL'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-11-01T11:05:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"145146"</span><span class="p">][</span><span class="s1">'B_CHARGE_LEVEL'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 80.862
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'145146'</span><span class="p">][</span><span class="s1">'B_CHARGE_LEVEL'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 80.862
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/batteries/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
@@ -5536,7 +5536,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <span class="o">}</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var array $bulkDataArray */</span>
+    <span class="sd">/** @var MeasurementsBulkReader $bulkData */</span>
     <span class="nv">$bulkDataArray</span> <span class="o">=</span> <span class="nv">$bulkData</span><span class="o">-&gt;</span><span class="na">getAsArray</span><span class="p">();</span>
     <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-10-10T11:00:00+02:00'</span><span class="p">][</span><span class="s1">'145146'</span><span class="p">][</span><span class="s1">'B_CHARGE_LEVEL'</span><span class="p">];</span><span class="c1">// 80.762
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-10-10T11:00:00+02:00'</span><span class="p">][</span><span class="s1">'145146'</span><span class="p">][</span><span class="s1">'B_E_EXP'</span><span class="p">];</span><span class="c1">// 1347.762
@@ -5893,7 +5893,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/power-plant-controllers/145146/abbreviations/PPC_P_AC'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var Abbreviation $abbreviations */</span>
+    <span class="sd">/** @var Abbreviation $abbreviation */</span>
     <span class="nv">$abbreviation</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">powerPlantController</span><span class="p">(</span><span class="s1">'145146'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'PPC_P_AC'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 </code></pre>
 
@@ -6018,12 +6018,12 @@ For response example in CSV format, please check <a href="https://github.com/met
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var DevicesMeasurement $measurements */</span>
-    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"163784"</span><span class="p">][</span><span class="s1">'PPC_P_AC'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'163784'</span><span class="p">][</span><span class="s1">'PPC_P_AC'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-10-29T11:00:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"163784"</span><span class="p">][</span><span class="s1">'PPC_P_AC'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 41.73
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"163784"</span><span class="p">][</span><span class="s1">'PPC_P_AC'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'163784'</span><span class="p">][</span><span class="s1">'PPC_P_AC'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 41.73
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'163784'</span><span class="p">][</span><span class="s1">'PPC_P_AC'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">\DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-10-29T11:05:00+02:00
-</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s2">"163784"</span><span class="p">][</span><span class="s1">'PPC_P_AC'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 60.34
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'163784'</span><span class="p">][</span><span class="s1">'PPC_P_AC'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 60.34
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/power-plant-controllers/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
@@ -6249,7 +6249,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <span class="o">}</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var array $bulkDataArray */</span>
+    <span class="sd">/** @var MeasurementsBulkReader $bulkData */</span>
     <span class="nv">$bulkDataArray</span> <span class="o">=</span> <span class="nv">$bulkData</span><span class="o">-&gt;</span><span class="na">getAsArray</span><span class="p">();</span>
     <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-10-29T18:00:00+02:00'</span><span class="p">][</span><span class="s1">'163784'</span><span class="p">][</span><span class="s1">'PPC_P_AC_INV'</span><span class="p">];</span><span class="c1">// 52.350000000000001
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-10-29T18:00:00+02:00'</span><span class="p">][</span><span class="s1">'163784'</span><span class="p">][</span><span class="s1">'PPC_Q_SET_ABS'</span><span class="p">];</span><span class="c1">// 83.599999999999994
@@ -6816,9 +6816,9 @@ For response example in CSV format, please check <a href="https://github.com/met
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/users?username=user1.name'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var UserDetail $user */</span>
     <span class="nv">$criteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">UserCriteria</span><span class="p">();</span>
-    <span class="nv">$criteria</span><span class="o">-&gt;</span><span class="na">withUsername</span><span class="p">(</span><span class="s2">"user1.name"</span><span class="p">);</span>
+    <span class="nv">$criteria</span><span class="o">-&gt;</span><span class="na">withUsername</span><span class="p">(</span><span class="s1">'user1.name'</span><span class="p">);</span>
+    <span class="sd">/** @var UserDetail $user */</span>
     <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">users</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre>
 
@@ -6921,7 +6921,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var PictureFile $pictureFile */</span>
-    <span class="nv">$pictureFile</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s2">"ABCDE"</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">picture</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+    <span class="nv">$pictureFile</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">picture</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 </code></pre>
 
 <blockquote>
@@ -8437,7 +8437,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
  <span class="s1">'https://api.meteocontrol.de/v2/tickets/123/attachments'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="nv">$content</span> <span class="o">=</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">"attachment1.jpg"</span><span class="p">));</span>
+    <span class="nv">$content</span> <span class="o">=</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">'attachment1.jpg'</span><span class="p">));</span>
     <span class="nv">$attachmentFile</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AttachmentFile</span><span class="p">();</span>
     <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">filename</span> <span class="o">=</span> <span class="s1">'attachment1.jpg'</span><span class="p">;</span>
     <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">content</span> <span class="o">=</span> <span class="s1">'data:image/jpeg;base64,'</span> <span class="o">.</span> <span class="nv">$content</span><span class="p">;</span>
