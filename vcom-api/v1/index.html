@@ -382,7 +382,7 @@ X-RateLimit-Remaining-Day: 328
 </thead><tbody>
 <tr>
 <td>Accept-Encoding <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">gzip</code>&#124;<code class="prettyprint">deflate</code></td>
+<td><code class="prettyprint">gzip</code>ǀ<code class="prettyprint">deflate</code></td>
 <td>Comma separated list of compression algorithms</td>
 </tr>
 </tbody></table>
@@ -659,23 +659,23 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">required</code></td>
-<td>(<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">day</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
+<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
 
 <table><thead>
 <tr>
@@ -1120,29 +1120,29 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>format <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td><code class="prettyprint">json</code>ǀ<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>)</td>
+<td>(<code class="prettyprint">minute**</code>ǀ<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
-** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>¹ The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
+² The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
@@ -1159,17 +1159,17 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td><code class="prettyprint">comma</code>ǀ<code class="prettyprint">semicolon</code>ǀ<code class="prettyprint">colon</code>ǀ<code class="prettyprint">tab</code></td>
 <td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td><code class="prettyprint">LF</code>ǀ<code class="prettyprint">CR</code>ǀ<code class="prettyprint">CR/LF</code></td>
 <td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
+<td><code class="prettyprint">dot</code>ǀ<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -1309,7 +1309,7 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 </thead><tbody>
 <tr>
 <td>aggregation <code class="prettyprint">fixed</code></td>
-<td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
+<td>(<code class="prettyprint">SUM</code>ǀ<code class="prettyprint">AVG</code>ǀ<code class="prettyprint">MAX</code>)</td>
 <td>Aggregation method when requesting other resolutions than interval</td>
 </tr>
 <tr>
@@ -1404,28 +1404,28 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 <tr>
-<td>includeInterval <code class="prettyprint">optional</code>**</td>
-<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>&#124;<code class="prettyprint">1</code></td>
+<td>includeInterval <code class="prettyprint">optional</code>²</td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>ǀ<code class="prettyprint">1</code></td>
 <td>Defaults to <code class="prettyprint">0</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.  </p>
+<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.  </p>
 
 <table><thead>
 <tr>
@@ -1463,7 +1463,7 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 </tr>
 </tbody></table>
 
-<p>** Only for interval resolution  </p>
+<p>² Only for interval resolution  </p>
 
 <p><strong>Response</strong></p>
 
@@ -1569,23 +1569,23 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>format <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td><code class="prettyprint">json</code>ǀ<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.  </p>
+<p>¹ The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.  </p>
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
@@ -1602,17 +1602,17 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td><code class="prettyprint">comma</code>ǀ<code class="prettyprint">semicolon</code>ǀ<code class="prettyprint">colon</code>ǀ<code class="prettyprint">tab</code></td>
 <td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td><code class="prettyprint">LF</code>ǀ<code class="prettyprint">CR</code>ǀ<code class="prettyprint">CR/LF</code></td>
 <td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
+<td><code class="prettyprint">dot</code>ǀ<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -1750,7 +1750,7 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 </thead><tbody>
 <tr>
 <td>aggregation <code class="prettyprint">fixed</code></td>
-<td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
+<td>(<code class="prettyprint">SUM</code>ǀ<code class="prettyprint">AVG</code>ǀ<code class="prettyprint">MAX</code>)</td>
 <td>Aggregation method when requesting other resolutions than interval</td>
 </tr>
 <tr>
@@ -1845,23 +1845,23 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">day</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
+<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
 
 <table><thead>
 <tr>
@@ -1978,23 +1978,23 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>format <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td><code class="prettyprint">json</code>ǀ<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.  </p>
+<p>¹ The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.  </p>
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
@@ -2011,17 +2011,17 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td><code class="prettyprint">comma</code>ǀ<code class="prettyprint">semicolon</code>ǀ<code class="prettyprint">colon</code>ǀ<code class="prettyprint">tab</code></td>
 <td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td><code class="prettyprint">LF</code>ǀ<code class="prettyprint">CR</code>ǀ<code class="prettyprint">CR/LF</code></td>
 <td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
+<td><code class="prettyprint">dot</code>ǀ<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -2117,7 +2117,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>serial <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td>Serial number if given</td>
 </tr>
 </tbody></table>
@@ -2209,22 +2209,22 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>serial <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td>Serial number if given</td>
 </tr>
 <tr>
 <td>name <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td>Custom name</td>
 </tr>
 <tr>
 <td>scaleFactor <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">number</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
 <td>Normalization factor</td>
 </tr>
 <tr>
 <td>firmware <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td>Firmware</td>
 </tr>
 </tbody></table>
@@ -2360,7 +2360,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </thead><tbody>
 <tr>
 <td>aggregation <code class="prettyprint">fixed</code></td>
-<td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
+<td>(<code class="prettyprint">SUM</code>ǀ<code class="prettyprint">AVG</code>ǀ<code class="prettyprint">MAX</code>)</td>
 <td>Aggregation method when requesting other resolutions than interval</td>
 </tr>
 <tr>
@@ -2485,28 +2485,28 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">minute**</code>ǀ<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 <tr>
-<td>includeInterval <code class="prettyprint">optional</code>***</td>
-<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>&#124;<code class="prettyprint">1</code></td>
+<td>includeInterval <code class="prettyprint">optional</code>³</td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>ǀ<code class="prettyprint">1</code></td>
 <td>Defaults to <code class="prettyprint">0</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
+<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
 
 <table><thead>
 <tr>
@@ -2548,8 +2548,8 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </tr>
 </tbody></table>
 
-<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
-*** Only for interval resolution   </p>
+<p>² The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+³ Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -2662,29 +2662,29 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>format <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td><code class="prettyprint">json</code>ǀ<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>)</td>
+<td>(<code class="prettyprint">minute**</code>ǀ<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
-** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>¹ The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
+² The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
@@ -2701,17 +2701,17 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td><code class="prettyprint">comma</code>ǀ<code class="prettyprint">semicolon</code>ǀ<code class="prettyprint">colon</code>ǀ<code class="prettyprint">tab</code></td>
 <td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td><code class="prettyprint">LF</code>ǀ<code class="prettyprint">CR</code>ǀ<code class="prettyprint">CR/LF</code></td>
 <td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
+<td><code class="prettyprint">dot</code>ǀ<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -2884,7 +2884,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>firmware <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td>Firmware</td>
 </tr>
 </tbody></table>
@@ -3019,7 +3019,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>aggregation <code class="prettyprint">fixed</code></td>
-<td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
+<td>(<code class="prettyprint">SUM</code>ǀ<code class="prettyprint">AVG</code>ǀ<code class="prettyprint">MAX</code>)</td>
 <td>Aggregation method when requesting other resolutions than interval</td>
 </tr>
 <tr>
@@ -3123,28 +3123,28 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">minute**</code>ǀ<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 <tr>
-<td>includeInterval <code class="prettyprint">optional</code>***</td>
-<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>&#124;<code class="prettyprint">1</code></td>
+<td>includeInterval <code class="prettyprint">optional</code>³</td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>ǀ<code class="prettyprint">1</code></td>
 <td>Defaults to <code class="prettyprint">0</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
+<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
 
 <table><thead>
 <tr>
@@ -3186,8 +3186,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
-*** Only for interval resolution   </p>
+<p>² The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+³ Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -3292,29 +3292,29 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>format <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td><code class="prettyprint">json</code>ǀ<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>)</td>
+<td>(<code class="prettyprint">minute**</code>ǀ<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
-** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>¹ The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
+² The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
@@ -3331,17 +3331,17 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td><code class="prettyprint">comma</code>ǀ<code class="prettyprint">semicolon</code>ǀ<code class="prettyprint">colon</code>ǀ<code class="prettyprint">tab</code></td>
 <td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td><code class="prettyprint">LF</code>ǀ<code class="prettyprint">CR</code>ǀ<code class="prettyprint">CR/LF</code></td>
 <td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
+<td><code class="prettyprint">dot</code>ǀ<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -3514,7 +3514,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>firmware <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td>Firmware</td>
 </tr>
 </tbody></table>
@@ -3643,7 +3643,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>aggregation <code class="prettyprint">fixed</code></td>
-<td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
+<td>(<code class="prettyprint">SUM</code>ǀ<code class="prettyprint">AVG</code>ǀ<code class="prettyprint">MAX</code>)</td>
 <td>Aggregation method when requesting other resolutions than interval</td>
 </tr>
 <tr>
@@ -3747,28 +3747,28 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">minute**</code>ǀ<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 <tr>
-<td>includeInterval <code class="prettyprint">optional</code>***</td>
-<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>&#124;<code class="prettyprint">1</code></td>
+<td>includeInterval <code class="prettyprint">optional</code>³</td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>ǀ<code class="prettyprint">1</code></td>
 <td>Defaults to <code class="prettyprint">0</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
+<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
 
 <table><thead>
 <tr>
@@ -3810,8 +3810,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
-*** Only for interval resolution   </p>
+<p>² The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+³ Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -3916,29 +3916,29 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>format <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td><code class="prettyprint">json</code>ǀ<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>)</td>
+<td>(<code class="prettyprint">minute**</code>ǀ<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
-** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>¹ The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
+² The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
@@ -3955,17 +3955,17 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td><code class="prettyprint">comma</code>ǀ<code class="prettyprint">semicolon</code>ǀ<code class="prettyprint">colon</code>ǀ<code class="prettyprint">tab</code></td>
 <td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td><code class="prettyprint">LF</code>ǀ<code class="prettyprint">CR</code>ǀ<code class="prettyprint">CR/LF</code></td>
 <td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
+<td><code class="prettyprint">dot</code>ǀ<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -4271,7 +4271,7 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </thead><tbody>
 <tr>
 <td>aggregation <code class="prettyprint">fixed</code></td>
-<td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
+<td>(<code class="prettyprint">SUM</code>ǀ<code class="prettyprint">AVG</code>ǀ<code class="prettyprint">MAX</code>)</td>
 <td>Aggregation method when requesting other resolutions than interval</td>
 </tr>
 <tr>
@@ -4375,28 +4375,28 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">minute**</code>ǀ<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 <tr>
-<td>includeInterval <code class="prettyprint">optional</code>***</td>
-<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>&#124;<code class="prettyprint">1</code></td>
+<td>includeInterval <code class="prettyprint">optional</code>³</td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>ǀ<code class="prettyprint">1</code></td>
 <td>Defaults to <code class="prettyprint">0</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
+<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
 
 <table><thead>
 <tr>
@@ -4438,8 +4438,8 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </tr>
 </tbody></table>
 
-<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
-*** Only for interval resolution   </p>
+<p>² The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+³ Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -4600,29 +4600,29 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>format <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td><code class="prettyprint">json</code>ǀ<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>)</td>
+<td>(<code class="prettyprint">minute**</code>ǀ<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
-** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>¹ The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
+² The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
@@ -4639,17 +4639,17 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td><code class="prettyprint">comma</code>ǀ<code class="prettyprint">semicolon</code>ǀ<code class="prettyprint">colon</code>ǀ<code class="prettyprint">tab</code></td>
 <td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td><code class="prettyprint">LF</code>ǀ<code class="prettyprint">CR</code>ǀ<code class="prettyprint">CR/LF</code></td>
 <td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
+<td><code class="prettyprint">dot</code>ǀ<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -4822,7 +4822,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>firmware <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td>Firmware</td>
 </tr>
 </tbody></table>
@@ -4957,7 +4957,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>aggregation <code class="prettyprint">fixed</code></td>
-<td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
+<td>(<code class="prettyprint">SUM</code>ǀ<code class="prettyprint">AVG</code>ǀ<code class="prettyprint">MAX</code>)</td>
 <td>Aggregation method when requesting other resolutions than interval</td>
 </tr>
 <tr>
@@ -5061,28 +5061,28 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">minute**</code>ǀ<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 <tr>
-<td>includeInterval <code class="prettyprint">optional</code>***</td>
-<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>&#124;<code class="prettyprint">1</code></td>
+<td>includeInterval <code class="prettyprint">optional</code>³</td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>ǀ<code class="prettyprint">1</code></td>
 <td>Defaults to <code class="prettyprint">0</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
+<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
 
 <table><thead>
 <tr>
@@ -5124,8 +5124,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
-*** Only for interval resolution   </p>
+<p>² The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+³ Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -5271,29 +5271,29 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>format <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td><code class="prettyprint">json</code>ǀ<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>)</td>
+<td>(<code class="prettyprint">minute**</code>ǀ<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
-** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>¹ The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
+² The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
@@ -5310,17 +5310,17 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td><code class="prettyprint">comma</code>ǀ<code class="prettyprint">semicolon</code>ǀ<code class="prettyprint">colon</code>ǀ<code class="prettyprint">tab</code></td>
 <td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td><code class="prettyprint">LF</code>ǀ<code class="prettyprint">CR</code>ǀ<code class="prettyprint">CR/LF</code></td>
 <td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
+<td><code class="prettyprint">dot</code>ǀ<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -5487,7 +5487,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 <tr>
 <td>firmware <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td>Firmware</td>
 </tr>
 </tbody></table>
@@ -5644,7 +5644,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>aggregation <code class="prettyprint">fixed</code></td>
-<td>(<code class="prettyprint">SUM</code>&#124;<code class="prettyprint">AVG</code>&#124;<code class="prettyprint">MAX</code>)</td>
+<td>(<code class="prettyprint">SUM</code>ǀ<code class="prettyprint">AVG</code>ǀ<code class="prettyprint">MAX</code>)</td>
 <td>Aggregation method when requesting other resolutions than interval</td>
 </tr>
 <tr>
@@ -5748,28 +5748,28 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>&#124;<code class="prettyprint">month</code>&#124;<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">minute**</code>ǀ<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 <tr>
-<td>includeInterval <code class="prettyprint">optional</code>***</td>
-<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>&#124;<code class="prettyprint">1</code></td>
+<td>includeInterval <code class="prettyprint">optional</code>³</td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>ǀ<code class="prettyprint">1</code></td>
 <td>Defaults to <code class="prettyprint">0</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
+<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
 
 <table><thead>
 <tr>
@@ -5811,8 +5811,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<p>** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
-*** Only for interval resolution   </p>
+<p>² The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a>
+³ Only for interval resolution   </p>
 
 <p><strong>Response</strong></p>
 
@@ -5969,29 +5969,29 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </thead><tbody>
 <tr>
-<td>from <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>Start date</td>
 </tr>
 <tr>
-<td>to <code class="prettyprint">required</code>*</td>
-<td><code class="prettyprint">date</code>&#124;<code class="prettyprint">datetime</code></td>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
 <tr>
 <td>format <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">json</code>&#124;<code class="prettyprint">csv</code></td>
+<td><code class="prettyprint">json</code>ǀ<code class="prettyprint">csv</code></td>
 <td>Export format, defaults to <code class="prettyprint">json</code></td>
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">minute**</code>&#124;<code class="prettyprint">interval</code>&#124;<code class="prettyprint">fifteen-minutes</code>&#124;<code class="prettyprint">thirty-minutes</code>&#124;<code class="prettyprint">hour</code>&#124;<code class="prettyprint">day</code>)</td>
+<td>(<code class="prettyprint">minute**</code>ǀ<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
 </tr>
 </tbody></table>
 
-<p>* The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
-** The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
+<p>¹ The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
+² The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a></p>
 
 <p><strong><em>Options for CSV format</em></strong></p>
 
@@ -6008,17 +6008,17 @@ For response example in CSV format, please check <a href="https://github.com/met
 </thead><tbody>
 <tr>
 <td>delimiter</td>
-<td><code class="prettyprint">comma</code>&#124;<code class="prettyprint">semicolon</code>&#124;<code class="prettyprint">colon</code>&#124;<code class="prettyprint">tab</code></td>
+<td><code class="prettyprint">comma</code>ǀ<code class="prettyprint">semicolon</code>ǀ<code class="prettyprint">colon</code>ǀ<code class="prettyprint">tab</code></td>
 <td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
 </tr>
 <tr>
 <td>lineBreak</td>
-<td><code class="prettyprint">LF</code>&#124;<code class="prettyprint">CR</code>&#124;<code class="prettyprint">CR/LF</code></td>
+<td><code class="prettyprint">LF</code>ǀ<code class="prettyprint">CR</code>ǀ<code class="prettyprint">CR/LF</code></td>
 <td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
 </tr>
 <tr>
 <td>decimalPoint</td>
-<td><code class="prettyprint">dot</code>&#124;<code class="prettyprint">comma</code></td>
+<td><code class="prettyprint">dot</code>ǀ<code class="prettyprint">comma</code></td>
 <td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
 </tr>
 <tr>
@@ -6838,22 +6838,22 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 <tr>
 <td>includeInReports <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">no</code>&#124;<code class="prettyprint">detail</code>&#124;<code class="prettyprint">summary</code>)</td>
+<td>(<code class="prettyprint">no</code>ǀ<code class="prettyprint">detail</code>ǀ<code class="prettyprint">summary</code>)</td>
 <td>Can contain comma delimited report types</td>
 </tr>
 <tr>
 <td>status <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">open</code>&#124;<code class="prettyprint">closed</code>&#124;<code class="prettyprint">deleted</code>&#124;<code class="prettyprint">assigned</code>&#124;<code class="prettyprint">inProgress</code>)¹</td>
+<td>(<code class="prettyprint">open</code>ǀ<code class="prettyprint">closed</code>ǀ<code class="prettyprint">deleted</code>ǀ<code class="prettyprint">assigned</code>ǀ<code class="prettyprint">inProgress</code>)¹</td>
 <td>Can contain comma delimited status</td>
 </tr>
 <tr>
 <td>severity <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">critical</code>)</td>
+<td>(<code class="prettyprint">normal</code>ǀ<code class="prettyprint">high</code>ǀ<code class="prettyprint">critical</code>)</td>
 <td>Can contain comma delimited severity types</td>
 </tr>
 <tr>
 <td>priority <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>)</td>
+<td>(<code class="prettyprint">low</code>ǀ<code class="prettyprint">normal</code>ǀ<code class="prettyprint">high</code>ǀ<code class="prettyprint">urgent</code>)</td>
 <td>Can contain comma delimited priority types</td>
 </tr>
 <tr>
@@ -6905,7 +6905,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 <tr>
 <td>summary <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td></td>
 </tr>
 <tr>
@@ -6920,37 +6920,37 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 <tr>
 <td>lastChange <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
 <td>(deprecated)</td>
 </tr>
 <tr>
 <td>lastChangedAt <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
 <td>Last change date in system timezone</td>
 </tr>
 <tr>
 <td>rectifiedOn <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
 <td>(deprecated)</td>
 </tr>
 <tr>
 <td>rectifiedAt <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
 <td>Rectified date in system timezone</td>
 </tr>
 <tr>
 <td>status <code class="prettyprint">fixed</code></td>
-<td>(<code class="prettyprint">open</code>&#124;<code class="prettyprint">closed</code>&#124;<code class="prettyprint">deleted</code>&#124;<code class="prettyprint">assigned</code>&#124;<code class="prettyprint">inProgress</code>)¹</td>
+<td>(<code class="prettyprint">open</code>ǀ<code class="prettyprint">closed</code>ǀ<code class="prettyprint">deleted</code>ǀ<code class="prettyprint">assigned</code>ǀ<code class="prettyprint">inProgress</code>)¹</td>
 <td></td>
 </tr>
 <tr>
 <td>priority <code class="prettyprint">fixed</code></td>
-<td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>&#124;<code class="prettyprint">null</code>)</td>
+<td>(<code class="prettyprint">low</code>ǀ<code class="prettyprint">normal</code>ǀ<code class="prettyprint">high</code>ǀ<code class="prettyprint">urgent</code>ǀ<code class="prettyprint">null</code>)</td>
 <td></td>
 </tr>
 <tr>
 <td>severity <code class="prettyprint">fixed</code></td>
-<td>(<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">critical</code>&#124;<code class="prettyprint">null</code>)</td>
+<td>(<code class="prettyprint">normal</code>ǀ<code class="prettyprint">high</code>ǀ<code class="prettyprint">critical</code>ǀ<code class="prettyprint">null</code>)</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -7072,7 +7072,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 <tr>
 <td>summary <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td></td>
 </tr>
 <tr>
@@ -7087,47 +7087,47 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 <tr>
 <td>lastChange <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
 <td>(deprecated)</td>
 </tr>
 <tr>
 <td>lastChangedAt <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
 <td>Last change date in system timezone</td>
 </tr>
 <tr>
 <td>rectifiedOn <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
 <td>(deprecated)</td>
 </tr>
 <tr>
 <td>rectifiedAt <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">datetime</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
 <td>Rectified date in system timezone</td>
 </tr>
 <tr>
 <td>assignee <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td>The username of the person being assigned to the ticket</td>
 </tr>
 <tr>
 <td>status <code class="prettyprint">fixed</code></td>
-<td>(<code class="prettyprint">open</code>&#124;<code class="prettyprint">closed</code>&#124;<code class="prettyprint">deleted</code>&#124;<code class="prettyprint">assigned</code>&#124;<code class="prettyprint">inProgress</code>)¹</td>
+<td>(<code class="prettyprint">open</code>ǀ<code class="prettyprint">closed</code>ǀ<code class="prettyprint">deleted</code>ǀ<code class="prettyprint">assigned</code>ǀ<code class="prettyprint">inProgress</code>)¹</td>
 <td></td>
 </tr>
 <tr>
 <td>causeId <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">integer</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">integer</code>ǀ<code class="prettyprint">null</code></td>
 <td></td>
 </tr>
 <tr>
 <td>priority <code class="prettyprint">fixed</code></td>
-<td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>&#124;<code class="prettyprint">null</code>)</td>
+<td>(<code class="prettyprint">low</code>ǀ<code class="prettyprint">normal</code>ǀ<code class="prettyprint">high</code>ǀ<code class="prettyprint">urgent</code>ǀ<code class="prettyprint">null</code>)</td>
 <td></td>
 </tr>
 <tr>
 <td>includeInReports <code class="prettyprint">fixed</code></td>
-<td>(<code class="prettyprint">no</code>&#124;<code class="prettyprint">detail</code>&#124;<code class="prettyprint">summary</code>)</td>
+<td>(<code class="prettyprint">no</code>ǀ<code class="prettyprint">detail</code>ǀ<code class="prettyprint">summary</code>)</td>
 <td></td>
 </tr>
 <tr>
@@ -7137,12 +7137,12 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 <tr>
 <td>severity <code class="prettyprint">fixed</code></td>
-<td>(<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">critical</code>&#124;<code class="prettyprint">null</code>)</td>
+<td>(<code class="prettyprint">normal</code>ǀ<code class="prettyprint">high</code>ǀ<code class="prettyprint">critical</code>ǀ<code class="prettyprint">null</code>)</td>
 <td></td>
 </tr>
 <tr>
 <td>outage <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">Outage</code> &#124; <code class="prettyprint">null</code></td>
+<td><code class="prettyprint">Outage</code> ǀ <code class="prettyprint">null</code></td>
 <td>Outage information, if available</td>
 </tr>
 </tbody></table>
@@ -7165,7 +7165,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 <tr>
 <td>endedAt <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">datetime</code> &#124; <code class="prettyprint">null</code></td>
+<td><code class="prettyprint">datetime</code> ǀ <code class="prettyprint">null</code></td>
 <td>End of outage or <code class="prettyprint">null</code> if undefined</td>
 </tr>
 <tr>
@@ -7279,7 +7279,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 <tr>
 <td>summary <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td></td>
 </tr>
 <tr>
@@ -7294,17 +7294,17 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 <tr>
 <td>includeInReports <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">no</code>&#124;<code class="prettyprint">detail</code>&#124;<code class="prettyprint">summary</code>)</td>
+<td>(<code class="prettyprint">no</code>ǀ<code class="prettyprint">detail</code>ǀ<code class="prettyprint">summary</code>)</td>
 <td></td>
 </tr>
 <tr>
 <td>status <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">open</code>&#124;<code class="prettyprint">closed</code>&#124;<code class="prettyprint">deleted</code>&#124;<code class="prettyprint">assigned</code>&#124;<code class="prettyprint">inProgress</code>)¹</td>
+<td>(<code class="prettyprint">open</code>ǀ<code class="prettyprint">closed</code>ǀ<code class="prettyprint">deleted</code>ǀ<code class="prettyprint">assigned</code>ǀ<code class="prettyprint">inProgress</code>)¹</td>
 <td></td>
 </tr>
 <tr>
 <td>priority <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>)</td>
+<td>(<code class="prettyprint">low</code>ǀ<code class="prettyprint">normal</code>ǀ<code class="prettyprint">high</code>ǀ<code class="prettyprint">urgent</code>)</td>
 <td></td>
 </tr>
 <tr>
@@ -7430,22 +7430,22 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 <tr>
 <td>summary <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">string</code>&#124;<code class="prettyprint">null</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td></td>
 </tr>
 <tr>
 <td>includeInReports <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">no</code>&#124;<code class="prettyprint">detail</code>&#124;<code class="prettyprint">summary</code>)</td>
+<td>(<code class="prettyprint">no</code>ǀ<code class="prettyprint">detail</code>ǀ<code class="prettyprint">summary</code>)</td>
 <td></td>
 </tr>
 <tr>
 <td>status <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">open</code>&#124;<code class="prettyprint">closed</code>&#124;<code class="prettyprint">deleted</code>&#124;<code class="prettyprint">assigned</code>&#124;<code class="prettyprint">inProgress</code>)¹</td>
+<td>(<code class="prettyprint">open</code>ǀ<code class="prettyprint">closed</code>ǀ<code class="prettyprint">deleted</code>ǀ<code class="prettyprint">assigned</code>ǀ<code class="prettyprint">inProgress</code>)¹</td>
 <td></td>
 </tr>
 <tr>
 <td>priority <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">low</code>&#124;<code class="prettyprint">normal</code>&#124;<code class="prettyprint">high</code>&#124;<code class="prettyprint">urgent</code>)</td>
+<td>(<code class="prettyprint">low</code>ǀ<code class="prettyprint">normal</code>ǀ<code class="prettyprint">high</code>ǀ<code class="prettyprint">urgent</code>)</td>
 <td></td>
 </tr>
 <tr>
@@ -8451,7 +8451,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>action <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>(<code class="prettyprint">created</code>&#124;<code class="prettyprint">statusChanged</code>&#124;<code class="prettyprint">assigneeChanged</code>)</td>
+<td>(<code class="prettyprint">created</code>ǀ<code class="prettyprint">statusChanged</code>ǀ<code class="prettyprint">assigneeChanged</code>)</td>
 </tr>
 <tr>
 <td>personInCharge</td>
@@ -8529,7 +8529,7 @@ curl -X POST <span class="se">\</span>
 <tr>
 <td>grant_type <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>(<code class="prettyprint">password</code>&#124;<code class="prettyprint">refresh_token</code>)</td>
+<td>(<code class="prettyprint">password</code>ǀ<code class="prettyprint">refresh_token</code>)</td>
 </tr>
 <tr>
 <td>client_id <code class="prettyprint">required</code></td>
