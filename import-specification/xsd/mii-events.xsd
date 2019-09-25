@@ -19,7 +19,7 @@
   <xs:complexType name="ev-generic-event">
     <xs:all>
       <!-- new structure -->
-      <xs:element ref="e:uid" minOccurs="0"/>
+      <xs:element ref="e:uid"/>
       <xs:element ref="e:code" minOccurs="0"/>
       <xs:element ref="e:state" minOccurs="0"/>
       <xs:element name="event-key" type="xs:string" minOccurs="0"/>
