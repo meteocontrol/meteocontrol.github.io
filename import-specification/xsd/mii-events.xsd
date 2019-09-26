@@ -3,11 +3,11 @@
     xmlns:e="http://api.sspcdn.com/mii/datalogger/events"
     elementFormDefault="qualified"
     targetNamespace="http://api.sspcdn.com/mii/datalogger/events">
+
   <xs:element name="events" type="e:ev-events"/>
   <xs:complexType name="ev-events">
     <xs:choice maxOccurs="unbounded">
       <xs:element ref="e:alert" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element ref="e:status" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element ref="e:event" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element ref="e:powermanagement" minOccurs="0" maxOccurs="unbounded"/>
     </xs:choice>
@@ -16,11 +16,10 @@
   <!-- events -->
   <xs:element name="event" type="e:ev-generic-event"/>
   <xs:element name="alert" type="e:ev-generic-event"/>
-  <xs:element name="status" type="e:ev-generic-event"/>
   <xs:complexType name="ev-generic-event">
     <xs:all>
       <!-- new structure -->
-      <xs:element ref="e:uid" minOccurs="0"/>
+      <xs:element ref="e:uid"/>
       <xs:element ref="e:code" minOccurs="0"/>
       <xs:element ref="e:state" minOccurs="0"/>
       <xs:element name="event-key" type="xs:string" minOccurs="0"/>
