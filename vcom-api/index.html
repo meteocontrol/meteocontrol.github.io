@@ -567,7 +567,8 @@ X-RateLimit-Remaining-Day: 328
           <h3 id="abbreviations">Abbreviations</h3>
 
 <p>Abbreviations are uppercase strings that identify datapoints.
-Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irradiance) and PR (Performance Ratio).</p>
+Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irradiance), PR (Performance Ratio), CO2 (
+carbon emission) and POWER (System Capacity).</p>
 
 <h3 class="toc-ignore">Get all abbreviations</h3>
 
@@ -589,7 +590,8 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
     <span class="s2">"E_Z_EVU"</span>,
     <span class="s2">"G_M"</span>,
     <span class="s2">"PR"</span>,
-    <span class="s2">"CO2"</span>
+    <span class="s2">"CO2"</span>,
+    <span class="s2">"POWER"</span>
   <span class="o">]</span>
 <span class="o">}</span>
 </code></pre>
@@ -599,6 +601,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="c1">// G_M
 </span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c1">// PR
 </span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// CO2
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span> <span class="c1">// POWER
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/abbreviations</code></p>
