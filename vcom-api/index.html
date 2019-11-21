@@ -567,8 +567,7 @@ X-RateLimit-Remaining-Day: 328
           <h3 id="abbreviations">Abbreviations</h3>
 
 <p>Abbreviations are uppercase strings that identify datapoints.
-Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irradiance), PR (Performance Ratio), CO2 (
-carbon emission) and POWER (System Capacity).</p>
+Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irradiance), PR (performance ratio), CO2 (carbon emission) and POWER (system capacity).</p>
 
 <h3 class="toc-ignore">Get all abbreviations</h3>
 
@@ -2540,7 +2539,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-10-21T11:00:00+02:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-10-21T12:00:00+02:00'</span><span class="p">));</span>
-     <span class="sd">/** @var DevicesMeasurement $measurements */</span>
+    <span class="sd">/** @var DevicesMeasurement $measurements */</span>
     <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">inverter</span><span class="p">(</span><span class="s1">'Id12345.1'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'P_AC'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
 </code></pre>
@@ -2578,7 +2577,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 <span class="o">}</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-     <span class="sd">/** @var DevicesMeasurement $measurements */</span>
+    <span class="sd">/** @var DevicesMeasurement $measurements */</span>
     <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'Id12345.1'</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-10-21T11:00:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'Id12345.1'</span><span class="p">][</span><span class="s1">'P_AC'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 0.089
@@ -3270,7 +3269,7 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-11-01T11:00:00+02:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-11-01T11:15:00+02:00'</span><span class="p">));</span>
-     <span class="sd">/** @var DevicesMeasurement $measurements */</span>
+    <span class="sd">/** @var DevicesMeasurement $measurements */</span>
     <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">meter</span><span class="p">(</span><span class="s1">'12345'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'E'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
 </code></pre>
@@ -3913,7 +3912,7 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-10-21T20:00:00+02:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-10-21T20:05:00+02:00'</span><span class="p">));</span>
-     <span class="sd">/** @var DevicesMeasurement $measurements */</span>
+    <span class="sd">/** @var DevicesMeasurement $measurements */</span>
     <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">sensor</span><span class="p">(</span><span class="s1">'10001'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'SRAD'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
 </code></pre>
@@ -4559,7 +4558,7 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-10-21T11:00:00+02:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-10-21T11:05:00+02:00'</span><span class="p">));</span>
-     <span class="sd">/** @var DevicesMeasurement $measurements */</span>
+    <span class="sd">/** @var DevicesMeasurement $measurements */</span>
     <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">stringbox</span><span class="p">(</span><span class="s1">'20001'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'I1'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
 </code></pre>
@@ -5295,7 +5294,7 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-11-01T11:00:00+02:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-11-01T11:05:00+02:00'</span><span class="p">));</span>
-     <span class="sd">/** @var DevicesMeasurement $measurements */</span>
+    <span class="sd">/** @var DevicesMeasurement $measurements */</span>
     <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">battery</span><span class="p">(</span><span class="s1">'145146'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'B_CHARGE_LEVEL'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
 </code></pre>
@@ -5993,7 +5992,7 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-10-29T11:00:00+02:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-10-29T11:05:00+02:00'</span><span class="p">));</span>
-     <span class="sd">/** @var DevicesMeasurement $measurements */</span>
+    <span class="sd">/** @var DevicesMeasurement $measurements */</span>
     <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">powerPlantController</span><span class="p">(</span><span class="s1">'163784'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'PPC_P_AC'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
 </code></pre>
