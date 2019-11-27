@@ -932,6 +932,429 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </tr>
 </tbody></table>
 
+          <h4 id="virtual-meters">Virtual meters</h4>
+
+<h4 class="toc-ignore">Get all virtual meters</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/virtual-meters'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var VirtualMeter[] $virtualMeters */</span>
+    <span class="nv">$virtualMeters</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">virtualMeters</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: <span class="s2">"1"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Virtual meter 1"</span>,
+      <span class="s2">"serial"</span>: <span class="s2">"serial.1"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: <span class="s2">"2"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Virtual meter 2"</span>,
+      <span class="s2">"serial"</span>: <span class="s2">"serial.2"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var VirtualMeter[] $virtualMeters */</span>
+    <span class="k">echo</span> <span class="nv">$virtualMeters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 1
+</span>    <span class="k">echo</span> <span class="nv">$virtualMeters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Virtual meter 1
+</span>    <span class="k">echo</span> <span class="nv">$virtualMeters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">serial</span><span class="p">;</span><span class="c1">// serial.1
+</span>    <span class="k">echo</span> <span class="nv">$virtualMeters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 2
+</span>    <span class="k">echo</span> <span class="nv">$virtualMeters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Virtual meter 2
+</span>    <span class="k">echo</span> <span class="nv">$virtualMeters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">serial</span><span class="p">;</span><span class="c1">// serial.2
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/virtual-meters</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Virtual meter device-ID</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Customized name</td>
+</tr>
+<tr>
+<td>serial <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Serial number</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single virtual meter</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/virtual-meters/1'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var VirtualMeterDetail $virtualMeter */</span>
+    <span class="nv">$virtualMeter</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">virtualMeters</span><span class="p">(</span><span class="s1">'1'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: <span class="s2">"1"</span>,
+    <span class="s2">"name"</span>: <span class="s2">"Virtual meter 1"</span>,
+    <span class="s2">"serial"</span>: <span class="s2">"serial.1"</span>,
+    <span class="s2">"installationDate"</span>: <span class="s2">"2019-11-11"</span>,
+    <span class="s2">"unit"</span>: <span class="s2">"kWh"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var VirtualMeterDetail $virtualMeter */</span>
+    <span class="k">echo</span> <span class="nv">$virtualMeter</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 1
+</span>    <span class="k">echo</span> <span class="nv">$virtualMeter</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Virtual meter 1
+</span>    <span class="k">echo</span> <span class="nv">$virtualMeter</span><span class="o">-&gt;</span><span class="na">serial</span><span class="p">;</span><span class="c1">// serial.1
+</span>    <span class="k">echo</span> <span class="nv">$virtualMeter</span><span class="o">-&gt;</span><span class="na">installationDate</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">'Y-m-d'</span><span class="p">);</span><span class="c1">// 2019-11-11
+</span>    <span class="k">echo</span> <span class="nv">$virtualMeter</span><span class="o">-&gt;</span><span class="na">unit</span><span class="p">;</span><span class="c1">// kWh
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/virtual-meters/&lt;deviceId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Virtual meter device-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Virtual meter device-ID</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Customized name</td>
+</tr>
+<tr>
+<td>serial <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Serial number</td>
+</tr>
+<tr>
+<td>installationDate <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Installation date</td>
+</tr>
+<tr>
+<td>unit <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Unit</td>
+</tr>
+</tbody></table>
+
+          <h5 id="readings">Readings</h5>
+
+<h5 class="toc-ignore">Get latest reading</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/virtual-meters/1/readings'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$meterReadingCriteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MeterReadingCriteria</span><span class="p">();</span>
+    <span class="sd">/** @var VirtualMeterReading $readings */</span>
+    <span class="nv">$readings</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">virtualMeters</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">readings</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$meterReadingCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 7777,
+      <span class="s2">"type"</span>: <span class="s2">"MANUAL"</span>,
+      <span class="s2">"timestamp"</span>: <span class="s2">"2019-11-11T18:00:00+02:00"</span>,
+      <span class="s2">"value"</span>: 30
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var VirtualMeterReading[] $readings */</span>
+    <span class="k">echo</span> <span class="nv">$readings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 7777
+</span>    <span class="k">echo</span> <span class="nv">$readings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">type</span><span class="p">;</span><span class="c1">// MANUAL
+</span>    <span class="k">echo</span> <span class="nv">$readings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2019-11-11T18:00:00+02:00
+</span>    <span class="k">echo</span> <span class="nv">$readings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 30
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/virtual-meters/&lt;deviceId&gt;/readings</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Virtual meter device-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">all</code>ǀ<code class="prettyprint">auto</code>ǀ<code class="prettyprint">manual</code>)</td>
+<td>Defaults to <code class="prettyprint">all</code></td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Reading-ID</td>
+</tr>
+<tr>
+<td>type <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Reading type</td>
+</tr>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>value <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Value</td>
+</tr>
+</tbody></table>
+
+<h5 class="toc-ignore">Get readings</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/virtual-meters/1/readings?from=2018-02-28T00:00:00+02:00&amp;to=2018-02-28T23:59:59+02:00&amp;type=all'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$meterReadingCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeterReadingCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2018-02-28T00:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2018-02-28T23:59:59+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withType</span><span class="p">(</span><span class="nx">MeterReadingCriteria</span><span class="o">::</span><span class="na">READING_TYPE_ALL</span><span class="p">);</span>
+    <span class="sd">/** @var VirtualMeterReading $readings */</span>
+    <span class="nv">$readings</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">virtualMeters</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">readings</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$meterReadingCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 146803853,
+      <span class="s2">"type"</span>: <span class="s2">"MANUAL"</span>,
+      <span class="s2">"timestamp"</span>: <span class="s2">"2018-02-28T23:59:59+01:00"</span>,
+      <span class="s2">"value"</span>: 3698.2216528918002
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 146803854,
+      <span class="s2">"type"</span>: <span class="s2">"AUTO"</span>,
+      <span class="s2">"timestamp"</span>: <span class="s2">"2018-03-31T23:59:59+02:00"</span>,
+      <span class="s2">"value"</span>: 3958.0235319860999
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 146803855,
+      <span class="s2">"type"</span>: <span class="s2">"MANUAL"</span>,
+      <span class="s2">"timestamp"</span>: <span class="s2">"2018-04-30T23:59:59+02:00"</span>,
+      <span class="s2">"value"</span>: 4294.8163073654996
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var VirtualMeterReading[] $readings */</span>
+    <span class="k">echo</span> <span class="nv">$readings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 146803853
+</span>    <span class="k">echo</span> <span class="nv">$readings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">type</span><span class="p">;</span><span class="c1">// MANUAL
+</span>    <span class="k">echo</span> <span class="nv">$readings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2018-02-28T23:59:59+01:00
+</span>    <span class="k">echo</span> <span class="nv">$readings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 3698.2216528918002
+</span>    <span class="k">echo</span> <span class="nv">$readings</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 146803854
+</span>    <span class="k">echo</span> <span class="nv">$readings</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">type</span><span class="p">;</span><span class="c1">// AUTO
+</span>    <span class="k">echo</span> <span class="nv">$readings</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2018-03-31T23:59:59+02:00
+</span>    <span class="k">echo</span> <span class="nv">$readings</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 3958.0235319860999
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/virtual-meters/&lt;deviceId&gt;/readings</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Virtual meter device-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>type <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">all</code>ǀ<code class="prettyprint">auto</code>ǀ<code class="prettyprint">manual</code>)</td>
+<td>Defaults to <code class="prettyprint">all</code></td>
+</tr>
+</tbody></table>
+
+<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> is limited to 1 year.</p>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Reading-ID</td>
+</tr>
+<tr>
+<td>type <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Reading type</td>
+</tr>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>value <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Value</td>
+</tr>
+</tbody></table>
+
           <h4 id="bulk">Bulk</h4>
 
 <blockquote>
@@ -1224,7 +1647,6 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-          
           <h4 id="basics">Basics</h4>
 
           <h5 id="abbreviations">Abbreviations</h5>
@@ -1279,7 +1701,7 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 </tr>
 </tbody></table>
 
-<h4 class="toc-ignore">Get single abbreviation</h4>
+<h5 class="toc-ignore">Get single abbreviation</h5>
 
 <blockquote>
 <p>Request</p>
@@ -1369,7 +1791,7 @@ Common abbreviations within the basics endpoint are E_Z_EVU (production) or G_M0
 </tr>
 </tbody></table>
 
-          <h6 id="measurements">Measurements</h6>
+          <h5 id="measurements">Measurements</h5>
 
 <blockquote>
 <p>Request</p>
@@ -1723,7 +2145,7 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 </tr>
 </tbody></table>
 
-<h4 class="toc-ignore">Get single abbreviation</h4>
+<h5 class="toc-ignore">Get single abbreviation</h5>
 
 <blockquote>
 <p>Request</p>
@@ -1813,7 +2235,7 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 </tr>
 </tbody></table>
 
-          <h6 id="measurements">Measurements</h6>
+          <h5 id="measurements">Measurements</h5>
 
 <blockquote>
 <p>Request</p>
@@ -2433,7 +2855,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </tr>
 </tbody></table>
 
-<h4 class="toc-ignore">Get single abbreviation</h4>
+<h5 class="toc-ignore">Get single abbreviation</h5>
 
 <blockquote>
 <p>Request</p>
@@ -2528,7 +2950,7 @@ Common abbreviations within the inverters endpoint are P_AC (AC Power), E_TOTAL 
 </tr>
 </tbody></table>
 
-          <h6 id="measurements">Measurements</h6>
+          <h5 id="measurements">Measurements</h5>
 
 <blockquote>
 <p>Request</p>
@@ -3163,7 +3585,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<h4 class="toc-ignore">Get single abbreviation</h4>
+<h5 class="toc-ignore">Get single abbreviation</h5>
 
 <blockquote>
 <p>Request</p>
@@ -3258,7 +3680,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-          <h6 id="measurements">Measurements</h6>
+          <h5 id="measurements">Measurements</h5>
 
 <blockquote>
 <p>Request</p>
@@ -3806,7 +4228,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<h4 class="toc-ignore">Get single abbreviation</h4>
+<h5 class="toc-ignore">Get single abbreviation</h5>
 
 <blockquote>
 <p>Request</p>
@@ -3901,7 +4323,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-          <h6 id="measurements">Measurements</h6>
+          <h5 id="measurements">Measurements</h5>
 
 <blockquote>
 <p>Request</p>
@@ -4445,7 +4867,7 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </tr>
 </tbody></table>
 
-<h4 class="toc-ignore">Get single abbreviation</h4>
+<h5 class="toc-ignore">Get single abbreviation</h5>
 
 <blockquote>
 <p>Request</p>
@@ -4547,7 +4969,7 @@ For response example in CSV format, please check [HERE](https://github.com/meteo
 </tr>
 </tbody></table>
 
-          <h6 id="measurements">Measurements</h6>
+          <h5 id="measurements">Measurements</h5>
 
 <blockquote>
 <p>Request</p>
@@ -5188,7 +5610,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<h4 class="toc-ignore">Get single abbreviation</h4>
+<h5 class="toc-ignore">Get single abbreviation</h5>
 
 <blockquote>
 <p>Request</p>
@@ -5283,7 +5705,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-          <h6 id="measurements">Measurements</h6>
+          <h5 id="measurements">Measurements</h5>
 
 <blockquote>
 <p>Request</p>
@@ -5886,7 +6308,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<h4 class="toc-ignore">Get single abbreviation</h4>
+<h5 class="toc-ignore">Get single abbreviation</h5>
 
 <blockquote>
 <p>Request</p>
@@ -5981,7 +6403,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-          <h6 id="measurements">Measurements</h6>
+          <h5 id="measurements">Measurements</h5>
 
 <blockquote>
 <p>Request</p>
@@ -9130,6 +9552,11 @@ The response format changed as follows:</p>
 <td>2019-08-06</td>
 <td>2.4.0</td>
 <td>New abbreviation CO2 under systems abbreviations, and add includeInterval option for bulk endpoints</td>
+</tr>
+<tr>
+<td>2019-11-27</td>
+<td>2.5.0</td>
+<td>Add virtual-meters endpoints</td>
 </tr>
 </tbody></table>
 
