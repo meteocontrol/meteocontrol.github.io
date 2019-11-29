@@ -1027,7 +1027,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var VirtualMeterDetail $virtualMeter */</span>
-    <span class="nv">$virtualMeter</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">virtualMeters</span><span class="p">(</span><span class="s1">'1'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+    <span class="nv">$virtualMeter</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">virtualMeter</span><span class="p">(</span><span class="s1">'1'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 </code></pre>
 
 <blockquote>
@@ -1123,7 +1123,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$meterReadingCriteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MeterReadingCriteria</span><span class="p">();</span>
     <span class="sd">/** @var VirtualMeterReading $readings */</span>
-    <span class="nv">$readings</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">virtualMeters</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">readings</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$meterReadingCriteria</span><span class="p">);</span>
+    <span class="nv">$readings</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">virtualMeter</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">readings</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$meterReadingCriteria</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -1231,7 +1231,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2018-02-28T23:59:59+02:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withType</span><span class="p">(</span><span class="nx">MeterReadingCriteria</span><span class="o">::</span><span class="na">READING_TYPE_ALL</span><span class="p">);</span>
     <span class="sd">/** @var VirtualMeterReading $readings */</span>
-    <span class="nv">$readings</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">virtualMeters</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">readings</span><span class="p">()</span>
+    <span class="nv">$readings</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">virtualMeter</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">readings</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$meterReadingCriteria</span><span class="p">);</span>
 </code></pre>
 
