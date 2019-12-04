@@ -6783,6 +6783,660 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
+          <h4 id="trackers">Trackers</h4>
+
+<h4 class="toc-ignore">Get all trackers</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/trackers'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var Tracker[] $trackers */</span>
+    <span class="nv">$trackers</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">trackers</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: <span class="s2">"30001"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Tracker 1"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: <span class="s2">"30002"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Tracker 2"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var Tracker[] $trackers */</span>
+    <span class="k">echo</span> <span class="nv">$trackers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 30001
+</span>    <span class="k">echo</span> <span class="nv">$trackers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Tracker 1
+</span>    <span class="k">echo</span> <span class="nv">$trackers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 30002
+</span>    <span class="k">echo</span> <span class="nv">$trackers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Tracker 2
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/trackers</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Tracker device-ID</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Custom name</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single tracker</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/trackers/30001'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var TrackerDetail $tracker */</span>
+    <span class="nv">$tracker</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">tracker</span><span class="p">(</span><span class="s1">'30001'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: <span class="s2">"30001"</span>,
+    <span class="s2">"name"</span>: <span class="s2">"Tracker 1"</span>,
+    <span class="s2">"address"</span>: <span class="s2">"1"</span>,
+    <span class="s2">"vendor"</span>: <span class="s2">"IDEEMATEC"</span>,
+    <span class="s2">"model"</span>: <span class="s2">"HORIZON 2"</span>,
+    <span class="s2">"firmware"</span>: <span class="s2">"1.0"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var TrackerDetail $tracker */</span>
+    <span class="k">echo</span> <span class="nv">$tracker</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 30001
+</span>    <span class="k">echo</span> <span class="nv">$tracker</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Tracker 1
+</span>    <span class="k">echo</span> <span class="nv">$tracker</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">;</span><span class="c1">// 1
+</span>    <span class="k">echo</span> <span class="nv">$tracker</span><span class="o">-&gt;</span><span class="na">vendor</span><span class="p">;</span><span class="c1">// IDEEMATEC
+</span>    <span class="k">echo</span> <span class="nv">$tracker</span><span class="o">-&gt;</span><span class="na">model</span><span class="p">;</span><span class="c1">// HORIZON 2
+</span>    <span class="k">echo</span> <span class="nv">$tracker</span><span class="o">-&gt;</span><span class="na">firmware</span><span class="p">;</span><span class="c1">// 1.0
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/trackers/&lt;deviceId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Tracker device-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Tracker device-ID</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Custom name</td>
+</tr>
+<tr>
+<td>address <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Address</td>
+</tr>
+<tr>
+<td>vendor <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Vendor</td>
+</tr>
+<tr>
+<td>model <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Model</td>
+</tr>
+<tr>
+<td>firmware <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Firmware</td>
+</tr>
+</tbody></table>
+
+          <h5 id="abbreviations">Abbreviations</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/trackers/30001/abbreviations'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var string[] $abbreviations */</span>
+    <span class="nv">$abbreviations</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">tracker</span><span class="p">(</span><span class="s1">'30001'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviations</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="s2">"ELEVATION"</span>,
+    <span class="s2">"ELEVATION_TARGET"</span>,
+    <span class="s2">"QS_CI"</span>,
+    <span class="s2">"QS_RX"</span>,
+    <span class="s2">"QS_TX"</span>,
+    <span class="s2">"STATE1"</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var string[] $abbreviations */</span>
+    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="c1">// ELEVATION
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span><span class="c1">// ELEVATION_TARGET
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="c1">// QS_CI
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="c1">// QS_RX
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span><span class="c1">// QS_TX
+</span>    <span class="k">echo</span> <span class="nv">$abbreviations</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span><span class="c1">// STATE1
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/trackers/&lt;deviceId&gt;/abbreviations</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Tracker device-ID</td>
+</tr>
+</tbody></table>
+
+<h5 class="toc-ignore">Get single abbreviation</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/trackers/30001/abbreviations/ELEVATION'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var Abbreviation $abbreviation */</span>
+    <span class="nv">$abbreviation</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">tracker</span><span class="p">(</span><span class="s1">'30001'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'ELEVATION'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"aggregation"</span>: <span class="s2">"AVG"</span>,
+    <span class="s2">"precision"</span>: 0,
+    <span class="s2">"description"</span>: <span class="s2">"Tilt, actual value"</span>,
+    <span class="s2">"unit"</span>: <span class="s2">"°"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var Abbreviation $abbreviation */</span>
+    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">aggregation</span><span class="p">;</span><span class="c1">// AVG
+</span>    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">precision</span><span class="p">;</span><span class="c1">// 0
+</span>    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// Tilt, actual value
+</span>    <span class="k">echo</span> <span class="nv">$abbreviation</span><span class="o">-&gt;</span><span class="na">unit</span><span class="p">;</span><span class="c1">// °
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/trackers/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;</code></p>
+
+<p>Returns an information object of an abbreviation.</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Tracker device-ID</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Abbreviation-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>Information object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aggregation <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">SUM</code>ǀ<code class="prettyprint">AVG</code>ǀ<code class="prettyprint">MAX</code>)</td>
+<td>Aggregation method when requesting other resolutions than interval</td>
+</tr>
+<tr>
+<td>precision <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Number of decimal places</td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Description</td>
+</tr>
+<tr>
+<td>unit <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Unit</td>
+</tr>
+</tbody></table>
+
+          <h5 id="measurements">Measurements</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/trackers/30001/abbreviations/ELEVATION/measurements?from=2016-11-27T09:00:00+01:00&amp;to=2016-11-27T10:00:00+01:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-11-27T09:00:00+01:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-11-27T10:00:00+01:00'</span><span class="p">));</span>
+    <span class="sd">/** @var DevicesMeasurement $measurements */</span>
+    <span class="nv">$measurements</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">tracker</span><span class="p">(</span><span class="s1">'30001'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">abbreviation</span><span class="p">(</span><span class="s1">'ELEVATION'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"30001"</span>: <span class="o">{</span>
+      <span class="s2">"ELEVATION"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+          <span class="s2">"timestamp"</span>: <span class="s2">"2016-11-27T09:10:00+01:00"</span>,
+          <span class="s2">"value"</span>: 180.6
+        <span class="o">}</span>
+      <span class="o">]</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var DevicesMeasurement $measurements */</span>
+    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'30001'</span><span class="p">][</span><span class="s1">'ELEVATION'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-11-27T09:10:00+01:00
+</span>    <span class="k">echo</span> <span class="nv">$measurements</span><span class="p">[</span><span class="s1">'30001'</span><span class="p">][</span><span class="s1">'ELEVATION'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 180.6
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/trackers/&lt;deviceId&gt;/abbreviations/&lt;abbreviationId&gt;/measurements</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>deviceId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Can contain up to 10 comma delimited tracker device IDs</td>
+</tr>
+<tr>
+<td>abbreviationId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Can contain up to 5 comma delimited abbreviation IDs</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">minute²</code>ǀ<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
+<tr>
+<td>includeInterval <code class="prettyprint">optional</code>³</td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>ǀ<code class="prettyprint">1</code></td>
+<td>Defaults to <code class="prettyprint">0</code></td>
+</tr>
+</tbody></table>
+
+<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
+
+<table><thead>
+<tr>
+<th>Resolution</th>
+<th>Maximum time span</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>minute</td>
+<td>1 day</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>31 days</td>
+</tr>
+<tr>
+<td>fifteen-minutes</td>
+<td>31 days</td>
+</tr>
+<tr>
+<td>thirty-minutes</td>
+<td>31 days</td>
+</tr>
+<tr>
+<td>hour</td>
+<td>31 days</td>
+</tr>
+<tr>
+<td>day</td>
+<td>60 days</td>
+</tr>
+<tr>
+<td>month</td>
+<td>1 year</td>
+</tr>
+<tr>
+<td>year</td>
+<td>no limitation</td>
+</tr>
+</tbody></table>
+
+<p>² The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a><br>
+³ Only for interval resolution   </p>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>value <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Value</td>
+</tr>
+</tbody></table>
+
+          <h5 id="bulk">Bulk</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/trackers/bulk/measurements?from=2016-11-27T09:00:00+01:00&amp;to=2016-11-27T10:00:00+01:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-11-27T09:00:00+01:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2016-11-27T10:00:00+01:00'</span><span class="p">));</span>
+    <span class="nv">$bulkData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">trackers</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">bulk</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">measurements</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"2016-11-27T09:10:00+01:00"</span>: <span class="o">{</span>
+    <span class="s2">"30001"</span>: <span class="o">{</span>
+      <span class="s2">"ELEVATION"</span>: 180.6,
+      <span class="s2">"ELEVATION_TARGET"</span>: 192,
+      <span class="s2">"QS_CI"</span>: 100,
+      <span class="s2">"QS_RX"</span>: 40,
+      <span class="s2">"QS_TX"</span>: 40,
+      <span class="s2">"STATE1"</span>: 0
+    <span class="o">}</span>,
+    <span class="s2">"30002"</span>: <span class="o">{</span>
+      <span class="s2">"ELEVATION"</span>: 180.6,
+      <span class="s2">"ELEVATION_TARGET"</span>: 192,
+      <span class="s2">"QS_CI"</span>: 100,
+      <span class="s2">"QS_RX"</span>: 40,
+      <span class="s2">"QS_TX"</span>: 40,
+      <span class="s2">"STATE1"</span>: 0
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var array $bulkDataArray */</span>
+    <span class="nv">$bulkDataArray</span> <span class="o">=</span> <span class="nv">$bulkData</span><span class="o">-&gt;</span><span class="na">getAsArray</span><span class="p">();</span>
+    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-27T09:10:00+01:00'</span><span class="p">][</span><span class="s1">'30001'</span><span class="p">][</span><span class="s1">'ELEVATION'</span><span class="p">];</span><span class="c1">// 180.6
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-27T09:10:00+01:00'</span><span class="p">][</span><span class="s1">'30001'</span><span class="p">][</span><span class="s1">'ELEVATION_TARGET'</span><span class="p">];</span><span class="c1">// 192
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-27T09:10:00+01:00'</span><span class="p">][</span><span class="s1">'30001'</span><span class="p">][</span><span class="s1">'QS_CI'</span><span class="p">];</span><span class="c1">// 100
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-27T09:10:00+01:00'</span><span class="p">][</span><span class="s1">'30001'</span><span class="p">][</span><span class="s1">'QS_RX'</span><span class="p">];</span><span class="c1">// 40
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-27T09:10:00+01:00'</span><span class="p">][</span><span class="s1">'30001'</span><span class="p">][</span><span class="s1">'QS_TX'</span><span class="p">];</span><span class="c1">// 40
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-27T09:10:00+01:00'</span><span class="p">][</span><span class="s1">'30001'</span><span class="p">][</span><span class="s1">'STATE1'</span><span class="p">];</span><span class="c1">// 0
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-27T09:10:00+01:00'</span><span class="p">][</span><span class="s1">'30002'</span><span class="p">][</span><span class="s1">'ELEVATION'</span><span class="p">];</span><span class="c1">// 180.6
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-27T09:10:00+01:00'</span><span class="p">][</span><span class="s1">'30002'</span><span class="p">][</span><span class="s1">'ELEVATION_TARGET'</span><span class="p">];</span><span class="c1">// 192
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-27T09:10:00+01:00'</span><span class="p">][</span><span class="s1">'30002'</span><span class="p">][</span><span class="s1">'QS_CI'</span><span class="p">];</span><span class="c1">// 100
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-27T09:10:00+01:00'</span><span class="p">][</span><span class="s1">'30002'</span><span class="p">][</span><span class="s1">'QS_RX'</span><span class="p">];</span><span class="c1">// 40
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-27T09:10:00+01:00'</span><span class="p">][</span><span class="s1">'30002'</span><span class="p">][</span><span class="s1">'QS_TX'</span><span class="p">];</span><span class="c1">// 40
+</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-11-27T09:10:00+01:00'</span><span class="p">][</span><span class="s1">'30002'</span><span class="p">][</span><span class="s1">'STATE1'</span><span class="p">];</span><span class="c1">// 0
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/trackers/bulk/measurements</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>format <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">json</code>ǀ<code class="prettyprint">csv</code></td>
+<td>Export format, defaults to <code class="prettyprint">json</code></td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">minute²</code>ǀ<code class="prettyprint">interval</code>ǀ<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>)</td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
+<tr>
+<td>abbreviations <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comma separated abbreviations</td>
+</tr>
+<tr>
+<td>includeInterval <code class="prettyprint">optional</code>³</td>
+<td><code class="prettyprint">integer</code> <code class="prettyprint">0</code>ǀ<code class="prettyprint">1</code></td>
+<td>Defaults to <code class="prettyprint">0</code></td>
+</tr>
+</tbody></table>
+
+<p>¹ The maximum time span is 24 hours between <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.<br>
+² The option <code class="prettyprint">minute</code> resolution is only supported by meteocontrol <a href="https://www.meteocontrol.com/en/photovoltaic-monitoring/products/bluelog-x-series/">blue&#39;Log XM / XC (Firmware 2.0 and higher)</a><br>
+³ Only for interval resolution  </p>
+
+<p><strong><em>Options for CSV format</em></strong></p>
+
+<p>The following query parameters are valid only if <code class="prettyprint">format</code> is <code class="prettyprint">csv</code>
+<br>
+For response example in CSV format, please check <a href="https://github.com/meteocontrol/vcom-api-client/tree/master/tests/unit/lib/systems/responses/bulkCsv/getTrackerBulk.csv">HERE</a>.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>delimiter</td>
+<td><code class="prettyprint">comma</code>ǀ<code class="prettyprint">semicolon</code>ǀ<code class="prettyprint">colon</code>ǀ<code class="prettyprint">tab</code></td>
+<td>The delimiter, defaults to <code class="prettyprint">comma</code></td>
+</tr>
+<tr>
+<td>lineBreak</td>
+<td><code class="prettyprint">LF</code>ǀ<code class="prettyprint">CR</code>ǀ<code class="prettyprint">CR/LF</code></td>
+<td>The line breaks, defaults to <code class="prettyprint">LF</code></td>
+</tr>
+<tr>
+<td>decimalPoint</td>
+<td><code class="prettyprint">dot</code>ǀ<code class="prettyprint">comma</code></td>
+<td>The decimal point, defaults to <code class="prettyprint">dot</code></td>
+</tr>
+<tr>
+<td>emptyPlaceholder</td>
+<td><code class="prettyprint">text</code>, empty string by default, any text accepted</td>
+<td>The place holder for empty value</td>
+</tr>
+<tr>
+<td>precision</td>
+<td><code class="prettyprint">integer</code>, accepts from 0 to 4</td>
+<td>The decimal precision, defaults to <code class="prettyprint">2</code></td>
+</tr>
+</tbody></table>
+
           <h4 id="responsibilities">Responsibilities</h4>
 
 <h4 class="toc-ignore">Get information of responsibilities</h4>
@@ -9557,6 +10211,11 @@ The response format changed as follows:</p>
 <td>2019-11-27</td>
 <td>2.5.0</td>
 <td>Add virtual-meters endpoints</td>
+</tr>
+<tr>
+<td>2019-12-04</td>
+<td>2.5.0</td>
+<td>Add trackers endpoints</td>
 </tr>
 </tbody></table>
 
