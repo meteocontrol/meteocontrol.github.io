@@ -15,7 +15,7 @@
 
   <!-- events -->
   <xs:element name="event" type="e:ev-generic-event"/>
-  <xs:element name="alert" type="e:ev-generic-event"/>
+  <xs:element name="alert" type="e:ev-alert-event"/>
   <xs:complexType name="ev-generic-event">
     <xs:all>
       <!-- new structure -->
@@ -23,7 +23,22 @@
       <xs:element ref="e:code" minOccurs="0"/>
       <xs:element ref="e:state" minOccurs="0"/>
       <xs:element name="event-key" type="xs:string" minOccurs="0"/>
-      <xs:element ref="e:severity" minOccurs="0"/>
+      <xs:element ref="e:generic-severity" minOccurs="0"/>
+      <xs:element ref="e:priority" minOccurs="0"/>
+      <xs:element ref="e:short-description" minOccurs="0"/>
+      <xs:element ref="e:long-description" minOccurs="0"/>
+    </xs:all>
+    <xs:attribute name="timestamp" use="required" type="xs:dateTime"/>
+    <xs:attribute name="device-id" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ev-alert-event">
+    <xs:all>
+      <!-- new structure -->
+      <xs:element ref="e:uid"/>
+      <xs:element ref="e:code" minOccurs="0"/>
+      <xs:element ref="e:state" minOccurs="0"/>
+      <xs:element name="event-key" type="xs:string" minOccurs="0"/>
+      <xs:element ref="e:alert-severity" minOccurs="0"/>
       <xs:element ref="e:priority" minOccurs="0"/>
       <xs:element ref="e:short-description" minOccurs="0"/>
       <xs:element ref="e:long-description" minOccurs="0"/>
@@ -50,17 +65,28 @@
   <xs:element name="long-description" type="xs:string"/>
 
   <!-- severity -->
-  <xs:element name="severity" type="e:ev-severity"/>
-  <xs:simpleType name="ev-severity">
+  <xs:element name="generic-severity" type="e:ev-generic-severity"/>
+  <xs:simpleType name="ev-generic-severity">
     <xs:restriction base="xs:string">
       <xs:enumeration value="normal"/>
       <xs:enumeration value="high"/>
       <xs:enumeration value="critical"/>
       <xs:enumeration value="info"/>
       <xs:enumeration value="disturbance"/>
+      <xs:enumeration value="major"/>
+      <xs:enumeration value="minor"/>
+      <xs:enumeration value="warning"/>
     </xs:restriction>
   </xs:simpleType>
-
+  <xs:element name="alert-severity" type="e:ev-alert-severity"/>
+  <xs:simpleType name="ev-alert-severity">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="low"/>
+      <xs:enumeration value="normal"/>
+      <xs:enumeration value="high"/>
+      <xs:enumeration value="critical"/>
+    </xs:restriction>
+  </xs:simpleType>
   <!-- state -->
   <xs:element name="state" type="e:ev-state" default="off"/>
   <xs:simpleType name="ev-state">
