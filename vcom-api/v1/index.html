@@ -6717,6 +6717,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
       <span class="s2">"rectifiedAt"</span>: <span class="s2">"2016-01-01T13:00:00+02:00"</span>,
       <span class="s2">"status"</span>: <span class="s2">"closed"</span>,
       <span class="s2">"priority"</span>: <span class="s2">"normal"</span>,
+      <span class="s2">"fieldService"</span>: <span class="s2">"true"</span>,
       <span class="s2">"severity"</span>: <span class="s2">"normal"</span>
     <span class="o">}</span>,
     <span class="o">{</span>
@@ -6733,6 +6734,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
       <span class="s2">"rectifiedAt"</span>: <span class="s2">"2016-02-02T13:00:00+02:00"</span>,
       <span class="s2">"status"</span>: <span class="s2">"inProgress"</span>,
       <span class="s2">"priority"</span>: <span class="s2">"high"</span>,
+      <span class="s2">"fieldService"</span>: <span class="s2">"false"</span>,
       <span class="s2">"severity"</span>: null
     <span class="o">}</span>
   <span class="o">]</span>
@@ -6744,24 +6746,30 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">designation</span><span class="p">;</span><span class="c1">// Ticket #123
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// This is a description
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">summary</span><span class="p">;</span><span class="c1">// This is a summary.
-</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// closed
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T12:00:00
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T12:00:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChange</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T13:00:00
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T13:00:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">rectifiedOn</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T13:00:00
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">rectifiedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T13:00:00+02:00
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// closed
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">priority</span><span class="p">;</span><span class="c1">// normal
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">fieldService</span><span class="p">;</span><span class="c1">// true
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">severity</span><span class="p">;</span><span class="c1">// normal
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 456
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">systemKey</span><span class="p">;</span><span class="c1">// FGHIJ
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">designation</span><span class="p">;</span><span class="c1">// Ticket #456
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">summary</span><span class="p">;</span><span class="c1">// This is a summary.
-</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// inProgress
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-01T12:00:00
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-01T12:00:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChange</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-02T13:00:00
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-02T13:00:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">rectifiedOn</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-02T13:00:00
 </span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">rectifiedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-02-02T13:00:00+02:00
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// inProgress
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">priority</span><span class="p">;</span><span class="c1">// high
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">fieldService</span><span class="p">;</span><span class="c1">// false
+</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">severity</span><span class="p">;</span><span class="c1">// null
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">tickets</code></p>
@@ -6945,6 +6953,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>priority <code class="prettyprint">fixed</code></td>
 <td>(<code class="prettyprint">low</code>ǀ<code class="prettyprint">normal</code>ǀ<code class="prettyprint">high</code>ǀ<code class="prettyprint">urgent</code>ǀ<code class="prettyprint">null</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>fieldService <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">bool</code></td>
 <td></td>
 </tr>
 <tr>
