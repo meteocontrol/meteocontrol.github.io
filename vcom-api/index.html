@@ -788,7 +788,8 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
       <span class="s2">"utcOffset"</span>: <span class="s2">"+01:00"</span>
     <span class="o">}</span>,
     <span class="s2">"currency"</span>: <span class="s2">"EUR"</span>,
-    <span class="s2">"hasSolarForecast"</span>: <span class="nb">false</span>
+    <span class="s2">"hasSolarForecast"</span>: <span class="nb">false</span>,
+    <span class="s2">"simulationMethod"</span>: <span class="s2">"pr"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -807,6 +808,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="o">-&gt;</span><span class="na">utcOffset</span><span class="p">;</span><span class="c1">// +01:00
 </span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">currency</span><span class="p">;</span><span class="c1">// EUR
 </span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">hasSolarForecast</span><span class="p">;</span><span class="c1">// false
+</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">simulationMethod</span><span class="p">;</span><span class="c1">// pr
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;</code></p>
@@ -10236,6 +10238,11 @@ The response format changed as follows:</p>
 <td>2020-03-30</td>
 <td>2.5.1</td>
 <td>Extending get tickets with fieldService response</td>
+</tr>
+<tr>
+<td>2020-04-01</td>
+<td>2.5.2</td>
+<td>Extend system endpoint to return simulation method</td>
 </tr>
 </tbody></table>
 
