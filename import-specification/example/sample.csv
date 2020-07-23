@@ -1,0 +1,8 @@
+datalogger,DL12349876
+type,inverter,inverter,inverter,inverter,inverter,inverter,meteo,meteo
+name,west-inverter,west-inverter,west-inverter,east-inverter,east-inverter,east-inverter,irradiance sensor,temperature sensor
+uid,1,1,1,2,2,2,1,1
+unit,W,W,Wh,W,W,Wh,,
+abbreviation,P_AC,P_DC,E_INT,P_AC,P_DC,E_INT,SRAD,T
+2020-01-01 12:30:00,40.3,11.1,0.0033,38.2,10.9,0.0031,475.1,17.2
+2020-01-01 12:45:00,42.8,11.3,0.0035,39.4,11.1,0.0032,477.6,17.3
