@@ -14,7 +14,7 @@
 | datapoints    | M_AC_EQ_IND_EXP      | kVArh  | kVAR-hours, Positive - Reactive Energy inductive exported  |       |          |                              |         |
 | datapoints    | M_AC_EQ_IND_IMP      | kVArh  | kVAR-hours, Positive - Reactive Energy inductive imported  |       |          |                              |         |
 | datapoints    | M_AC_ES_EXP          | kVAh   | kVA-hours - Apparent Energy Exported                       |       |          |                              |         |
-| datapoints    | M_AC_ES_IMP          | kVAh   | kVA-hours - Apparent Power Imported                        |       |          |                              |         |
+| datapoints    | M_AC_ES_IMP          | kVAh   | kVA-hours - Apparent Energy Imported                       |       |          |                              |         |
 | datapoints    | M_AC_E_EXP[1..x]     | kWh    | kW-hours, Exported                                         |       |          |                              |         |
 | datapoints    | M_AC_E_IMP[1..x]     | kWh    | kW-hours, Imported                                         |       |          |                              |         |
 | datapoints    | M_AC_F[1..x]         | Hz     | Frequency                                                  |       |          |                              |         |
@@ -36,6 +36,8 @@
 | datapoints    | M_DC_I[1..3]         | A      | Current DC [Phase 1-3]                                     |       |          |                              |         |
 | datapoints    | M_DC_P[1..3]         | W      | Power DC [Phase 1-3]                                       |       |          |                              |         |
 | datapoints    | M_DC_U[1..3]         | V      | Voltage DC, Phase [1-3]                                    |       |          |                              |         |
+| datapoints    | M_EQ_CAP_INT_EXP     | kVArh  | Reactive Energy Lead                                       |       |          |                              |         |
+| datapoints    | M_EQ_IND_INT_EXP     | kVArh  | Reactive Energy Lag                                        |       |          |                              |         |
 | datapoints    | STATE[1..x]          |        |                                                            |       |          |                              |         |
 | datapoints    | ERROR[1..x]          |        | Global meter error conditions                              |       |          |                              |         |
 | datapoints    | QS_TX                |        | Telegrams transmitted (communication quality)              |       |          |                              |         |
