@@ -30,6 +30,7 @@
 | datapoints    | SLI[1..x]          | %     | Soiling Loss                                                             |       |          |                              |         |
 | datapoints    | SLI_RAW[1..x]      | %     | Soiling Loss Raw                                                         |       |          |                              |         |
 | datapoints    | SNOW_LOAD[1..x]    | kg/m² | Snow load                                                                |       |          |                              |         |
+| datapoints    | SR                 | %     | Soiling ratio                                                            |       |          |                              |         |
 | datapoints    | SRAD[1..x]         | W/m2  | Irradiation sensors                                                      |       |          |                              |         |
 | datapoints    | SUN_H[1..x]        | h     | Sunshine duration                                                        |       |          |                              |         |
 | datapoints    | T[1..x]            | °C    | Temperature values                                                       |       |          |                              |         |

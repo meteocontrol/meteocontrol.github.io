@@ -14,6 +14,7 @@
 | datapoints    | B_E_EXP        | kWh  | Total energy from stacks                      |         |          |                                |         |
 | datapoints    | B_E_IMP        | kWh  | Total energy to stacks                        |         |          |                                |         |
 | datapoints    | B_E_STORED     | kWh  | Currently stored energy                       |         |          |                                |         |
+| datapoints    | B_I_DC         | A    | Ladestrom (DC)                                |         |          |                                |         |
 | datapoints    | B_OT_TOTAL     | h    | Operating Hours                               |         |          |                                |         |
 | datapoints    | B_P_DC         | W    | Total battery power                           |         |          |                                |         |
 | datapoints    | B_U_BULK       | V    | Battery charging voltage DC                   |         |          |                                |         |
