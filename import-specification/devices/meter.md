@@ -13,6 +13,7 @@
 | datapoints    | M_AC_EQ_CAP_IMP      | kVArh  | kVAR-hours, Positive - Reactive Energy capacitive imported |       |          |                              |         |
 | datapoints    | M_AC_EQ_IND_EXP      | kVArh  | kVAR-hours, Positive - Reactive Energy inductive exported  |       |          |                              |         |
 | datapoints    | M_AC_EQ_IND_IMP      | kVArh  | kVAR-hours, Positive - Reactive Energy inductive imported  |       |          |                              |         |
+| datapoints    | M_AC_EQ_TOTAL        | kVArh  | kVAR-hours - Reactive Energy total                         |       |          |                              |         |
 | datapoints    | M_AC_ES_EXP          | kVAh   | kVA-hours - Apparent Energy Exported                       |       |          |                              |         |
 | datapoints    | M_AC_ES_IMP          | kVAh   | kVA-hours - Apparent Energy Imported                       |       |          |                              |         |
 | datapoints    | M_AC_E_EXP[1..x]     | kWh    | kW-hours, Exported                                         |       |          |                              |         |
