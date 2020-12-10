@@ -9471,6 +9471,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="s2">"content"</span>: <span class="s2">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD....."</span>,
     <span class="s2">"createdAt"</span>: <span class="s2">"2016-09-01T10:15:00+02:00"</span>,
     <span class="s2">"description"</span>: <span class="s2">"file description"</span>,
+    <span class="s2">"metaData"</span>: null,
     <span class="s2">"creatorId"</span>: 123456
   <span class="o">}</span>
 <span class="o">}</span>
@@ -9482,6 +9483,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">;</span><span class="c1">// "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD....."
 </span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="p">;</span><span class="c1">// DateTime
 </span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// file description
+</span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">metaData</span><span class="p">;</span><span class="c1">// null
 </span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">creatorId</span><span class="p">;</span><span class="c1">// 123456
 </span>
 </code></pre>
@@ -9544,6 +9546,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>description <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>File description</td>
+</tr>
+<tr>
+<td>metaData <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">json</code></td>
+<td>MetaData</td>
 </tr>
 <tr>
 <td>creatorId <code class="prettyprint">fixed</code></td>
@@ -9804,6 +9811,546 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>to</td>
 <td><code class="prettyprint">string</code></td>
 <td>Username or state</td>
+</tr>
+</tbody></table>
+
+          <h2 id="cmms">CMMS</h2>
+
+<div class="beta">
+    <span>This API is currently in Beta status and may change before the final release</span>
+</div>
+
+<p>Access to the CMMS endpoints requires to have VCOM CMMS activated. Please contact our sales department if you are interested.</p>
+
+          <h3 id="systems">Systems</h3>
+
+<h4 class="toc-ignore">Get all CMMS systems</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/cmms/systems'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var CmmsSystem[] $cmmsSystems */</span>
+    <span class="nv">$cmmsSystems</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">cmms</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">systems</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"key"</span>: <span class="s2">"ABCDE"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"PV system"</span>,
+      <span class="s2">"renew"</span>: 1,
+      <span class="s2">"activeUntil"</span>: <span class="s2">"2021-12-31"</span>,
+      <span class="s2">"activeSince"</span>: <span class="s2">"2020-01-01"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var CmmsSystem[] $cmmsSystems */</span>
+    <span class="k">echo</span> <span class="nv">$cmmsSystems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">key</span><span class="p">;</span><span class="c1">// ABCDE
+</span>    <span class="k">echo</span> <span class="nv">$cmmsSystems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// PV system
+</span>    <span class="k">echo</span> <span class="nv">$cmmsSystems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">renew</span><span class="p">;</span><span class="c1">// 1
+</span>    <span class="k">echo</span> <span class="nv">$cmmsSystems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">activeUntil</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">'Y-m-d'</span><span class="p">);</span><span class="c1">// 2021-12-31
+</span>    <span class="k">echo</span> <span class="nv">$cmmsSystems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">activeSince</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">'Y-m-d'</span><span class="p">);</span><span class="c1">// 2020-01-01
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems</code></p>
+
+<p>Returns an array of CMMS system objects.</p>
+
+<p><strong>Response</strong></p>
+
+<p><em>CmmsSystem object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>System name</td>
+</tr>
+<tr>
+<td>renew <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">0</code>ǀ<code class="prettyprint">1</code>)</td>
+<td>Renew state</td>
+</tr>
+<tr>
+<td>activeUntil <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>License active until date</td>
+</tr>
+<tr>
+<td>activeSince <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>License active since date</td>
+</tr>
+</tbody></table>
+
+          <h3 id="work-orders">Work orders</h3>
+
+<h4 class="toc-ignore">Get all work orders</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/cmms/workorders?systemKey=ABCDE'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$systemCriteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SystemCriteria</span><span class="p">();</span>
+    <span class="nv">$systemCriteria</span><span class="o">-&gt;</span><span class="na">withSystemKey</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">);</span>
+    <span class="sd">/** @var WorkOrder[] $workOrders */</span>
+    <span class="nv">$cmmsSystems</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">cmms</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">workOrders</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$systemCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"workOrderId"</span>: 123,
+      <span class="s2">"title"</span>: <span class="s2">"work order title"</span>,
+      <span class="s2">"lastChangedAt"</span>: <span class="s2">"2020-08-12T00:00:00+00:00"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var WorkOrder[] $workOrders */</span>
+    <span class="k">echo</span> <span class="nv">$workOrders</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">workOrderId</span><span class="p">;</span><span class="c1">// 123
+</span>    <span class="k">echo</span> <span class="nv">$workOrders</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span><span class="c1">// work order title
+</span>    <span class="k">echo</span> <span class="nv">$workOrders</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2020-08-12T00:00:00+00:00
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">workorders</code></p>
+
+<p>Returns an array of work order objects.</p>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>WorkOrder object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>workOrderId <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Work order ID</td>
+</tr>
+<tr>
+<td>title <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Work order title</td>
+</tr>
+<tr>
+<td>lastChangedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
+<td>Last change date in system timezone</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single work order</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/cmms/workorders/123'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var WorkOrderDetail $workOrder */</span>
+    <span class="nv">$workOrder</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">cmms</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">workOrder</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"workOrderId"</span>: 123,
+    <span class="s2">"ticketId"</span>: 12345,
+    <span class="s2">"systemKey"</span>: <span class="s2">"ABCDE"</span>,
+    <span class="s2">"title"</span>: <span class="s2">"work order title"</span>,
+    <span class="s2">"description"</span>: <span class="s2">"work order description"</span>,
+    <span class="s2">"status"</span>: <span class="s2">"processed"</span>,
+    <span class="s2">"dueAt"</span>: null,
+    <span class="s2">"createdAt"</span>: <span class="s2">"2020-07-08T06:39:58+00:00"</span>,
+    <span class="s2">"completedAt"</span>: null,
+    <span class="s2">"lastChangedAt"</span>: <span class="s2">"2020-08-12T00:00:00+00:00"</span>,
+    <span class="s2">"assignee"</span>: <span class="o">{</span>
+      <span class="s2">"username"</span>: <span class="s2">"user-name"</span>,
+      <span class="s2">"status"</span>: <span class="s2">"accepted"</span>,
+      <span class="s2">"statusDateAt"</span>: <span class="s2">"2020-08-12T00:00:00+00:00"</span>,
+      <span class="s2">"statusReason"</span>: null
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var WorkOrderDetail[] $workOrder */</span>
+    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">workOrderId</span><span class="p">;</span><span class="c1">// 123
+</span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">ticketId</span><span class="p">;</span><span class="c1">// 12345
+</span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">systemKey</span><span class="p">;</span><span class="c1">// ABCDE
+</span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span><span class="c1">// work order title
+</span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// work order description
+</span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// processed
+</span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2020-07-08T06:39:58+00:00
+</span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2020-08-12T00:00:00+00:00
+</span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">assignee</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">// user-name
+</span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">assignee</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// accepted
+</span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">assignee</span><span class="o">-&gt;</span><span class="na">statusDateAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2020-08-12T00:00:00+00:00
+</span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">assignee</span><span class="o">-&gt;</span><span class="na">statusReason</span><span class="p">;</span><span class="c1">// null
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">workorders/&lt;workorderId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>workorderId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Work order ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>WorkOrderDetail object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>workOrderId <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Work order ID</td>
+</tr>
+<tr>
+<td>ticketId <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket-ID</td>
+</tr>
+<tr>
+<td>systemKey <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>title <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Work order title</td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Work order description</td>
+</tr>
+<tr>
+<td>status <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">closed</code>ǀ<code class="prettyprint">declined</code>ǀ<code class="prettyprint">inProgress</code>ǀ<code class="prettyprint">open</code>ǀ<code class="prettyprint">processed</code>)</td>
+<td>Work order status</td>
+</tr>
+<tr>
+<td>createdAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Created date in system timezone</td>
+</tr>
+<tr>
+<td>lastChangedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
+<td>Last change date in system timezone</td>
+</tr>
+<tr>
+<td>assignee <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">array</code></td>
+<td>username <code class="prettyprint">string</code>, status <code class="prettyprint">string</code>, statusDateAt <code class="prettyprint">datetime</code>, statusReason <code class="prettyprint">string</code></td>
+</tr>
+</tbody></table>
+
+          <h4 id="forms">Forms</h4>
+
+<h4 class="toc-ignore">Get all work order forms</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/cmms/workorders/123/forms'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var WorkOrderForm[] $forms */</span>
+    <span class="nv">$forms</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">cmms</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">workOrder</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">forms</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"formId"</span>: 456,
+      <span class="s2">"title"</span>: <span class="s2">"form title"</span>,
+      <span class="s2">"lastChangedAt"</span>: <span class="s2">"2020-10-22T00:00:00+00:00"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var WorkOrderForm[] $forms */</span>
+    <span class="k">echo</span> <span class="nv">$forms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">formId</span><span class="p">;</span><span class="c1">// 456
+</span>    <span class="k">echo</span> <span class="nv">$forms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span><span class="c1">// form title
+</span>    <span class="k">echo</span> <span class="nv">$forms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2020-10-22T00:00:00+00:00
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">workorders/&lt;workorderId&gt;/forms</code></p>
+
+<p>Returns an array of work order form objects.</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>workorderId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>WorkOrder-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>WorkOrderForm object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>formId <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Form-ID</td>
+</tr>
+<tr>
+<td>title <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Form title</td>
+</tr>
+<tr>
+<td>lastChangedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
+<td>Last change date in system timezone</td>
+</tr>
+</tbody></table>
+
+<h4 class="toc-ignore">Get single work order form</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/cmms/workorders/123/forms/456'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var WorkOrderFormDetail $form */</span>
+    <span class="nv">$form</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">cmms</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">workOrder</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"formId"</span>: 456,
+    <span class="s2">"workOrderId"</span>: 123,
+    <span class="s2">"title"</span>: <span class="s2">"form title"</span>,
+    <span class="s2">"description"</span>: <span class="s2">"form description"</span>,
+    <span class="s2">"form"</span>: <span class="s2">"{</span><span class="se">\"</span><span class="s2">elements</span><span class="se">\"</span><span class="s2">:[{</span><span class="se">\"</span><span class="s2">label</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Erste Seite</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">component</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">page</span><span class="se">\"</span><span class="s2">}]}"</span>,
+    <span class="s2">"data"</span>: <span class="s2">"{}"</span>,
+    <span class="s2">"originalData"</span>: null,
+    <span class="s2">"savedAt"</span>: <span class="s2">"2020-05-18T13:14:45+00:00"</span>,
+    <span class="s2">"createdAt"</span>: <span class="s2">"2020-05-18T13:14:45+00:00"</span>,
+    <span class="s2">"completedAt"</span>: <span class="s2">"2020-10-22T00:00:00+00:00"</span>,
+    <span class="s2">"lastChangedAt"</span>: <span class="s2">"2020-10-22T00:00:00+00:00"</span>,
+    <span class="s2">"completedBy"</span>: <span class="s2">"user-name"</span>,
+    <span class="s2">"changedBy"</span>: <span class="s2">"user-name"</span>,
+    <span class="s2">"editable"</span>: <span class="nb">false</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var WorkOrderFormDetail[] $form */</span>
+    <span class="k">echo</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">formId</span><span class="p">;</span><span class="c1">// 456
+</span>    <span class="k">echo</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">workOrderId</span><span class="p">;</span><span class="c1">// 123
+</span>    <span class="k">echo</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span><span class="c1">// form title
+</span>    <span class="k">echo</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// form description
+</span>    <span class="k">echo</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">;</span><span class="c1">// {"elements":[{"label":"Erste Seite","component":"page"}]}
+</span>    <span class="k">echo</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">;</span><span class="c1">// {}
+</span>    <span class="k">echo</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">originalData</span><span class="p">;</span><span class="c1">// null
+</span>    <span class="k">echo</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">savedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2020-05-18T13:14:45+00:00
+</span>    <span class="k">echo</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2020-05-18T13:14:45+00:00
+</span>    <span class="k">echo</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">completedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2020-10-22T00:00:00+00:00
+</span>    <span class="k">echo</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2020-10-22T00:00:00+00:00
+</span>    <span class="k">echo</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">completedBy</span><span class="p">;</span><span class="c1">// user-name
+</span>    <span class="k">echo</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">changedBy</span><span class="p">;</span><span class="c1">// user-name
+</span>    <span class="k">echo</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">editable</span><span class="p">;</span><span class="c1">// false
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">workorders/&lt;workorderId&gt;/forms/&lt;formId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>workorderId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>WorkOrder-ID</td>
+</tr>
+<tr>
+<td>formId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Form-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>WorkOrderFormDetail object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>formId <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Form-ID</td>
+</tr>
+<tr>
+<td>workOrderId <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>WorkOrder-ID</td>
+</tr>
+<tr>
+<td>title <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Form title</td>
+</tr>
+<tr>
+<td>description <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Form description</td>
+</tr>
+<tr>
+<td>form <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Form pattern</td>
+</tr>
+<tr>
+<td>data <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Form data</td>
+</tr>
+<tr>
+<td>originalData <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
+<td>Original date in system timezone</td>
+</tr>
+<tr>
+<td>savedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
+<td>Saved date in system timezone</td>
+</tr>
+<tr>
+<td>createdAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Created date in system timezone</td>
+</tr>
+<tr>
+<td>completedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
+<td>Completed date in system timezone</td>
+</tr>
+<tr>
+<td>lastChangedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
+<td>Last change date in system timezone</td>
+</tr>
+<tr>
+<td>completedBy <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Completed by user</td>
+</tr>
+<tr>
+<td>changedBy <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Changed by user</td>
+</tr>
+<tr>
+<td>editable <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">bool</code></td>
+<td>Form editable</td>
 </tr>
 </tbody></table>
 
