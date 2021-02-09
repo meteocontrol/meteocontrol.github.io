@@ -2524,6 +2524,158 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
+          <h5 id="simulation">Simulation</h5>
+
+<h5 class="toc-ignore">Get currently activated simulation value</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/calculations/simulation?from=2021-02-01T00:00:00+01:00&amp;to=2021-02-01T23:59:59+01:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2021-02-01T00:00:00+01:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">,</span> <span class="s1">'2021-02-01T23:59:59+01:00'</span><span class="p">));</span>
+    <span class="sd">/** @var SimulationValue[] $simulation */</span>
+    <span class="nv">$simulation</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">calculations</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">simulation</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"timestamp"</span>: <span class="s2">"2021-02-01T00:00:00+01:00"</span>,
+      <span class="s2">"max"</span>: 2.79430153178,
+      <span class="s2">"min"</span>: 2.2862467078199997,
+      <span class="s2">"expected"</span>: 2.5402741198
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"timestamp"</span>: <span class="s2">"2021-02-01T00:05:00+01:00"</span>,
+      <span class="s2">"max"</span>: 2.3015888865200007,
+      <span class="s2">"min"</span>: 1.8831181798800003,
+      <span class="s2">"expected"</span>: 2.0923535332000003
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var SimulationValue[] $simulation */</span>
+    <span class="k">echo</span> <span class="nv">$simulation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2021-02-01T00:00:00+01:00
+</span>    <span class="k">echo</span> <span class="nv">$simulation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">max</span><span class="p">;</span><span class="c1">// 2.79430153178
+</span>    <span class="k">echo</span> <span class="nv">$simulation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">min</span><span class="p">;</span><span class="c1">// 2.2862467078199997
+</span>    <span class="k">echo</span> <span class="nv">$simulation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">expected</span><span class="p">;</span><span class="c1">// 2.5402741198
+</span>    <span class="k">echo</span> <span class="nv">$simulation</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2021-02-01T00:05:00+01:00
+</span>    <span class="k">echo</span> <span class="nv">$simulation</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">max</span><span class="p">;</span><span class="c1">// 2.3015888865200007
+</span>    <span class="k">echo</span> <span class="nv">$simulation</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">min</span><span class="p">;</span><span class="c1">// 1.8831181798800003
+</span>    <span class="k">echo</span> <span class="nv">$simulation</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">expected</span><span class="p">;</span><span class="c1">// 2.0923535332000003
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/calculations/simulation</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">interval</code>ǀ<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
+<td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
+</tbody></table>
+
+<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
+
+<table><thead>
+<tr>
+<th>Resolution</th>
+<th>Maximum time span</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>interval</td>
+<td>31 days</td>
+</tr>
+<tr>
+<td>day</td>
+<td>60 days</td>
+</tr>
+<tr>
+<td>month</td>
+<td>1 year</td>
+</tr>
+<tr>
+<td>year</td>
+<td>no limitation</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>SimulationValue object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>max <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Maximum value</td>
+</tr>
+<tr>
+<td>min <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Minimum value</td>
+</tr>
+<tr>
+<td>expected <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Expected value</td>
+</tr>
+</tbody></table>
+
           <h4 id="forecasts">Forecasts</h4>
 
           <h5 id="yield">Yield</h5>
@@ -10835,6 +10987,16 @@ The response format changed as follows:</p>
 <td>2020-06-22</td>
 <td>2.6.0</td>
 <td>Introduce filter for deviceIds to bulk endpoints</td>
+</tr>
+<tr>
+<td>2020-12-10</td>
+<td>2.7.0</td>
+<td>Add cmms endpoints</td>
+</tr>
+<tr>
+<td>2021-02-09</td>
+<td>2.8.0</td>
+<td>Add simulation endpoints</td>
 </tr>
 </tbody></table>
 
