@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mii version="2.0" targetNamespace="http://api.sspcdn.com/mii" xmlns="http://api.sspcdn.com/mii">
+  <datalogger>
+    <configuration xmlns="http://api.sspcdn.com/mii/datalogger/configuration">
+      <uuid>
+        <vendor>VENDOR 123</vendor>
+        <serial>DL12349876</serial>
+      </uuid>
+      <name>Data logger Nr. 1</name>
+      <firmware>1.1.3 (Build 152.721.528d)</firmware>
+      <next-scheduled-transfer>2021-03-31T15:15:00Z</next-scheduled-transfer>
+      <devices>
+        <device type="status" id="status-123">
+          <uid>STATUS123</uid>
+          <name>Status A</name>
+        </device>
+        <device type="status" id="status-456">
+          <uid>STATUS456</uid>
+          <name>Status B</name>
+        </device>
+      </devices>
+    </configuration>
+    <datapoints xmlns="http://api.sspcdn.com/mii/datalogger/datapoints">
+      <datapoint interval="900" timestamp="2021-03-3T15:00:00Z">
+        <device id="status-123">
+          <mv t="STATE" v="0"/>
+        </device>
+        <device id="status-456">
+          <mv t="STATE" v="1"/>
+        </device>
+      </datapoint>
+    </datapoints>
+  </datalogger>
+</mii>
