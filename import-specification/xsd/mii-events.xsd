@@ -20,13 +20,13 @@
     <xs:all>
       <!-- new structure -->
       <xs:element ref="e:uid"/>
-      <xs:element ref="e:code" minOccurs="0"/>
-      <xs:element ref="e:state" minOccurs="0"/>
+      <xs:element ref="e:code"/>
+      <xs:element ref="e:state"/>
       <xs:element name="event-key" type="xs:string" minOccurs="0"/>
-      <xs:element ref="e:generic-severity" minOccurs="0"/>
+      <xs:element ref="e:severity"/>
       <xs:element ref="e:priority" minOccurs="0"/>
-      <xs:element ref="e:short-description" minOccurs="0"/>
-      <xs:element ref="e:long-description" minOccurs="0"/>
+      <xs:element ref="e:short-description"/>
+      <xs:element ref="e:long-description"/>
     </xs:all>
     <xs:attribute name="timestamp" use="required" type="xs:dateTime"/>
     <xs:attribute name="device-id" type="xs:string"/>
@@ -35,13 +35,13 @@
     <xs:all>
       <!-- new structure -->
       <xs:element ref="e:uid"/>
-      <xs:element ref="e:code" minOccurs="0"/>
-      <xs:element ref="e:state" minOccurs="0"/>
+      <xs:element ref="e:code"/>
+      <xs:element ref="e:state"/>
       <xs:element name="event-key" type="xs:string" minOccurs="0"/>
-      <xs:element ref="e:alert-severity" minOccurs="0"/>
+      <xs:element ref="e:severity"/>
       <xs:element ref="e:priority" minOccurs="0"/>
-      <xs:element ref="e:short-description" minOccurs="0"/>
-      <xs:element ref="e:long-description" minOccurs="0"/>
+      <xs:element ref="e:short-description"/>
+      <xs:element ref="e:long-description"/>
     </xs:all>
     <xs:attribute name="timestamp" use="required" type="xs:dateTime"/>
     <xs:attribute name="device-id" type="xs:string"/>
@@ -51,9 +51,9 @@
   <xs:element name="powermanagement" type="e:ev-powermanagement"/>
   <xs:complexType name="ev-powermanagement">
     <xs:all>
-      <xs:element name="p-set-perc" minOccurs="1" type="e:percentage"/>
-      <xs:element name="p-set-gridop-perc" minOccurs="0" type="e:percentage"/>
-      <xs:element name="p-set-rpc-perc" minOccurs="0" type="e:percentage"/>
+      <xs:element name="p-set-perc" type="e:percentage"/>
+      <xs:element name="p-set-gridop-perc" type="e:percentage"/>
+      <xs:element name="p-set-rpc-perc" type="e:percentage"/>
     </xs:all>
     <xs:attribute name="timestamp" use="required" type="xs:dateTime"/>
     <xs:attribute name="device-id" use="required" type="xs:integer"/>
@@ -65,26 +65,14 @@
   <xs:element name="long-description" type="xs:string"/>
 
   <!-- severity -->
-  <xs:element name="generic-severity" type="e:ev-generic-severity"/>
-  <xs:simpleType name="ev-generic-severity">
+  <xs:element name="severity" type="e:ev-severity"/>
+  <xs:simpleType name="ev-severity">
     <xs:restriction base="xs:string">
       <xs:enumeration value="normal"/>
       <xs:enumeration value="high"/>
       <xs:enumeration value="critical"/>
       <xs:enumeration value="info"/>
       <xs:enumeration value="disturbance"/>
-      <xs:enumeration value="major"/>
-      <xs:enumeration value="minor"/>
-      <xs:enumeration value="warning"/>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="alert-severity" type="e:ev-alert-severity"/>
-  <xs:simpleType name="ev-alert-severity">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="low"/>
-      <xs:enumeration value="normal"/>
-      <xs:enumeration value="high"/>
-      <xs:enumeration value="critical"/>
     </xs:restriction>
   </xs:simpleType>
   <!-- state -->
