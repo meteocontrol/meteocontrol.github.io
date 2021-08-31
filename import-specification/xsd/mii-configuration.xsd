@@ -73,6 +73,7 @@
           <xs:enumeration value="battery"/>
           <xs:enumeration value="tracker"/>
           <xs:enumeration value="powermanagement"/>
+          <xs:enumeration value="power-plant-controller"/>
           <xs:enumeration value="genset"/>
           <xs:enumeration value="datalogger"/>
           <xs:enumeration value="status"/>
