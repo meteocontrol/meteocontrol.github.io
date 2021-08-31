@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mii version="2.0" targetNamespace="http://api.sspcdn.com/mii" xmlns="http://api.sspcdn.com/mii">
+    <datalogger>
+        <configuration xmlns="http://api.sspcdn.com/mii/datalogger/configuration">
+            <uuid>
+                <vendor>VENDOR 123</vendor>
+                <serial>DL12349876</serial>
+            </uuid>
+            <name>Data logger Nr. 1</name>
+            <firmware>1.1.3 (Build 152.721.528d)</firmware>
+            <next-scheduled-transfer>2017-11-27T15:15:00Z</next-scheduled-transfer>
+            <devices>
+                <device type="power-plant-controller" id="power-plant-controller-1">
+                    <uid>SN1212</uid>
+                    <serial>power-plant-controller14.21.24</serial>
+                </device>
+                <device type="power-plant-controller" id="power-plant-controller-2">
+                    <uid>power-plant-controllerStation27</uid>
+                    <serial>SR2773-c</serial>
+                    <model>Model X</model>
+                    <name>Station Nr. 27</name>
+                    <vendor>meteocontrol</vendor>
+                    <firmware>M1R45S.3418</firmware>
+                </device>
+                <device type="power-plant-controller" id="power-plant-controller-3">
+                    <uid>ID333198</uid>
+                    <address>1-25</address>
+                </device>
+            </devices>
+        </configuration>
+        <datapoints xmlns="http://api.sspcdn.com/mii/datalogger/datapoints">
+            <datapoint interval="900" timestamp="2017-11-27T15:00:00Z">
+                <device id="power-plant-controller-1">
+                    <mv t="PPC_P_AC" v="299600.198555"/>
+                    <mv t="PPC_P_AC_AVAIL" v="264931.424377"/>
+                    <mv t="PPC_P_AC_GRIDOP_MAX" v="49.989426"/>
+                    <mv t="PPC_P_AC_INV" v="41651.5465231"/>
+                    <mv t="PPC_P_AC_RPC_MAX" v="5641.5646541"/>
+                    <mv t="PPC_P_SET_GRIDOP_ABS" v="1.853909"/>
+                    <mv t="PPC_P_SET_GRIDOP_REL" v="75.5643196"/>
+                    <mv t="PPC_P_SET_REL" v="76.915534"/>
+                </device>
+                <device id="power-plant-controller-2">
+                    <mv t="PPC_P_AC" v="295569.56128"/>
+                    <mv t="PPC_Q_AC" v="115172.515365"/>
+                    <mv t="PPC_Q_AC_AVAIL" v="49.989532"/>
+                    <mv t="PPC_P_SET_REL" v="70.564893"/>
+                </device>
+                <device id="power-plant-controller-3">
+                    <mv t="PPC_P_AC" v="125569.39"/>
+                    <mv t="PPC_P_SET_REL" v="80.12546"/>
+                </device>
+            </datapoint>
+        </datapoints>
+    </datalogger>
+</mii>

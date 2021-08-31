@@ -1,0 +1,26 @@
+| Field Type    | Name Attribute       | Unit | Description                                             | Value                  | Required | Example                                       | Version |
+|---------------|----------------------|------|---------------------------------------------------------|------------------------|----------|-----------------------------------------------|---------|
+| configuration | id                   |      | Reference id for measurement data node                  |                        | x        | <device id=“1“ type=“power-plant-controller“> | 2.1.3   |
+| configuration | type                 |      | device type                                             | power-plant-controller | x        | <device id=“1“ type=“power-plant-controller“> | 2.1.3   |
+| configuration | uid                  |      | device unique identifier                                |                        | x        | <uid>PPC12345</uid>                           | 2.1.3   |
+| configuration | name                 |      | device name                                             |                        |          | <name>ppc device A</name>                     | 2.1.3   |
+| configuration | serial               |      | device serial                                           |                        |          | <serial>PPC11.22.33</serial>                  | 2.1.3   |
+| configuration | vendor               |      | device vendor                                           |                        |          | <vendor>vendor 123</vendor>                   | 2.1.3   |
+| configuration | model                |      | device model                                            |                        |          | <model></model>                               | 2.1.3   |
+| configuration | address              |      | bus address                                             |                        |          | <address>1</address>                          | 2.1.3   |
+| configuration | firmware             |      | device firmware                                         |                        |          | <firmware>1.23.3</firmware>                   | 2.1.3   |
+| datapoints    | PPC_PF               |      | Actual power factor                                     |                        |          |                                               |         |
+| datapoints    | PPC_PF_SET           |      | Power factor setpoint                                   |                        |          |                                               |         |
+| datapoints    | PPC_P_AC             | W    | Actual active power                                     |                        | x        |                                               |         |
+| datapoints    | PPC_P_AC_AVAIL       | W    | Actual theoretical available active power               |                        |          |                                               |         |
+| datapoints    | PPC_P_AC_GRIDOP_MAX  | W    | Maximum active power during curtailment (grid operator) |                        |          |                                               |         |
+| datapoints    | PPC_P_AC_INV         | W    | Sum of inverter actual active power                     |                        |          |                                               |         |
+| datapoints    | PPC_P_AC_RPC_MAX     | W    | Maximum active power during curtailment (3rd party)     |                        |          |                                               |         |
+| datapoints    | PPC_P_SET_GRIDOP_ABS | W    | Absolute active power setpoint (grid operator)          |                        |          |                                               |         |
+| datapoints    | PPC_P_SET_GRIDOP_REL | %    | Relative active power setpoint (grid operator)          |                        |          |                                               |         |
+| datapoints    | PPC_P_SET_REL        | %    | Actual valid active power setpoint                      |                        | x        |                                               |         |
+| datapoints    | PPC_P_SET_RPC_REL    | %    | Active power setpoint (3rd party)                       |                        |          |                                               |         |
+| datapoints    | PPC_Q_AC             | VAr  | Actual reactive power                                   |                        |          |                                               |         |
+| datapoints    | PPC_Q_AC_AVAIL       | VAr  | Actual theoretical available reactive power             |                        |          |                                               |         |
+| datapoints    | PPC_Q_SET_ABS        | VAr  | Absolute reactive power setpoint                        |                        |          |                                               |         |
+| datapoints    | PPC_Q_SET_REL        | %    | Actual valid reactive power setpoint                    |                        |          |                                               |         |
