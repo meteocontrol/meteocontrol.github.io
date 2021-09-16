@@ -9,15 +9,15 @@
 | configuration | model          |      | device model                                                      |           |          | <model></model>                  | 2.0.1   |
 | configuration | address        |      | bus address                                                       |           |          | <address>1</address>             | 2.0.1   |
 | configuration | firmware       |      | device firmware                                                   |           |          | <firmware>1.23.3</firmware>      | 2.0.1   |
-| datapoints    | A_IN[1..x]     |      | Optional analogue inputs                                          |           |          |                                  |         |
-| datapoints    | D_IN[1..x]     |      | Digital input                                                     |           |          |                                  |         |
-| datapoints    | I[1..x]        | A    | Current value of string 1..x (`I` without number is not allowed)  |           | x        |                                  |         |
-| datapoints    | I_AVG          | A    | Average value of all string values                                |           |          |                                  |         |
-| datapoints    | I_SUM          | A    | Sum of all string values                                          |           |          |                                  |         |
-| datapoints    | P_DC           | W    | DC-Power	                                                         |           |          |                                  |         |
-| datapoints    | T[1..x]        | °C   | Temperatures                                                      |           |          |                                  |         |
-| datapoints    | U_DC           | V    | DC-Voltage                                                        |           |          |                                  |         |
-| datapoints    | STATE[1..x]    |      | Global strongbox state conditions                                 |           |          |                                  |         |
-| datapoints    | ERROR[1..x]    |      | Global stringbox error conditions                                 |           |          |                                  |         |
-| datapoints    | QS_TX          |      | Telegrams transmitted (communication quality)                     |           |          |                                  |         |
-| datapoints    | QS_RX          |      | Telegrams received (communication quality)                        |           |          |                                  |         |
+| datapoints    | `A_IN[1..x]`   |      | Optional analogue inputs                                          |           |          |                                  |         |
+| datapoints    | `D_IN[1..x]`   |      | Digital input                                                     |           |          |                                  |         |
+| datapoints    | `I[1..x]`      | A    | Current value of string 1..x (`I` without number is not allowed)  |           | x        |                                  |         |
+| datapoints    | `I_AVG`        | A    | Average value of all string values                                |           |          |                                  |         |
+| datapoints    | `I_SUM`        | A    | Sum of all string values                                          |           |          |                                  |         |
+| datapoints    | `P_DC`         | W    | DC-Power	                                                         |           |          |                                  |         |
+| datapoints    | `T[1..x]`      | °C   | Temperatures                                                      |           |          |                                  |         |
+| datapoints    | `U_DC`         | V    | DC-Voltage                                                        |           |          |                                  |         |
+| datapoints    | `STATE[1..x]`  |      | Global strongbox state conditions                                 |           |          |                                  |         |
+| datapoints    | `ERROR[1..x]`  |      | Global stringbox error conditions                                 |           |          |                                  |         |
+| datapoints    | `QS_TX`        |      | Telegrams transmitted (communication quality)                     |           |          |                                  |         |
+| datapoints    | `QS_RX`        |      | Telegrams received (communication quality)                        |           |          |                                  |         |
