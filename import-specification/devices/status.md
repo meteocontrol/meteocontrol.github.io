@@ -9,4 +9,4 @@
 | configuration | model          |      | device model                           |        |          | <model>Model A</model>        | 2.1.2   |
 | configuration | address        |      | bus address                            |        |          | <address>1</address>          | 2.1.2   |
 | configuration | firmware       |      | device firmware                        |        |          | <firmware>1.23.3</firmware>   | 2.1.2   |
-| datapoints    | STATE          |      | Global device state                    |        |          |                               |         |
+| datapoints    | `STATE`        |      | Global device state                    |        |          |                               |         |
