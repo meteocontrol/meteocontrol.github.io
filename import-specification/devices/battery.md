@@ -12,22 +12,24 @@
 | datapoints    | `B_CAPACITY`                   | Ah   | Nominal capacity                                |         |          |                                |         |
 | datapoints    | `B_E_CHARGE_AC`                | kWh  | Chargeable Energy                               |         |          |                                |         |
 | datapoints    | `B_E_DISCHARGE_AC`             | kWh  | Dischargeable Energy                            |         |          |                                |         |
-| datapoints    | `B_E_EXP`                      | kWh  | Total energy from stacks                        |         |          |                                |         |
+| datapoints    | `B_E_EXP`                      | kWh  | Energy export from storage system DC            |         |          |                                |         |
 | datapoints    | `B_E_EXP_AC`                   | kWh  | Energy export from storage system AC            |         |          |                                |         |
-| datapoints    | `B_E_IMP`                      | kWh  | Total energy to stacks                          |         |          |                                |         |
+| datapoints    | `B_E_IMP`                      | kWh  | Energy import to storage system DC              |         |          |                                |         |
 | datapoints    | `B_E_IMP_AC`                   | kWh  | Energy import to storage system AC              |         |          |                                |         |
 | datapoints    | `B_E_INT_EXP`                  | kWh  | Energy export from storage system (interval) DC |         |          |                                |         |
+| datapoints    | `B_E_INT_EXP_AC`               | kWh  | Energy export from storage system (interval) AC |         |          |                                |         |
 | datapoints    | `B_E_INT_IMP`                  | kWh  | Energy import to storage system (interval) DC   |         |          |                                |         |
+| datapoints    | `B_E_INT_IMP_AC`               | kWh  | Energy import to storage system (interval) AC   |         |          |                                |         |
 | datapoints    | `B_E_STORED`                   | kWh  | Currently stored energy                         |         |          |                                |         |
 | datapoints    | `B_F_AC`                       | Hz   | Grid frequency                                  |         |          |                                |         |
 | datapoints    | `B_I_AC`                       | A    | Battery AC current                              |         |          |                                |         |
 | datapoints    | `B_I_DC`                       | A    | Charging current DC                             |         |          |                                |         |
-| datapoints    | `B_LIM_I_CHARGE`               |      |                                                 |         |          |                                |         |
-| datapoints    | `B_LIM_I_DISCHARGE`            |      |                                                 |         |          |                                |         |
+| datapoints    | `B_LIM_I_CHARGE`               |      | Maximum charging current                        |         |          |                                |         |
+| datapoints    | `B_LIM_I_DISCHARGE`            |      | Maximum discharging current                     |         |          |                                |         |
 | datapoints    | `B_LIM_P_CHARGE`               | W    | Maximum charging power                          |         |          |                                |         |
 | datapoints    | `B_LIM_P_DISCHARGE`            | W    | Maximum discharging power                       |         |          |                                |         |
 | datapoints    | `B_LIM_U_CHARGE`               | V    | Charge end voltage                              |         |          |                                |         |
-| datapoints    | `B_LIM_U_DISCHARGE`            |      |                                                 |         |          |                                |         |
+| datapoints    | `B_LIM_U_DISCHARGE`            |      | Discharge end voltage                           |         |          |                                |         |
 | datapoints    | `B_OT_TOTAL`                   | h    | Operating Hours                                 |         |          |                                |         |
 | datapoints    | `B_P_AC`                       | W    | Battery power AC                                |         |          |                                |         |
 | datapoints    | `B_P_DC`                       | W    | Total battery power                             |         |          |                                |         |
