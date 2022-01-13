@@ -9106,6 +9106,42 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
 <p>¹ Customized statuses available. Please reach out to our sales representatives for more information.</p>
 
+<h3 class="toc-ignore">Get ticket causes</h3>
+
+<p>Returns a list of all available causes for ticket.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/causes'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var string[] causes */</span>
+    <span class="nv">$causes</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">tickets</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">causes</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>:[
+    <span class="s2">"Unknown"</span>,
+    <span class="s2">"Grid voltage"</span>,
+    <span class="s2">"Inverter"</span>,
+    <span class="s2">"Operating error"</span>,
+    <span class="s2">"Overvoltage arrester"</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var string[] causes */</span>
+    <span class="k">echo</span> <span class="nv">$causes</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="c1">// Unknown
+</span>    <span class="k">echo</span> <span class="nv">$causes</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span><span class="c1">// Grid voltage
+</span>    <span class="k">echo</span> <span class="nv">$causes</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="c1">// Inverter
+</span>    <span class="k">echo</span> <span class="nv">$causes</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="c1">// Operating error
+</span>    <span class="k">echo</span> <span class="nv">$causes</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span><span class="c1">// Overvoltage arrester
+</span></code></pre>
+
 <h3 class="toc-ignore">Get single ticket</h3>
 
 <blockquote>
@@ -9134,6 +9170,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="s2">"assignee"</span>: null,
     <span class="s2">"status"</span>: <span class="s2">"inProgress"</span>,
     <span class="s2">"causeId"</span>: 10,
+    <span class="s2">"cause"</span>: <span class="s2">"Inverter"</span>,
     <span class="s2">"priority"</span>: <span class="s2">"normal"</span>,
     <span class="s2">"includeInReports"</span>: <span class="s2">"no"</span>,
     <span class="s2">"fieldService"</span>: <span class="nb">true</span>,
@@ -9155,6 +9192,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">assignee</span><span class="p">;</span><span class="c1">// null
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// inProgress
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">causeId</span><span class="p">;</span><span class="c1">// 10
+</span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">casue</span><span class="p">;</span><span class="c1">// Inverter
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">priority</span><span class="p">;</span><span class="c1">// normal
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">includeInReports</span><span class="p">;</span><span class="c1">// no
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">fieldService</span><span class="p">;</span><span class="c1">// true
@@ -9246,6 +9284,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>causeId <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">integer</code>ǀ<code class="prettyprint">null</code></td>
+<td>(deprecated)</td>
+</tr>
+<tr>
+<td>cause <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
 <td></td>
 </tr>
 <tr>
@@ -9435,9 +9478,15 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td><code class="prettyprint">string</code></td>
 <td>The username of the person being assigned to the ticket</td>
 </tr>
+<tr>
+<td>cause <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code>²</td>
+<td></td>
+</tr>
 </tbody></table>
 
-<p>¹ Customized statuses available. Please reach out to our sales representatives for more information.</p>
+<p>¹ Customized statuses available. Please reach out to our sales representatives for more information.<br>
+² Please refer to <code class="prettyprint">Get ticket causes</code> endpoint for available causes </p>
 
 <p><strong>Response</strong></p>
 
@@ -9571,9 +9620,15 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td><code class="prettyprint">string</code></td>
 <td>The username of the person being assigned to the ticket</td>
 </tr>
+<tr>
+<td>cause <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code>²</td>
+<td></td>
+</tr>
 </tbody></table>
 
-<p>¹ Customized statuses available. Please reach out to our sales representatives for more information.</p>
+<p>¹ Customized statuses available. Please reach out to our sales representatives for more information.<br>
+² Please refer to <code class="prettyprint">Get ticket causes</code> endpoint for available causes</p>
 
 <p><strong>Response - Data</strong></p>
 
@@ -11481,6 +11536,11 @@ The response format changed as follows:</p>
 <td>rectifiedAt</td>
 </tr>
 <tr>
+<td>Get single ticket</td>
+<td>causeId</td>
+<td>cause</td>
+</tr>
+<tr>
 <td>Update a ticket</td>
 <td>rectifiedOn</td>
 <td>rectifiedAt</td>
@@ -11595,6 +11655,11 @@ The response format changed as follows:</p>
 <td>2021-03-02</td>
 <td>2.9.0</td>
 <td>Add status device endpoints</td>
+</tr>
+<tr>
+<td>2022-01-13</td>
+<td>2.10.0</td>
+<td>Add cause property for ticket and ability to manipulate ticket cause</td>
 </tr>
 </tbody></table>
 
