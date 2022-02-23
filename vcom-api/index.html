@@ -2767,6 +2767,182 @@ For response example in CSV format, please check <a href="https://github.com/met
 
 <p>¹ The resolution fixed to month at current moment.  </p>
 
+          <h5 id="forecast">Forecast</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/forecasts/forecast?format=json&amp;hours_into_future=1&amp;timezone=UTC&amp;resolution=fifteen-minutes
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$forecastCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">ForecastCriteria</span><span class="p">())</span>
+            <span class="o">-&gt;</span><span class="na">withHoursToFuture</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">withTimezone</span><span class="p">(</span><span class="s1">'UTC'</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="nx">ForecastCriteria</span><span class="o">::</span><span class="na">RESOLUTION_FIFTEEN_MINUTES</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">withFormat</span><span class="p">(</span><span class="s1">'json'</span><span class="p">);</span>
+    <span class="sd">/** @var MeasurementsBulkReader $forecastData */</span>
+    <span class="nv">$forecastData</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">forecasts</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">forecast</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$forecastCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+    <span class="s2">"data"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"systemKey"</span>: <span class="s2">"ABCDE"</span>,
+            <span class="s2">"timestamp"</span>: <span class="s2">"2021-11-06T12:30:00+00:00"</span>,
+            <span class="s2">"calculation_timestamp"</span>: <span class="s2">"2021-11-06T10:00:00+00:00"</span>,
+            <span class="s2">"power"</span>: 35.31
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"systemKey"</span>: <span class="s2">"ABCDE"</span>,
+            <span class="s2">"timestamp"</span>: <span class="s2">"2021-11-06T12:45:00+00:00"</span>,
+            <span class="s2">"calculation_timestamp"</span>: <span class="s2">"2021-11-06T10:00:00+00:00"</span>,
+            <span class="s2">"power"</span>: 40.31
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"systemKey"</span>: <span class="s2">"ABCDE"</span>,
+            <span class="s2">"timestamp"</span>: <span class="s2">"2021-11-06T13:00:00+00:00"</span>,
+            <span class="s2">"calculation_timestamp"</span>: <span class="s2">"2021-11-06T10:00:00+00:00"</span>,
+            <span class="s2">"power"</span>: 50.0
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"systemKey"</span>: <span class="s2">"ABCDE"</span>,
+            <span class="s2">"timestamp"</span>: <span class="s2">"2021-11-06T13:15:00+00:00"</span>,
+            <span class="s2">"calculation_timestamp"</span>: <span class="s2">"2021-11-06T10:00:00+00:00"</span>,
+            <span class="s2">"power"</span>: 0
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var MeasurementsBulkReader $forecastData */</span>
+    <span class="nv">$forecasts</span> <span class="o">=</span> <span class="nv">$forecastData</span><span class="o">-&gt;</span><span class="na">getAsArray</span><span class="p">();</span>
+    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'timestamp'</span><span class="p">];</span>  <span class="c1">// '2021-11-06T12:30:00+00:00'
+</span>    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'calculation_timestamp'</span><span class="p">];</span> <span class="c1">// '2021-11-06T10:00:00+00:00'
+</span>    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'systemKey'</span><span class="p">];</span> <span class="c1">// 'ABCDE'
+</span>    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'power'</span><span class="p">];</span> <span class="c1">// 35.31
+</span>    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">'timestamp'</span><span class="p">];</span>  <span class="c1">// '2021-11-06T12:45:00+00:00'
+</span>    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">'calculation_timestamp'</span><span class="p">];</span> <span class="c1">// '2021-11-06T10:00:00+00:00'
+</span>    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">'systemKey'</span><span class="p">];</span> <span class="c1">// 'ABCDE'
+</span>    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">'power'</span><span class="p">];</span> <span class="c1">// 40.31
+</span>    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="s1">'timestamp'</span><span class="p">];</span>  <span class="c1">// '2021-11-06T13:00:00+00:00'
+</span>    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="s1">'calculation_timestamp'</span><span class="p">];</span> <span class="c1">// 2021-11-06T10:00:00+00:00
+</span>    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="s1">'systemKey'</span><span class="p">];</span> <span class="c1">// 'ABCDE'
+</span>    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="s1">'power'</span><span class="p">];</span> <span class="c1">// 50.0
+</span>    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">3</span><span class="p">][</span><span class="s1">'timestamp'</span><span class="p">];</span>  <span class="c1">// '2021-11-06T13:15:00+00:00'
+</span>    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">3</span><span class="p">][</span><span class="s1">'calculation_timestamp'</span><span class="p">];</span> <span class="c1">// '2021-11-06T10:00:00+00:00'
+</span>    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">3</span><span class="p">][</span><span class="s1">'systemKey'</span><span class="p">];</span> <span class="c1">// 'ABCDE'
+</span>    <span class="k">echo</span> <span class="nv">$forecasts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">3</span><span class="p">][</span><span class="s1">'power'</span><span class="p">];</span> <span class="c1">// 0
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/forecasts/forecast</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>hours_into_future <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">integer</code> between 1 and 96</td>
+<td>Defaults to <code class="prettyprint">48</code></td>
+</tr>
+<tr>
+<td>format <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">json</code>ǀ<code class="prettyprint">csv</code>)</td>
+<td>Defaults to <code class="prettyprint">json</code></td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">fifteen-minutes</code>ǀ<code class="prettyprint">thirty-minutes</code>ǀ<code class="prettyprint">hour</code>)</td>
+<td>Defaults to <code class="prettyprint">fifteen-minutes</code></td>
+</tr>
+<tr>
+<td>timezone <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Defaults to <code class="prettyprint">system timezone</code></td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>calculation_timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Calculation timestamp</td>
+</tr>
+<tr>
+<td>power <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Power value</td>
+</tr>
+</tbody></table>
+
+<p><strong>Forecast contract category</strong></p>
+
+<p>Depending on your contract type different kinds of forecasts are provided.</p>
+
+<table><thead>
+<tr>
+<th>Category</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Day-Ahead</td>
+<td>Only day-ahead forecasts can be retrieved. The first timestamp starts at 00:00:00 of the following day. They are based on numerical weather prediction and will update a couple times per day.</td>
+</tr>
+<tr>
+<td>Intraday</td>
+<td>Both day-ahead and intraday forecasts can be retrieved. They are also based on numerical weather prediction and will update a couple times per day.</td>
+</tr>
+<tr>
+<td>Intraday Optimized</td>
+<td>Both day-ahead and intraday forecasts can be retrieved. Satellite based forecasts are combined with numerical weather prediction. The forecasts are updated every 15 minutes.</td>
+</tr>
+</tbody></table>
+
+<p>You can contact our sales department at <a href="mailto:sales@meteocontrol.com">sales@meteocontrol.com</a> to get the contract type of your systems.</p>
+
           <h4 id="inverters">Inverters</h4>
 
 <h4 class="toc-ignore">Get all inverters</h4>
@@ -11660,6 +11836,11 @@ The response format changed as follows:</p>
 <td>2022-01-13</td>
 <td>2.10.0</td>
 <td>Add cause property for ticket and ability to manipulate ticket cause</td>
+</tr>
+<tr>
+<td>2022-01-13</td>
+<td>2.11.0</td>
+<td>Add forecast endpoint</td>
 </tr>
 </tbody></table>
 
