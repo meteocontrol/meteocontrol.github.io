@@ -126,7 +126,7 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-
+        
           <h1 id="introduction">Introduction</h1>
 
 <blockquote>
@@ -388,7 +388,7 @@ X-RateLimit-Remaining-Day: 328
 <p>Request</p>
 </blockquote>
 <pre class="highlight shell"><code>curl
---compressed
+--compressed 
 -u username:password
 -H <span class="s2">"X-API-KEY: 1234567890"</span>
 <span class="s1">'https://api.meteocontrol.de/v2/&lt;endpoint&gt;'</span>
@@ -9360,7 +9360,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 123
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">systemKey</span><span class="p">;</span><span class="c1">// ABCDE
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">designation</span><span class="p">;</span><span class="c1">// Ticket #123
-</span>    <span class="k">echo</span> <span class="nv">$tickets</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// This is a description
+</span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// This is a description
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">summary</span><span class="p">;</span><span class="c1">// This is a summary.
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T12:00:00+02:00
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2016-01-01T13:00:00+02:00
@@ -9368,7 +9368,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">assignee</span><span class="p">;</span><span class="c1">// null
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// inProgress
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">causeId</span><span class="p">;</span><span class="c1">// 10
-</span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">casue</span><span class="p">;</span><span class="c1">// Inverter
+</span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">cause</span><span class="p">;</span><span class="c1">// Inverter
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">priority</span><span class="p">;</span><span class="c1">// normal
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">includeInReports</span><span class="p">;</span><span class="c1">// no
 </span>    <span class="k">echo</span> <span class="nv">$ticket</span><span class="o">-&gt;</span><span class="na">fieldService</span><span class="p">;</span><span class="c1">// true
@@ -9517,7 +9517,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 <tr>
 <td>affectedPower <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">float</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Affected power in kW</td>
 </tr>
 <tr>
@@ -9657,6 +9657,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>cause <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">string</code>²</td>
+<td></td>
+</tr>
+<tr>
+<td>fieldService <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">bool</code></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -9799,6 +9804,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>cause <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">string</code>²</td>
+<td></td>
+</tr>
+<tr>
+<td>fieldService <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">bool</code></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -11330,6 +11340,398 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </tbody></table>
 
+          <h2 id="alarms">Alarms</h2>
+
+<h3 class="toc-ignore">Types</h3>
+
+<h4 id="alarm-types" class="toc-ignore">Alarm types</h4>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">total-outage</code></td>
+<td>System or inverter total outage</td>
+</tr>
+<tr>
+<td><code class="prettyprint">data-outage</code></td>
+<td>Component delivers no data</td>
+</tr>
+<tr>
+<td><code class="prettyprint">communication-outage</code></td>
+<td>System or datalogger-wide communication problem</td>
+</tr>
+<tr>
+<td><code class="prettyprint">misproduction</code></td>
+<td>System or inverter under-performing</td>
+</tr>
+<tr>
+<td><code class="prettyprint">string-outage</code></td>
+<td>One or more strings of stringbox in outage</td>
+</tr>
+<tr>
+<td><code class="prettyprint">sensor-outage</code></td>
+<td>Strange behaviour of irradiance sensor detected</td>
+</tr>
+<tr>
+<td><code class="prettyprint">custom</code></td>
+<td>Custom alarm configured by a user</td>
+</tr>
+</tbody></table>
+
+<h4 id="component-types" class="toc-ignore">Component types</h4>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">system</code></td>
+<td>Whole system or value on system level affected</td>
+</tr>
+<tr>
+<td><code class="prettyprint">subsystem</code></td>
+<td>Substation (currently unused)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">datalogger</code></td>
+<td>Only used for communication issues</td>
+</tr>
+<tr>
+<td><code class="prettyprint">inverter</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code class="prettyprint">sensor</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code class="prettyprint">meter</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code class="prettyprint">ppc</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code class="prettyprint">battery</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code class="prettyprint">tracker</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code class="prettyprint">stringbox</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code class="prettyprint">status</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code class="prettyprint">genset</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3 class="toc-ignore">Objects</h3>
+
+<h4 id="component-object" class="toc-ignore">Component</h4>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td></td>
+</tr>
+<tr>
+<td>type <code class="prettyprint">fixed</code></td>
+<td><a href="#component-types">ComponentType</a></td>
+<td></td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h4 id="alarm-object" class="toc-ignore">Alarm</h4>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td></td>
+</tr>
+<tr>
+<td>alarmType <code class="prettyprint">fixed</code></td>
+<td><a href="#alarm-types">AlarmType</a></td>
+<td></td>
+</tr>
+<tr>
+<td>component <code class="prettyprint">fixed</code></td>
+<td><a href="#component-object">Component</a></td>
+<td></td>
+</tr>
+<tr>
+<td>systemKey <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>ticketId <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
+<td>Id of assigned ticket, <code class="prettyprint">null</code> if not assigned to a ticket</td>
+</tr>
+<tr>
+<td>createdAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Created date in system timezone</td>
+</tr>
+<tr>
+<td>lastChangedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Last change date in system timezone</td>
+</tr>
+<tr>
+<td>status <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">open</code>ǀ<code class="prettyprint">closed</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>severity <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">normal</code>ǀ<code class="prettyprint">high</code>ǀ<code class="prettyprint">critical</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>duration <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>ISO-8601 duration</td>
+</tr>
+<tr>
+<td>affectedPower <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>In percent of installed system power, 0 if not applicable</td>
+</tr>
+<tr>
+<td>losses <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
+<td>Estimated losses due to alarm in kWh, <code class="prettyprint">null</code> if unavailable</td>
+</tr>
+</tbody></table>
+
+<h3 class="toc-ignore">Get all alarms</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/alarms?
+severity=high,critical&amp;status=open&amp;systemKey=ABCDE
+&amp;lastChangedAt[from]=2022-04-01T00:00:00+02:00&amp;lastChangedAt[to]=2022-04-30T23:59:59+02:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$criteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">AlarmsCriteria</span><span class="p">())</span>
+    <span class="o">-&gt;</span><span class="na">withSystemKey</span><span class="p">(</span><span class="s2">"ABCDE"</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">withSeverity</span><span class="p">(</span><span class="nx">Alarm</span><span class="o">::</span><span class="na">SEVERITY_HIGH</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">withSeverity</span><span class="p">(</span><span class="nx">Alarm</span><span class="o">::</span><span class="na">SEVERITY_CRITICAL</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">withStatus</span><span class="p">(</span><span class="nx">Alarm</span><span class="o">::</span><span class="na">STATUS_OPEN</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">withLastChangedAtFrom</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2022-04-01T00:00:00+02:00"</span><span class="p">))</span>
+    <span class="o">-&gt;</span><span class="na">withLastChangedAtTo</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2022-04-30T23:59:59+02:00"</span><span class="p">));</span>
+<span class="nv">$alarms</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">alarms</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 123,
+      <span class="s2">"systemKey"</span>: <span class="s2">"ABCDE"</span>,
+      <span class="s2">"ticketId"</span>: null,
+      <span class="s2">"alarmType"</span>: <span class="s2">"misproduction"</span>,
+      <span class="s2">"component"</span>: <span class="o">{</span>
+          <span class="s2">"id"</span>: <span class="s2">"Id123.1"</span>,
+          <span class="s2">"type"</span>: <span class="s2">"inverter"</span>,
+          <span class="s2">"name"</span>: <span class="s2">"Inverter 1"</span>
+      <span class="o">}</span>,
+      <span class="s2">"createdAt"</span>: <span class="s2">"2022-04-01T015:35:00+02:00"</span>,
+      <span class="s2">"lastChangedAt"</span>: <span class="s2">"2022-04-10T09:15:00+02:00"</span>,
+      <span class="s2">"status"</span>: <span class="s2">"open"</span>,
+      <span class="s2">"severity"</span>: <span class="s2">"high"</span>,
+      <span class="s2">"duration"</span>: <span class="s2">"PT300S"</span>,
+      <span class="s2">"affectedPower"</span>: 20.0,
+      <span class="s2">"losses"</span>: 12.4
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 456,
+      <span class="s2">"systemKey"</span>: <span class="s2">"ABCDE"</span>,
+      <span class="s2">"ticketId"</span>: null,
+      <span class="s2">"alarmType"</span>: <span class="s2">"sensor-outage"</span>,
+      <span class="s2">"component"</span>: <span class="o">{</span>
+          <span class="s2">"id"</span>: <span class="s2">""</span>,
+          <span class="s2">"type"</span>: <span class="s2">"system"</span>,
+          <span class="s2">"name"</span>: <span class="s2">"Testsystem G_M0"</span>
+      <span class="o">}</span>,
+      <span class="s2">"createdAt"</span>: <span class="s2">"2022-04-03T07:50:00+02:00"</span>,
+      <span class="s2">"lastChangedAt"</span>: <span class="s2">"2022-04-03T09:50:00+02:00"</span>,
+      <span class="s2">"status"</span>: <span class="s2">"open"</span>,
+      <span class="s2">"severity"</span>: <span class="s2">"critical"</span>,
+      <span class="s2">"duration"</span>: <span class="s2">"PT6H"</span>,
+      <span class="s2">"affectedPower"</span>: 0.0,
+      <span class="s2">"losses"</span>: null
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">alarms</code></p>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Can contain comma delimited ticket ids</td>
+</tr>
+<tr>
+<td>alarmType <code class="prettyprint">optional</code></td>
+<td><a href="#alarm-types">AlarmType</a></td>
+<td>Can contain comma delimited alarm types</td>
+</tr>
+<tr>
+<td>componentType <code class="prettyprint">optional</code></td>
+<td><a href="#component-object">Component</a></td>
+<td>Can contain comma delimited component types</td>
+</tr>
+<tr>
+<td>lastChangedAt[from] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>lastChangedAt[to] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>createdAt[from] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>createdAt[to] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>status <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">open</code>ǀ<code class="prettyprint">closed</code>)</td>
+<td>Can contain comma delimited status, defaults to <code class="prettyprint">open</code> if not specified</td>
+</tr>
+<tr>
+<td>severity <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">normal</code>ǀ<code class="prettyprint">high</code>ǀ<code class="prettyprint">critical</code>)</td>
+<td>Can contain comma delimited severity types</td>
+</tr>
+<tr>
+<td>systemKey <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Can contain comma delimited system keys</td>
+</tr>
+</tbody></table>
+
+<p><br></p>
+
+<p><strong>Response</strong></p>
+
+<p>A list of <a href="#alarm-object">Alarm objects</a>. Only the 500 last updated entries will be returned.</p>
+
+<h3 class="toc-ignore">Get single alarm</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/alarms/789'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$alarm</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">alarm</span><span class="p">(</span><span class="mi">789</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: 789,
+    <span class="s2">"systemKey"</span>: <span class="s2">"ABCDE"</span>,
+    <span class="s2">"ticketId"</span>: null,
+    <span class="s2">"alarmType"</span>: <span class="s2">"total-outage"</span>,
+    <span class="s2">"component"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: <span class="s2">""</span>,
+        <span class="s2">"type"</span>: <span class="s2">"system"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"Testsystem"</span>
+    <span class="o">}</span>,
+    <span class="s2">"createdAt"</span>: <span class="s2">"2016-01-01T12:00:00+02:00"</span>,
+    <span class="s2">"lastChangedAt"</span>: <span class="s2">"2016-01-01T13:00:00+02:00"</span>,
+    <span class="s2">"status"</span>: <span class="s2">"closed"</span>,
+    <span class="s2">"severity"</span>: <span class="s2">"critical"</span>,
+    <span class="s2">"duration"</span>: <span class="s2">"PT1H"</span>,
+    <span class="s2">"affectedPower"</span>: 100.0,
+    <span class="s2">"losses"</span>: 28.3
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">alarms/&lt;alarmId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>alarmId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Alarm-ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>A single <a href="#alarm-object">Alarm object</a></p>
+
           <h2 id="login">Login</h2>
 
 <h3 class="toc-ignore">OAuth Authentication</h3>
@@ -11841,6 +12243,16 @@ The response format changed as follows:</p>
 <td>2022-01-13</td>
 <td>2.11.0</td>
 <td>Add forecast endpoint</td>
+</tr>
+<tr>
+<td>2022-04-01</td>
+<td>2.12.0</td>
+<td>Add alarms endpoints</td>
+</tr>
+<tr>
+<td>2022-04-20</td>
+<td>2.13.0</td>
+<td>Add ability to manipulate Ticket fieldService property</td>
 </tr>
 </tbody></table>
 
