@@ -19,7 +19,7 @@
 | datapoints    | `B_E_INT_EXP`                  | kWh  | Energy export from storage system (interval) DC |         |          |                                |         |
 | datapoints    | `B_E_INT_EXP_AC`               | kWh  | Energy export from storage system (interval) AC |         |          |                                |         |
 | datapoints    | `B_E_INT_IMP`                  | kWh  | Energy import to storage system (interval) DC   |         |          |                                |         |
-| datapoints    | `B_E_INT_IMP_AC`               | kWh  | Energy import to storage system (interval) AC   |         |          |                                |         |
+| datapoints    | `B_E_INT_IMP_AC`               | kWh  | Energy import from storage system (interval) AC |         |          |                                |         |
 | datapoints    | `B_E_STORED`                   | kWh  | Currently stored energy                         |         |          |                                |         |
 | datapoints    | `B_F_AC`                       | Hz   | Grid frequency                                  |         |          |                                |         |
 | datapoints    | `B_I_AC`                       | A    | Battery AC current                              |         |          |                                |         |

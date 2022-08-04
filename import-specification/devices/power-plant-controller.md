@@ -16,9 +16,13 @@
 | datapoints    | `PPC_P_AC_GRIDOP_MAX`  | W    | Maximum active power during curtailment (grid operator) |                        |          |                                               |         |
 | datapoints    | `PPC_P_AC_INV`         | W    | Sum of inverter actual active power                     |                        |          |                                               |         |
 | datapoints    | `PPC_P_AC_RPC_MAX`     | W    | Maximum active power during curtailment (3rd party)     |                        |          |                                               |         |
+| datapoints    | `PPC_P_SET_ABS`        | W    | Absolute active power setpoint                          |                        |          |                                               |         |
 | datapoints    | `PPC_P_SET_GRIDOP_ABS` | W    | Absolute active power setpoint (grid operator)          |                        |          |                                               |         |
 | datapoints    | `PPC_P_SET_GRIDOP_REL` | %    | Relative active power setpoint (grid operator)          |                        |          |                                               |         |
+| datapoints    | `PPC_P_SET_MANUAL_ABS` | W    | Absolute active power setpoint (manually)               |                        |          |                                               |         |
+| datapoints    | `PPC_P_SET_MANUAL_REL` | %    | Relative active power setpoint (manually)               |                        |          |                                               |         |
 | datapoints    | `PPC_P_SET_REL`        | %    | Actual valid active power setpoint                      |                        | x        |                                               |         |
+| datapoints    | `PPC_P_SET_RPC_ABS`    | W    | Absolute active power setpoint (3rd party)              |                        |          |                                               |         |
 | datapoints    | `PPC_P_SET_RPC_REL`    | %    | Active power setpoint (3rd party)                       |                        |          |                                               |         |
 | datapoints    | `PPC_Q_AC`             | VAr  | Actual reactive power                                   |                        |          |                                               |         |
 | datapoints    | `PPC_Q_AC_AVAIL`       | VAr  | Actual theoretical available reactive power             |                        |          |                                               |         |
