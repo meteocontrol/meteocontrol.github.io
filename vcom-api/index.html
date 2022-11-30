@@ -11513,6 +11513,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>Last change date in system timezone</td>
 </tr>
 <tr>
+<td>startedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Started date in system timezone</td>
+</tr>
+<tr>
 <td>status <code class="prettyprint">fixed</code></td>
 <td>(<code class="prettyprint">open</code>ǀ<code class="prettyprint">closed</code>)</td>
 <td></td>
@@ -11546,7 +11551,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/alarms?
 severity=high,critical&amp;status=open&amp;systemKey=ABCDE
-&amp;lastChangedAt[from]=2022-04-01T00:00:00+02:00&amp;lastChangedAt[to]=2022-04-30T23:59:59+02:00'</span>
+&amp;lastChangedAt[from]=2022-04-01T00:00:00+02:00&amp;lastChangedAt[to]=2022-04-30T23:59:59+02:00
+&startedAt[from]=2022-04-01T00:00:00+02:00&startedAt[to]=2022-04-30T23:59:59+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$criteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">AlarmsCriteria</span><span class="p">())</span>
@@ -11556,6 +11562,8 @@ severity=high,critical&amp;status=open&amp;systemKey=ABCDE
     <span class="o">-&gt;</span><span class="na">withStatus</span><span class="p">(</span><span class="nx">Alarm</span><span class="o">::</span><span class="na">STATUS_OPEN</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="na">withLastChangedAtFrom</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2022-04-01T00:00:00+02:00"</span><span class="p">))</span>
     <span class="o">-&gt;</span><span class="na">withLastChangedAtTo</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2022-04-30T23:59:59+02:00"</span><span class="p">));</span>
+    <span class="o">-&gt;</span><span class="na">withStartedAtFrom</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2022-04-01T00:00:00+02:00"</span><span class="p">))</span>
+    <span class="o">-&gt;</span><span class="na">withStartedAtTo</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2022-04-30T23:59:59+02:00"</span><span class="p">));</span>
 <span class="nv">$alarms</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">alarms</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre>
 
@@ -11576,6 +11584,7 @@ severity=high,critical&amp;status=open&amp;systemKey=ABCDE
       <span class="o">}</span>,
       <span class="s2">"createdAt"</span>: <span class="s2">"2022-04-01T015:35:00+02:00"</span>,
       <span class="s2">"lastChangedAt"</span>: <span class="s2">"2022-04-10T09:15:00+02:00"</span>,
+      <span class="s2">"startedAt"</span>: <span class="s2">"2022-04-01T015:35:00+02:00"</span>,
       <span class="s2">"status"</span>: <span class="s2">"open"</span>,
       <span class="s2">"severity"</span>: <span class="s2">"high"</span>,
       <span class="s2">"duration"</span>: <span class="s2">"PT300S"</span>,
@@ -11647,6 +11656,16 @@ severity=high,critical&amp;status=open&amp;systemKey=ABCDE
 </tr>
 <tr>
 <td>createdAt[to] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>startedAt[from] <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>startedAt[to] <code class="prettyprint">optional</code></td>
 <td><code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
