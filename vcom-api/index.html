@@ -11809,7 +11809,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"work order title"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"work order description"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"processed"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"dueAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dueAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-08T00:00:00+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-08"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-08T06:39:58+00:00"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"completedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"lastChangedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-12T00:00:00+00:00"</span><span class="p">,</span><span class="w">
@@ -11830,6 +11831,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span><span class="c1">// work order title
 </span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span><span class="c1">// work order description
 </span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// processed
+</span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">dueAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2021-07-08T00:00:00+00:00
+</span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">dueDate</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">'Y-m-d'</span><span class="p">);</span><span class="c1">// 2021-07-08
 </span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2020-07-08T06:39:58+00:00
 </span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ATOM</span><span class="p">);</span><span class="c1">// 2020-08-12T00:00:00+00:00
 </span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">assignee</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">// user-name
@@ -11896,6 +11899,16 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>status <code class="prettyprint">fixed</code></td>
 <td>(<code class="prettyprint">closed</code>ǀ<code class="prettyprint">declined</code>ǀ<code class="prettyprint">inProgress</code>ǀ<code class="prettyprint">open</code>ǀ<code class="prettyprint">processed</code>)</td>
 <td>Work order status</td>
+</tr>
+<tr>
+<td>dueAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Work order due date (deprecated)</td>
+</tr>
+<tr>
+<td>dueDate <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Work order due date</td>
 </tr>
 <tr>
 <td>createdAt <code class="prettyprint">fixed</code></td>
