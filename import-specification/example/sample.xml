@@ -248,12 +248,5 @@
         </device>
       </datapoint>
     </datapoints>
-    <events xmlns="http://api.sspcdn.com/mii/datalogger/events">
-      <powermanagement timestamp="2015-01-14T10:11:22Z" device-id="pm-1">
-        <p-set-perc>78</p-set-perc>
-        <p-set-gridop-perc>100</p-set-gridop-perc>
-        <p-set-rpc-perc>78</p-set-rpc-perc>
-      </powermanagement>
-    </events>
   </datalogger>
 </mii>

@@ -1,3 +1,5 @@
+This datapoint table is no longer in use, go to https://github.com/meteocontrol/meteocontrol.github.io/blob/master/import-specification/devices/power-plant-controller.md to access currently valid power control datapoints
+
 | Field Type | Name Attribute    | Description                                                                        | Value          | Type     | Required | Example                                                | Notes | Version | 
 |------------|-------------------|------------------------------------------------------------------------------------|----------------|----------|----------|--------------------------------------------------------|-------|---------| 
 | attribute  | timestamp         | UTC-Timestamp formatted as a subset of IETF RFC 3339                               |                | datetime | x        | <event timestamp="2016-11-25T18:11:37Z" device-id="1"> |       | 2.0.5   | 
