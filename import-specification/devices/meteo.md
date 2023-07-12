@@ -15,6 +15,7 @@
 | datapoints    | `E_AP_ABS[1..x]`     | hPa   | Absolute air pressure                                                    |       |          |                              |         |
 | datapoints    | `E_AP_REL[1..x]`     | hPa   | Relative air pressure                                                    |       |          |                              |         |
 | datapoints    | `E_AT[1..x]`         | °C    | Air temperature                                                          |       |          |                              |         |
+| datapoints    | `E_DEWPOINT`         | °C    | Dewpoint                                                                 |       |          |                              |         |
 | datapoints    | `E_F_S[1..x]`        | rpm   | Fan speed                                                                |       |          |                              |         |
 | datapoints    | `E_IH_REL[1..x]`     | %     | Internal relative humidity                                               |       |          |                              |         |
 | datapoints    | `E_IP_ABS[1..x]`     | hPa   | Internal air pressure                                                    |       |          |                              |         |
