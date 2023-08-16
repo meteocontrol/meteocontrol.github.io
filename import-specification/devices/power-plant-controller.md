@@ -29,3 +29,5 @@
 | datapoints    | `PPC_Q_AC_AVAIL`       | VAr  | Actual theoretical available reactive power             |                        |          |                                               |         |
 | datapoints    | `PPC_Q_SET_ABS`        | VAr  | Absolute reactive power setpoint                        |                        |          |                                               |         |
 | datapoints    | `PPC_Q_SET_REL`        | %    | Actual valid reactive power setpoint                    |                        |          |                                               |         |
+| datapoints    | `PPC_P_SET_STATIC_ABS` | W    | Absolute active power setpoint (grid operator)          |                        |          |                                               |         |
+| datapoints    | `PPC_P_SET_STATIC_REL` | %    | Relative active power setpoint (grid operator)          |                        |          |                                               |         |
