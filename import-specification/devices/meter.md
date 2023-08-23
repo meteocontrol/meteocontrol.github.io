@@ -37,8 +37,10 @@
 | datapoints    | `M_DC_I[1..3]`         | A      | Current DC [Phase 1-3]                                     |       |          |                              |         |
 | datapoints    | `M_DC_P[1..3]`         | W      | Power DC [Phase 1-3]                                       |       |          |                              |         |
 | datapoints    | `M_DC_U[1..3]`         | V      | Voltage DC, Phase [1-3]                                    |       |          |                              |         |
-| datapoints    | `M_EQ_CAP_INT_EXP`     | kVArh  | Reactive Energy Lead                                       |       |          |                              |         |
-| datapoints    | `M_EQ_IND_INT_EXP`     | kVArh  | Reactive Energy Lag                                        |       |          |                              |         |
+| datapoints    | `M_EQ_CAP_INT_EXP`     | kVArh  | Reactive energy exported capacitively per interval         |       |          |                              |         |
+| datapoints    | `M_EQ_CAP_INT_IMP`     | kVArh  | Reactive energy imported capacitively per interval         |       |          |                              |         |
+| datapoints    | `M_EQ_IND_INT_EXP`     | kVArh  | Reactive energy exported inductively per interval          |       |          |                              |         |
+| datapoints    | `M_EQ_IND_INT_IMP`     | kVArh  | Reactive energy imported inductively per interval          |       |          |                              |         |
 | datapoints    | `STATE[1..x]`          |        |                                                            |       |          |                              |         |
 | datapoints    | `ERROR[1..x]`          |        | Global meter error conditions                              |       |          |                              |         |
 | datapoints    | `QS_TX`                |        | Telegrams transmitted (communication quality)              |       |          |                              |         |
