@@ -24,6 +24,7 @@
 | datapoints    | `B_F_AC`                       | Hz   | Grid frequency                                  |         |          |                                |         |
 | datapoints    | `B_I_AC`                       | A    | Battery AC current                              |         |          |                                |         |
 | datapoints    | `B_I_DC`                       | A    | Charging current DC                             |         |          |                                |         |
+| datapoints    | `B_I_DIS_DC`                   | A    | Discharging current DC                          |         |          |                                |         |
 | datapoints    | `B_LIM_I_CHARGE`               |      | Maximum charging current                        |         |          |                                |         |
 | datapoints    | `B_LIM_I_DISCHARGE`            |      | Maximum discharging current                     |         |          |                                |         |
 | datapoints    | `B_LIM_P_CHARGE`               | W    | Maximum charging power                          |         |          |                                |         |
