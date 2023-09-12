@@ -61,6 +61,12 @@ under the License.
   background-color: #004b99;
   color: #fff;
   text-shadow: none; }
+.content span.internal-tag {
+  background-color: #c83214;
+  color: #fff;
+  text-shadow: none;
+  border-radius: 3px;
+  padding: 2px 4px; }
 .content > h3, .content > h4, .content > h5, .content > h6 {
   clear: both; }
 .content h4, .content h5, .content h6 {
