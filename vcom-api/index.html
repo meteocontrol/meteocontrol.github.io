@@ -3074,8 +3074,7 @@ the entire lifetime of the system (up to the current date) is returned as the re
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-10-01T00:00:00+02:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-12-31T23:59:59+01:00'</span><span class="p">));</span>
     <span class="sd">/** @var TimestampValue[] $yields */</span>
-    <span class="nv">$yields</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span>
-        <span class="o">-&gt;</span><span class="na">forecasts</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">forecastsYield</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">specificEnergy</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
+    <span class="nv">$yields</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">forecasts</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">forecastsYield</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">specificEnergy</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -3166,7 +3165,7 @@ the entire lifetime of the system (up to the current date) is returned as the re
             <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="nx">ForecastCriteria</span><span class="o">::</span><span class="na">RESOLUTION_FIFTEEN_MINUTES</span><span class="p">)</span>
             <span class="o">-&gt;</span><span class="na">withFormat</span><span class="p">(</span><span class="s1">'json'</span><span class="p">);</span>
     <span class="sd">/** @var MeasurementsBulkReader $forecastData */</span>
-    <span class="nv">$forecastData</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">forecasts</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">forecast</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$forecastCriteria</span><span class="p">);</span>
+    <span class="nv">$forecastData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">forecasts</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">forecast</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$forecastCriteria</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -8787,6 +8786,440 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
+          <h4 id="kpi-targets">KPI targets</h4>
+
+          <h5 id="target-pr">Target PR</h5>
+
+<h5 class="toc-ignore">Get monthly target PR values (%)</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/kpi-targets/pr'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var float[] $targetPrValues */</span>
+    <span class="nv">$targetPrValues</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">kpiTargets</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">pr</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="mi">85</span><span class="p">,</span><span class="w">
+    </span><span class="mf">85.3</span><span class="p">,</span><span class="w">
+    </span><span class="mi">85</span><span class="p">,</span><span class="w">
+    </span><span class="mi">85</span><span class="p">,</span><span class="w">
+    </span><span class="mi">90</span><span class="p">,</span><span class="w">
+    </span><span class="mi">90</span><span class="p">,</span><span class="w">
+    </span><span class="mi">90</span><span class="p">,</span><span class="w">
+    </span><span class="mi">90</span><span class="p">,</span><span class="w">
+    </span><span class="mi">90</span><span class="p">,</span><span class="w">
+    </span><span class="mi">90</span><span class="p">,</span><span class="w">
+    </span><span class="mi">85</span><span class="p">,</span><span class="w">
+    </span><span class="mi">85</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var float[] $targetPrValues */</span>
+    <span class="k">echo</span> <span class="nv">$targetPrValues</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="c1">// 85
+</span>    <span class="k">echo</span> <span class="nv">$targetPrValues</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span><span class="c1">// 85.3
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/kpi-targets/pr</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">200</code></td>
+<td>Returns a list of monthly target PR values</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code></td>
+<td>The user is not allowed to get the target PR</td>
+</tr>
+</tbody></table>
+
+<h5 class="toc-ignore">Update monthly target PR values (%)</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="s1">'[85, 85.3, 86, 86.2, 87.2, 87.5, 90, 91, 84, 83.9, 83, 84]'</span> <span class="se">\</span>
+<span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/kpi-targets/pr'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$targetPrValues</span> <span class="o">=</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mf">85.3</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mf">86.2</span><span class="p">,</span> <span class="mf">87.2</span><span class="p">,</span> <span class="mf">87.5</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mf">83.9</span><span class="p">,</span> <span class="mi">83</span><span class="p">,</span> <span class="mi">84</span><span class="p">];</span>
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">kpiTargets</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">pr</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$targetPrValues</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">systems/&lt;systemKey&gt;/kpi-targets/pr</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<p>An array of 12 <code class="prettyprint">number</code> elements, whose values are between 0.0 and 100.0</p>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">204</code></td>
+<td>The target PR has been successfully updated</td>
+</tr>
+<tr>
+<td><code class="prettyprint">400</code></td>
+<td>The input target PR values are not valid</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code></td>
+<td>The user is not allowed to update the target PR</td>
+</tr>
+</tbody></table>
+
+<h5 class="toc-ignore">Delete monthly target PR values (%)</h5>
+
+<p>The default target PR values will be used after custom values are successfully deleted.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X DELETE <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/kpi-targets/pr'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">kpiTargets</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">pr</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">DELETE</code> <code class="prettyprint">systems/&lt;systemKey&gt;/kpi-targets/pr</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">204</code></td>
+<td>The target PR has been successfully deleted</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code></td>
+<td>The user is not allowed to delete the target PR</td>
+</tr>
+</tbody></table>
+
+          <h5 id="target-availability">Target availability</h5>
+
+<h5 class="toc-ignore">Get monthly target availability values (%)</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/kpi-targets/availability'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var float[] $targetAvailabilityValues */</span>
+    <span class="nv">$targetAvailabilityValues</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">kpiTargets</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">availability</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="mi">99</span><span class="p">,</span><span class="w">
+    </span><span class="mf">99.4</span><span class="p">,</span><span class="w">
+    </span><span class="mf">99.1</span><span class="p">,</span><span class="w">
+    </span><span class="mf">99.6</span><span class="p">,</span><span class="w">
+    </span><span class="mi">99</span><span class="p">,</span><span class="w">
+    </span><span class="mi">99</span><span class="p">,</span><span class="w">
+    </span><span class="mi">99</span><span class="p">,</span><span class="w">
+    </span><span class="mi">99</span><span class="p">,</span><span class="w">
+    </span><span class="mi">99</span><span class="p">,</span><span class="w">
+    </span><span class="mi">99</span><span class="p">,</span><span class="w">
+    </span><span class="mf">99.3</span><span class="p">,</span><span class="w">
+    </span><span class="mf">99.4</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var float[] $targetAvailabilityValues */</span>
+    <span class="k">echo</span> <span class="nv">$targetAvailabilityValues</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="c1">// 99
+</span>    <span class="k">echo</span> <span class="nv">$targetAvailabilityValues</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span><span class="c1">// 99.4
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/kpi-targets/availability</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">200</code></td>
+<td>Returns a list of monthly target availability values</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code></td>
+<td>The user is not allowed to get the target availability</td>
+</tr>
+</tbody></table>
+
+<h5 class="toc-ignore">Update monthly target availability values (%)</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="s1">'[85, 85.1, 85.3, 85.5, 90.4, 90.2, 90, 91, 93.4, 95, 95.7, 95.8]'</span> <span class="se">\</span>
+<span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/kpi-targets/availability'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$targetAvailabilityValues</span> <span class="o">=</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mf">85.1</span><span class="p">,</span> <span class="mf">85.3</span><span class="p">,</span> <span class="mf">85.5</span><span class="p">,</span> <span class="mf">90.4</span><span class="p">,</span> <span class="mf">90.2</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mf">93.4</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mf">95.7</span><span class="p">,</span> <span class="mf">95.8</span><span class="p">];</span>
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">kpiTargets</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">availability</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$targetAvailabilityValues</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">systems/&lt;systemKey&gt;/kpi-targets/availability</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<p>An array of 12 <code class="prettyprint">number</code> elements, whose values are between 0.0 and 100.0</p>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">204</code></td>
+<td>The target availability has been successfully updated</td>
+</tr>
+<tr>
+<td><code class="prettyprint">400</code></td>
+<td>The input target availability values are not valid</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code></td>
+<td>The user is not allowed to update the target availability</td>
+</tr>
+</tbody></table>
+
+<h5 class="toc-ignore">Delete monthly target availability values (%)</h5>
+
+<p>The default target availability values will be used after custom values are successfully deleted.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X DELETE <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/kpi-targets/availability'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">kpiTargets</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">availability</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">DELETE</code> <code class="prettyprint">systems/&lt;systemKey&gt;/kpi-targets/availability</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">204</code></td>
+<td>The target availability has been successfully deleted</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code></td>
+<td>The user is not allowed to delete the target availability</td>
+</tr>
+</tbody></table>
+
           <h4 id="responsibilities">Responsibilities</h4>
 
 <h4 class="toc-ignore">Get information of responsibilities</h4>
@@ -9066,7 +9499,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var User[] $users */</span>
-    <span class="nv">$users</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">users</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+    <span class="nv">$users</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">users</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 </code></pre>
 
 <blockquote>
@@ -13486,6 +13919,10 @@ The response format changed as follows:</p>
 <tr>
 <td>2023-10-31</td>
 <td>Remove the yield loss calculation endpoints that didn&rsquo;t specify the power control sources</td>
+</tr>
+<tr>
+<td>2023-12-25</td>
+<td>Add kpi targets endpoints</td>
 </tr>
 </tbody></table>
 
