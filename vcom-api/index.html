@@ -3156,13 +3156,14 @@ the entire lifetime of the system (up to the current date) is returned as the re
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/forecasts/forecast?format=json&amp;hours_into_future=1&amp;timezone=UTC&amp;resolution=fifteen-minutes
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/forecasts/forecast?format=json&amp;hours_into_future=1&amp;timezone=UTC&amp;resolution=fifteen-minutes&amp;category=dayAhead
 </span></code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$forecastCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">ForecastCriteria</span><span class="p">())</span>
             <span class="o">-&gt;</span><span class="na">withHoursToFuture</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
             <span class="o">-&gt;</span><span class="na">withTimezone</span><span class="p">(</span><span class="s1">'UTC'</span><span class="p">)</span>
             <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="nx">ForecastCriteria</span><span class="o">::</span><span class="na">RESOLUTION_FIFTEEN_MINUTES</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">withCategory</span><span class="p">(</span><span class="s1">'dayAhead'</span><span class="p">)</span>
             <span class="o">-&gt;</span><span class="na">withFormat</span><span class="p">(</span><span class="s1">'json'</span><span class="p">);</span>
     <span class="sd">/** @var MeasurementsBulkReader $forecastData */</span>
     <span class="nv">$forecastData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">forecasts</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">forecast</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$forecastCriteria</span><span class="p">);</span>
@@ -3268,7 +3269,14 @@ the entire lifetime of the system (up to the current date) is returned as the re
 <td><code class="prettyprint">string</code></td>
 <td>Defaults to <code class="prettyprint">system timezone</code></td>
 </tr>
+<tr>
+<td>category <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">dayAhead</code>ǀ<code class="prettyprint">intraday</code>ǀ<code class="prettyprint">intradayOptimized</code>)</td>
+<td>Defaults to <code class="prettyprint">contract category</code>¹</td>
+</tr>
 </tbody></table>
+
+<p>¹ If given a value, the category should be equal to or lower than the contract category. Or the endpoint will respond to HTTP 403.</p>
 
 <p><strong>Response</strong></p>
 
@@ -14849,6 +14857,10 @@ The response format changed as follows:</p>
 <tr>
 <td>2023-12-27</td>
 <td>Support the yield loss calculation formulas defined by Bundesnetzagentur in 2020 and deprecate the 2017 formulas</td>
+</tr>
+<tr>
+<td>2024-01-10</td>
+<td>Add category parameter to the forecast endpoint</td>
 </tr>
 </tbody></table>
 
