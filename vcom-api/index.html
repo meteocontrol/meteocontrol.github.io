@@ -115,13 +115,6 @@
             <li><a href='http://www.meteocontrol.com/'>meteocontrol GmbH</a></li>
             <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
-      <div class="version">
-        Version:
-        <select class="version">
-              <option value="../">v2 (latest)</option>
-              <option value="v1/">v1</option>
-        </select>
-      </div>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
@@ -3163,7 +3156,7 @@ the entire lifetime of the system (up to the current date) is returned as the re
             <span class="o">-&gt;</span><span class="na">withHoursToFuture</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
             <span class="o">-&gt;</span><span class="na">withTimezone</span><span class="p">(</span><span class="s1">'UTC'</span><span class="p">)</span>
             <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="nx">ForecastCriteria</span><span class="o">::</span><span class="na">RESOLUTION_FIFTEEN_MINUTES</span><span class="p">)</span>
-            <span class="o">-&gt;</span><span class="na">withCategory</span><span class="p">(</span><span class="s1">'dayAhead'</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">withCategory</span><span class="p">(</span><span class="nx">ForecastCriteria</span><span class="o">::</span><span class="na">CATEGORY_DAY_AHEAD</span><span class="p">)</span>
             <span class="o">-&gt;</span><span class="na">withFormat</span><span class="p">(</span><span class="s1">'json'</span><span class="p">);</span>
     <span class="sd">/** @var MeasurementsBulkReader $forecastData */</span>
     <span class="nv">$forecastData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">forecasts</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">forecast</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$forecastCriteria</span><span class="p">);</span>
@@ -10550,6 +10543,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"paths"</span><span class="p">:{</span><span class="w">
     </span><span class="nt">"GET"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/tickets/123"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"PATCH"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/tickets/123"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"DELETE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/tickets/123"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -10675,6 +10669,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>get <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>GET method with URL</td>
+</tr>
+<tr>
+<td>patch <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>PATCH method with URL</td>
 </tr>
 <tr>
 <td>delete <code class="prettyprint">fixed</code></td>
@@ -14861,6 +14860,10 @@ The response format changed as follows:</p>
 <tr>
 <td>2024-01-10</td>
 <td>Add category parameter to the forecast endpoint</td>
+</tr>
+<tr>
+<td>2024-01-29</td>
+<td>Remove v1</td>
 </tr>
 </tbody></table>
 
