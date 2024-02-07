@@ -11251,7 +11251,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </thead><tbody>
 <tr>
 <td>attachmentId <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">integer</code></td>
 <td>Attachment ID</td>
 </tr>
 <tr>
@@ -11352,7 +11352,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>content <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>Data URI (<a href="https://www.ietf.org/rfc/rfc2397.txt">RFC2397</a>) with base64 encoding.</td>
+<td>Data URI (<a href="https://www.ietf.org/rfc/rfc2397.txt">RFC2397</a>) with base64 encoding</td>
 </tr>
 <tr>
 <td>createdAt <code class="prettyprint">fixed</code></td>
@@ -11366,13 +11366,13 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 <tr>
 <td>metaData <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">json</code></td>
-<td>MetaData</td>
+<td><code class="prettyprint">string</code></td>
+<td>Attachment meta data in JSON format</td>
 </tr>
 <tr>
 <td>creatorId <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">integer</code></td>
-<td>Creator Id</td>
+<td>Creator ID</td>
 </tr>
 </tbody></table>
 
@@ -11420,7 +11420,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$attachmentFile</span><span class="o">-&gt;</span><span class="na">filename</span><span class="p">;</span><span class="c1">// 'attachment1.jpg'
 </span></code></pre>
 
-<p><code class="http-method">POST</code> <code class="prettyprint">attachments</code></p>
+<p><code class="http-method">POST</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/attachments</code></p>
 
 <p><strong>Path parameters</strong></p>
 
@@ -11491,13 +11491,13 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </thead><tbody>
 <tr>
 <td>attachmentId <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">integers</code></td>
+<td><code class="prettyprint">integer</code></td>
 <td>Attachment ID</td>
 </tr>
 <tr>
 <td>filename <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>Name of the new attachment.</td>
+<td>Name of the new attachment</td>
 </tr>
 </tbody></table>
 
