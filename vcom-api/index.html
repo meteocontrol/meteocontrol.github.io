@@ -13577,7 +13577,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">assignee</span><span class="o">-&gt;</span><span class="na">statusReason</span><span class="p">;</span><span class="c1">// null
 </span></code></pre>
 
-<p><code class="http-method">GET</code> <code class="prettyprint">workorders/&lt;workorderId&gt;</code></p>
+<p><code class="http-method">GET</code> <code class="prettyprint">workorders/&lt;workOrderId&gt;</code></p>
 
 <p><strong>Path parameters</strong></p>
 
@@ -13589,7 +13589,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </thead><tbody>
 <tr>
-<td>workorderId <code class="prettyprint">required</code></td>
+<td>workOrderId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">integer</code></td>
 <td>Work order ID</td>
 </tr>
@@ -13700,7 +13700,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$forms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastChangedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">);</span><span class="c1">// 2020-10-22T00:00:00+00:00
 </span></code></pre>
 
-<p><code class="http-method">GET</code> <code class="prettyprint">workorders/&lt;workorderId&gt;/forms</code></p>
+<p><code class="http-method">GET</code> <code class="prettyprint">workorders/&lt;workOrderId&gt;/forms</code></p>
 
 <p>Returns an array of work order form objects.</p>
 
@@ -13714,7 +13714,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </thead><tbody>
 <tr>
-<td>workorderId <code class="prettyprint">required</code></td>
+<td>workOrderId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">integer</code></td>
 <td>Work order ID</td>
 </tr>
@@ -13800,7 +13800,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">editable</span><span class="p">;</span><span class="c1">// false
 </span></code></pre>
 
-<p><code class="http-method">GET</code> <code class="prettyprint">workorders/&lt;workorderId&gt;/forms/&lt;formId&gt;</code></p>
+<p><code class="http-method">GET</code> <code class="prettyprint">workorders/&lt;workOrderId&gt;/forms/&lt;formId&gt;</code></p>
 
 <p><strong>Path parameters</strong></p>
 
@@ -13812,7 +13812,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </thead><tbody>
 <tr>
-<td>workorderId <code class="prettyprint">required</code></td>
+<td>workOrderId <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">integer</code></td>
 <td>Work order ID</td>
 </tr>
