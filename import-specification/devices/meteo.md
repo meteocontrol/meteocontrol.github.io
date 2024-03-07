@@ -34,6 +34,8 @@
 | datapoints    | `SLI_RAW[1..x]`           | %     | Soiling Loss Raw                                                         |       |          |                              |         |
 | datapoints    | `SNOW_LOAD[1..x]`         | kg/m² | Snow load                                                                |       |          |                              |         |
 | datapoints    | `SRAD[1..x]`              | W/m2  | Irradiation sensors                                                      |       |          |                              |         |
+| datapoints    | `SRAD_DIFFUSE[1..x]`      | W/m²  | Diffuse irradiance                                                       |       |          |                              |         |
+| datapoints    | `SRAD_DIRECT[1..x]`       | W/m²  | Direct irradiance                                                        |       |          |                              |         |
 | datapoints    | `SR[1..x]`                | %     | Soiling ratio                                                            |       |          |                              |         |
 | datapoints    | `SUN_H[1..x]`             | h     | Sunshine duration                                                        |       |          |                              |         |
 | datapoints    | `T[1..x]`                 | °C    | Temperature values                                                       |       |          |                              |         |

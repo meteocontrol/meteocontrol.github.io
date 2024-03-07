@@ -9,8 +9,19 @@
 | configuration | model                  |      | device model                                            |                        |          | <model></model>                               | 2.1.3   |
 | configuration | address                |      | bus address                                             |                        |          | <address>1</address>                          | 2.1.3   |
 | configuration | firmware               |      | device firmware                                         |                        |          | <firmware>1.23.3</firmware>                   | 2.1.3   |
+| datapoints    | `PPC_BAT_PF_CTRL`      |      | Power factor correction value (battery)                 |                        |          |                                               |         |
+| datapoints    | `PPC_BAT_P_AC_INV`     | W    | Sum of inverter active power (battery)                  |                        |          |                                               |         |
+| datapoints    | `PPC_BAT_P_CTRL_REL`   | %    | Active power correction value (battery)                 |                        |          |                                               |         |
+| datapoints    | `PPC_BAT_Q_AC_INV`     | VAr  | Sum of inverter reactive power (battery)                |                        |          |                                               |         |
+| datapoints    | `PPC_BAT_Q_CTRL_REL`   | %    | Reactive power correction value (battery)               |                        |          |                                               |         |
+| datapoints    | `PPC_BAT_SOC`          | %    | State of charge                                         |                        |          |                                               |         |
 | datapoints    | `PPC_PF`               |      | Actual power factor                                     |                        |          |                                               |         |
 | datapoints    | `PPC_PF_SET`           |      | Power factor setpoint                                   |                        |          |                                               |         |
+| datapoints    | `PPC_PV_PF_CTRL`       |      | Power factor correction value (PV)                      |                        |          |                                               |         |
+| datapoints    | `PPC_PV_P_AC_INV`      | W    | Summe Wechselrichter-Wirkleistung (PV)                  |                        |          |                                               |         |
+| datapoints    | `PPC_PV_P_CTRL_REL`    | %    | Active power correction value (PV)                      |                        |          |                                               |         |
+| datapoints    | `PPC_PV_Q_AC_INV`      | VAr  | Sum of inverter reactive power (PV)                     |                        |          |                                               |         |
+| datapoints    | `PPC_PV_Q_CTRL_REL`    | %    | Reactive power correction value (PV)                    |                        |          |                                               |         |
 | datapoints    | `PPC_P_AC`             | W    | Actual active power                                     |                        | x        |                                               |         |
 | datapoints    | `PPC_P_AC_AVAIL`       | W    | Actual theoretical available active power               |                        |          |                                               |         |
 | datapoints    | `PPC_P_AC_GRIDOP_MAX`  | W    | Maximum active power during curtailment (grid operator) |                        |          |                                               |         |

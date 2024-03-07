@@ -41,6 +41,7 @@
 | datapoints    | `M_EQ_CAP_INT_IMP`     | kVArh  | Reactive energy imported capacitively per interval         |       |          |                              |         |
 | datapoints    | `M_EQ_IND_INT_EXP`     | kVArh  | Reactive energy exported inductively per interval          |       |          |                              |         |
 | datapoints    | `M_EQ_IND_INT_IMP`     | kVArh  | Reactive energy imported inductively per interval          |       |          |                              |         |
+| datapoints    | `R_ISO`                | kOhm   | Isolation resistance                                       |       |          |                              |         |
 | datapoints    | `STATE[1..x]`          |        |                                                            |       |          |                              |         |
 | datapoints    | `ERROR[1..x]`          |        | Global meter error conditions                              |       |          |                              |         |
 | datapoints    | `QS_TX`                |        | Telegrams transmitted (communication quality)              |       |          |                              |         |
