@@ -9860,6 +9860,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
+          
+          
           <h2 id="tickets">Tickets</h2>
 
 <h3 class="toc-ignore">Get all tickets</h3>
@@ -11635,7 +11637,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
           <h5 id="flat-rate-energy-trader">Flat-rate (energy trader)</h5>
 
-<p>Get the yield loss calculation result with the flat-rate model and use the energy trader source.</p>
+<h4 class="toc-ignore">Calculate the yield loss using the flat-rate model with energy trader source data</h4>
 
 <p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.3 Pauschal-Abrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 10).</p>
 
@@ -11649,7 +11651,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
     <span class="sd">/** @var CalculationResult $calculationResult */</span>
-    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -11730,7 +11733,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>realLostYield <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>Correction yield loss value set by the user (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
 </tr>
 <tr>
 <td>totalCompensation <code class="prettyprint">fixed</code></td>
@@ -11744,11 +11747,130 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </tbody></table>
 
+<h4 class="toc-ignore">Calculate the yield loss using the flat-rate model with energy trader source data and save the result</h4>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "realLostYield": 42.38,
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate/energy-trader?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/flat-rate/energy-trader</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>realLostYield <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
+<td>Correction yield loss value</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
           <h5 id="flat-rate-direct-marketing">Flat-rate (direct marketing)</h5>
 
 <p><strong>Notice</strong>: This endpoint has been deprecated and will be removed on 2024-06-30. Please use the &ldquo;<a href="#flat-rate-energy-trader">Flat-rate (energy trader)</a>&rdquo; endpoint instead.</p>
 
-<p>Get the yield loss calculation result with the flat-rate model and use the direct marketing source.</p>
+<h4 class="toc-ignore">Calculate the yield loss using the flat-rate model with direct marketing source data</h4>
 
 <p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.3 Pauschal-Abrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 10).</p>
 
@@ -11762,7 +11884,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
     <span class="sd">/** @var CalculationResult $calculationResult */</span>
-    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">directMarketing</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">directMarketing</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -11843,7 +11966,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>realLostYield <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>Correction yield loss value set by the user (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
 </tr>
 <tr>
 <td>totalCompensation <code class="prettyprint">fixed</code></td>
@@ -11861,11 +11984,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
 <p><strong>Notice</strong>: This endpoint has been deprecated and will be removed on 2024-06-30. Please use the &ldquo;<a href="#flat-rate-energy-trader">Flat-rate (energy trader)</a>&rdquo; endpoint instead.</p>
 
-<p>Get the yield loss calculation result with the flat-rate model and use the energy trader source.</p>
-
-<p>Please use this endpoint to calculate the yield loss for date before 2021 which uses formula defined by Bundesnetzagentur in 2017.</p>
+<h4 class="toc-ignore">Calculate the yield loss using the flat-rate model with energy trader source data</h4>
 
 <p>Reference: Bundesnetzagentur (2017). <strong>2.3.4.1 Pauschales Verfahren für Solaranlagen mit registrierender Leistungsmessung</strong>. In <em><a href="https://www.bundesnetzagentur.de/SharedDocs/Downloads/DE/Sachgebiete/Energie/Unternehmen_Institutionen/ErneuerbareEnergien/Einspeisemanagement/Leitfaden_3_0/LeitfadenEEGEinspeisemanagement_Version3_0.pdf">Konsultationsfassung des Leitfadens zum Einspeisemanagement Version 3.0</a></em> (p. 21-23).</p>
+
+<p>Please use this endpoint to calculate the yield loss for date before 2021 which uses formula defined by Bundesnetzagentur in 2017.</p>
 
 <blockquote>
 <p>Request</p>
@@ -11959,7 +12082,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>realLostYield <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>Correction yield loss value set by the user (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
 </tr>
 <tr>
 <td>totalCompensation <code class="prettyprint">fixed</code></td>
@@ -11975,7 +12098,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
           <h5 id="flat-rate-grid-operator">Flat-rate (grid operator)</h5>
 
-<p>Get the yield loss calculation result with the flat-rate model and use the grid operator source.</p>
+<h4 class="toc-ignore">Calculate the yield loss using the flat-rate model with grid operator source data</h4>
 
 <p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.3 Pauschal-Abrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 10).</p>
 
@@ -11989,7 +12112,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
     <span class="sd">/** @var CalculationResult $calculationResult */</span>
-    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">gridOperator</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">gridOperator</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -12070,7 +12194,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>realLostYield <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>Correction yield loss value set by the user (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
 </tr>
 <tr>
 <td>totalCompensation <code class="prettyprint">fixed</code></td>
@@ -12084,15 +12208,134 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </tbody></table>
 
+<h4 class="toc-ignore">Calculate the yield loss using the flat-rate model with grid operator source data and save the result</h4>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "realLostYield": 42.38,
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate/grid-operator?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">gridOperator</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/flat-rate/grid-operator</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>realLostYield <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
+<td>Correction yield loss value</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
           <h5 id="flat-rate-grid-operator-lt-2021">Flat-rate (grid operator) (&lt; 2021)</h5>
 
 <p><strong>Notice</strong>: This endpoint has been deprecated and will be removed on 2024-06-30. Please use the &ldquo;<a href="#flat-rate-grid-operator">Flat-rate (grid operator)</a>&rdquo; endpoint instead.</p>
 
-<p>Get the yield loss calculation result with the flat-rate model and use the grid operator source.</p>
-
-<p>Please use this endpoint to calculate the yield loss for date before 2021 which uses formula defined by Bundesnetzagentur in 2017.</p>
+<h4 class="toc-ignore">Calculate the yield loss using the flat-rate model with grid operator source data</h4>
 
 <p>Reference: Bundesnetzagentur (2017). <strong>2.3.4.1 Pauschales Verfahren für Solaranlagen mit registrierender Leistungsmessung</strong>. In <em><a href="https://www.bundesnetzagentur.de/SharedDocs/Downloads/DE/Sachgebiete/Energie/Unternehmen_Institutionen/ErneuerbareEnergien/Einspeisemanagement/Leitfaden_3_0/LeitfadenEEGEinspeisemanagement_Version3_0.pdf">Konsultationsfassung des Leitfadens zum Einspeisemanagement Version 3.0</a></em> (p. 21-23).</p>
+
+<p>Please use this endpoint to calculate the yield loss for date before 2021 which uses formula defined by Bundesnetzagentur in 2017.</p>
 
 <blockquote>
 <p>Request</p>
@@ -12186,7 +12429,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>realLostYield <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>Correction yield loss value set by the user (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
 </tr>
 <tr>
 <td>totalCompensation <code class="prettyprint">fixed</code></td>
@@ -12202,7 +12445,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
           <h5 id="linear-equation">Linear equation</h5>
 
-<p>Get the yield loss calculation result with the linear equation model.</p>
+<h4 class="toc-ignore">Calculate the yield loss using the linear equation model</h4>
 
 <blockquote>
 <p>Request</p>
@@ -12216,7 +12459,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateReferenceFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-11-15T14:50:00+00:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withDateReferenceTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-11-15T15:50:00+00:00'</span><span class="p">));</span>
     <span class="sd">/** @var CalculationResult $calculationResult */</span>
-    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">linearEquation</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$linearEquationCriteria</span><span class="p">);</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">linearEquation</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$linearEquationCriteria</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -12307,7 +12551,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>realLostYield <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>Correction yield loss value set by the user (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
 </tr>
 <tr>
 <td>totalCompensation <code class="prettyprint">fixed</code></td>
@@ -12321,9 +12565,140 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </tbody></table>
 
+<h4 class="toc-ignore">Calculate the yield loss using the linear equation model and save the result</h4>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "realLostYield": 42.38,
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/456/yield-losses/linear-equation?from=2016-11-15T10:00:00+00:00&amp;to=2016-11-15T10:59:59+00:00&amp;referenceFrom=2016-11-15T14:50:00+00:00&amp;referenceTo=2016-11-15T15:50:00+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$linearEquationCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">LinearEquationCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-11-15T10:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-11-15T10:59:59+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateReferenceFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-11-15T14:50:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateReferenceTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-11-15T15:50:00+00:00'</span><span class="p">));</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">linearEquation</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$linearEquationCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/linear-equation</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>referenceFrom <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Reference start date</td>
+</tr>
+<tr>
+<td>referenceTo <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Reference end date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>realLostYield <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
+<td>Correction yield loss value</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
           <h5 id="peak-energy-trader">Peak (energy trader)</h5>
 
-<p>Get the yield loss calculation result with the peak model and use the energy trader source.</p>
+<h4 class="toc-ignore">Calculate the yield loss using the peak model with energy trader source data</h4>
 
 <p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.1 Spitzabrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 9).</p>
 
@@ -12337,7 +12712,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-25T00:00:00+00:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
     <span class="sd">/** @var CalculationResult $calculationResult */</span>
-    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -12418,7 +12794,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>realLostYield <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>Correction yield loss value set by the user (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
 </tr>
 <tr>
 <td>totalCompensation <code class="prettyprint">fixed</code></td>
@@ -12432,11 +12808,130 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </tbody></table>
 
+<h4 class="toc-ignore">Calculate the yield loss using the peak model with energy trader source data and save the result</h4>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "realLostYield": 42.38,
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/peak/energy-trader?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-25T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/peak/energy-trader</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>realLostYield <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
+<td>Correction yield loss value</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
           <h5 id="peak-direct-marketing">Peak (direct marketing)</h5>
 
 <p><strong>Notice</strong>: This endpoint has been deprecated and will be removed on 2024-06-30. Please use the &ldquo;<a href="#peak-energy-trader">Peak (energy trader)</a>&rdquo; endpoint instead.</p>
 
-<p>Get the yield loss calculation result with the peak model and use the direct marketing source.</p>
+<h4 class="toc-ignore">Calculate the yield loss using the peak model with direct marketing source data</h4>
 
 <p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.1 Spitzabrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 9).</p>
 
@@ -12450,7 +12945,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-25T00:00:00+00:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
     <span class="sd">/** @var CalculationResult $calculationResult */</span>
-    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">directMarketing</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">directMarketing</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -12531,7 +13027,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>realLostYield <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>Correction yield loss value set by the user (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
 </tr>
 <tr>
 <td>totalCompensation <code class="prettyprint">fixed</code></td>
@@ -12549,11 +13045,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
 <p><strong>Notice</strong>: This endpoint has been deprecated and will be removed on 2024-06-30. Please use the &ldquo;<a href="#peak-energy-trader">Peak (energy trader)</a>&rdquo; endpoint instead.</p>
 
-<p>Get the yield loss calculation result with the peak model and use the energy trader source.</p>
-
-<p>Please use this endpoint to calculate the yield loss for date before 2021 which uses formula defined by Bundesnetzagentur in 2017.</p>
+<h4 class="toc-ignore">Calculate the yield loss using the peak model with energy trader source data</h4>
 
 <p>Reference: Bundesnetzagentur (2017). <strong>2.3.4.3 Spitzabrechnungsverfahren bei Solaranlagen</strong>. In <em><a href="https://www.bundesnetzagentur.de/SharedDocs/Downloads/DE/Sachgebiete/Energie/Unternehmen_Institutionen/ErneuerbareEnergien/Einspeisemanagement/Leitfaden_3_0/LeitfadenEEGEinspeisemanagement_Version3_0.pdf">Konsultationsfassung des Leitfadens zum Einspeisemanagement Version 3.0</a></em> (p. 25-28).</p>
+
+<p>Please use this endpoint to calculate the yield loss for date before 2021 which uses formula defined by Bundesnetzagentur in 2017.</p>
 
 <blockquote>
 <p>Request</p>
@@ -12647,7 +13143,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>realLostYield <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>Correction yield loss value set by the user (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
 </tr>
 <tr>
 <td>totalCompensation <code class="prettyprint">fixed</code></td>
@@ -12663,7 +13159,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
           <h5 id="peak-grid-operator">Peak (grid operator)</h5>
 
-<p>Get the yield loss calculation result with the peak model and use the grid operator source.</p>
+<h4 class="toc-ignore">Calculate the yield loss using the peak model with grid operator source data</h4>
 
 <p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.1 Spitzabrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 9).</p>
 
@@ -12677,7 +13173,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-25T00:00:00+00:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
     <span class="sd">/** @var CalculationResult $calculationResult */</span>
-    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">gridOperator</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">gridOperator</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -12758,7 +13255,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>realLostYield <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>Correction yield loss value set by the user (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
 </tr>
 <tr>
 <td>totalCompensation <code class="prettyprint">fixed</code></td>
@@ -12772,15 +13269,134 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </tbody></table>
 
+<h4 class="toc-ignore">Calculate the yield loss using the peak model with grid operator source data and save the result</h4>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "realLostYield": 42.38,
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/peak/grid-operator?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-25T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">gridOperator</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/peak/grid-operator</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>realLostYield <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
+<td>Correction yield loss value</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
           <h5 id="peak-grid-operator-lt-2021">Peak (grid operator) (&lt; 2021)</h5>
 
 <p><strong>Notice</strong>: This endpoint has been deprecated and will be removed on 2024-06-30. Please use the &ldquo;<a href="#peak-grid-operator">Peak (grid operator)</a>&rdquo; endpoint instead.</p>
 
-<p>Get the yield loss calculation result with the peak model and use the grid operator source.</p>
-
-<p>Please use this endpoint to calculate the yield loss for date before 2021 which uses formula defined by Bundesnetzagentur in 2017.</p>
+<h4 class="toc-ignore">Calculate the yield loss using the peak model with grid operator source data</h4>
 
 <p>Reference: Bundesnetzagentur (2017). <strong>2.3.4.3 Spitzabrechnungsverfahren bei Solaranlagen</strong>. In <em><a href="https://www.bundesnetzagentur.de/SharedDocs/Downloads/DE/Sachgebiete/Energie/Unternehmen_Institutionen/ErneuerbareEnergien/Einspeisemanagement/Leitfaden_3_0/LeitfadenEEGEinspeisemanagement_Version3_0.pdf">Konsultationsfassung des Leitfadens zum Einspeisemanagement Version 3.0</a></em> (p. 25-28).</p>
+
+<p>Please use this endpoint to calculate the yield loss for date before 2021 which uses formula defined by Bundesnetzagentur in 2017.</p>
 
 <blockquote>
 <p>Request</p>
@@ -12874,7 +13490,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>realLostYield <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>Correction yield loss value set by the user (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
 </tr>
 <tr>
 <td>totalCompensation <code class="prettyprint">fixed</code></td>
@@ -12890,7 +13506,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
           <h5 id="reference-component">Reference component</h5>
 
-<p>Get the yield loss calculation result with the reference component model.</p>
+<h4 class="toc-ignore">Calculate the yield loss using the reference component model</h4>
 
 <blockquote>
 <p>Request</p>
@@ -12904,7 +13520,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withAffectedInverterId</span><span class="p">(</span><span class="s1">'Id12345.4'</span><span class="p">)</span>
         <span class="o">-&gt;</span><span class="na">withReferenceInverterIds</span><span class="p">(</span><span class="s1">'Id12345.1,Id12345.2'</span><span class="p">);</span>
     <span class="sd">/** @var CalculationResult $calculationResult */</span>
-    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">referenceComponent</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$referenceComponentCriteria</span><span class="p">);</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">referenceComponent</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$referenceComponentCriteria</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -12995,7 +13612,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>realLostYield <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>Correction yield loss value set by the user (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
 </tr>
 <tr>
 <td>totalCompensation <code class="prettyprint">fixed</code></td>
@@ -13009,9 +13626,140 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </tbody></table>
 
+<h4 class="toc-ignore">Calculate the yield loss using the reference component model and save the result</h4>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "realLostYield": 42.38,
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/456/yield-losses/reference-component?from=2016-11-15T10:00:00+00:00&amp;to=2016-11-15T10:59:59+00:00&amp;affectedInverterId=Id12345.4&amp;referenceInverterIds=Id12345.1,Id12345.2'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$referenceComponentCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">ReferenceComponentCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-11-15T10:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-11-15T10:59:59+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withAffectedInverterId</span><span class="p">(</span><span class="s1">'Id12345.4'</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">withReferenceInverterIds</span><span class="p">(</span><span class="s1">'Id12345.1,Id12345.2'</span><span class="p">);</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">referenceComponent</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$referenceComponentCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/reference-component</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>affectedInverterId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Affected inverter ID</td>
+</tr>
+<tr>
+<td>referenceInverterIds <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Reference inverter IDs (comma separated)</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>realLostYield <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
+<td>Correction yield loss value</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
           <h5 id="reference-system">Reference system</h5>
 
-<p>Get the yield loss calculation result with the reference system model.</p>
+<h4 class="toc-ignore">Calculate the yield loss using the reference system model</h4>
 
 <blockquote>
 <p>Request</p>
@@ -13024,7 +13772,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-11-15T10:59:59+00:00'</span><span class="p">))</span>
         <span class="o">-&gt;</span><span class="na">withReferenceSystemKey</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">);</span>
     <span class="sd">/** @var CalculationResult $calculationResult */</span>
-    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">referenceSystem</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$referenceSystemCriteria</span><span class="p">);</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">referenceSystem</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$referenceSystemCriteria</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -13110,7 +13859,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>realLostYield <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>Correction yield loss value set by the user (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
 </tr>
 <tr>
 <td>totalCompensation <code class="prettyprint">fixed</code></td>
@@ -13124,9 +13873,134 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </tbody></table>
 
+<h4 class="toc-ignore">Calculate the yield loss using the reference system model and save the result</h4>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "realLostYield": 42.38,
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/456/yield-losses/reference-system?from=2016-11-15T10:00:00+00:00&amp;to=2016-11-15T10:59:59+00:00&amp;referenceSystemKey=ABCDE'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$referenceSystemCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">ReferenceSystemCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-11-15T10:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-11-15T10:59:59+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withReferenceSystemKey</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">);</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">referenceSystem</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$referenceSystemCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/reference-system</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>referenceSystemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Reference system key</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>realLostYield <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
+<td>Correction yield loss value</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
           <h5 id="simplified-peak-energy-trader">Simplified peak (energy trader)</h5>
 
-<p>Get the yield loss calculation result with the simplified peak model and use the energy trader source.</p>
+<h4 class="toc-ignore">Calculate the yield loss using the simplified peak model with energy trader source data</h4>
 
 <p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.2 Vereinfachte Spitzabrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 9).</p>
 
@@ -13222,7 +14096,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>realLostYield <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>Correction yield loss value set by the user (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
 </tr>
 <tr>
 <td>totalCompensation <code class="prettyprint">fixed</code></td>
@@ -13236,9 +14110,128 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </tbody></table>
 
+<h4 class="toc-ignore">Calculate the yield loss using the simplified peak model with energy trader source data and save the result</h4>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "realLostYield": 42.38,
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/simplified-peak/energy-trader?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-25T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">simplifiedPeak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/simplified-peak/energy-trader</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>realLostYield <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
+<td>Correction yield loss value</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
           <h5 id="simplified-peak-grid-operator">Simplified peak (grid operator)</h5>
 
-<p>Get the yield loss calculation result with the simplified peak model and use the grid operator source.</p>
+<h4 class="toc-ignore">Calculate the yield loss using the simplified peak model with grid operator source data</h4>
 
 <p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.2 Vereinfachte Spitzabrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 9).</p>
 
@@ -13334,7 +14327,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>realLostYield <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
-<td>Correction yield loss value set by the user (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
 </tr>
 <tr>
 <td>totalCompensation <code class="prettyprint">fixed</code></td>
@@ -13347,6 +14340,125 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>Comment</td>
 </tr>
 </tbody></table>
+
+<h4 class="toc-ignore">Calculate the yield loss using the simplified peak model with grid operator source data and save the result</h4>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "realLostYield": 42.38,
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/simplified-peak/grid-operator?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-25T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">simplifiedPeak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">gridOperator</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/simplified-peak/grid-operator</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>realLostYield <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
+<td>Correction yield loss value</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
 
           <h2 id="cmms">CMMS</h2>
 
@@ -13906,6 +15018,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </tbody></table>
 
+          
           
           <h2 id="alarms">Alarms</h2>
 
@@ -14864,6 +15977,10 @@ The response format changed as follows:</p>
 <tr>
 <td>2024-01-29</td>
 <td>Remove v1</td>
+</tr>
+<tr>
+<td>2024-04-10</td>
+<td>Implement the replace action for all yield loss calculation endpoints</td>
 </tr>
 </tbody></table>
 
