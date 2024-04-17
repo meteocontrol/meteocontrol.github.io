@@ -9,11 +9,11 @@
 | configuration | model                  |        | device model                                               |       |          | <model></model>              | 2.0.1   |
 | configuration | address                |        | bus address                                                |       |          | <address>1</address>         | 2.0.1   |
 | configuration | firmware               |        | device firmware                                            |       |          | <firmware>1.23.3</firmware>  | 2.0.1   |
-| datapoints    | `M_AC_EQ_CAP_EXP`      | kVArh  | kVAR-hours, Negative - Reactive Energy capacitive exported |       |          |                              |         |
-| datapoints    | `M_AC_EQ_CAP_IMP`      | kVArh  | kVAR-hours, Positive - Reactive Energy capacitive imported |       |          |                              |         |
-| datapoints    | `M_AC_EQ_IND_EXP`      | kVArh  | kVAR-hours, Positive - Reactive Energy inductive exported  |       |          |                              |         |
-| datapoints    | `M_AC_EQ_IND_IMP`      | kVArh  | kVAR-hours, Positive - Reactive Energy inductive imported  |       |          |                              |         |
-| datapoints    | `M_AC_EQ_TOTAL`        | kVArh  | kVAR-hours - Reactive Energy total                         |       |          |                              |         |
+| datapoints    | `M_AC_EQ_CAP_EXP`      | kvarh  | kvar-hours, Negative - Reactive Energy capacitive exported |       |          |                              |         |
+| datapoints    | `M_AC_EQ_CAP_IMP`      | kvarh  | kvar-hours, Positive - Reactive Energy capacitive imported |       |          |                              |         |
+| datapoints    | `M_AC_EQ_IND_EXP`      | kvarh  | kvar-hours, Positive - Reactive Energy inductive exported  |       |          |                              |         |
+| datapoints    | `M_AC_EQ_IND_IMP`      | kvarh  | kvar-hours, Positive - Reactive Energy inductive imported  |       |          |                              |         |
+| datapoints    | `M_AC_EQ_TOTAL`        | kvarh  | kvar-hours - Reactive Energy total                         |       |          |                              |         |
 | datapoints    | `M_AC_ES_EXP`          | kVAh   | kVA-hours - Apparent Energy Exported                       |       |          |                              |         |
 | datapoints    | `M_AC_ES_IMP`          | kVAh   | kVA-hours - Apparent Energy Imported                       |       |          |                              |         |
 | datapoints    | `M_AC_E_EXP[1..x]`     | kWh    | kW-hours, Exported                                         |       |          |                              |         |
@@ -26,7 +26,7 @@
 | datapoints    | `M_AC_P[1..3]`         | W      | Active Power [Phase 1-3]                                   |       |          |                              |         |
 | datapoints    | `M_AC_PF_COSPHI[1..x]` | cosphi | Power Factor (cos(phi))                                    |       |          |                              |         |
 | datapoints    | `M_AC_PF_TANPHI`       | tanphi | Power Factor (tanphi)                                      |       |          |                              |         |
-| datapoints    | `M_AC_Q[1..3]`         | VAr    | Reactive Power [Phase 1-3]                                 |       |          |                              |         |
+| datapoints    | `M_AC_Q[1..3]`         | var    | Reactive Power [Phase 1-3]                                 |       |          |                              |         |
 | datapoints    | `M_AC_S[1..3]`         | VA     | Apparent Power [Phase 1-3]                                 |       |          |                              |         |
 | datapoints    | `M_AC_U[1..3]`         | V      | Voltage, Phase [1-3]                                       |       |          |                              |         |
 | datapoints    | `M_AC_U_L1L2`          | V      | Volts L1-L2                                                |       |          |                              |         |
@@ -37,10 +37,10 @@
 | datapoints    | `M_DC_I[1..3]`         | A      | Current DC [Phase 1-3]                                     |       |          |                              |         |
 | datapoints    | `M_DC_P[1..3]`         | W      | Power DC [Phase 1-3]                                       |       |          |                              |         |
 | datapoints    | `M_DC_U[1..3]`         | V      | Voltage DC, Phase [1-3]                                    |       |          |                              |         |
-| datapoints    | `M_EQ_CAP_INT_EXP`     | kVArh  | Reactive energy exported capacitively per interval         |       |          |                              |         |
-| datapoints    | `M_EQ_CAP_INT_IMP`     | kVArh  | Reactive energy imported capacitively per interval         |       |          |                              |         |
-| datapoints    | `M_EQ_IND_INT_EXP`     | kVArh  | Reactive energy exported inductively per interval          |       |          |                              |         |
-| datapoints    | `M_EQ_IND_INT_IMP`     | kVArh  | Reactive energy imported inductively per interval          |       |          |                              |         |
+| datapoints    | `M_EQ_CAP_INT_EXP`     | kvarh  | Reactive energy exported capacitively per interval         |       |          |                              |         |
+| datapoints    | `M_EQ_CAP_INT_IMP`     | kvarh  | Reactive energy imported capacitively per interval         |       |          |                              |         |
+| datapoints    | `M_EQ_IND_INT_EXP`     | kvarh  | Reactive energy exported inductively per interval          |       |          |                              |         |
+| datapoints    | `M_EQ_IND_INT_IMP`     | kvarh  | Reactive energy imported inductively per interval          |       |          |                              |         |
 | datapoints    | `R_ISO`                | kOhm   | Isolation resistance                                       |       |          |                              |         |
 | datapoints    | `STATE[1..x]`          |        |                                                            |       |          |                              |         |
 | datapoints    | `ERROR[1..x]`          |        | Global meter error conditions                              |       |          |                              |         |

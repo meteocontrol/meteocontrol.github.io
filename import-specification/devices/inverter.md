@@ -29,7 +29,7 @@
 | datapoints            | `OT_AC_TOTAL`        | hour | Operation Time TOTAL                          |          |          |                                 |         |
 | datapoints            | `P_AC[1..3]`         | W    | Power AC (single phase or accumulated)        |          | x        |                                 |         |
 | datapoints            | `P_DC[1..x]`         | W    | Power DC (single input or accumulated)        |          |          |                                 |         |
-| datapoints            | `Q_AC[1..3]`         | VAr  | Reactive power (single phase or accumulated)  |          |          |                                 |         |
+| datapoints            | `Q_AC[1..3]`         | var  | Reactive power (single phase or accumulated)  |          |          |                                 |         |
 | datapoints            | `R_AC`               | mOhm | Grid impedance                                |          |          |                                 |         |
 | datapoints            | `R_ISO`              | kOhm | Isolation resistant                           |          |          |                                 |         |
 | datapoints            | `S_AC[1..3]`         | VA   | Apparent power (single phase or accumulated)  |          |          |                                 |         |

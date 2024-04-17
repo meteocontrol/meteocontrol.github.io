@@ -34,7 +34,7 @@
 | datapoints    | `B_OT_TOTAL`                   | h    | Operating Hours                                 |         |          |                                |         |
 | datapoints    | `B_P_AC`                       | W    | Battery power AC                                |         |          |                                |         |
 | datapoints    | `B_P_DC`                       | W    | Total battery power                             |         |          |                                |         |
-| datapoints    | `B_Q_AC`                       | VAr  | Battery reactive power AC                       |         |          |                                |         |
+| datapoints    | `B_Q_AC`                       | var  | Battery reactive power AC                       |         |          |                                |         |
 | datapoints    | `B_SOC`                        | %    | State of Charge                                 |         |          |                                |         |
 | datapoints    | `B_SOCH`                       | %    | State of charge (nominal capacity)              |         |          |                                |         |
 | datapoints    | `B_SOH`                        | %    | State of health                                 |         |          |                                |         |

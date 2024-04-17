@@ -22,8 +22,8 @@
 | datapoints    | `P_AC[1..3]`       | W     | Power AC (single phase or accumulated)             |        |          |                               |         |
 | datapoints    | `P_AC_SET_ABS`     | W     | Absolute active power setpoint                     |        |          |                               |         |
 | datapoints    | `P_AC_SET_REL`     | %     | Relative active power setpoint                     |        |          |                               |         |
-| datapoints    | `Q_AC[1..3]`       | VAr   | Total reactive power (single phase or accumulated) |        |          |                               |         |
-| datapoints    | `Q_AC_SET_ABS`     | VAr   | Absolute reactive power setpoint                   |        |          |                               |         |
+| datapoints    | `Q_AC[1..3]`       | var   | Total reactive power (single phase or accumulated) |        |          |                               |         |
+| datapoints    | `Q_AC_SET_ABS`     | var   | Absolute reactive power setpoint                   |        |          |                               |         |
 | datapoints    | `S_AC[1..3]`       | VA    | Total apparent power (single phase or accumulated) |        |          |                               |         |
 | datapoints    | `U_AC[1..3]`       | V     | Voltage AC (single phase or accumulated)           |        |          |                               |         |
 | datapoints    | `U_AC_L1L2`        | V     | Voltage phase 1-2                                  |        |          |                               |         |

@@ -12,7 +12,7 @@
 | datapoints    | `PPC_BAT_PF_CTRL`      |      | Power factor correction value (battery)                 |                        |          |                                               |         |
 | datapoints    | `PPC_BAT_P_AC_INV`     | W    | Sum of inverter active power (battery)                  |                        |          |                                               |         |
 | datapoints    | `PPC_BAT_P_CTRL_REL`   | %    | Active power correction value (battery)                 |                        |          |                                               |         |
-| datapoints    | `PPC_BAT_Q_AC_INV`     | VAr  | Sum of inverter reactive power (battery)                |                        |          |                                               |         |
+| datapoints    | `PPC_BAT_Q_AC_INV`     | var  | Sum of inverter reactive power (battery)                |                        |          |                                               |         |
 | datapoints    | `PPC_BAT_Q_CTRL_REL`   | %    | Reactive power correction value (battery)               |                        |          |                                               |         |
 | datapoints    | `PPC_BAT_SOC`          | %    | State of charge                                         |                        |          |                                               |         |
 | datapoints    | `PPC_PF`               |      | Actual power factor                                     |                        |          |                                               |         |
@@ -20,7 +20,7 @@
 | datapoints    | `PPC_PV_PF_CTRL`       |      | Power factor correction value (PV)                      |                        |          |                                               |         |
 | datapoints    | `PPC_PV_P_AC_INV`      | W    | Summe Wechselrichter-Wirkleistung (PV)                  |                        |          |                                               |         |
 | datapoints    | `PPC_PV_P_CTRL_REL`    | %    | Active power correction value (PV)                      |                        |          |                                               |         |
-| datapoints    | `PPC_PV_Q_AC_INV`      | VAr  | Sum of inverter reactive power (PV)                     |                        |          |                                               |         |
+| datapoints    | `PPC_PV_Q_AC_INV`      | var  | Sum of inverter reactive power (PV)                     |                        |          |                                               |         |
 | datapoints    | `PPC_PV_Q_CTRL_REL`    | %    | Reactive power correction value (PV)                    |                        |          |                                               |         |
 | datapoints    | `PPC_P_AC`             | W    | Actual active power                                     |                        | x        |                                               |         |
 | datapoints    | `PPC_P_AC_AVAIL`       | W    | Actual theoretical available active power               |                        |          |                                               |         |
@@ -38,7 +38,7 @@
 | datapoints    | `PPC_P_SET_RPC_REL`    | %    | Active power setpoint (3rd party)                       |                        |          |                                               |         |
 | datapoints    | `PPC_P_SET_STATIC_ABS` | W    | Absolute active power setpoint (static)                 |                        |          |                                               |         |
 | datapoints    | `PPC_P_SET_STATIC_REL` | %    | Relative active power setpoint (static)                 |                        |          |                                               |         |
-| datapoints    | `PPC_Q_AC`             | VAr  | Actual reactive power                                   |                        |          |                                               |         |
-| datapoints    | `PPC_Q_AC_AVAIL`       | VAr  | Actual theoretical available reactive power             |                        |          |                                               |         |
-| datapoints    | `PPC_Q_SET_ABS`        | VAr  | Absolute reactive power setpoint                        |                        |          |                                               |         |
+| datapoints    | `PPC_Q_AC`             | var  | Actual reactive power                                   |                        |          |                                               |         |
+| datapoints    | `PPC_Q_AC_AVAIL`       | var  | Actual theoretical available reactive power             |                        |          |                                               |         |
+| datapoints    | `PPC_Q_SET_ABS`        | var  | Absolute reactive power setpoint                        |                        |          |                                               |         |
 | datapoints    | `PPC_Q_SET_REL`        | %    | Actual valid reactive power setpoint                    |                        |          |                                               |         |
