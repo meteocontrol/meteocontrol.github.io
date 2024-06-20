@@ -11178,7 +11178,404 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
 <p>Http-Code: 204</p>
 
-          
+          <h4 id="outage">Outage</h4>
+
+<h4 class="toc-ignore">Get single outage</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/456/outage'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var Outage $outage */</span>
+    <span class="nv">$outage</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">outage</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"startedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-15T10:00:00+01:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"endedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-15T10:59:59+01:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"affectedPower"</span><span class="p">:</span><span class="w"> </span><span class="mf">24.03</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"shouldInfluenceAvailability"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"shouldInfluencePr"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Id12345.1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Id12345.2"</span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var Outage $outage */</span>
+    <span class="k">echo</span> <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">startedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">);</span><span class="c1">// 2016-11-15T10:00:00+01:00
+</span>    <span class="k">echo</span> <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">endedAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">);</span><span class="c1">// 2016-11-15T10:59:59+01:00
+</span>    <span class="k">echo</span> <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">affectedPower</span><span class="p">;</span><span class="c1">// 24.03
+</span>    <span class="k">echo</span> <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">shouldInfluenceAvailability</span><span class="p">;</span><span class="c1">// false
+</span>    <span class="k">echo</span> <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">shouldInfluencePr</span><span class="p">;</span><span class="c1">// false
+</span>    <span class="k">echo</span> <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">components</span><span class="p">;</span><span class="c1">// ["Id12345.1", "Id12345.2"]
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/outage</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>Outage object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>startedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Start of outage</td>
+</tr>
+<tr>
+<td>endedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
+<td>End of outage or <code class="prettyprint">null</code> if undefined</td>
+</tr>
+<tr>
+<td>affectedPower <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Affected power in kW</td>
+</tr>
+<tr>
+<td>shouldInfluenceAvailability <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">bool</code></td>
+<td><code class="prettyprint">true</code> if outage should affect availability</td>
+</tr>
+<tr>
+<td>shouldInfluencePr <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">bool</code></td>
+<td><code class="prettyprint">true</code> if outage should affect performance ratio</td>
+</tr>
+<tr>
+<td>components <code class="prettyprint">fixed</code>¹</td>
+<td><code class="prettyprint">array</code></td>
+<td>Component ID <code class="prettyprint">string</code></td>
+</tr>
+</tbody></table>
+
+<p>¹ Only inverters accepted for Component ID.</p>
+
+<h4 class="toc-ignore">Update an outage</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PATCH <span class="se">\</span>
+   -H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "startedAt": "2016-11-15T10:00:00+01:00",
+  "endedAt": "2016-11-15T10:59:59+01:00",
+  "affectedPower": 24.03,
+  "shouldInfluenceAvailability": false,
+  "shouldInfluencePr": false,
+  "components": ["Id12345.1", "Id12345.2"]
+}'</span> <span class="se">\</span>
+ <span class="s1">'https://api.meteocontrol.de/v2/tickets/456/outage'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$outage</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Outage</span><span class="p">();</span>
+    <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">startedAt</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2016-11-15T10:00:00+01:00"</span><span class="p">);</span>
+    <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">endedAt</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2016-11-15T10:59:59+01:00"</span><span class="p">);</span>
+    <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">affectedPower</span> <span class="o">=</span> <span class="mf">24.03</span><span class="p">;</span>
+    <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">shouldInfluenceAvailability</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">shouldInfluencePr</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">components</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Id12345.1"</span><span class="p">,</span> <span class="s2">"Id12345.2"</span><span class="p">];</span>
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">outage</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$outage</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PATCH</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/outage</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>startedAt <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Start of outage</td>
+</tr>
+<tr>
+<td>endedAt <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
+<td>End of outage or <code class="prettyprint">null</code> if undefined</td>
+</tr>
+<tr>
+<td>affectedPower <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Affected power in kW</td>
+</tr>
+<tr>
+<td>shouldInfluenceAvailability <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">bool</code></td>
+<td><code class="prettyprint">true</code> if outage should affect availability</td>
+</tr>
+<tr>
+<td>shouldInfluencePr <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">bool</code></td>
+<td><code class="prettyprint">true</code> if outage should affect performance ratio</td>
+</tr>
+<tr>
+<td>components <code class="prettyprint">optional</code>¹</td>
+<td><code class="prettyprint">array</code></td>
+<td>Component ID <code class="prettyprint">string</code></td>
+</tr>
+</tbody></table>
+
+<p>¹ Only inverters accepted for Component ID.</p>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
+<h4 class="toc-ignore">Replace an outage</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+    -H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
+    -d <span class="se">\</span>
+<span class="s1">'{
+  "startedAt": "2016-11-15T10:00:00+01:00",
+  "endedAt": "2016-11-15T10:59:59+01:00",
+  "affectedPower": 24.03,
+  "shouldInfluenceAvailability": false,
+  "shouldInfluencePr": false,
+  "components": ["Id12345.1", "Id12345.2"]
+}'</span> <span class="se">\</span>
+ <span class="s1">'https://api.meteocontrol.de/v2/tickets/456/outage'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$outage</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Outage</span><span class="p">();</span>
+    <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">startedAt</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2016-11-15T10:00:00+01:00"</span><span class="p">);</span>
+    <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">endedAt</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2016-11-15T10:59:59+01:00"</span><span class="p">);</span>
+    <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">affectedPower</span> <span class="o">=</span> <span class="mf">24.03</span><span class="p">;</span>
+    <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">shouldInfluenceAvailability</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">shouldInfluencePr</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="nv">$outage</span><span class="o">-&gt;</span><span class="na">components</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Id12345.1"</span><span class="p">,</span> <span class="s2">"Id12345.2"</span><span class="p">];</span>
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">outage</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$outage</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/outage</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>startedAt <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Start of outage</td>
+</tr>
+<tr>
+<td>endedAt <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
+<td>End of outage or <code class="prettyprint">null</code> if undefined</td>
+</tr>
+<tr>
+<td>affectedPower <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Affected power in kW</td>
+</tr>
+<tr>
+<td>shouldInfluenceAvailability <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">bool</code></td>
+<td><code class="prettyprint">true</code> if outage should affect availability</td>
+</tr>
+<tr>
+<td>shouldInfluencePr <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">bool</code></td>
+<td><code class="prettyprint">true</code> if outage should affect performance ratio</td>
+</tr>
+<tr>
+<td>components <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">array</code></td>
+<td>Component ID <code class="prettyprint">string</code></td>
+</tr>
+</tbody></table>
+
+<p>¹ Only inverters accepted for Component ID.</p>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
+<h4 class="toc-ignore">Delete an outage</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X DELETE <span class="s1">'https://api.meteocontrol.de/v2/tickets/456/outage'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">outage</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">DELETE</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/outage</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<table><thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">204</code></td>
+<td>The outage has been successfully deleted</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code></td>
+<td>User is not authorized to access ticket or outage</td>
+</tr>
+</tbody></table>
+
           
           <h4 id="attachments">Attachments</h4>
 
@@ -15981,6 +16378,10 @@ The response format changed as follows:</p>
 <tr>
 <td>2024-04-10</td>
 <td>Implement the replace action for all yield loss calculation endpoints</td>
+</tr>
+<tr>
+<td>2024-06-20</td>
+<td>Add ticket outage endpoints</td>
 </tr>
 </tbody></table>
 
