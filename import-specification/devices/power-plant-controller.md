@@ -42,3 +42,4 @@
 | datapoints    | `PPC_Q_AC_AVAIL`       | var  | Actual theoretical available reactive power             |                        |          |                                               |         |
 | datapoints    | `PPC_Q_SET_ABS`        | var  | Absolute reactive power setpoint                        |                        |          |                                               |         |
 | datapoints    | `PPC_Q_SET_REL`        | %    | Actual valid reactive power setpoint                    |                        |          |                                               |         |
+| datapoints    | `STATE[1..x]`          |      | Global power plant controller state conditions          |                        |          |                                               |         |
