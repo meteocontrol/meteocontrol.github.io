@@ -15140,6 +15140,158 @@ severity=high,critical&amp;status=open&amp;systemKey=ABCDE
 
 <p>A single <a href="#alarm-object">Alarm object</a></p>
 
+<h3 class="toc-ignore">Update single alarm</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PATCH <span class="se">\</span>
+   -H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "ticketId": 12345
+}'</span> <span class="se">\</span>
+ <span class="s1">'https://api.meteocontrol.de/v2/alarms/789'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$alarm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Alarm</span><span class="p">();</span>
+    <span class="nv">$alarm</span><span class="o">-&gt;</span><span class="na">ticketId</span> <span class="o">=</span> <span class="mi">12345</span><span class="p">;</span>
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">alarm</span><span class="p">(</span><span class="mi">789</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$alarm</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PATCH</code> <code class="prettyprint">alarms/&lt;alarmId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>alarmId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Alarm ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code>ǀ<code class="prettyprint">null</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">204</code></td>
+<td>If the alarm has updated</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code></td>
+<td>User is not authorized to access alarm</td>
+</tr>
+</tbody></table>
+
+<h3 class="toc-ignore">Close single alarm</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X POST <span class="se">\</span>
+   -d <span class="se">\</span>
+ <span class="s1">'https://api.meteocontrol.de/v2/alarms/789/close'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">alarm</span><span class="p">(</span><span class="mi">789</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">POST</code> <code class="prettyprint">alarms/&lt;alarmId&gt;</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>alarmId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Alarm ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">204</code></td>
+<td>If the alarm has set to close</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code></td>
+<td>User is not authorized to access alarm</td>
+</tr>
+</tbody></table>
+
           <h2 id="login">Login</h2>
 
 <h3 class="toc-ignore">OAuth Authentication</h3>
@@ -15694,6 +15846,10 @@ The response format changed as follows:</p>
 <tr>
 <td>2024-06-30</td>
 <td>Remove the deprecated yield loss calculation endpoints that use the 2017 formulas</td>
+</tr>
+<tr>
+<td>2024-07-31</td>
+<td>Add single alarm endpoints to assign/unassign ticket and close alarm</td>
 </tr>
 </tbody></table>
 
