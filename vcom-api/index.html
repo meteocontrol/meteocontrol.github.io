@@ -929,6 +929,68 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </tr>
 </tbody></table>
 
+          <h5 id="last-data-input">Last data input</h5>
+
+<h5 class="toc-ignore">Get timestamp of last data input</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/technical-data/last-data-input'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var LastDataInput $lastDataInput */</span>
+    <span class="nv">$lastDataInput</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">technicalData</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">lastDataInput</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-06T12:59:59+00:00"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var LastDataInput $lastDataInput */</span>
+    <span class="k">echo</span> <span class="nv">$lastDataInput</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">);</span><span class="c1">// 2024-08-06T12:59:59+00:00
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/technical-data/last-data-input</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
+<td>Last data input timestamp in UTC timezone</td>
+</tr>
+</tbody></table>
+
           <h4 id="virtual-meters">Virtual meters</h4>
 
 <h4 class="toc-ignore">Get all virtual meters</h4>
@@ -17248,6 +17310,10 @@ The response format changed as follows:</p>
 <tr>
 <td>2024-08-01</td>
 <td>Add manual and static yield loss calculation option to API</td>
+</tr>
+<tr>
+<td>2024-08-07</td>
+<td>Add last data input endpoint</td>
 </tr>
 </tbody></table>
 
