@@ -783,6 +783,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
     </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"hasSolarForecast"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"simulationMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pr"</span><span class="w">
+    </span><span class="nt">"additionalInformation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"null"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -802,6 +803,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 </span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">currency</span><span class="p">;</span><span class="c1">// EUR
 </span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">hasSolarForecast</span><span class="p">;</span><span class="c1">// false
 </span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">simulationMethod</span><span class="p">;</span><span class="c1">// pr
+</span>    <span class="k">echo</span> <span class="nv">$system</span><span class="o">-&gt;</span><span class="na">additionalInformation</span><span class="p">;</span><span class="c1">// null
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;</code></p>
@@ -17314,6 +17316,9 @@ The response format changed as follows:</p>
 <tr>
 <td>2024-08-07</td>
 <td>Add last data input endpoint</td>
+</tr>
+<td>2024-08-22</td>
+<td>Add new property additionalInformation to SystemDetail model</td>
 </tr>
 </tbody></table>
 
