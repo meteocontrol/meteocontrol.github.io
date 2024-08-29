@@ -782,8 +782,8 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"hasSolarForecast"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"simulationMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pr"</span><span class="w">
-    </span><span class="nt">"additionalInformation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"null"</span><span class="w">
+    </span><span class="nt">"simulationMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pr"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"additionalInformation"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -12104,6 +12104,76 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
           <h4 id="yield-losses">Yield losses</h4>
 
+<h4 class="toc-ignore">Get yield loss calculation of the ticket</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/456/yield-losses'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var YieldLossCalculation $yieldLosses*/</span>
+    <span class="nv">$yieldLosses</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference-system"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="mf">69.32</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"realLostYield"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.29</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"totalCompensation"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.34962</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var YieldLossCalculation $yieldLosses */</span>
+    <span class="k">echo</span> <span class="nv">$yieldLosses</span><span class="o">-&gt;</span><span class="na">model</span><span class="p">;</span><span class="c1">// reference-system
+</span>    <span class="k">echo</span> <span class="nv">$yieldLosses</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">;</span><span class="c1">// 69.32
+</span>    <span class="k">echo</span> <span class="nv">$yieldLosses</span><span class="o">-&gt;</span><span class="na">realLostYield</span><span class="p">;</span><span class="c1">// 41.29
+</span>    <span class="k">echo</span> <span class="nv">$yieldLosses</span><span class="o">-&gt;</span><span class="na">totalCompensation</span><span class="p">;</span><span class="c1">// 7.34962
+</span>    <span class="k">echo</span> <span class="nv">$yieldLosses</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// ""
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<table><thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">200</code></td>
+<td>Return existing YieldLossCalculation object</td>
+</tr>
+<tr>
+<td><code class="prettyprint">404</code></td>
+<td>YieldLossCalculation object not found of the ticket id</td>
+</tr>
+</tbody></table>
+
           <h5 id="flat-rate-energy-trader">Flat-rate (energy trader)</h5>
 
 <h6 class="toc-ignore">Calculate the yield loss using the flat-rate model with energy trader source data</h6>
@@ -17317,8 +17387,13 @@ The response format changed as follows:</p>
 <td>2024-08-07</td>
 <td>Add last data input endpoint</td>
 </tr>
+<tr>
 <td>2024-08-22</td>
 <td>Add new property additionalInformation to SystemDetail model</td>
+</tr>
+<tr>
+<td>2024-08-28</td>
+<td>Add ticket yield-losses endpoint</td>
 </tr>
 </tbody></table>
 
