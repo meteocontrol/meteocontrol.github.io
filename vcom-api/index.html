@@ -693,7 +693,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <td>End date</td>
 </tr>
 <tr>
-<td>resolution <code class="prettyprint">required</code></td>
+<td>resolution <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">day</code></td>
 </tr>
@@ -3213,15 +3213,15 @@ the entire lifetime of the system (up to the current date) is returned as the re
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/forecasts/forecast?format=json&amp;hours_into_future=1&amp;timezone=UTC&amp;resolution=fifteen-minutes&amp;category=dayAhead
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/forecasts/forecast?format=json&amp;hours_into_future=1&amp;timezone=UTC&amp;resolution=fifteen-minutes&amp;category=intraday
 </span></code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$forecastCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">ForecastCriteria</span><span class="p">())</span>
+            <span class="o">-&gt;</span><span class="na">withFormat</span><span class="p">(</span><span class="s1">'json'</span><span class="p">)</span>
             <span class="o">-&gt;</span><span class="na">withHoursToFuture</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
             <span class="o">-&gt;</span><span class="na">withTimezone</span><span class="p">(</span><span class="s1">'UTC'</span><span class="p">)</span>
             <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="nx">ForecastCriteria</span><span class="o">::</span><span class="na">RESOLUTION_FIFTEEN_MINUTES</span><span class="p">)</span>
-            <span class="o">-&gt;</span><span class="na">withCategory</span><span class="p">(</span><span class="nx">ForecastCriteria</span><span class="o">::</span><span class="na">CATEGORY_DAY_AHEAD</span><span class="p">)</span>
-            <span class="o">-&gt;</span><span class="na">withFormat</span><span class="p">(</span><span class="s1">'json'</span><span class="p">);</span>
+            <span class="o">-&gt;</span><span class="na">withCategory</span><span class="p">(</span><span class="nx">ForecastCriteria</span><span class="o">::</span><span class="na">CATEGORY_INTRADAY</span><span class="p">);</span>
     <span class="sd">/** @var MeasurementsBulkReader $forecastData */</span>
     <span class="nv">$forecastData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">forecasts</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">forecast</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$forecastCriteria</span><span class="p">);</span>
 </code></pre>
@@ -4155,6 +4155,120 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>precision</td>
 <td><code class="prettyprint">integer</code>, accepts from 0 to 4</td>
 <td>The decimal precision, defaults to <code class="prettyprint">2</code></td>
+</tr>
+</tbody></table>
+
+          <h5 id="pr">PR</h5>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/inverters/pr?from=2016-10-23&amp;to=2016-10-25&amp;resolution=day&amp;deviceIds=Id12345.1,Id12345.2,Id12345.3'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$criteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">InverterPrCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="s1">'Y-m-d'</span><span class="p">,</span> <span class="s1">'2016-10-23'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="s1">'Y-m-d'</span><span class="p">,</span> <span class="s1">'2016-10-25'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="nx">MeasurementsCriteria</span><span class="o">::</span><span class="na">RESOLUTION_DAY</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">withDeviceIds</span><span class="p">([</span><span class="s1">'Id12345.1'</span><span class="p">,</span> <span class="s1">'Id12345.2'</span><span class="p">,</span> <span class="s1">'Id12345.3'</span><span class="p">]);</span>
+    <span class="nv">$prData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">inverters</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">pr</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"2016-10-23T00:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"Id12345.1"</span><span class="p">:</span><span class="w"> </span><span class="mf">78.67</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Id12345.2"</span><span class="p">:</span><span class="w"> </span><span class="mf">82.05</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Id12345.3"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"2016-10-24T00:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"Id12345.1"</span><span class="p">:</span><span class="w"> </span><span class="mf">80.24</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Id12345.2"</span><span class="p">:</span><span class="w"> </span><span class="mf">85.12</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Id12345.3"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"2016-10-25T00:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"Id12345.1"</span><span class="p">:</span><span class="w"> </span><span class="mf">79.05</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Id12345.2"</span><span class="p">:</span><span class="w"> </span><span class="mf">83.18</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Id12345.3"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var array $prData */</span>
+    <span class="k">echo</span> <span class="nv">$prData</span><span class="p">[</span><span class="s1">'2016-10-23T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'Id12345.1'</span><span class="p">];</span><span class="c1">// 78.67
+</span>    <span class="k">echo</span> <span class="nv">$prData</span><span class="p">[</span><span class="s1">'2016-10-23T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'Id12345.2'</span><span class="p">];</span><span class="c1">// 82.05
+</span>    <span class="k">echo</span> <span class="nv">$prData</span><span class="p">[</span><span class="s1">'2016-10-23T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'Id12345.3'</span><span class="p">];</span><span class="c1">// 0
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/inverters/pr</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>deviceIds <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comma separated deviceIds²</td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code>¹</td>
+<td>(<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>)</td>
+<td>Defaults to <code class="prettyprint">day</code></td>
+</tr>
+</tbody></table>
+
+<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.
+² The maximum number of deviceIds is 10.</p>
+
+<table><thead>
+<tr>
+<th>Resolution</th>
+<th>Maximum time span</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>day</td>
+<td>60 days</td>
+</tr>
+<tr>
+<td>month</td>
+<td>1 year</td>
 </tr>
 </tbody></table>
 
@@ -9749,8 +9863,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/users?username=user1.name'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="nv">$criteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">UserCriteria</span><span class="p">();</span>
-    <span class="nv">$criteria</span><span class="o">-&gt;</span><span class="na">withUsername</span><span class="p">(</span><span class="s1">'user1.name'</span><span class="p">);</span>
+    <span class="nv">$criteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">UserCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withUsername</span><span class="p">(</span><span class="s1">'user1.name'</span><span class="p">);</span>
     <span class="sd">/** @var UserDetail $user */</span>
     <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">users</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre>
@@ -11849,8 +11963,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
 <h4 class="toc-ignore">Create an attachment</h4>
 
-<p>Please note there&rsquo;s a limit of 10 attachments per ticket.</p>
-
 <blockquote>
 <p>Request</p>
 </blockquote>
@@ -11942,7 +12054,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>content <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>Data URI (<a href="https://www.ietf.org/rfc/rfc2397.txt">RFC2397</a>) with base64 encoding. Max decoded file size is 10MB</td>
+<td>Data URI (<a href="https://www.ietf.org/rfc/rfc2397.txt">RFC2397</a>) with base64 encoding²</td>
 </tr>
 <tr>
 <td>description <code class="prettyprint">required</code></td>
@@ -11950,6 +12062,9 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>File description</td>
 </tr>
 </tbody></table>
+
+<p>¹ Please note there&rsquo;s a limit of 10 attachments per ticket.
+² Max decoded file size is 10MB</p>
 
 <p><strong>Response</strong></p>
 
@@ -11969,6 +12084,30 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>filename <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>Name of the new attachment</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">200</code></td>
+<td>The attachment has been successfully created</td>
+</tr>
+<tr>
+<td><code class="prettyprint">400</code></td>
+<td>Invalid request body</td>
+</tr>
+<tr>
+<td><code class="prettyprint">413</code></td>
+<td>Too large attachment²</td>
+</tr>
+<tr>
+<td><code class="prettyprint">422</code></td>
+<td>Too many attachments¹</td>
 </tr>
 </tbody></table>
 
@@ -15793,8 +15932,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/cmms/workorders?systemKey=ABCDE'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="nv">$systemCriteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SystemCriteria</span><span class="p">();</span>
-    <span class="nv">$systemCriteria</span><span class="o">-&gt;</span><span class="na">withSystemKey</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">);</span>
+    <span class="nv">$systemCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">SystemCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withSystemKey</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">);</span>
     <span class="sd">/** @var WorkOrder[] $workOrders */</span>
     <span class="nv">$cmmsSystems</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">cmms</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">workOrders</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$systemCriteria</span><span class="p">);</span>
 </code></pre>
@@ -17398,6 +17537,10 @@ The response format changed as follows:</p>
 <tr>
 <td>2024-08-28</td>
 <td>Add ticket yield-losses endpoint</td>
+</tr>
+<tr>
+<td>2024-10-23</td>
+<td>Add inverter PR endpoint</td>
 </tr>
 </tbody></table>
 
