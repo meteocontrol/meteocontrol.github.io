@@ -12434,7 +12434,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
    -d <span class="se">\</span>
 <span class="s1">'{
-  "realLostYield": 42.38,
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
   <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate/energy-trader?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
@@ -12445,7 +12444,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
-    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
 
     <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span>
@@ -12524,11 +12522,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>realLostYield <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
-<td>Correction yield loss value</td>
-</tr>
 <tr>
 <td>comment <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
@@ -12665,7 +12658,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
    -d <span class="se">\</span>
 <span class="s1">'{
-  "realLostYield": 42.38,
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
   <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate/grid-operator?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
@@ -12676,7 +12668,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
-    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
 
     <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">gridOperator</span><span class="p">()</span>
@@ -12755,11 +12746,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>realLostYield <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
-<td>Correction yield loss value</td>
-</tr>
 <tr>
 <td>comment <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
@@ -12896,7 +12882,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
    -d <span class="se">\</span>
 <span class="s1">'{
-  "realLostYield": 42.38,
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
   <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate/manual?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
@@ -12907,7 +12892,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
-    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
 
     <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">manual</span><span class="p">()</span>
@@ -12986,11 +12970,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>realLostYield <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
-<td>Correction yield loss value</td>
-</tr>
 <tr>
 <td>comment <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
@@ -13127,7 +13106,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
    -d <span class="se">\</span>
 <span class="s1">'{
-  "realLostYield": 42.38,
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
   <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate/static?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
@@ -13138,7 +13116,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
-    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
 
     <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">static</span><span class="p">()</span>
@@ -13217,11 +13194,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>realLostYield <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
-<td>Correction yield loss value</td>
-</tr>
 <tr>
 <td>comment <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
@@ -13611,7 +13583,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
    -d <span class="se">\</span>
 <span class="s1">'{
-  "realLostYield": 42.38,
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
   <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/peak/energy-trader?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
@@ -13622,7 +13593,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
-    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
 
     <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span>
@@ -13701,11 +13671,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>realLostYield <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
-<td>Correction yield loss value</td>
-</tr>
 <tr>
 <td>comment <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
@@ -13842,7 +13807,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
    -d <span class="se">\</span>
 <span class="s1">'{
-  "realLostYield": 42.38,
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
   <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/peak/grid-operator?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
@@ -13853,7 +13817,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
-    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
 
     <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">gridOperator</span><span class="p">()</span>
@@ -13932,11 +13895,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>realLostYield <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
-<td>Correction yield loss value</td>
-</tr>
 <tr>
 <td>comment <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
@@ -14073,7 +14031,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
    -d <span class="se">\</span>
 <span class="s1">'{
-  "realLostYield": 42.38,
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
   <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/peak/manual?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
@@ -14084,7 +14041,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
-    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
 
     <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">manual</span><span class="p">()</span>
@@ -14163,11 +14119,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>realLostYield <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
-<td>Correction yield loss value</td>
-</tr>
 <tr>
 <td>comment <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
@@ -14304,7 +14255,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
    -d <span class="se">\</span>
 <span class="s1">'{
-  "realLostYield": 42.38,
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
   <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/peak/static?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
@@ -14315,7 +14265,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
-    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
 
     <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">static</span><span class="p">()</span>
@@ -14394,11 +14343,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>realLostYield <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
-<td>Correction yield loss value</td>
-</tr>
 <tr>
 <td>comment <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
@@ -15029,7 +14973,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
    -d <span class="se">\</span>
 <span class="s1">'{
-  "realLostYield": 42.38,
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
   <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/simplified-peak/energy-trader?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
@@ -15040,7 +14983,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
-    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
 
     <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">simplifiedPeak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span>
@@ -15119,11 +15061,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>realLostYield <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
-<td>Correction yield loss value</td>
-</tr>
 <tr>
 <td>comment <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
@@ -15260,7 +15197,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
    -d <span class="se">\</span>
 <span class="s1">'{
-  "realLostYield": 42.38,
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
   <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/simplified-peak/grid-operator?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
@@ -15271,7 +15207,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
-    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
 
     <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">simplifiedPeak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">gridOperator</span><span class="p">()</span>
@@ -15350,11 +15285,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>realLostYield <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
-<td>Correction yield loss value</td>
-</tr>
 <tr>
 <td>comment <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
@@ -15491,7 +15421,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
    -d <span class="se">\</span>
 <span class="s1">'{
-  "realLostYield": 42.38,
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
   <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/simplified-peak/manual?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
@@ -15502,7 +15431,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
-    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
 
     <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">simplifiedPeak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">manual</span><span class="p">()</span>
@@ -15581,11 +15509,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>realLostYield <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
-<td>Correction yield loss value</td>
-</tr>
 <tr>
 <td>comment <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
@@ -15722,7 +15645,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
    -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
    -d <span class="se">\</span>
 <span class="s1">'{
-  "realLostYield": 42.38,
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
   <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/simplified-peak/static?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
@@ -15733,7 +15655,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
         <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
-    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
 
     <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">simplifiedPeak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">static</span><span class="p">()</span>
@@ -15812,11 +15733,6 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>realLostYield <code class="prettyprint">required</code></td>
-<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
-<td>Correction yield loss value</td>
-</tr>
 <tr>
 <td>comment <code class="prettyprint">required</code></td>
 <td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
@@ -17470,7 +17386,7 @@ The response format changed as follows:</p>
 </tr>
 <tr>
 <td>2022-12-15</td>
-<td>Add yield losses endpoints</td>
+<td>Add yield-losses endpoints</td>
 </tr>
 <tr>
 <td>2023-09-07</td>
@@ -17486,7 +17402,7 @@ The response format changed as follows:</p>
 </tr>
 <tr>
 <td>2023-10-31</td>
-<td>Remove the yield loss calculation endpoints that didn&rsquo;t specify the power control sources</td>
+<td>Remove the yield-losses endpoints that didn&rsquo;t specify the power control sources</td>
 </tr>
 <tr>
 <td>2023-12-25</td>
@@ -17506,7 +17422,7 @@ The response format changed as follows:</p>
 </tr>
 <tr>
 <td>2024-04-10</td>
-<td>Implement the replace action for all yield loss calculation endpoints</td>
+<td>Implement the replace action for all yield-losses endpoints</td>
 </tr>
 <tr>
 <td>2024-06-20</td>
@@ -17514,7 +17430,7 @@ The response format changed as follows:</p>
 </tr>
 <tr>
 <td>2024-06-30</td>
-<td>Remove the deprecated yield loss calculation endpoints that use the 2017 formulas</td>
+<td>Remove the deprecated yield-losses endpoints that use the 2017 formulas</td>
 </tr>
 <tr>
 <td>2024-07-31</td>
@@ -17539,6 +17455,10 @@ The response format changed as follows:</p>
 <tr>
 <td>2024-10-23</td>
 <td>Add inverter PR endpoint</td>
+</tr>
+<tr>
+<td>2024-11-05</td>
+<td>Disallow users from changing the real yield loss values with the flat-rate, peak, and simplified peak yield-losses endpoints</td>
 </tr>
 </tbody></table>
 
