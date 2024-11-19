@@ -4291,11 +4291,13 @@ For response example in CSV format, please check <a href="https://github.com/met
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meter 1"</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meter 1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12346"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meter 2"</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meter 2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -4304,8 +4306,10 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="sd">/** @var Meter[] $meters */</span>
     <span class="k">echo</span> <span class="nv">$meters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 12345
 </span>    <span class="k">echo</span> <span class="nv">$meters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Meter 1
+</span>    <span class="k">echo</span> <span class="nv">$meters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// 1
 </span>    <span class="k">echo</span> <span class="nv">$meters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 12346
 </span>    <span class="k">echo</span> <span class="nv">$meters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Meter 2
+</span>    <span class="k">echo</span> <span class="nv">$meters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// 2
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/meters</code></p>
@@ -4345,6 +4349,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td><code class="prettyprint">string</code></td>
 <td>Custom name</td>
 </tr>
+<tr>
+<td>uid <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>UID</td>
+</tr>
 </tbody></table>
 
 <h4 class="toc-ignore">Get single meter</h4>
@@ -4366,6 +4375,7 @@ For response example in CSV format, please check <a href="https://github.com/met
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meter 1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"firmware"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -4375,6 +4385,7 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="sd">/** @var MeterDetail $meter */</span>
     <span class="k">echo</span> <span class="nv">$meter</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 12345
 </span>    <span class="k">echo</span> <span class="nv">$meter</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Meter 1
+</span>    <span class="k">echo</span> <span class="nv">$meter</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// 1
 </span>    <span class="k">echo</span> <span class="nv">$meter</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">;</span><span class="c1">// 1
 </span>    <span class="k">echo</span> <span class="nv">$meter</span><span class="o">-&gt;</span><span class="na">firmware</span><span class="p">;</span><span class="c1">// 1.0
 </span></code></pre>
@@ -4422,8 +4433,13 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>Custom name</td>
 </tr>
 <tr>
+<td>uid <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>UID</td>
+</tr>
+<tr>
 <td>address <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td>Address</td>
 </tr>
 <tr>
@@ -4945,11 +4961,13 @@ For response example in CSV format, please check <a href="https://github.com/met
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10001"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pyranometer SMPx (Modbus)"</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pyranometer SMPx (Modbus)"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10002"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Irradiation sensor M&amp;T / mc Si-420TC-T (4 - 20mA)"</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Irradiation sensor M&amp;T / mc Si-420TC-T (4 - 20mA)"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -4958,8 +4976,10 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="sd">/** @var Sensor[] $sensors */</span>
     <span class="k">echo</span> <span class="nv">$sensors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 10001
 </span>    <span class="k">echo</span> <span class="nv">$sensors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Pyranometer SMPx (Modbus)
+</span>    <span class="k">echo</span> <span class="nv">$sensors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// 7
 </span>    <span class="k">echo</span> <span class="nv">$sensors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 10002
 </span>    <span class="k">echo</span> <span class="nv">$sensors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Irradiation sensor M&amp;T / mc Si-420TC-T (4 - 20mA)
+</span>    <span class="k">echo</span> <span class="nv">$sensors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// 8
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/sensors</code></p>
@@ -4999,6 +5019,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td><code class="prettyprint">string</code></td>
 <td>Custom name</td>
 </tr>
+<tr>
+<td>uid <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>UID</td>
+</tr>
 </tbody></table>
 
 <h4 class="toc-ignore">Get single sensor device</h4>
@@ -5020,6 +5045,7 @@ For response example in CSV format, please check <a href="https://github.com/met
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10001"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pyranometer SMPx (Modbus)"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"firmware"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -5029,6 +5055,7 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="sd">/** @var SensorDetail $sensor */</span>
     <span class="k">echo</span> <span class="nv">$sensor</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 10001
 </span>    <span class="k">echo</span> <span class="nv">$sensor</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Pyranometer SMPx (Modbus)
+</span>    <span class="k">echo</span> <span class="nv">$sensor</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// 7
 </span>    <span class="k">echo</span> <span class="nv">$sensor</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">;</span><span class="c1">// 7
 </span>    <span class="k">echo</span> <span class="nv">$sensor</span><span class="o">-&gt;</span><span class="na">firmware</span><span class="p">;</span><span class="c1">// 1.0
 </span></code></pre>
@@ -5076,8 +5103,13 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>Custom name</td>
 </tr>
 <tr>
+<td>uid <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>UID</td>
+</tr>
+<tr>
 <td>address <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td>Address</td>
 </tr>
 <tr>
@@ -5585,11 +5617,13 @@ For response example in CSV format, please check <a href="https://github.com/met
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10001"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meldung LS TST"</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meldung LS TST"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BT1980004134-D_IN1"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10002"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Warnung Trafotemperatur"</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Warnung Trafotemperatur"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BT1980004134-D_IN2"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -5599,8 +5633,10 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="sd">/** @var Status[] $statuses */</span>
     <span class="k">echo</span> <span class="nv">$statuses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 10001
 </span>    <span class="k">echo</span> <span class="nv">$statuses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Meldung LS TST
+</span>    <span class="k">echo</span> <span class="nv">$statuses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// BT1980004134-D_IN1
 </span>    <span class="k">echo</span> <span class="nv">$statuses</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 10002
 </span>    <span class="k">echo</span> <span class="nv">$statuses</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Warnung Trafotemperatur
+</span>    <span class="k">echo</span> <span class="nv">$statuses</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// BT1980004134-D_IN2
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/statuses</code></p>
@@ -5640,6 +5676,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td><code class="prettyprint">string</code></td>
 <td>Custom name</td>
 </tr>
+<tr>
+<td>uid <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>UID</td>
+</tr>
 </tbody></table>
 
 <h4 class="toc-ignore">Get single status device</h4>
@@ -5661,6 +5702,7 @@ For response example in CSV format, please check <a href="https://github.com/met
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10001"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meldung LS TST"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BT1980004134-D_IN1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BT1980004134-D_IN1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Huawei"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SmartLogger 2000 DI Status"</span><span class="p">,</span><span class="w">
@@ -5673,6 +5715,7 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="sd">/** @var StatusDetail $status */</span>
     <span class="k">echo</span> <span class="nv">$status</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 10001
 </span>    <span class="k">echo</span> <span class="nv">$status</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Meldung LS TST
+</span>    <span class="k">echo</span> <span class="nv">$status</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// BT1980004134-D_IN1
 </span>    <span class="k">echo</span> <span class="nv">$status</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">;</span><span class="c1">// BT1980004134-D_IN1
 </span>    <span class="k">echo</span> <span class="nv">$status</span><span class="o">-&gt;</span><span class="na">vendor</span><span class="p">;</span><span class="c1">// Huawei
 </span>    <span class="k">echo</span> <span class="nv">$status</span><span class="o">-&gt;</span><span class="na">model</span><span class="p">;</span><span class="c1">// SmartLogger 2000 DI Status
@@ -5720,6 +5763,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>name <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>Custom name</td>
+</tr>
+<tr>
+<td>uid <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>UID</td>
 </tr>
 <tr>
 <td>address <code class="prettyprint">fixed</code></td>
@@ -6178,11 +6226,13 @@ For response example in CSV format, please check <a href="https://github.com/met
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20001"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stringbox1"</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stringbox1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"serial1"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20002"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stringbox2"</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stringbox2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"serial2"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6191,8 +6241,10 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="sd">/** @var Stringbox[] $stringboxes */</span>
     <span class="k">echo</span> <span class="nv">$stringboxes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 20001
 </span>    <span class="k">echo</span> <span class="nv">$stringboxes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// stringbox1
+</span>    <span class="k">echo</span> <span class="nv">$stringboxes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">serial</span><span class="p">;</span><span class="c1">// serial1
 </span>    <span class="k">echo</span> <span class="nv">$stringboxes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 20002
 </span>    <span class="k">echo</span> <span class="nv">$stringboxes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// stringbox2
+</span>    <span class="k">echo</span> <span class="nv">$stringboxes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">serial</span><span class="p">;</span><span class="c1">// serial2
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/stringboxes</code></p>
@@ -6232,6 +6284,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td><code class="prettyprint">string</code></td>
 <td>Custom name</td>
 </tr>
+<tr>
+<td>serial <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Serial</td>
+</tr>
 </tbody></table>
 
 <h4 class="toc-ignore">Get single stringbox device</h4>
@@ -6253,7 +6310,7 @@ For response example in CSV format, please check <a href="https://github.com/met
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20001"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stringbox1"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcd"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"serial1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"scaleFactor"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.32</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6262,7 +6319,7 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="sd">/** @var StringboxDetail $stringbox */</span>
     <span class="k">echo</span> <span class="nv">$stringbox</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 20001
 </span>    <span class="k">echo</span> <span class="nv">$stringbox</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// stringbox1
-</span>    <span class="k">echo</span> <span class="nv">$stringbox</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">;</span><span class="c1">// abcd
+</span>    <span class="k">echo</span> <span class="nv">$stringbox</span><span class="o">-&gt;</span><span class="na">serial</span><span class="p">;</span><span class="c1">// serial1
 </span>    <span class="k">echo</span> <span class="nv">$stringbox</span><span class="o">-&gt;</span><span class="na">scaleFactor</span><span class="p">;</span><span class="c1">//1.32
 </span></code></pre>
 
@@ -6924,11 +6981,13 @@ For response example in CSV format, please check <a href="https://github.com/met
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"145146"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bat1"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"145147"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bat2"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6937,9 +6996,11 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="sd">/** @var Battery[] $batteries */</span>
     <span class="k">echo</span> <span class="nv">$batteries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 145146
 </span>    <span class="k">echo</span> <span class="nv">$batteries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
-    <span class="k">echo</span> <span class="nv">$batteries</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 145147
+    <span class="k">echo</span> <span class="nv">$batteries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// bat1
+</span>    <span class="k">echo</span> <span class="nv">$batteries</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 145147
 </span>    <span class="k">echo</span> <span class="nv">$batteries</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
-</code></pre>
+    <span class="k">echo</span> <span class="nv">$batteries</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// bat2
+</span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/batteries</code></p>
 
@@ -6978,6 +7039,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td><code class="prettyprint">string</code></td>
 <td>Custom name</td>
 </tr>
+<tr>
+<td>uid <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>UID</td>
+</tr>
 </tbody></table>
 
 <h4 class="toc-ignore">Get single battery</h4>
@@ -6999,6 +7065,7 @@ For response example in CSV format, please check <a href="https://github.com/met
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"145146"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bat1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bat1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"firmware"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -7008,7 +7075,8 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="sd">/** @var BatteryDetail $battery */</span>
     <span class="k">echo</span> <span class="nv">$battery</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 145146
 </span>    <span class="k">echo</span> <span class="nv">$battery</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
-    <span class="k">echo</span> <span class="nv">$battery</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">;</span><span class="c1">// bat1
+    <span class="k">echo</span> <span class="nv">$battery</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// bat1
+</span>    <span class="k">echo</span> <span class="nv">$battery</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">;</span><span class="c1">// bat1
 </span>    <span class="k">echo</span> <span class="nv">$battery</span><span class="o">-&gt;</span><span class="na">firmware</span><span class="p">;</span><span class="c1">// 1.0
 </span></code></pre>
 
@@ -7055,8 +7123,13 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>Custom name</td>
 </tr>
 <tr>
+<td>uid <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>UID</td>
+</tr>
+<tr>
 <td>address <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td>Address</td>
 </tr>
 <tr>
@@ -7611,7 +7684,8 @@ For response example in CSV format, please check <a href="https://github.com/met
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"163784"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ppc-5bbc370ddb808"</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ppc-5bbc370ddb808"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ppc-5bbc370ddb808"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -7620,6 +7694,7 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="sd">/** @var PowerPlantController[] $powerPlantControllers */</span>
     <span class="k">echo</span> <span class="nv">$powerPlantControllers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 163784
 </span>    <span class="k">echo</span> <span class="nv">$powerPlantControllers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// ppc-5bbc370ddb808
+</span>    <span class="k">echo</span> <span class="nv">$powerPlantControllers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// ppc-5bbc370ddb808
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/power-plant-controllers</code></p>
@@ -7659,6 +7734,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td><code class="prettyprint">string</code></td>
 <td>Custom name</td>
 </tr>
+<tr>
+<td>uid <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>UID</td>
+</tr>
 </tbody></table>
 
 <h4 class="toc-ignore">Get single power plant controller</h4>
@@ -7680,6 +7760,7 @@ For response example in CSV format, please check <a href="https://github.com/met
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"163784"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ppc-5bbc370ddb808"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ppc-5bbc370ddb808"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ppc-5bbc370ddb808"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"firmware"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -7689,6 +7770,7 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="sd">/** @var PowerPlantControllerDetail $powerPlantController */</span>
     <span class="k">echo</span> <span class="nv">$powerPlantController</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 163784
 </span>    <span class="k">echo</span> <span class="nv">$powerPlantController</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// ppc-5bbc370ddb808
+</span>    <span class="k">echo</span> <span class="nv">$powerPlantController</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// ppc-5bbc370ddb808
 </span>    <span class="k">echo</span> <span class="nv">$powerPlantController</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">;</span><span class="c1">// ppc-5bbc370ddb808
 </span>    <span class="k">echo</span> <span class="nv">$powerPlantController</span><span class="o">-&gt;</span><span class="na">firmware</span><span class="p">;</span><span class="c1">// null
 </span></code></pre>
@@ -7736,8 +7818,13 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>Custom name</td>
 </tr>
 <tr>
+<td>uid <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>UID</td>
+</tr>
+<tr>
 <td>address <code class="prettyprint">fixed</code></td>
-<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
 <td>Address</td>
 </tr>
 <tr>
@@ -8333,11 +8420,13 @@ For response example in CSV format, please check <a href="https://github.com/met
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30001"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tracker 1"</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tracker 1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30002"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tracker 2"</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tracker 2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -8346,8 +8435,10 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="sd">/** @var Tracker[] $trackers */</span>
     <span class="k">echo</span> <span class="nv">$trackers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 30001
 </span>    <span class="k">echo</span> <span class="nv">$trackers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Tracker 1
+</span>    <span class="k">echo</span> <span class="nv">$trackers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// 1
 </span>    <span class="k">echo</span> <span class="nv">$trackers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 30002
 </span>    <span class="k">echo</span> <span class="nv">$trackers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Tracker 2
+</span>    <span class="k">echo</span> <span class="nv">$trackers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// 2
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/trackers</code></p>
@@ -8387,6 +8478,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td><code class="prettyprint">string</code></td>
 <td>Custom name</td>
 </tr>
+<tr>
+<td>uid <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>UID</td>
+</tr>
 </tbody></table>
 
 <h4 class="toc-ignore">Get single tracker</h4>
@@ -8408,6 +8504,7 @@ For response example in CSV format, please check <a href="https://github.com/met
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30001"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tracker 1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDEEMATEC"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HORIZON 2"</span><span class="p">,</span><span class="w">
@@ -8419,6 +8516,7 @@ For response example in CSV format, please check <a href="https://github.com/met
     <span class="sd">/** @var TrackerDetail $tracker */</span>
     <span class="k">echo</span> <span class="nv">$tracker</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 30001
 </span>    <span class="k">echo</span> <span class="nv">$tracker</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Tracker 1
+</span>    <span class="k">echo</span> <span class="nv">$tracker</span><span class="o">-&gt;</span><span class="na">uid</span><span class="p">;</span><span class="c1">// 1
 </span>    <span class="k">echo</span> <span class="nv">$tracker</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">;</span><span class="c1">// 1
 </span>    <span class="k">echo</span> <span class="nv">$tracker</span><span class="o">-&gt;</span><span class="na">vendor</span><span class="p">;</span><span class="c1">// IDEEMATEC
 </span>    <span class="k">echo</span> <span class="nv">$tracker</span><span class="o">-&gt;</span><span class="na">model</span><span class="p">;</span><span class="c1">// HORIZON 2
@@ -8466,6 +8564,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>name <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>Custom name</td>
+</tr>
+<tr>
+<td>uid <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>UID</td>
 </tr>
 <tr>
 <td>address <code class="prettyprint">fixed</code></td>
@@ -17459,6 +17562,10 @@ The response format changed as follows:</p>
 <tr>
 <td>2024-11-05</td>
 <td>Disallow users from changing the real yield loss values with the flat-rate, peak, and simplified peak yield-losses endpoints</td>
+</tr>
+<tr>
+<td>2024-11-18</td>
+<td>Add uid/serial property in all data device models</td>
 </tr>
 </tbody></table>
 
