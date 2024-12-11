@@ -2588,12 +2588,13 @@ For response example in CSV format, please check <a href="https://github.com/met
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/calculations/simulation?from=2021-02-01T00:00:00+01:00&amp;to=2021-02-01T23:59:59+01:00'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/calculations/simulation?from=2021-02-01T00:00:00+01:00&amp;to=2021-02-01T23:59:59+01:00&amp;considerPowerControl=true'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2021-02-01T00:00:00+01:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2021-02-01T23:59:59+01:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2021-02-01T23:59:59+01:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withConsiderPowerControl</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
     <span class="sd">/** @var SimulationValue[] $simulation */</span>
     <span class="nv">$simulation</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">calculations</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">simulation</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
 </code></pre>
@@ -2671,6 +2672,11 @@ For response example in CSV format, please check <a href="https://github.com/met
 <td>resolution <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">interval</code>ǀ<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">interval</code></td>
+</tr>
+<tr>
+<td>considerPowerControl <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">true</code>ǀ<code class="prettyprint">false</code>)</td>
+<td>Power control considered, defaults to <code class="prettyprint">true</code></td>
 </tr>
 </tbody></table>
 
@@ -17566,6 +17572,10 @@ The response format changed as follows:</p>
 <tr>
 <td>2024-11-18</td>
 <td>Add uid/serial property in all data device models</td>
+</tr>
+<tr>
+<td>2024-12-11</td>
+<td>Support considerPowerControl as query parameter in simulation endpoint</td>
 </tr>
 </tbody></table>
 
