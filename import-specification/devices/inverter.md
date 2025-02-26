@@ -40,6 +40,7 @@
 | datapoints            | `U_AC_L2L3`          | V    | Volts L2-L3                                   |          |          |                                 |         |
 | datapoints            | `U_AC_L3L1`          | V    | Volts L3-L1                                   |          |          |                                 |         |
 | datapoints            | `U_DC[1..x]`         | V    | Voltage DC (single input or accumulated)      |          |          |                                 |         |
+| datapoints            | `U_DC[1..x]_[1..x]`  | V    | Voltage DC (single string)                    |          |          |                                 |         |
 | datapoints            | `U_DC_NE`            | V    | Voltage DC negative pole to earth             |          |          |                                 |         |
 | datapoints            | `U_DC_PE`            | V    | Voltage DC positive pole to earth             |          |          |                                 |         |
 | datapoints            | `STATE[1..x]`        |      | Global inverter state conditions              |          |          |                                 |         |
