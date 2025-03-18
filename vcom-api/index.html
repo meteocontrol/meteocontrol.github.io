@@ -15855,6 +15855,235 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
 <p>Http-Code: 204</p>
 
+          <h5 id="simulation">Simulation</h5>
+
+<h6 class="toc-ignore">Calculate the yield loss using the simulation model</h6>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/456/yield-losses/simulation?from=2016-11-15T10:00:00+00:00&amp;to=2016-11-15T10:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-11-15T10:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-11-15T10:59:59+00:00'</span><span class="p">));</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">simulation</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="mf">69.32</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"realLostYield"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.29</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"totalCompensation"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.34962</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">;</span><span class="c1">// 69.32
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">realLostYield</span><span class="p">;</span><span class="c1">// 41.29
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">totalCompensation</span><span class="p">;</span><span class="c1">// 7.34962
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// ""
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/simulation</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>CalculationResult object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Calculated yield loss value</td>
+</tr>
+<tr>
+<td>realLostYield <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+</tr>
+<tr>
+<td>totalCompensation <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Estimation amount of the financial compensation (based on the value of <code class="prettyprint">realLostYield</code>)</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<h6 class="toc-ignore">Calculate the yield loss using the simulation model and save the result</h6>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "realLostYield": 42.38,
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/456/yield-losses/simulation?from=2016-11-15T10:00:00+00:00&amp;to=2016-11-15T10:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-11-15T10:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-11-15T10:59:59+00:00'</span><span class="p">));</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">realLostYield</span> <span class="o">=</span> <span class="mf">42.38</span><span class="p">;</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">simulation</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/simulation</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>realLostYield <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
+<td>Correction yield loss value</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
           <h2 id="cmms">CMMS</h2>
 
 <div class="beta">
@@ -17576,6 +17805,10 @@ The response format changed as follows:</p>
 <tr>
 <td>2024-12-11</td>
 <td>Support considerPowerControl as query parameter in simulation endpoint</td>
+</tr>
+<tr>
+<td>2025-03-12</td>
+<td>Add simulation for yield-losses endpoint</td>
 </tr>
 </tbody></table>
 
