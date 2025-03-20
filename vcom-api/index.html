@@ -3067,7 +3067,7 @@ the entire lifetime of the system (up to the current date) is returned as the re
 </tr>
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
-<td>(<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
+<td>(<code class="prettyprint">interval</code>ǀ<code class="prettyprint">hour</code>ǀ<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
 <td>Defaults to <code class="prettyprint">hour</code></td>
 </tr>
 </tbody></table>
@@ -3080,6 +3080,10 @@ the entire lifetime of the system (up to the current date) is returned as the re
 <th>Maximum time span</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>interval</td>
+<td>31 days</td>
+</tr>
 <tr>
 <td>hour</td>
 <td>31 days</td>
@@ -17809,6 +17813,10 @@ The response format changed as follows:</p>
 <tr>
 <td>2025-03-12</td>
 <td>Add simulation for yield-losses endpoint</td>
+</tr>
+<tr>
+<td>2025-03-20</td>
+<td>Add a new resolution &ldquo;interval&rdquo; to the satellite data endpoint</td>
 </tr>
 </tbody></table>
 
