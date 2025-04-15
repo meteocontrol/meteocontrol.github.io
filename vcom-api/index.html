@@ -13327,7 +13327,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/456/yield-losses/linear-equation?from=2016-11-15T10:00:00+00:00&amp;to=2016-11-15T10:59:59+00:00&amp;referenceFrom=2016-11-15T14:50:00+00:00&amp;referenceTo=2016-11-15T15:50:00+00:00'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/456/yield-losses/linear-equation?from=2016-11-15T10:00:00+01:00&amp;to=2016-11-15T10:59:59+01:00&amp;referenceFrom=2016-11-15T14:50:00+01:00&amp;referenceTo=2016-11-15T15:50:00+01:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$linearEquationCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">LinearEquationCriteria</span><span class="p">())</span>
@@ -13456,7 +13456,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
   "realLostYield": 42.38,
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
-  <span class="s1">'https://api.meteocontrol.de/v2/tickets/456/yield-losses/linear-equation?from=2016-11-15T10:00:00+00:00&amp;to=2016-11-15T10:59:59+00:00&amp;referenceFrom=2016-11-15T14:50:00+00:00&amp;referenceTo=2016-11-15T15:50:00+00:00'</span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/456/yield-losses/linear-equation?from=2016-11-15T10:00:00+01:00&amp;to=2016-11-15T10:59:59+01:00&amp;referenceFrom=2016-11-15T14:50:00+01:00&amp;referenceTo=2016-11-15T15:50:00+01:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$linearEquationCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">LinearEquationCriteria</span><span class="p">())</span>
@@ -16911,9 +16911,9 @@ severity=high,critical&amp;status=open&amp;systemKey=ABCDE
       </span><span class="nt">"ticketId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"alarmType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sensor-outage"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"component"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDE"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"system"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testsystem G_M0"</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testsystem"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-03T07:50:00+02:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"lastChangedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-03T09:50:00+02:00"</span><span class="p">,</span><span class="w">
@@ -17029,7 +17029,7 @@ severity=high,critical&amp;status=open&amp;systemKey=ABCDE
     </span><span class="nt">"ticketId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alarmType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"total-outage"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"component"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDE"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"system"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testsystem"</span><span class="w">
     </span><span class="p">},</span><span class="w">
