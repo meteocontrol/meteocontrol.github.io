@@ -1108,7 +1108,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <tr>
 <td>type <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
-<td>Type of installation</td>
+<td>Type of installation¹</td>
 </tr>
 <tr>
 <td>modulesPerString <code class="prettyprint">fixed</code></td>
@@ -1140,6 +1140,40 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <td>model <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">string</code></td>
 <td>Model</td>
+</tr>
+</tbody></table>
+
+<p>¹ Type of installation</p>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ground</td>
+<td>Ground installation</td>
+</tr>
+<tr>
+<td>roofTopGreatDistance</td>
+<td>Roof top installation, great distance (&gt;10cm)</td>
+</tr>
+<tr>
+<td>roofTopSmallDistance</td>
+<td>Roof top installation, small distance (&lt;10cm)</td>
+</tr>
+<tr>
+<td>roofIntegration</td>
+<td>Roof integration</td>
+</tr>
+<tr>
+<td>facade</td>
+<td>Façade</td>
+</tr>
+<tr>
+<td>flatRoof</td>
+<td>Flat-roof installation (elevated)</td>
 </tr>
 </tbody></table>
 
@@ -16348,7 +16382,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems</code></p>
 
-<p>Returns an array of CMMS system objects.</p>
+<p>Returns an array of CmmsSystem objects.</p>
 
 <p><strong>Response</strong></p>
 
@@ -16385,6 +16419,156 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>activeSince <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
 <td>License active since date</td>
+</tr>
+</tbody></table>
+
+          <h3 id="site-access">Site access</h3>
+
+<h4 class="toc-ignore">Get CMMS site access</h4>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/cmms/site-access?systemKey=ABCDE&amp;status=unregistered'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$siteAccessCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">SiteAccessCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withSystemKey</span><span class="p">(</span><span class="s2">"ABCDE"</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">withStatus</span><span class="p">(</span><span class="nx">SiteAccess</span><span class="o">::</span><span class="na">STATUS_UNREGISTERED</span><span class="p">);</span>
+    <span class="sd">/** @var SiteAccess[] $siteAccess */</span>
+    <span class="nv">$siteAccess</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">cmms</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">siteAccess</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$siteAccessCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"system"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"System name"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Site access name"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unregistered"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access comment"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"checkIn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-04-10 11:06:09"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"checkOut"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-04-10 12:30:20"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var SiteAccess[] $siteAccess */</span>
+    <span class="k">echo</span> <span class="nv">$siteAccess</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">system</span><span class="o">-&gt;</span><span class="na">key</span><span class="p">;</span><span class="c1">// ABCDE
+</span>    <span class="k">echo</span> <span class="nv">$siteAccess</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">system</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// System name
+</span>    <span class="k">echo</span> <span class="nv">$siteAccess</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// Site access name
+</span>    <span class="k">echo</span> <span class="nv">$siteAccess</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// unregistered
+</span>    <span class="k">echo</span> <span class="nv">$siteAccess</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// Access comment
+</span>    <span class="k">echo</span> <span class="nv">$siteAccess</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">checkIn</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">'Y-m-d H:i:s'</span><span class="p">);</span><span class="c1">// 2025-04-10 11:06:09
+</span>    <span class="k">echo</span> <span class="nv">$siteAccess</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">checkOut</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">'Y-m-d H:i:s'</span><span class="p">);</span><span class="c1">// 2025-04-10 12:30:20
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">site-access</code></p>
+
+<p>Returns an array of SiteAccess objects.</p>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Can contain comma delimited system keys</td>
+</tr>
+<tr>
+<td>status <code class="prettyprint">optional</code></td>
+<td>(<code class="prettyprint">unregistered</code>ǀ<code class="prettyprint">registered</code>ǀ<code class="prettyprint">exceeded</code>)</td>
+<td>Can contain comma delimited status</td>
+</tr>
+<tr>
+<td>checkIn <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Check in date (Greater than or equal)</td>
+</tr>
+<tr>
+<td>checkOut <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Check out date (Less than or equal)</td>
+</tr>
+</tbody></table>
+
+<p><br></p>
+
+<p><strong>Response</strong></p>
+
+<p>Only the 500 last check in entries will be returned.</p>
+
+<p><em>SiteAccess object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>system <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">System</code></td>
+<td>System information</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Site access name</td>
+</tr>
+<tr>
+<td>status <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">unregistered</code>ǀ<code class="prettyprint">registered</code>ǀ<code class="prettyprint">exceeded</code>)</td>
+<td>Site access state</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+<tr>
+<td>checkIn <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Check in date</td>
+</tr>
+<tr>
+<td>checkOut <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
+<td>Check out date</td>
+</tr>
+</tbody></table>
+
+<p><em>System object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>System name</td>
 </tr>
 </tbody></table>
 
@@ -17081,16 +17265,17 @@ severity=high,critical&amp;status=open&amp;systemKey=ABCDE
 &amp;startedAt[to]=2022-04-30T23:59:59+02:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-<span class="nv">$criteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">AlarmsCriteria</span><span class="p">())</span>
-    <span class="o">-&gt;</span><span class="na">withSystemKey</span><span class="p">(</span><span class="s2">"ABCDE"</span><span class="p">)</span>
-    <span class="o">-&gt;</span><span class="na">withSeverity</span><span class="p">(</span><span class="nx">Alarm</span><span class="o">::</span><span class="na">SEVERITY_HIGH</span><span class="p">)</span>
-    <span class="o">-&gt;</span><span class="na">withSeverity</span><span class="p">(</span><span class="nx">Alarm</span><span class="o">::</span><span class="na">SEVERITY_CRITICAL</span><span class="p">)</span>
-    <span class="o">-&gt;</span><span class="na">withStatus</span><span class="p">(</span><span class="nx">Alarm</span><span class="o">::</span><span class="na">STATUS_OPEN</span><span class="p">)</span>
-    <span class="o">-&gt;</span><span class="na">withLastChangedAtFrom</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2022-04-01T00:00:00+02:00"</span><span class="p">))</span>
-    <span class="o">-&gt;</span><span class="na">withLastChangedAtTo</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2022-04-30T23:59:59+02:00"</span><span class="p">))</span>
-    <span class="o">-&gt;</span><span class="na">withStartedAtFrom</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2022-04-01T00:00:00+02:00"</span><span class="p">))</span>
-    <span class="o">-&gt;</span><span class="na">withStartedAtTo</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2022-04-30T23:59:59+02:00"</span><span class="p">));</span>
-<span class="nv">$alarms</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">alarms</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+    <span class="nv">$criteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">AlarmsCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withSystemKey</span><span class="p">(</span><span class="s2">"ABCDE"</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">withSeverity</span><span class="p">(</span><span class="nx">Alarm</span><span class="o">::</span><span class="na">SEVERITY_HIGH</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">withSeverity</span><span class="p">(</span><span class="nx">Alarm</span><span class="o">::</span><span class="na">SEVERITY_CRITICAL</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">withStatus</span><span class="p">(</span><span class="nx">Alarm</span><span class="o">::</span><span class="na">STATUS_OPEN</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">withLastChangedAtFrom</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2022-04-01T00:00:00+02:00"</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withLastChangedAtTo</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2022-04-30T23:59:59+02:00"</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withStartedAtFrom</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2022-04-01T00:00:00+02:00"</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withStartedAtTo</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s2">"2022-04-30T23:59:59+02:00"</span><span class="p">));</span>
+    <span class="sd">/** @var Alarm[] $alarms */</span>
+    <span class="nv">$alarms</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">alarms</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -17227,8 +17412,8 @@ severity=high,critical&amp;status=open&amp;systemKey=ABCDE
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/alarms/789'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-
-<span class="nv">$alarm</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">alarm</span><span class="p">(</span><span class="mi">789</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+    <span class="sd">/** @var Alarm $alarm */</span>
+    <span class="nv">$alarm</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">alarm</span><span class="p">(</span><span class="mi">789</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 </code></pre>
 
 <blockquote>
@@ -17858,6 +18043,10 @@ The response format changed as follows:</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2025-04-28</td>
+<td>Add site-access for cmms endpoint</td>
+</tr>
 <tr>
 <td>2025-04-24</td>
 <td>Extend technical data endpoint to return systemConfigurations models</td>
