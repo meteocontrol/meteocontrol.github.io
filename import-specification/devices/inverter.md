@@ -22,13 +22,13 @@
 | datapoints            | `FT_AC_TOTAL`        | hour | Feed in Time Total AC                         |          |          |                                 |         |
 | datapoints            | `F_AC[1..x]`         | Hz   | Grid frequency (single phase or accumulated)  |          |          |                                 |         |
 | datapoints            | `I_AC[1..x]`         | A    | Current AC (single phase or accumulated)      |          |          |                                 |         |
-| datapoints            | `I_DC[1..x]`         | A    | Current DC (single input or accumulated)      |          |          |                                 |         |
-| datapoints            | `I_DC[1..x]_[1..x]`  | A    | Current DC (single string)                    |          |          |                                 |         |
+| datapoints            | `I_DC[1..x]`         | A    | Current DC MPPT x                             |          |          |                                 |         |
+| datapoints            | `I_DC[1..x]_[1..x]`  | A    | Current DC MPPT x Input x                     |          |          |                                 |         |
 | datapoints            | `I_GDFI`             | mA   | Earth leakage current                         |          |          |                                 |         |
 | datapoints            | `OT_AC_DAY`          | min  | Operation Time DAY                            |          |          |                                 |         |
 | datapoints            | `OT_AC_TOTAL`        | hour | Operation Time TOTAL                          |          |          |                                 |         |
 | datapoints            | `P_AC[1..3]`         | W    | Power AC (single phase or accumulated)        |          | x        |                                 |         |
-| datapoints            | `P_DC[1..x]`         | W    | Power DC (single input or accumulated)        |          |          |                                 |         |
+| datapoints            | `P_DC[1..x]`         | W    | Power DC MPPT x                               |          |          |                                 |         |
 | datapoints            | `Q_AC[1..3]`         | var  | Reactive power (single phase or accumulated)  |          |          |                                 |         |
 | datapoints            | `R_AC`               | mOhm | Grid impedance                                |          |          |                                 |         |
 | datapoints            | `R_ISO`              | kOhm | Isolation resistant                           |          |          |                                 |         |
@@ -39,8 +39,8 @@
 | datapoints            | `U_AC_L1L2`          | V    | Volts L1-L2                                   |          |          |                                 |         |
 | datapoints            | `U_AC_L2L3`          | V    | Volts L2-L3                                   |          |          |                                 |         |
 | datapoints            | `U_AC_L3L1`          | V    | Volts L3-L1                                   |          |          |                                 |         |
-| datapoints            | `U_DC[1..x]`         | V    | Voltage DC (single input or accumulated)      |          |          |                                 |         |
-| datapoints            | `U_DC[1..x]_[1..x]`  | V    | Voltage DC (single string)                    |          |          |                                 |         |
+| datapoints            | `U_DC[1..x]`         | V    | Voltage DC MPPT x                             |          |          |                                 |         |
+| datapoints            | `U_DC[1..x]_[1..x]`  | V    | Voltage DC MPPT x Input x                     |          |          |                                 |         |
 | datapoints            | `U_DC_NE`            | V    | Voltage DC negative pole to earth             |          |          |                                 |         |
 | datapoints            | `U_DC_PE`            | V    | Voltage DC positive pole to earth             |          |          |                                 |         |
 | datapoints            | `STATE[1..x]`        |      | Global inverter state conditions              |          |          |                                 |         |
