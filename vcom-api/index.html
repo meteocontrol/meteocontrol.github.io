@@ -2917,7 +2917,7 @@ For response example in CSV format, please check <a href="https://github.com/met
 <tr>
 <td>resolution <code class="prettyprint">optional</code></td>
 <td>(<code class="prettyprint">interval</code>ǀ<code class="prettyprint">day</code>ǀ<code class="prettyprint">month</code>ǀ<code class="prettyprint">year</code>)</td>
-<td>Defaults to <code class="prettyprint">interval</code></td>
+<td>Defaults to <code class="prettyprint">interval</code>²</td>
 </tr>
 <tr>
 <td>considerPowerControl <code class="prettyprint">optional</code></td>
@@ -2926,7 +2926,8 @@ For response example in CSV format, please check <a href="https://github.com/met
 </tr>
 </tbody></table>
 
-<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.</p>
+<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> varies depending on the <code class="prettyprint">resolution</code> as listed below.
+² If the system has no sensor, the finest available resolution is <code class="prettyprint">day</code>.</p>
 
 <table><thead>
 <tr>
@@ -13828,12 +13829,12 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/peak/energy-trader?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/peak/energy-trader?from=2021-05-05T00:00:00+00:00&amp;to=2021-05-10T23:59:59+00:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
-        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-25T00:00:00+00:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2021-05-05T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2021-05-10T23:59:59+00:00'</span><span class="p">));</span>
     <span class="sd">/** @var CalculationResult $calculationResult */</span>
     <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
@@ -15218,12 +15219,12 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/simplified-peak/energy-trader?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/simplified-peak/energy-trader?from=2021-05-05T00:00:00+00:00&amp;to=2021-05-10T23:59:59+00:00'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
-        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-25T00:00:00+00:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2021-05-05T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2021-05-10T23:59:59+00:00'</span><span class="p">));</span>
     <span class="sd">/** @var CalculationResult $calculationResult */</span>
     <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">simplifiedPeak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
