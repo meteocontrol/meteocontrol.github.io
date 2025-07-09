@@ -11302,7 +11302,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"commentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">661288</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"commentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
       </span><span class="nt">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-19T12:49:20+01:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Comment text"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"username"</span><span class="p">,</span><span class="w">
@@ -11310,7 +11310,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
       </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lastName"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"commentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">661286</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"commentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w">
       </span><span class="nt">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-19T12:49:07+01:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Comment text"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"username"</span><span class="p">,</span><span class="w">
@@ -11322,13 +11322,13 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span></code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var Comment[] comments */</span>
-    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">commentId</span><span class="p">;</span><span class="c1">// 661288
+    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">commentId</span><span class="p">;</span><span class="c1">// 101
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">);</span><span class="c1">// 2016-02-19T12:49:20+01:00
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// Comment text
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">// username
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">;</span><span class="c1">// firstName
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">lastName</span><span class="p">;</span><span class="c1">// lastName
-</span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">commentId</span><span class="p">;</span><span class="c1">// 661286
+</span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">commentId</span><span class="p">;</span><span class="c1">// 102
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">);</span><span class="c1">// 2016-02-19T12:49:07+01:00
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// Comment text
 </span>    <span class="k">echo</span> <span class="nv">$comments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">// username
@@ -11392,11 +11392,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/123/comments/661288'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/123/comments/101'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var CommentDetail comment */</span>
-    <span class="nv">$comment</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="mi">661288</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+    <span class="nv">$comment</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 </code></pre>
 
 <blockquote>
@@ -11404,7 +11404,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
-    </span><span class="nt">"commentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">661288</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"commentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
     </span><span class="nt">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-19T12:49:20+01:00"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Comment text"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"username"</span><span class="p">,</span><span class="w">
@@ -11415,7 +11415,7 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span></code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var CommentDetail comment */</span>
-    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">commentId</span><span class="p">;</span><span class="c1">// 661288
+    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">commentId</span><span class="p">;</span><span class="c1">// 101
 </span>    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">createdAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">);</span><span class="c1">// 2016-02-19T12:49:20+01:00
 </span>    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// Comment text
 </span>    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">// username
@@ -11505,13 +11505,13 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
-    </span><span class="nt">"commentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">454548</span><span class="w">
+    </span><span class="nt">"commentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var integer $commentId */</span>
-    <span class="k">echo</span> <span class="nv">$commentId</span><span class="p">;</span><span class="c1">// 454548
+    <span class="k">echo</span> <span class="nv">$commentId</span><span class="p">;</span><span class="c1">// 103
 </span></code></pre>
 
 <p><code class="http-method">POST</code> <code class="prettyprint">comments</code></p>
@@ -11596,12 +11596,12 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <span class="s1">'{
   "comment": "New Comment"
 }'</span> <span class="se">\</span>
- <span class="s1">'https://api.meteocontrol.de/v2/tickets/123/comments/454548'</span>
+ <span class="s1">'https://api.meteocontrol.de/v2/tickets/123/comments/103'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$comment</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CommentDetail</span><span class="p">();</span>
     <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New Comment'</span><span class="p">;</span>
-    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="mi">454548</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$comment</span><span class="p">);</span>
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="mi">103</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$comment</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -11678,10 +11678,10 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -i -X DELETE <span class="s1">'https://api.meteocontrol.de/v2/tickets/123/comments/454548'</span>
+<pre class="highlight shell"><code>curl -i -X DELETE <span class="s1">'https://api.meteocontrol.de/v2/tickets/123/comments/103'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="mi">454548</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="mi">103</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
 </code></pre>
 
 <blockquote>
@@ -13566,6 +13566,230 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
 <p>Http-Code: 204</p>
 
+          <h5 id="flat-rate-undetermined">Flat-rate (undetermined)</h5>
+
+<h6 class="toc-ignore">Calculate the yield loss using the flat-rate model with undetermined source data</h6>
+
+<p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.3 Pauschal-Abrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 10).</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/56789/yield-losses/flat-rate/undetermined?from=2025-07-01T00:00:00+00:00&amp;to=2025-07-01T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T23:59:59+00:00'</span><span class="p">));</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">56789</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">undetermined</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="mf">69.32</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"realLostYield"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.29</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"totalCompensation"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.34962</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">;</span><span class="c1">// 69.32
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">realLostYield</span><span class="p">;</span><span class="c1">// 41.29
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">totalCompensation</span><span class="p">;</span><span class="c1">// 7.34962
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// ""
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/flat-rate/undetermined</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>CalculationResult object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Calculated yield loss value</td>
+</tr>
+<tr>
+<td>realLostYield <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+</tr>
+<tr>
+<td>totalCompensation <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Estimation amount of the financial compensation (based on the value of <code class="prettyprint">realLostYield</code>)</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<h6 class="toc-ignore">Calculate the yield loss using the flat-rate model with undetermined source data and save the result</h6>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/56789/yield-losses/flat-rate/undetermined?from=2025-07-01T00:00:00+00:00&amp;to=2025-07-01T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T23:59:59+00:00'</span><span class="p">));</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">56789</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">undetermined</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/flat-rate/undetermined</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
           <h5 id="linear-equation">Linear equation</h5>
 
 <h6 class="toc-ignore">Calculate the yield loss using the linear equation model</h6>
@@ -14639,6 +14863,230 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </code></pre>
 
 <p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/peak/static</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
+          <h5 id="peak-undetermined">Peak (undetermined)</h5>
+
+<h6 class="toc-ignore">Calculate the yield loss using the peak model with undetermined source data</h6>
+
+<p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.1 Spitzabrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 9).</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/56789/yield-losses/peak/undetermined?from=2025-07-01T00:00:00+00:00&amp;to=2025-07-01T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T23:59:59+00:00'</span><span class="p">));</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">56789</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">undetermined</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="mf">69.32</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"realLostYield"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.29</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"totalCompensation"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.34962</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">;</span><span class="c1">// 69.32
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">realLostYield</span><span class="p">;</span><span class="c1">// 41.29
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">totalCompensation</span><span class="p">;</span><span class="c1">// 7.34962
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// ""
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/peak/undetermined</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>CalculationResult object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Calculated yield loss value</td>
+</tr>
+<tr>
+<td>realLostYield <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+</tr>
+<tr>
+<td>totalCompensation <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Estimation amount of the financial compensation (based on the value of <code class="prettyprint">realLostYield</code>)</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<h6 class="toc-ignore">Calculate the yield loss using the peak model with undetermined source data and save the result</h6>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/56789/yield-losses/peak/undetermined?from=2025-07-01T00:00:00+00:00&amp;to=2025-07-01T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T23:59:59+00:00'</span><span class="p">));</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">56789</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">undetermined</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/peak/undetermined</code></p>
 
 <p><strong>Path parameters</strong></p>
 
@@ -16029,6 +16477,230 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </code></pre>
 
 <p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/simplified-peak/static</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
+          <h5 id="simplified-peak-undetermined">Simplified peak (undetermined)</h5>
+
+<h6 class="toc-ignore">Calculate the yield loss using the simplified peak model with undetermined source data</h6>
+
+<p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.2 Vereinfachte Spitzabrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 9).</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/56789/yield-losses/simplified-peak/undetermined?from=2025-07-01T00:00:00+00:00&amp;to=2025-07-01T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T23:59:59+00:00'</span><span class="p">));</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">56789</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">simplifiedPeak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">undetermined</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="mf">69.32</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"realLostYield"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.29</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"totalCompensation"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.34962</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">;</span><span class="c1">// 69.32
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">realLostYield</span><span class="p">;</span><span class="c1">// 41.29
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">totalCompensation</span><span class="p">;</span><span class="c1">// 7.34962
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// ""
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/simplified-peak/undetermined</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>CalculationResult object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Calculated yield loss value</td>
+</tr>
+<tr>
+<td>realLostYield <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+</tr>
+<tr>
+<td>totalCompensation <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Estimation amount of the financial compensation (based on the value of <code class="prettyprint">realLostYield</code>)</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<h6 class="toc-ignore">Calculate the yield loss using the simplified peak model with undetermined source data and save the result</h6>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/56789/yield-losses/simplified-peak/undetermined?from=2025-07-01T00:00:00+00:00&amp;to=2025-07-01T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T23:59:59+00:00'</span><span class="p">));</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">56789</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">simplifiedPeak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">undetermined</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/simplified-peak/undetermined</code></p>
 
 <p><strong>Path parameters</strong></p>
 
@@ -18043,6 +18715,10 @@ The response format changed as follows:</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2025-07-02</td>
+<td>Add undetermined yield loss calculation option to API</td>
+</tr>
 <tr>
 <td>2025-04-28</td>
 <td>Add site-access for cmms endpoint</td>
