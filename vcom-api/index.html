@@ -12679,12 +12679,13 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate/energy-trader?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate/energy-trader?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00&amp;resolution=900'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
     <span class="sd">/** @var CalculationResult $calculationResult */</span>
     <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
@@ -12747,7 +12748,14 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Resolution in seconds¹</td>
+</tr>
 </tbody></table>
+
+<p>¹ Only 900 seconds is supported. Default resolution uses datalogger interval.</p>
 
 <p><strong>Response</strong></p>
 
@@ -12795,12 +12803,13 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <span class="s1">'{
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
-  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate/energy-trader?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate/energy-trader?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00&amp;resolution=900'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
@@ -12854,7 +12863,14 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Resolution in seconds¹</td>
+</tr>
 </tbody></table>
+
+<p>¹ Only 900 seconds is supported. Default resolution uses datalogger interval.</p>
 
 <p><strong>Request headers</strong></p>
 
@@ -12903,12 +12919,13 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate/grid-operator?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate/grid-operator?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00&amp;resolution=900'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
     <span class="sd">/** @var CalculationResult $calculationResult */</span>
     <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRate</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">gridOperator</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
@@ -12971,7 +12988,14 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Resolution in seconds¹</td>
+</tr>
 </tbody></table>
+
+<p>¹ Only 900 seconds is supported. Default resolution uses datalogger interval.</p>
 
 <p><strong>Response</strong></p>
 
@@ -13019,12 +13043,13 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <span class="s1">'{
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
-  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate/grid-operator?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate/grid-operator?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00&amp;resolution=900'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
@@ -13078,7 +13103,14 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Resolution in seconds¹</td>
+</tr>
 </tbody></table>
+
+<p>¹ Only 900 seconds is supported. Default resolution uses datalogger interval.</p>
 
 <p><strong>Request headers</strong></p>
 
@@ -14052,12 +14084,13 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/peak/energy-trader?from=2021-05-05T00:00:00+00:00&amp;to=2021-05-10T23:59:59+00:00'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/peak/energy-trader?from=2021-05-05T00:00:00+00:00&amp;to=2021-05-10T23:59:59+00:00&amp;resolution=900'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2021-05-05T00:00:00+00:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2021-05-10T23:59:59+00:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2021-05-10T23:59:59+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
     <span class="sd">/** @var CalculationResult $calculationResult */</span>
     <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">peak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
@@ -14120,7 +14153,14 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Resolution in seconds¹</td>
+</tr>
 </tbody></table>
+
+<p>¹ Only 900 seconds is supported. Default resolution uses datalogger interval.</p>
 
 <p><strong>Response</strong></p>
 
@@ -14168,12 +14208,13 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <span class="s1">'{
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
-  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/peak/energy-trader?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/peak/energy-trader?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00&amp;resolution=900'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-25T00:00:00+00:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
@@ -14227,7 +14268,14 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Resolution in seconds¹</td>
+</tr>
 </tbody></table>
+
+<p>¹ Only 900 seconds is supported. Default resolution uses datalogger interval.</p>
 
 <p><strong>Request headers</strong></p>
 
@@ -15666,12 +15714,13 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/simplified-peak/energy-trader?from=2021-05-05T00:00:00+00:00&amp;to=2021-05-10T23:59:59+00:00'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/simplified-peak/energy-trader?from=2021-05-05T00:00:00+00:00&amp;to=2021-05-10T23:59:59+00:00&amp;resolution=900'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2021-05-05T00:00:00+00:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2021-05-10T23:59:59+00:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2021-05-10T23:59:59+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
     <span class="sd">/** @var CalculationResult $calculationResult */</span>
     <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">simplifiedPeak</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
@@ -15734,7 +15783,14 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Resolution in seconds¹</td>
+</tr>
 </tbody></table>
+
+<p>¹ Only 900 seconds is supported. Default resolution uses datalogger interval.</p>
 
 <p><strong>Response</strong></p>
 
@@ -15782,12 +15838,13 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <span class="s1">'{
   "comment": "New comment"
 }'</span> <span class="se">\ </span>
-  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/simplified-peak/energy-trader?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/simplified-peak/energy-trader?from=2022-05-25T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00&amp;resolution=900'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
         <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-25T00:00:00+00:00'</span><span class="p">))</span>
-        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
 
     <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
     <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
@@ -15841,7 +15898,14 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
 <td>End date</td>
 </tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Resolution in seconds¹</td>
+</tr>
 </tbody></table>
+
+<p>¹ Only 900 seconds is supported. Default resolution uses datalogger interval.</p>
 
 <p><strong>Request headers</strong></p>
 
@@ -18715,6 +18779,10 @@ The response format changed as follows:</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2025-07-09</td>
+<td>Add resolution parameter to calculate yield loss</td>
+</tr>
 <tr>
 <td>2025-07-02</td>
 <td>Add undetermined yield loss calculation option to API</td>
