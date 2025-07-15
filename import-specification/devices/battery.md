@@ -26,12 +26,12 @@
 | datapoints    | `B_I_AC`                       | A    | Battery AC current                                |         |          |                                |         |
 | datapoints    | `B_I_DC`                       | A    | Charging current DC                               |         |          |                                |         |
 | datapoints    | `B_I_DIS_DC`                   | A    | Discharging current DC                            |         |          |                                |         |
-| datapoints    | `B_LIM_I_CHARGE`               |      | Maximum charging current                          |         |          |                                |         |
-| datapoints    | `B_LIM_I_DISCHARGE`            |      | Maximum discharging current                       |         |          |                                |         |
+| datapoints    | `B_LIM_I_CHARGE`               | A    | Maximum charging current                          |         |          |                                |         |
+| datapoints    | `B_LIM_I_DISCHARGE`            | A    | Maximum discharging current                       |         |          |                                |         |
 | datapoints    | `B_LIM_P_CHARGE`               | W    | Maximum charging power                            |         |          |                                |         |
 | datapoints    | `B_LIM_P_DISCHARGE`            | W    | Maximum discharging power                         |         |          |                                |         |
 | datapoints    | `B_LIM_U_CHARGE`               | V    | Charge end voltage                                |         |          |                                |         |
-| datapoints    | `B_LIM_U_DISCHARGE`            |      | Discharge end voltage                             |         |          |                                |         |
+| datapoints    | `B_LIM_U_DISCHARGE`            | V    | Discharge end voltage                             |         |          |                                |         |
 | datapoints    | `B_OT_TOTAL`                   | h    | Operating Hours                                   |         |          |                                |         |
 | datapoints    | `B_P_AC`                       | W    | Battery power AC                                  |         |          |                                |         |
 | datapoints    | `B_P_DC`                       | W    | Total battery power                               |         |          |                                |         |
