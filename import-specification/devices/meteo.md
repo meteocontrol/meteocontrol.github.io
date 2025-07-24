@@ -33,7 +33,7 @@
 | datapoints    | `SLI[1..x]`               | %     | Soiling Loss                                                             |       |          |                              |         |
 | datapoints    | `SLI_RAW[1..x]`           | %     | Soiling Loss Raw                                                         |       |          |                              |         |
 | datapoints    | `SNOW_LOAD[1..x]`         | kg/m² | Snow load                                                                |       |          |                              |         |
-| datapoints    | `SRAD[1..x]`              | W/m2  | Irradiation sensors                                                      |       |          |                              |         |
+| datapoints    | `SRAD[1..x]`              | W/m²  | Irradiation sensors                                                      |       |          |                              |         |
 | datapoints    | `SRAD_DIFFUSE[1..x]`      | W/m²  | Diffuse horizontal irradiance (DHI)                                      |       |          |                              |         |
 | datapoints    | `SRAD_DIRECT[1..x]`       | W/m²  | Direct normal irradiance (DNI)                                           |       |          |                              |         |
 | datapoints    | `SR[1..x]`                | %     | Soiling ratio                                                            |       |          |                              |         |
