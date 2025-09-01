@@ -17884,6 +17884,27 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </tr>
 </tbody></table>
 
+<h4 id="alarm-closure-object" class="toc-ignore">AlarmClosureInfo</h4>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">userName</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>The user who closed the alarm, auto-closed if it is <code class="prettyprint">null</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">comment</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Closed comment from user</td>
+</tr>
+</tbody></table>
+
 <h3 class="toc-ignore">Objects</h3>
 
 <h4 id="component-object" class="toc-ignore">Component</h4>
@@ -17986,6 +18007,16 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td><code class="prettyprint">number</code>ǀ<code class="prettyprint">null</code></td>
 <td>Estimated losses due to alarm in kWh, <code class="prettyprint">null</code> if unavailable</td>
 </tr>
+<tr>
+<td>closedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
+<td>Closed datetime</td>
+</tr>
+<tr>
+<td>closedBy <code class="prettyprint">fixed</code></td>
+<td><a href="#alarm-closure-object">AlarmClosureInfo</a>ǀ<code class="prettyprint">null</code></td>
+<td>Information regarding how was the alarm been closed</td>
+</tr>
 </tbody></table>
 
 <h3 class="toc-ignore">Get all alarms</h3>
@@ -18036,7 +18067,9 @@ severity=high,critical&amp;status=open&amp;systemKey=ABCDE
       </span><span class="nt">"severity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"high"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"duration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PT300S"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"affectedPower"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"losses"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.4</span><span class="w">
+      </span><span class="nt">"losses"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.4</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"closedBy"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span><span class="w">
@@ -18055,7 +18088,9 @@ severity=high,critical&amp;status=open&amp;systemKey=ABCDE
       </span><span class="nt">"severity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"critical"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"duration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PT6H"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"affectedPower"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"losses"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nt">"losses"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"closedBy"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -18173,7 +18208,12 @@ severity=high,critical&amp;status=open&amp;systemKey=ABCDE
     </span><span class="nt">"severity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"critical"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"duration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PT1H"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"affectedPower"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"losses"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.3</span><span class="w">
+    </span><span class="nt">"losses"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T13:00:00+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"closedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user-name"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"comment"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -18779,6 +18819,10 @@ The response format changed as follows:</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2025-09-01</td>
+<td>Add alarm closure reason</td>
+</tr>
 <tr>
 <td>2025-08-20</td>
 <td>Increase get alarms count</td>
