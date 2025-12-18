@@ -3461,21 +3461,121 @@ the entire lifetime of the system (up to the current date) is returned as the re
 
 <p>¹ The resolution fixed to month at current moment.</p>
 
-          
-          <h5 id="forecast">Forecast</h5>
+          <h5 id="alternative-yield">Alternative yield</h5>
 
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/forecasts/forecast?format=json&amp;hours_into_future=1&amp;timezone=UTC&amp;resolution=fifteen-minutes&amp;category=intraday
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/forecasts/alternative-yield/specific-energy?from=2016-10-01T00:00:00+02:00&amp;to=2016-12-31T23:59:59+01:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$measurementsCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">MeasurementsCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-10-01T00:00:00+02:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2016-12-31T23:59:59+01:00'</span><span class="p">));</span>
+    <span class="sd">/** @var TimestampValue[] $yields */</span>
+    <span class="nv">$yields</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">forecasts</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">forecastsAlternativeYield</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">specificEnergy</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$measurementsCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-01T00:00:00+02:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">58.882</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-01T00:00:00+01:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.0598</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-01T00:00:00+01:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">19.794332</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var TimestampValue[] $yields */</span>
+    <span class="k">echo</span> <span class="nv">$yields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">);</span><span class="c1">// '2016-10-01T00:00:00+02:00'
+</span>    <span class="k">echo</span> <span class="nv">$yields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span><span class="c1">// 58.882
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/forecasts/alternative-yield/specific-energy</code></p>
+
+<p>Returns a list of alternative yield values.</p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>systemKey <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code>¹</td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p>¹ The resolution fixed to month at current moment.</p>
+
+          <h5 id="forecast">Forecast</h5>
+
+<blockquote>
+<p>Request (using hours_into_future)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/forecasts/forecast?format=json&amp;hours_into_future=1&amp;timezone=UTC&amp;resolution=fifteen-minutes&amp;category=intraday'</span>
+</code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="nv">$forecastCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">ForecastCriteria</span><span class="p">())</span>
             <span class="o">-&gt;</span><span class="na">withFormat</span><span class="p">(</span><span class="s1">'json'</span><span class="p">)</span>
-            <span class="o">-&gt;</span><span class="na">withHoursToFuture</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">withHoursIntoFuture</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
             <span class="o">-&gt;</span><span class="na">withTimezone</span><span class="p">(</span><span class="s1">'UTC'</span><span class="p">)</span>
             <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="nx">ForecastCriteria</span><span class="o">::</span><span class="na">RESOLUTION_FIFTEEN_MINUTES</span><span class="p">)</span>
             <span class="o">-&gt;</span><span class="na">withCategory</span><span class="p">(</span><span class="nx">ForecastCriteria</span><span class="o">::</span><span class="na">CATEGORY_INTRADAY</span><span class="p">);</span>
+    <span class="sd">/** @var MeasurementsBulkReader $forecastData */</span>
+    <span class="nv">$forecastData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">forecasts</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">forecast</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$forecastCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Request (using from/to for historical and future data)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems/ABCDE/forecasts/forecast?format=json&amp;from=2025-11-25T00:00:00+00:00&amp;to=2025-12-05T00:00:00+00:00&amp;timezone=UTC&amp;resolution=hour'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$forecastCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">ForecastCriteria</span><span class="p">())</span>
+            <span class="o">-&gt;</span><span class="na">withFormat</span><span class="p">(</span><span class="s1">'json'</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-11-25T00:00:00+00:00'</span><span class="p">))</span>
+            <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-12-05T00:00:00+00:00'</span><span class="p">))</span>
+            <span class="o">-&gt;</span><span class="na">withTimezone</span><span class="p">(</span><span class="s1">'UTC'</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="nx">ForecastCriteria</span><span class="o">::</span><span class="na">RESOLUTION_HOUR</span><span class="p">);</span>
     <span class="sd">/** @var MeasurementsBulkReader $forecastData */</span>
     <span class="nv">$forecastData</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">system</span><span class="p">(</span><span class="s1">'ABCDE'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">forecasts</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">forecast</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$forecastCriteria</span><span class="p">);</span>
 </code></pre>
@@ -3561,9 +3661,14 @@ the entire lifetime of the system (up to the current date) is returned as the re
 </tr>
 </thead><tbody>
 <tr>
-<td>hours_into_future <code class="prettyprint">optional</code></td>
-<td><code class="prettyprint">integer</code> between 1 and 96</td>
-<td>Defaults to <code class="prettyprint">48</code></td>
+<td>from <code class="prettyprint">optional</code>¹</td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Defaults to <code class="prettyprint">now</code></td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">optional</code>¹</td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Defaults to <code class="prettyprint">now + 48 hours</code></td>
 </tr>
 <tr>
 <td>format <code class="prettyprint">optional</code></td>
@@ -3581,13 +3686,24 @@ the entire lifetime of the system (up to the current date) is returned as the re
 <td>Defaults to <code class="prettyprint">system timezone</code></td>
 </tr>
 <tr>
-<td>category <code class="prettyprint">optional</code></td>
+<td>category <code class="prettyprint">optional</code>²</td>
 <td>(<code class="prettyprint">dayAhead</code>ǀ<code class="prettyprint">intraday</code>ǀ<code class="prettyprint">intradayOptimized</code>)</td>
-<td>Defaults to <code class="prettyprint">contract category</code>¹</td>
+<td>Defaults to <code class="prettyprint">contract category</code></td>
+</tr>
+<tr>
+<td>hours_into_future <code class="prettyprint">optional</code>³</td>
+<td><code class="prettyprint">integer</code> between 1 and 96</td>
+<td>(deprecated)</td>
 </tr>
 </tbody></table>
 
-<p>¹ If given a value, the category should be equal to or lower than the contract category. Or the endpoint will respond to HTTP 403.</p>
+<p>¹ The maximum time span between <code class="prettyprint">from</code> and <code class="prettyprint">to</code> is limited to 1 month(historical data).
+Future forecasts are limited to 96 hours from the current time.
+When using <code class="prettyprint">from</code>/<code class="prettyprint">to</code>, both parameters are required.
+You cannot use <code class="prettyprint">hours_into_future</code> together with <code class="prettyprint">from</code>/<code class="prettyprint">to</code>.<br>
+² If given a value, the category should be equal to or lower than the contract category. Or the endpoint will respond to HTTP 403.<br>
+³ Use <code class="prettyprint">hours_into_future</code>(deprecated) for future forecasts from the current time (limited to 96 hours)
+You cannot use <code class="prettyprint">hours_into_future</code> together with <code class="prettyprint">from</code>/<code class="prettyprint">to</code>.</p>
 
 <p><strong>Response</strong></p>
 
@@ -18819,6 +18935,14 @@ The response format changed as follows:</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2025-12-18</td>
+<td>Add alternative yield endpoint</td>
+</tr>
+<tr>
+<td>2025-12-16</td>
+<td>Add from/to parameters and deprecate hours_into_future in forecast endpoint</td>
+</tr>
 <tr>
 <td>2025-09-01</td>
 <td>Add alarm closure reason</td>
