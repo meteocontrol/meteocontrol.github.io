@@ -13937,6 +13937,1158 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
 <p>Http-Code: 204</p>
 
+          <h5 id="flat-rate-billing-last-measurement-energy-trader">Flat-rate billing last measurement (energy trader)</h5>
+
+<h6 class="toc-ignore">Calculate the yield loss using the flat-rate model, taking the last power output as the reference period, based on the energy trader source data</h6>
+
+<p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.3 Pauschal-Abrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 10).</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate-billing-last-measurement/energy-trader?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00&amp;resolution=900'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRateBillingLastMeasurement</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="mf">69.32</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"realLostYield"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.29</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"totalCompensation"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.34962</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">;</span><span class="c1">// 69.32
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">realLostYield</span><span class="p">;</span><span class="c1">// 41.29
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">totalCompensation</span><span class="p">;</span><span class="c1">// 7.34962
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// ""
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/flat-rate-billing-last-measurement/energy-trader</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Resolution in seconds¹</td>
+</tr>
+</tbody></table>
+
+<p>¹ Only 900 seconds is supported. Default resolution uses datalogger interval.</p>
+
+<p><strong>Response</strong></p>
+
+<p><em>CalculationResult object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Calculated yield loss value</td>
+</tr>
+<tr>
+<td>realLostYield <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+</tr>
+<tr>
+<td>totalCompensation <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Estimation amount of the financial compensation (based on the value of <code class="prettyprint">realLostYield</code>)</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<h6 class="toc-ignore">Calculate the yield loss using the flat-rate model, taking the last power output as the reference period, based on the energy trader source data, and save the result</h6>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate-billing-last-measurement/energy-trader?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00&amp;resolution=900'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRateBillingLastMeasurement</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">energyTrader</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/flat-rate-billing-last-measurement/energy-trader</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Resolution in seconds¹</td>
+</tr>
+</tbody></table>
+
+<p>¹ Only 900 seconds is supported. Default resolution uses datalogger interval.</p>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
+          <h5 id="flat-rate-billing-last-measurement-grid-operator">Flat-rate billing last measurement (grid operator)</h5>
+
+<h6 class="toc-ignore">Calculate the yield loss using the flat-rate model, taking the last power output as the reference period, based on the grid operator source data</h6>
+
+<p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.3 Pauschal-Abrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 10).</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate-billing-last-measurement/grid-operator?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00&amp;resolution=900'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRateBillingLastMeasurement</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">gridOperator</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="mf">69.32</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"realLostYield"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.29</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"totalCompensation"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.34962</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">;</span><span class="c1">// 69.32
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">realLostYield</span><span class="p">;</span><span class="c1">// 41.29
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">totalCompensation</span><span class="p">;</span><span class="c1">// 7.34962
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// ""
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/flat-rate-billing-last-measurement/grid-operator</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Resolution in seconds¹</td>
+</tr>
+</tbody></table>
+
+<p>¹ Only 900 seconds is supported. Default resolution uses datalogger interval.</p>
+
+<p><strong>Response</strong></p>
+
+<p><em>CalculationResult object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Calculated yield loss value</td>
+</tr>
+<tr>
+<td>realLostYield <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+</tr>
+<tr>
+<td>totalCompensation <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Estimation amount of the financial compensation (based on the value of <code class="prettyprint">realLostYield</code>)</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<h6 class="toc-ignore">Calculate the yield loss using the flat-rate model, taking the last power output as the reference period, based on the grid operator source data, and save the result</h6>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate-billing-last-measurement/grid-operator?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00&amp;resolution=900'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withResolution</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRateBillingLastMeasurement</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">gridOperator</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/flat-rate-billing-last-measurement/grid-operator</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>resolution <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Resolution in seconds¹</td>
+</tr>
+</tbody></table>
+
+<p>¹ Only 900 seconds is supported. Default resolution uses datalogger interval.</p>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
+          <h5 id="flat-rate-billing-last-measurement-manual">Flat-rate billing last measurement (manual)</h5>
+
+<h6 class="toc-ignore">Calculate the yield loss using the flat-rate model, taking the last power output as the reference period, based on the manual source data</h6>
+
+<p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.3 Pauschal-Abrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 10).</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate-billing-last-measurement/manual?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRateBillingLastMeasurement</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">manual</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="mf">69.32</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"realLostYield"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.29</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"totalCompensation"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.34962</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">;</span><span class="c1">// 69.32
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">realLostYield</span><span class="p">;</span><span class="c1">// 41.29
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">totalCompensation</span><span class="p">;</span><span class="c1">// 7.34962
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// ""
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/flat-rate-billing-last-measurement/manual</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>CalculationResult object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Calculated yield loss value</td>
+</tr>
+<tr>
+<td>realLostYield <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+</tr>
+<tr>
+<td>totalCompensation <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Estimation amount of the financial compensation (based on the value of <code class="prettyprint">realLostYield</code>)</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<h6 class="toc-ignore">Calculate the yield loss using the flat-rate model, taking the last power output as the reference period, based on the manual source data, and save the result</h6>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate-billing-last-measurement/manual?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRateBillingLastMeasurement</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">manual</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/flat-rate-billing-last-measurement/manual</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
+          <h5 id="flat-rate-billing-last-measurement-static">Flat-rate billing last measurement (static)</h5>
+
+<h6 class="toc-ignore">Calculate the yield loss using the flat-rate model, taking the last power output as the reference period, based on the static source data</h6>
+
+<p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.3 Pauschal-Abrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 10).</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate-billing-last-measurement/static?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRateBillingLastMeasurement</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">static</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="mf">69.32</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"realLostYield"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.29</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"totalCompensation"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.34962</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">;</span><span class="c1">// 69.32
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">realLostYield</span><span class="p">;</span><span class="c1">// 41.29
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">totalCompensation</span><span class="p">;</span><span class="c1">// 7.34962
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// ""
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/flat-rate-billing-last-measurement/static</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>CalculationResult object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Calculated yield loss value</td>
+</tr>
+<tr>
+<td>realLostYield <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+</tr>
+<tr>
+<td>totalCompensation <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Estimation amount of the financial compensation (based on the value of <code class="prettyprint">realLostYield</code>)</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<h6 class="toc-ignore">Calculate the yield loss using the flat-rate model, taking the last power output as the reference period, based on the static source data, and save the result</h6>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/45678/yield-losses/flat-rate-billing-last-measurement/static?from=2022-05-01T00:00:00+00:00&amp;to=2022-05-31T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2022-05-31T23:59:59+00:00'</span><span class="p">));</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">45678</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRateBillingLastMeasurement</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">static</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/flat-rate-billing-last-measurement/static</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
+          <h5 id="flat-rate-billing-last-measurement-undetermined">Flat-rate billing last measurement (undetermined)</h5>
+
+<h6 class="toc-ignore">Calculate the yield loss using the flat-rate model, taking the last power output as the reference period, based on the undetermined source data</h6>
+
+<p>Reference: Bundesnetzagentur (2020). <strong>3.2.3.3 Pauschal-Abrechnung</strong>. In <em><a href="https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2020/BK6-20-059/BK6-20-059_Anlage1_vom_06_11_2020.pdf">Bilanzierungsmodelle und Bestimmung der Ausfallarbeit</a></em> (p. 10).</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/tickets/56789/yield-losses/flat-rate-billing-last-measurement/undetermined?from=2025-07-01T00:00:00+00:00&amp;to=2025-07-01T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T23:59:59+00:00'</span><span class="p">));</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="nv">$calculationResult</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">56789</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRateBillingLastMeasurement</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">undetermined</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="mf">69.32</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"realLostYield"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.29</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"totalCompensation"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.34962</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="sd">/** @var CalculationResult $calculationResult */</span>
+    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">;</span><span class="c1">// 69.32
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">realLostYield</span><span class="p">;</span><span class="c1">// 41.29
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">totalCompensation</span><span class="p">;</span><span class="c1">// 7.34962
+</span>    <span class="k">echo</span> <span class="nv">$calculationResult</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// ""
+</span></code></pre>
+
+<p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/flat-rate-billing-last-measurement/undetermined</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p><em>CalculationResult object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Calculated yield loss value</td>
+</tr>
+<tr>
+<td>realLostYield <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Correction yield loss value (if not specified, the value will be the same as <code class="prettyprint">result</code>)</td>
+</tr>
+<tr>
+<td>totalCompensation <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Estimation amount of the financial compensation (based on the value of <code class="prettyprint">realLostYield</code>)</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<h6 class="toc-ignore">Calculate the yield loss using the flat-rate model, taking the last power output as the reference period, based on the undetermined source data, and save the result</h6>
+
+<p>Will create a new record of the yield loss calculation result in the database or rewrite the record if one exists.</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -i -X PUT <span class="se">\</span>
+   -H <span class="s1">'Content-Type:application/json'</span> <span class="se">\</span>
+   -d <span class="se">\</span>
+<span class="s1">'{
+  "comment": "New comment"
+}'</span> <span class="se">\ </span>
+  <span class="s1">'https://api.meteocontrol.de/v2/tickets/56789/yield-losses/flat-rate-billing-last-measurement/undetermined?from=2025-07-01T00:00:00+00:00&amp;to=2025-07-01T23:59:59+00:00'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$yieldLossesCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">YieldLossesCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withDateFrom</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T00:00:00+00:00'</span><span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">withDateTo</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">,</span> <span class="s1">'2025-07-01T23:59:59+00:00'</span><span class="p">));</span>
+
+    <span class="nv">$yieldLoss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YieldLoss</span><span class="p">();</span>
+    <span class="nv">$yieldLoss</span><span class="o">-&gt;</span><span class="na">comment</span> <span class="o">=</span> <span class="s1">'New comment'</span><span class="p">;</span>
+
+    <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ticket</span><span class="p">(</span><span class="mi">56789</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">yieldLosses</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flatRateBillingLastMeasurement</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">undetermined</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="nv">$yieldLossesCriteria</span><span class="p">,</span> <span class="nv">$yieldLoss</span><span class="p">);</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+
+<p><code class="http-method">PUT</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses/flat-rate-billing-last-measurement/undetermined</code></p>
+
+<p><strong>Path parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ticketId <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>Ticket ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>to <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">date</code>ǀ<code class="prettyprint">datetime</code></td>
+<td>End date</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request headers</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">application/json</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body (JSON)</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>comment <code class="prettyprint">required</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response</strong></p>
+
+<p>The response body is empty.</p>
+
+<p>Http-Code: 204</p>
+
           <h5 id="linear-equation">Linear equation</h5>
 
 <h6 class="toc-ignore">Calculate the yield loss using the linear equation model</h6>
@@ -18934,6 +20086,10 @@ The response format changed as follows:</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2026-02-25</td>
+<td>Add flat-rate-billing-last-measurement for yield-losses endpoint</td>
+</tr>
 <tr>
 <td>2025-12-18</td>
 <td>Add alternative yield endpoint</td>
