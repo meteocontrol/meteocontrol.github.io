@@ -523,11 +523,13 @@ X-RateLimit-Remaining-Day: 328
 <blockquote>
 <p>Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.meteocontrol.de/v2/systems?tags=tag1,tag2'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var System[] $systems */</span>
-    <span class="nv">$systems</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">systems</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+    <span class="nv">$systemCriteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">SystemCriteria</span><span class="p">())</span>
+        <span class="o">-&gt;</span><span class="na">withTags</span><span class="p">([</span><span class="s2">"tag1"</span><span class="p">,</span> <span class="s2">"tag2"</span><span class="p">]);</span>
+    <span class="sd">/** @var SystemWithTags[] $systems */</span>
+    <span class="nv">$systems</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">systems</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$systemCriteria</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
@@ -537,24 +539,77 @@ X-RateLimit-Remaining-Day: 328
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"meteocontrol PV system"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDE"</span><span class="w">
+      </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDE"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"tag1"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"meteocontrol PV system #2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VWXYZ"</span><span class="w">
+      </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VWXYZ"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"tag2"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-    <span class="sd">/** @var System[] $systems */</span>
+    <span class="sd">/** @var SystemWithTags[] $systems */</span>
     <span class="k">echo</span> <span class="nv">$systems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">key</span><span class="p">;</span><span class="c1">// ABCDE
 </span>    <span class="k">echo</span> <span class="nv">$systems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span><span class="c1">// meteocontrol PV system
+</span>    <span class="k">echo</span> <span class="nv">$systems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="c1">// tag1
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems</code></p>
 
-<p>Returns an array of system objects.</p>
+<p>Returns an array of system objects include tags of the system.</p>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tags <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Can contain comma delimited tags</td>
+</tr>
+</tbody></table>
+
+<p><br></p>
+
+<p><strong>Response</strong></p>
+
+<p><em>System object include tags of the system</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Identification key of the system</td>
+</tr>
+<tr>
+<td>name <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>System name</td>
+</tr>
+<tr>
+<td>tags <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">array</code></td>
+<td>The tags of the system</td>
+</tr>
+</tbody></table>
 
           <h3 id="abbreviations">Abbreviations</h3>
 
@@ -8585,7 +8640,9 @@ For response example in CSV format, please check <a href="https://github.com/met
       </span><span class="nt">"PPC_P_AC"</span><span class="p">:</span><span class="w"> </span><span class="mf">70.650000000000006</span><span class="p">,</span><span class="w">
       </span><span class="nt">"PPC_Q_AC"</span><span class="p">:</span><span class="w"> </span><span class="mf">26.73</span><span class="p">,</span><span class="w">
       </span><span class="nt">"PPC_PF"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.2000000000000002</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"PPC_Q_SET_REL"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="w">
+      </span><span class="nt">"PPC_Q_SET_REL"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PPC_GCP_P_LIM_FEEDIN_REL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PPC_RPC_GCP_P_LIM_REL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"2016-10-29T18:05:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -8606,7 +8663,9 @@ For response example in CSV format, please check <a href="https://github.com/met
       </span><span class="nt">"PPC_P_AC"</span><span class="p">:</span><span class="w"> </span><span class="mf">42.43</span><span class="p">,</span><span class="w">
       </span><span class="nt">"PPC_Q_AC"</span><span class="p">:</span><span class="w"> </span><span class="mf">91.590000000000003</span><span class="p">,</span><span class="w">
       </span><span class="nt">"PPC_PF"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.3000000000000007</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"PPC_Q_SET_REL"</span><span class="p">:</span><span class="w"> </span><span class="mf">39.100000000000001</span><span class="w">
+      </span><span class="nt">"PPC_Q_SET_REL"</span><span class="p">:</span><span class="w"> </span><span class="mf">39.100000000000001</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PPC_GCP_P_LIM_FEEDIN_REL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PPC_RPC_GCP_P_LIM_REL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"2016-10-29T18:10:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -8627,7 +8686,9 @@ For response example in CSV format, please check <a href="https://github.com/met
       </span><span class="nt">"PPC_P_AC"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.720000000000001</span><span class="p">,</span><span class="w">
       </span><span class="nt">"PPC_Q_AC"</span><span class="p">:</span><span class="w"> </span><span class="mf">57.43</span><span class="p">,</span><span class="w">
       </span><span class="nt">"PPC_PF"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3999999999999999</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"PPC_Q_SET_REL"</span><span class="p">:</span><span class="w"> </span><span class="mf">22.100000000000001</span><span class="w">
+      </span><span class="nt">"PPC_Q_SET_REL"</span><span class="p">:</span><span class="w"> </span><span class="mf">22.100000000000001</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PPC_GCP_P_LIM_FEEDIN_REL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PPC_RPC_GCP_P_LIM_REL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"2016-10-29T18:15:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -8648,7 +8709,9 @@ For response example in CSV format, please check <a href="https://github.com/met
       </span><span class="nt">"PPC_P_AC"</span><span class="p">:</span><span class="w"> </span><span class="mf">62.740000000000002</span><span class="p">,</span><span class="w">
       </span><span class="nt">"PPC_Q_AC"</span><span class="p">:</span><span class="w"> </span><span class="mf">99.480000000000004</span><span class="p">,</span><span class="w">
       </span><span class="nt">"PPC_PF"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.2000000000000002</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"PPC_Q_SET_REL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nt">"PPC_Q_SET_REL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PPC_GCP_P_LIM_FEEDIN_REL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PPC_RPC_GCP_P_LIM_REL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -20086,6 +20149,10 @@ The response format changed as follows:</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2026-05-25</td>
+<td>Support tags parameter for systems endpoint</td>
+</tr>
 <tr>
 <td>2026-02-25</td>
 <td>Add flat-rate-billing-last-measurement for yield-losses endpoint</td>
