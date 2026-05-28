@@ -12799,7 +12799,9 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
     </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="mf">69.32</span><span class="p">,</span><span class="w">
     </span><span class="nt">"realLostYield"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.29</span><span class="p">,</span><span class="w">
     </span><span class="nt">"totalCompensation"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.34962</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-13T00:00:00+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"until"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-23T23:59:59+00:00"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -12810,6 +12812,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$yieldLosses</span><span class="o">-&gt;</span><span class="na">realLostYield</span><span class="p">;</span><span class="c1">// 41.29
 </span>    <span class="k">echo</span> <span class="nv">$yieldLosses</span><span class="o">-&gt;</span><span class="na">totalCompensation</span><span class="p">;</span><span class="c1">// 7.34962
 </span>    <span class="k">echo</span> <span class="nv">$yieldLosses</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span><span class="c1">// ""
+</span>    <span class="k">echo</span> <span class="nv">$yieldLosses</span><span class="o">-&gt;</span><span class="na">from</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">);</span><span class="c1">// 2024-08-13T00:00:00+00:00
+</span>    <span class="k">echo</span> <span class="nv">$yieldLosses</span><span class="o">-&gt;</span><span class="na">until</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">);</span><span class="c1">// 2024-08-23T23:59:59+00:00
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/yield-losses</code></p>
@@ -12845,6 +12849,52 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td><code class="prettyprint">404</code></td>
 <td>YieldLossCalculation object not found of the ticket id</td>
+</tr>
+</tbody></table>
+
+<p><em>YieldLossCalculation object</em></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>model <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Calculation model name</td>
+</tr>
+<tr>
+<td>result <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Calculated yield loss</td>
+</tr>
+<tr>
+<td>realLostYield <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Manual override or calculated result</td>
+</tr>
+<tr>
+<td>totalCompensation <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Total compensation amount</td>
+</tr>
+<tr>
+<td>comment <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code>ǀ<code class="prettyprint">null</code></td>
+<td>Comment</td>
+</tr>
+<tr>
+<td>from <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Calculation period start</td>
+</tr>
+<tr>
+<td>until <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Calculation period end</td>
 </tr>
 </tbody></table>
 
@@ -20149,6 +20199,10 @@ The response format changed as follows:</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2026-05-28</td>
+<td>Add from and until properties to yield-losses endpoint response</td>
+</tr>
 <tr>
 <td>2026-05-25</td>
 <td>Support tags parameter for systems endpoint</td>
