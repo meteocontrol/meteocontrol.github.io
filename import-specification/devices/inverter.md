@@ -19,7 +19,7 @@
 | datapoints            | `E_TOTAL`            | kWh  | Total generated energy                        |          |          |                                 |         |
 | datapoints            | `E_YEAR`             | kWh  | Energy generated per year                     |          |          |                                 |         |
 | datapoints            | `FT_AC_DAY`          | min  | Feed in Time Day AC                           |          |          |                                 |         |
-| datapoints            | `FT_AC_TOTAL`        | hour | Feed in Time Total AC                         |          |          |                                 |         |
+| datapoints            | `FT_AC_TOTAL`        | h    | Feed in Time Total AC                         |          |          |                                 |         |
 | datapoints            | `F_AC[1..x]`         | Hz   | Grid frequency (single phase or accumulated)  |          |          |                                 |         |
 | datapoints            | `I_AC[1..x]`         | A    | Current AC (single phase or accumulated)      |          |          |                                 |         |
 | datapoints            | `I_DC`               | A    | Current DC (accumulated)                      |          |          |                                 |         |
@@ -27,13 +27,13 @@
 | datapoints            | `I_DC[1..x]_[1..x]`  | A    | Current DC MPPT x Input x                     |          |          |                                 |         |
 | datapoints            | `I_GDFI`             | mA   | Earth leakage current                         |          |          |                                 |         |
 | datapoints            | `OT_AC_DAY`          | min  | Operation Time DAY                            |          |          |                                 |         |
-| datapoints            | `OT_AC_TOTAL`        | hour | Operation Time TOTAL                          |          |          |                                 |         |
+| datapoints            | `OT_AC_TOTAL`        | h    | Operation Time TOTAL                          |          |          |                                 |         |
 | datapoints            | `P_AC[1..3]`         | W    | Power AC (single phase or accumulated)        |          | x        |                                 |         |
 | datapoints            | `P_DC`               | W    | Power DC (accumulated)                        |          |          |                                 |         |
 | datapoints            | `P_DC[1..x]`         | W    | Power DC MPPT x                               |          |          |                                 |         |
 | datapoints            | `Q_AC[1..3]`         | var  | Reactive power (single phase or accumulated)  |          |          |                                 |         |
 | datapoints            | `R_AC`               | mOhm | Grid impedance                                |          |          |                                 |         |
-| datapoints            | `R_ISO`              | kOhm | Isolation resistant                           |          |          |                                 |         |
+| datapoints            | `R_ISO[1..3]`        | kOhm | Isolation resistant                           |          |          |                                 |         |
 | datapoints            | `S_AC[1..3]`         | VA   | Apparent power (single phase or accumulated)  |          |          |                                 |         |
 | datapoints            | `T[1..x]`            | °C   | inverter temperatures                         |          |          |                                 |         |
 | datapoints            | `T_WR[1..x]`         | °C   | inverter temperatures                         |          |          |                                 |         |
