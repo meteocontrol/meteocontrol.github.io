@@ -18825,7 +18825,13 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"statusDateAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-12T00:00:00+00:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"statusReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"additionalAssignees"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5678"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"additional-user"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -18845,6 +18851,8 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">assignee</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span><span class="c1">// accepted
 </span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">assignee</span><span class="o">-&gt;</span><span class="na">statusDateAt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_ATOM</span><span class="p">);</span><span class="c1">// 2020-08-12T00:00:00+00:00
 </span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">assignee</span><span class="o">-&gt;</span><span class="na">statusReason</span><span class="p">;</span><span class="c1">// null
+</span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">additionalAssignees</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span><span class="c1">// 5678
+</span>    <span class="k">echo</span> <span class="nv">$workOrder</span><span class="o">-&gt;</span><span class="na">additionalAssignees</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span><span class="c1">// additional-user
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">workorders/&lt;workOrderId&gt;</code></p>
@@ -18922,14 +18930,76 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td>Created timestamp in UTC timezone</td>
 </tr>
 <tr>
+<td>completedAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
+<td>Completed timestamp in UTC timezone</td>
+</tr>
+<tr>
 <td>lastChangedAt <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
 <td>Last change timestamp in UTC timezone</td>
 </tr>
 <tr>
 <td>assignee <code class="prettyprint">fixed</code></td>
+<td><a href="#assignee-object">Assignee</a>ǀ<code class="prettyprint">null</code></td>
+<td>Main assignee</td>
+</tr>
+<tr>
+<td>additionalAssignees <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">array</code></td>
-<td>username <code class="prettyprint">string</code>, status <code class="prettyprint">string</code>, statusDateAt <code class="prettyprint">datetime</code>, statusReason <code class="prettyprint">string</code></td>
+<td>Array of <a href="#additional-assignee-object">AdditionalAssignee</a></td>
+</tr>
+</tbody></table>
+
+<h4 id="assignee-object" class="toc-ignore">Assignee</h4>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Username</td>
+</tr>
+<tr>
+<td>status <code class="prettyprint">fixed</code></td>
+<td>(<code class="prettyprint">accepted</code>ǀ<code class="prettyprint">declined</code>)</td>
+<td>Assignee status</td>
+</tr>
+<tr>
+<td>statusDateAt <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">datetime</code></td>
+<td>Assigned date</td>
+</tr>
+<tr>
+<td>statusReason <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Assigned reason</td>
+</tr>
+</tbody></table>
+
+<h4 id="additional-assignee-object" class="toc-ignore">AdditionalAssignee</h4>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>User ID</td>
+</tr>
+<tr>
+<td>username <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Username</td>
 </tr>
 </tbody></table>
 
@@ -20217,6 +20287,10 @@ The response format changed as follows:</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2026-06-22</td>
+<td>Add additionalAssignees property to WorkOrderDetail model</td>
+</tr>
 <tr>
 <td>2026-06-04</td>
 <td>Add workOrderIds and ticketIds properties to SiteAccess model</td>
