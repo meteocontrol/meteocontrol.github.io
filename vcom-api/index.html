@@ -1261,6 +1261,22 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/&lt;systemKey&gt;/technical-data/last-data-input</code></p>
 
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timezone <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>IANA Time Zone Names e.g. &lsquo;Europe/Berlin&rsquo;, default to &#39;UTC&rsquo;</td>
+</tr>
+</tbody></table>
+
 <p><strong>Path parameters</strong></p>
 
 <table><thead>
@@ -1289,7 +1305,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 <tr>
 <td>timestamp <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">datetime</code>ǀ<code class="prettyprint">null</code></td>
-<td>Last data input timestamp in UTC timezone</td>
+<td>Last data input timestamp</td>
 </tr>
 </tbody></table>
 
@@ -2762,7 +2778,6 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
    </span><span class="nt">"2016-09-01T00:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
      </span><span class="nt">"AREA"</span><span class="p">:</span><span class="w"> </span><span class="mf">66607.58</span><span class="p">,</span><span class="w">
      </span><span class="nt">"CO2"</span><span class="p">:</span><span class="w"> </span><span class="mf">143.31</span><span class="p">,</span><span class="w">
-     </span><span class="nt">"E_MEAN_DEV"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
      </span><span class="nt">"E_MESS"</span><span class="p">:</span><span class="w"> </span><span class="mi">44579</span><span class="p">,</span><span class="w">
      </span><span class="nt">"E_N"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
      </span><span class="nt">"E_ZAEHLER"</span><span class="p">:</span><span class="w"> </span><span class="mi">44579</span><span class="p">,</span><span class="w">
@@ -2779,7 +2794,6 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
     <span class="nv">$bulkDataArray</span> <span class="o">=</span> <span class="nv">$bulkData</span><span class="o">-&gt;</span><span class="na">getAsArray</span><span class="p">();</span>
     <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'AREA'</span><span class="p">];</span><span class="c1">// 66607.58
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'CO2'</span><span class="p">];</span><span class="c1">// 143.31
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_MEAN_DEV'</span><span class="p">];</span><span class="c1">// null
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_MESS'</span><span class="p">];</span><span class="c1">// 44579
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_N'</span><span class="p">];</span><span class="c1">// null
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'E_ZAEHLER'</span><span class="p">];</span><span class="c1">// 44579
@@ -10745,7 +10759,12 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <tr>
 <td>systemKey <code class="prettyprint">optional</code></td>
 <td></td>
-<td>can contain comma delimited system keys</td>
+<td>Can contain comma delimited system keys</td>
+</tr>
+<tr>
+<td>timezone <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>IANA Time Zone Names e.g. &lsquo;Europe/Berlin&rsquo;, default to &#39;local&rsquo;</td>
 </tr>
 </tbody></table>
 
@@ -10925,6 +10944,22 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <p>¹ Customized statuses available. Please reach out to our sales representatives for more information.</p>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;</code></p>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timezone <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>IANA Time Zone Names e.g. &#39;Europe/Berlin&rsquo;, default to &#39;local&rsquo;</td>
+</tr>
+</tbody></table>
 
 <p><strong>Path parameters</strong></p>
 
@@ -11516,6 +11551,22 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
 <p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/comments</code></p>
 
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timezone <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>IANA Time Zone Names e.g. &lsquo;Europe/Berlin&rsquo;, default to &#39;local&rsquo;</td>
+</tr>
+</tbody></table>
+
 <p><strong>Path parameters</strong></p>
 
 <table><thead>
@@ -11602,6 +11653,22 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/comments/&lt;commentId&gt;</code></p>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timezone <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>IANA Time Zone Names e.g. &#39;Europe/Berlin&rsquo;, default to &#39;local&rsquo;</td>
+</tr>
+</tbody></table>
 
 <p><strong>Path parameters</strong></p>
 
@@ -11938,6 +12005,22 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">tickets/&lt;ticketId&gt;/outage</code></p>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timezone <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>IANA Time Zone Names e.g. &lsquo;Europe/Berlin&rsquo;, default to &#39;local&rsquo;</td>
+</tr>
+</tbody></table>
 
 <p><strong>Path parameters</strong></p>
 
@@ -18762,6 +18845,11 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 <td><code class="prettyprint">string</code></td>
 <td>Identification key of the system</td>
 </tr>
+<tr>
+<td>timezone <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>IANA Time Zone Names e.g. &lsquo;Europe/Berlin&rsquo;, default to &#39;UTC&rsquo;</td>
+</tr>
 </tbody></table>
 
 <p><strong>Response</strong></p>
@@ -18856,6 +18944,22 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">workorders/&lt;workOrderId&gt;</code></p>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timezone <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>IANA Time Zone Names e.g. &#39;Europe/Berlin&rsquo;, default to &#39;UTC&rsquo;</td>
+</tr>
+</tbody></table>
 
 <p><strong>Path parameters</strong></p>
 
@@ -19044,6 +19148,22 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 
 <p>Returns an array of work order form objects.</p>
 
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timezone <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>IANA Time Zone Names e.g. &lsquo;Europe/Berlin&rsquo;, default to &#39;UTC&rsquo;</td>
+</tr>
+</tbody></table>
+
 <p><strong>Path parameters</strong></p>
 
 <table><thead>
@@ -19141,6 +19261,22 @@ includeInReports=no&amp;severity=normal&amp;priority=normal&amp;status=open&amp;
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">workorders/&lt;workOrderId&gt;/forms/&lt;formId&gt;</code></p>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timezone <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>IANA Time Zone Names e.g. &#39;Europe/Berlin&rsquo;, default to &#39;UTC&rsquo;</td>
+</tr>
+</tbody></table>
 
 <p><strong>Path parameters</strong></p>
 
@@ -19635,6 +19771,11 @@ severity=high,critical&amp;status=open&amp;systemKey=ABCDE
 <td><code class="prettyprint">string</code></td>
 <td>Can contain comma delimited system keys</td>
 </tr>
+<tr>
+<td>timezone <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>IANA Time Zone Names e.g. &lsquo;Europe/Berlin&rsquo;, default to &#39;UTC&rsquo;</td>
+</tr>
 </tbody></table>
 
 <p><br></p>
@@ -19687,6 +19828,22 @@ severity=high,critical&amp;status=open&amp;systemKey=ABCDE
 </span></code></pre>
 
 <p><code class="http-method">GET</code> <code class="prettyprint">alarms/&lt;alarmId&gt;</code></p>
+
+<p><strong>Query parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timezone <code class="prettyprint">optional</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>IANA Time Zone Names e.g. &#39;Europe/Berlin&rsquo;, default to &#39;UTC&rsquo;</td>
+</tr>
+</tbody></table>
 
 <p><strong>Path parameters</strong></p>
 
@@ -20287,6 +20444,10 @@ The response format changed as follows:</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2026-08-12</td>
+<td>Add timezone query parameter in multiple endpoints</td>
+</tr>
 <tr>
 <td>2026-06-22</td>
 <td>Add additionalAssignees property to WorkOrderDetail model</td>
