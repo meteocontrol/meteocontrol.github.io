@@ -520,6 +520,8 @@ X-RateLimit-Remaining-Day: 328
 
           <h2 id="systems">Systems</h2>
 
+<p><strong>Note</strong>: The <code class="prettyprint">systems</code> endpoints operate on portfolio level. They cover all systems your account has access to, not a single system.</p>
+
 <blockquote>
 <p>Request</p>
 </blockquote>
@@ -563,7 +565,7 @@ X-RateLimit-Remaining-Day: 328
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems</code></p>
 
-<p>Returns an array of system objects include tags of the system.</p>
+<p>Returns an array of system objects. To call up system-specific data, you must specify the VCOM system key.</p>
 
 <p><strong>Query parameters</strong></p>
 
@@ -613,8 +615,7 @@ X-RateLimit-Remaining-Day: 328
 
           <h3 id="abbreviations">Abbreviations</h3>
 
-<p>Abbreviations are uppercase strings that identify datapoints.
-Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irradiance), PR (performance ratio), CO2 (carbon emission) and POWER (system capacity).</p>
+<p>The abbreviations used in the endpoints are the same as those used in our <a href="https://github.com/meteocontrol/meteocontrol.github.io/tree/master/import-specification">Import specification</a>. If portfolio-level abbreviations are not available in the import specification, they are imported as calculated values.</p>
 
 <h3 class="toc-ignore">Get all abbreviations</h3>
 
@@ -654,7 +655,7 @@ Common abbreviations on portfolio level are E_Z_EVU (production), G_M (POA irrad
 
 <p><code class="http-method">GET</code> <code class="prettyprint">systems/abbreviations</code></p>
 
-<p>Returns a list of all available abbreviations.</p>
+<p>Returns a list of all available system level abbreviations for the portfolio.</p>
 
 <h3 class="toc-ignore">Get all available measurements</h3>
 
