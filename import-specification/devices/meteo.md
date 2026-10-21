@@ -30,6 +30,7 @@
 | datapoints    | `E_W_D[1..x]`             | °     | Wind direction                                                           |       |          |                              |         |
 | datapoints    | `E_W_S[1..x]`             | m/s   | Wind speed                                                               |       |          |                              |         |
 | datapoints    | `E_W_S[1..x]_MAX`         | m/s   | Maximum wind speed                                                       |       |          |                              |         |
+| datapoints    | `R_ISO`                   | kOhm  | Isolation resistance                                                     |       |          |                              |         |
 | datapoints    | `SLI[1..x]`               | %     | Soiling Loss                                                             |       |          |                              |         |
 | datapoints    | `SLI_RAW[1..x]`           | %     | Soiling Loss Raw                                                         |       |          |                              |         |
 | datapoints    | `SNOW_LOAD[1..x]`         | kg/m² | Snow load                                                                |       |          |                              |         |
