@@ -899,6 +899,7 @@ X-RateLimit-Remaining-Day: 328
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"nominalPower"</span><span class="p">:</span><span class="w"> </span><span class="mf">79.24</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nominalAcPower"</span><span class="p">:</span><span class="w"> </span><span class="mf">550.8</span><span class="p">,</span><span class="w">
     </span><span class="nt">"siteArea"</span><span class="p">:</span><span class="w"> </span><span class="mf">549.11</span><span class="p">,</span><span class="w">
     </span><span class="nt">"panels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -985,6 +986,7 @@ X-RateLimit-Remaining-Day: 328
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
     <span class="sd">/** @var TechnicalData $technicalData */</span>
     <span class="k">echo</span> <span class="nv">$technicalData</span><span class="o">-&gt;</span><span class="na">nominalPower</span><span class="p">;</span><span class="c1">// 79.24
+</span>    <span class="k">echo</span> <span class="nv">$technicalData</span><span class="o">-&gt;</span><span class="na">nominalAcPower</span><span class="p">;</span><span class="c1">// 550.8
 </span>    <span class="k">echo</span> <span class="nv">$technicalData</span><span class="o">-&gt;</span><span class="na">siteArea</span><span class="p">;</span><span class="c1">// 549.11
 </span>    <span class="k">echo</span> <span class="nv">$technicalData</span><span class="o">-&gt;</span><span class="na">panels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">vendor</span><span class="p">;</span><span class="c1">// Suntech
 </span>    <span class="k">echo</span> <span class="nv">$technicalData</span><span class="o">-&gt;</span><span class="na">panels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">model</span><span class="p">;</span><span class="c1">// STP280-24/Vb
@@ -1040,6 +1042,11 @@ X-RateLimit-Remaining-Day: 328
 <td>nominalPower <code class="prettyprint">fixed</code></td>
 <td><code class="prettyprint">number</code></td>
 <td>Unit: kWp</td>
+</tr>
+<tr>
+<td>nominalAcPower <code class="prettyprint">fixed</code></td>
+<td><code class="prettyprint">number</code></td>
+<td>Unit: kVA</td>
 </tr>
 <tr>
 <td>siteArea <code class="prettyprint">fixed</code></td>
@@ -2785,7 +2792,6 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
      </span><span class="nt">"EPI"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
      </span><span class="nt">"POWER"</span><span class="p">:</span><span class="w"> </span><span class="mf">9990.12</span><span class="p">,</span><span class="w">
      </span><span class="nt">"PR"</span><span class="p">:</span><span class="w"> </span><span class="mf">82.277446881595</span><span class="p">,</span><span class="w">
-     </span><span class="nt">"SOLIDX"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
      </span><span class="nt">"VFG"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2801,7 +2807,6 @@ Common abbreviations within the calculations endpoint are E_N (normalized produc
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'EPI'</span><span class="p">];</span><span class="c1">// null
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'POWER'</span><span class="p">];</span><span class="c1">// 9990.12
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'PR'</span><span class="p">];</span><span class="c1">// 82.277446881595
-</span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'SOLIDX'</span><span class="p">];</span><span class="c1">// null
 </span>    <span class="k">echo</span> <span class="nv">$bulkDataArray</span><span class="p">[</span><span class="s1">'2016-09-01T00:00:00+02:00'</span><span class="p">][</span><span class="s1">'VFG'</span><span class="p">];</span><span class="c1">// 100
 </span></code></pre>
 
@@ -20445,6 +20450,10 @@ The response format changed as follows:</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2026-18-28</td>
+<td>Extend technical data endpoint to return nominalAcPower</td>
+</tr>
 <tr>
 <td>2026-08-12</td>
 <td>Add timezone query parameter in multiple endpoints</td>
